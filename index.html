@@ -1,692 +1,1182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
-	<meta charset="UTF-8">
-	<title>ConceptionWeb</title>
-	<!-- vendor style sheet -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/normailze.css">
-	<link rel="stylesheet" type="text/css" href="css/grid.css">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="css/animate.css">
-	<link rel="stylesheet" type="text/css" href="css/simple-line-icons.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakash Dhar | Technical Project Manager</title>
 
-	<!-- custom style sheet -->
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- SEO & Meta Tags -->
+    <meta name="description"
+        content="Portfolio of Aakash Dhar - Technical Project Manager at BetaCraft, Google Certified PM & Agentic AI Architect specializing in PHP/Laravel and AI Systems.">
+    <meta name="keywords"
+        content="Aakash Dhar, Technical Project Manager, BetaCraft, Agentic AI, Laravel Developer, Google Certified PMP, Pune">
+    <meta name="author" content="Aakash Dhar">
 
-	<script src="js/modernizr.custom.js"></script>
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aakashdhar.me/">
+    <meta property="og:title" content="Aakash Dhar | Technical Project Manager & AI Architect">
+    <meta property="og:description"
+        content="Bridging complex code and business strategy. 8.5+ years of dev roots, now architecting Agentic AI systems and leading products.">
+    <meta property="og:image"
+        content="https://ui-avatars.com/api/?name=Aakash+Dhar&background=6366f1&color=fff&size=512">
+    <!-- Placeholder OG Image -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aakashdhar.me/">
+    <meta property="twitter:title" content="Aakash Dhar | Technical Project Manager">
+    <meta property="twitter:description"
+        content="Bridging complex code and business strategy. 8.5+ years of dev roots, now architecting Agentic AI systems.">
+    <meta property="twitter:image"
+        content="https://ui-avatars.com/api/?name=Aakash+Dhar&background=6366f1&color=fff&size=512">
+
+    <!-- Favicon (Inline SVG) -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%236366f1%22/><text x=%2250%22 y=%2265%22 font-family=%22sans-serif%22 font-size=%2245%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>AD</text></svg>">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Manrope (Variable Weight) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        heading: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#030712', // Darker cool gray
+                        surface: '#111827',
+                        primary: '#6366f1', // Indigo-500
+                        secondary: '#d946ef', // Fuchsia-500
+                        accent: '#14b8a6', // Teal-500
+                        laravel: '#FF2D20', // Laravel Red
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Scroll Fallback */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        /* Glass Card Utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-nav {
+            background: rgba(3, 7, 18, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #818cf8, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
-<body>
-<!-- launch screen starts -->
-	<section id="home" class="home">
-		<div class="home-overlay"></div>
-			<div class="intro">
-				<h1>Conception Web</h1>
-				<h4>Creating <span><u>modern</u></span> and <span><u>responsive</u></span> Web Application</h4>
-				<h4>For <span><u>innoavtive</u></span> and <span><u>creative</u></span> businesses</h4>
-			</div>
-			<a href="#about">
-			<div class="scroll-down">
-				<span>
-					<i class="fa fa-angle-down fa-2x"></i>
-				</span>
-			</div>
-		</a>
-	</section>
-<!-- launch screen ends -->
 
-<!-- navigation begins -->
-<header class="header">
-	<nav class="navbar navbar-custom" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.html">ConceptionWeb</a>
-			</div>
+<body class="bg-background text-slate-300 font-sans selection:bg-primary selection:text-white overflow-x-hidden">
 
-			<div class="collapse navbar-collapse" id="custom-collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#home">Home</a></li>
-					<li><a href="#about">About Us</a></li>
-					<li><a href="#services">Services</a></li>
-					<li><a href="#works">Works</a></li>					
-					<li><a href="#motto">Our Motto</a></li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-</header>
-<!-- navigation ends -->
-<!-- about us begins  -->
-<section id="about" class="section-about">
-	<div class="container">
-		<div class="row wow fadeInUp">
-			<div class="col-sm-6 col-sm-offset-3">
-				<h2>something about us</h2>
-			</div>
-			<div class="col-sm-12">
-				<div class="about-text">
-					<span>Welcome to Conception Web!</span> 
-					A solution platform for all your web needs. We are a crazy, funny, creative and standardized web service providers based in Bangalore, India; founded in 2015. We offer plenty of services related to your corporate web requirements. Designing a Website, Re-designing a Website, Web Development, Web Hosting, Portfolio making or even designing Brochures and Flyers for your Company; We stand beside you to deliver the best ideas and experiences that can help your business to grow faster.
-					Our team works on several basic creative principles to offer the clients the best that they need. We are the professionals working towards making the professionalism more stylish and creative in terms of visuality and user experiences. Corporates are meant to be professionally attractive and we offer the best styles that suits your product or service and make your business more attractive.
-					<span>Be our client, and we will help you acquire your clients.</span>
-				</div>
-			</div>
-		</div>
-		<div class="row hidden-xs hidden-md hidden-sm wow fadeInUp">
-			<div class="about-process">
-			<hr>
-				<div class="col-12 col-sm-2 col-sm-offset-1 icon">
-					<div class="box-process">
-						<i class="fa fa-list fa-3x"></i>
-						<h3>Listing<br/><span>needs</span></h3>
-					</div>
-				</div>
-				<div class="col-12 col-sm-2 icon">
-					<div class="box-process">
-						<i class="fa fa-cog fa-3x "></i>
-						<h3>Project<br/><span>discovery</span></h3>
-					</div>
-				</div>
-				<div class="col-12 col-sm-2 icon">
-					<div class="box-process">
-						<i class="fa fa-bolt fa-3x "></i>
-						<h3>Storming<br/><span>brains</span></h3>
-					</div>
-				</div>
-				<div class="col-12 col-sm-2 icon">
-					<div class="box-process">
-						<i class="fa fa-truck fa-flip-horizontal fa-3x "></i>
-						<h3>Getting<br/><span>there</span></h3>
-					</div>
-				</div>
-				<div class="col-12 col-sm-2 icon">
-					<div class="box-process">
-						<i class="fa fa-ship fa-3x "></i>
-						<h3>Product<br/><span>delivery</span></h3>
-					</div>
-				</div>
-			</div>	
-		</div>
-		<div class="row wow fadeInLeft">
-			<div class="col-sm-6 col-sm-offset-3">
-				<h2 class="special-h2">Meet the team</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-4 wow fadeInLeft">
-			    <div class="team-member">
-			        <img src="images/person1.jpg" class="img-responsive img-circle" alt="">
-			        <h4>Aakash Dhar</h4>
-			        <p class="text-muted">Founder & Lead developer</p>
-			        <ul class="list-inline social-buttons">
-			            <li><a href="#"><i class="fa fa-twitter"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-facebook"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-			            </li>
-			        </ul>
-			    </div>
-			</div>
-			<div class="col-sm-4 wow fadeInDown">
-			    <div class="team-member">
-			        <img src="images/person2.jpg" class="img-responsive img-circle" alt="">
-			        <h4>Manali Ghosh</h4>
-			        <p class="text-muted">CoFounder & Lead designer</p>
-			        <ul class="list-inline social-buttons">
-			            <li><a href="#"><i class="fa fa-twitter"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-facebook"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-			            </li>
-			        </ul>
-			    </div>
-			</div>
-			<div class="col-sm-4 wow fadeInRight">
-			    <div class="team-member">
-			        <img src="images/person5.jpg" class="img-responsive img-circle" alt="">
-			        <h4>Amit Roy</h4>
-			        <p class="text-muted">Lead Marketer</p>
-			        <ul class="list-inline social-buttons">
-			            <li><a href="#"><i class="fa fa-twitter"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-facebook"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-			            </li>
-			        </ul>
-			    </div>
-			</div>
-			<div class="col-sm-4 col-md-offset-2 wow fadeInLeft">
-			    <div class="team-member">
-			        <img src="images/person3.jpg" class="img-responsive img-circle" alt="">
-			        <h4>Hema Murthy</h4>
-			        <p class="text-muted">Content Writer</p>
-			        <ul class="list-inline social-buttons">
-			            <li><a href="#"><i class="fa fa-twitter"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-facebook"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-			            </li>
-			        </ul>
-			    </div>
-			</div>
-			<div class="col-sm-4 wow fadeInRight">
-			    <div class="team-member">
-			        <img src="images/person4.jpg" class="img-responsive img-circle" alt="">
-			        <h4>Sudhanshu Prabhakar</h4>
-			        <p class="text-muted">Web Hostings</p>
-			        <ul class="list-inline social-buttons">
-			            <li><a href="#"><i class="fa fa-twitter"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-facebook"></i></a>
-			            </li>
-			            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-			            </li>
-			        </ul>
-			    </div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- about us ends  -->
+    <!-- Ambient Background Glows -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div
+            class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-blob">
+        </div>
+        <div
+            class="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-accent/10 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob animation-delay-4000">
+        </div>
+    </div>
 
-<!-- section services begins  -->
-<section id="services" class="section-services ">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3">
-				<div class="wow fadeInUp">
-					<h2>This is what we do</h2>
-					<div class="services-quote">
-						<blockquote>
-							&#34;Content precedes design. Design in the absence of content is not design, it’s decoration.&#34; <cite>
-								&mdash;Jeffrey Zeldman
-							</cite>
-						</blockquote>
-					</div>
-				</div>
-			</div>
-		</div>
+    <!-- Floating Navigation Pill -->
+    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+        <nav class="glass-nav rounded-full px-6 py-3 flex items-center gap-8 shadow-2xl shadow-black/50">
+            <a href="#"
+                class="font-heading font-bold text-xl text-white tracking-tight hover:text-primary transition-colors">AD.</a>
 
-		<div class="row wow fadeInUp">
-			<div class="col-sm-3">
-				<div class="icon-box">
-					<div class="icon-box-icon">
-						<span><i class="fa fa-laptop fa-2x"></i></span>
-					</div>
-					<div class="icon-box-text">
-						<h3>Web Design</h3>
-						<div class="icon-box-desc">
-							We offer the special areas of web designing and use basic design principles to achieve an aesthetically pleasing layout that provides splendid user experience.
-						</div>
-					</div>
-				</div>
-			</div>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
+                <a href="#home" class="hover:text-white transition-colors">Home</a>
+                <a href="#expertise" class="hover:text-white transition-colors">Expertise</a>
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#writing" class="hover:text-white transition-colors">Insights</a>
+            </div>
 
-			<div class="col-sm-3">
-				<div class="icon-box">
-					<div class="icon-box-icon">
-						<span><i class="fa fa-code fa-2x"></i></span>
-					</div>
-					<div class="icon-box-text">
-						<h3>Web Development</h3>
-						<div class="icon-box-desc">
-							We deliver Web development services i.e. Web content dev. Ranging from stylish one pager websites to complex Web based application for your buisness.
-						</div>
-					</div>
-				</div>
-			</div>
+            <a href="#contact"
+                class="hidden md:inline-flex bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-full text-sm font-medium transition-all border border-white/5">
+                Connect
+            </a>
 
-			<div class="col-sm-3">
-				<div class="icon-box">
-					<div class="icon-box-icon">
-						<span><i class="fa fa-paint-brush fa-2x"></i></span>
-					</div>
-					<div class="icon-box-text">
-						<h3>Design</h3>
-						<div class="icon-box-desc">
-							We offer the best ways to style and innovate your web stuffs. We provide the best designing in terms of visualizing and interpreting your objective and ideas.
-						</div>
-					</div>
-				</div>
-			</div>
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-white text-xl">
+                <i class="ph ph-list"></i>
+            </button>
+        </nav>
+    </div>
 
-			<div class="col-sm-3">
-				<div class="icon-box">
-					<div class="icon-box-icon">
-						<span><i class="fa fa-server fa-2x"></i></span>
-					</div>
-					<div class="icon-box-text">
-						<h3>Web Hosting</h3>
-						<div class="icon-box-desc">
-							When you make a website and want others to see it, you need to publish or upload it with a web hosting service and we help you to make your website accessible.
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 hidden flex-col items-center justify-center space-y-8">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-white text-3xl"><i class="ph ph-x"></i></button>
+        <a href="#home" class="text-2xl font-bold text-white mobile-link">Home</a>
+        <a href="#expertise" class="text-2xl font-bold text-white mobile-link">Expertise</a>
+        <a href="#about" class="text-2xl font-bold text-white mobile-link">About</a>
+        <a href="#writing" class="text-2xl font-bold text-white mobile-link">Insights</a>
+        <a href="#contact" class="text-2xl font-bold text-primary mobile-link">Contact</a>
+    </div>
 
+    <!-- Hero Section: Grid Layout -->
+    <section id="home"
+        class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-4 sm:px-6 lg:px-8 z-10">
+        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-	</div>
-</section>
-<!-- section services ends  -->
+            <!-- Left: Text Content -->
+            <div class="text-center lg:text-left space-y-8">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-semibold tracking-wide uppercase">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    Open to Collaborations
+                </div>
 
-<!-- section work begins  -->
-<section id="works" class="section-work">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3">
-				<h2>Our portfolio</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 col-sm-6 portfolio-item wow fadeInUp">
-                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="images/omnifoods.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>Omnifoods</h4>
-                    <p class="text-muted">Web Design</p>
+                <h1 class="font-heading text-6xl md:text-8xl font-bold text-white leading-[0.9] tracking-tight">
+                    Aakash <br>
+                    <span class="text-gradient">Dhar.</span>
+                </h1>
+
+                <!-- Hobbies Section Moved Here -->
+                <div class="flex items-center justify-center lg:justify-start gap-6 text-sm text-slate-500 font-mono">
+                    <span>// Coder</span>
+                    <span>// Rider</span>
+                    <span>// Photographer</span>
+                    <span>// Cook</span>
+                </div>
+
+                <div class="space-y-4 max-w-lg mx-auto lg:mx-0">
+                    <h2 class="text-2xl text-white font-medium">Technical Project Manager</h2>
+                    <p class="text-lg text-slate-400 leading-relaxed">
+                        I bridge the gap between <b>complex code</b> and <b>business strategy</b>. With 8.5+ years of
+                        dev roots and 2+ years of Technical Project Management at BetaCraft, I architect Agentic AI
+                        systems and lead products from chaos to clarity.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#projects"
+                        class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-slate-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                        Explore My Work
+                    </a>
+                    <a href="https://www.linkedin.com/in/aakashdhar" target="_blank"
+                        class="px-8 py-4 glass-card rounded-full text-white font-medium hover:bg-white/10 transition-colors flex items-center gap-2">
+                        <i class="ph-fill ph-linkedin-logo text-xl"></i> LinkedIn
+                    </a>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 portfolio-item wow fadeInUp">
-                <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="images/appmart.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>AppMart</h4>
-                    <p class="text-muted">Web Design</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item wow fadeInUp">
-                <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="images/shantivan.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>Shantivan</h4>
-                    <p class="text-muted">Web Design</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item wow fadeInUp">
-                <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="images/blog.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>Blog</h4>
-                    <p class="text-muted">Web Design</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item wow fadeInUp">
-                <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="images/theater.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>Theater Plex</h4>
-                    <p class="text-muted">Web Design</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item wow fadeInUp">
-                <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="images/roundicons.png" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>Round Icons</h4>
-                    <p class="text-muted">Web Design</p>
-                </div>
-            </div>
-		</div>
-	</div>
-</section>
-<!-- section work ends  -->
 
+            <!-- Right: Modern Bento Card Visual -->
+            <div class="relative flex justify-center lg:justify-end">
+                <!-- Main Glass Container -->
+                <div class="relative w-full max-w-xl">
 
-<!-- our motto begins -->
-<section id="motto" class="section-motto">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3 wow fadeInUp">
-				<h2>Our Motto</h2>
-			</div>
-			<div class="col-sm-12 wow fadeInUp">
-				<div class="motto-text">
-					With having the passion of its two crazy founders, our motto is to see the corporate world more creative and stylish in terms of web designing and to break the status quo of the traditonal corporationism.The 21st century is for innovation, imagination, orignality and ideas. We respect every single aspect of your buisness and converting those aspects into web design or in any other form of designing,<br/> is what we are upto.
-					<div class="row wow fadeInUp">
-						<div class="punch-line">
-							<u>If you got it, flaunt it.</u>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- our motto begins -->
+                    <!-- Decorative Orb behind -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-full opacity-20 blur-3xl animate-pulse-slow">
+                    </div>
 
-<!-- contact us begins -->
-<section id="contact" class="section-contact">
-	<div class="container">
-		<div class="row wow fadeInUp">
-			<div class="col-sm-6 col-sm-offset-3">
-				<h2>Drop us a line</h2>
-				<blockquote>
-					" There are three responses to a piece of design – yes, no, and WOW! Wow is the one to aim for."
-					<cite>&mdash; Milton Glaser</cite>
-				</blockquote>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
-				<form name="sentMessage" id="contactForm" novalidate>
-					<div class="row control-group wow fadeInUp">
-						<div class="form-group col-xs-12 floating-label-form-group controls">
-							<label>Name</label>
-                            <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
-                            <p class="help-block text-danger"></p>
-						</div>
-					</div>
-					<div class="row control-group wow fadeInUp">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Email Address</label>
-                            <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="row control-group wow fadeInUp">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Message</label>
-                            <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="form-group col-xs-12 wow fadeInUp">
-                            <button type="submit" class="btn btn-send btn-lg">Send it!</button>
-                        </div>
-                    </div>
-				</form>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- contact us ends -->
-<footer>
-<div class="row">
-	<p>made with <i class="fa fa-heart animated infinite pulse"></i> by <a href="aakashdhar.github.io">ConceptionWeb</a>All rights reserved.</p>
-</div>
-<div class="row">
-<div class="social">
-	<ul class="list-inline center">
-		<li><p>Follow us on:</p></li>
-	    <li><a href="#"><i class="fa fa-twitter"></i></a>
-	    </li>
-	    <li><a href="#"><i class="fa fa-facebook"></i></a>
-	    </li>
-	    <li><a href="#"><i class="fa fa-google-plus"></i></a>
-	    </li>
-	</ul>
-	</div>
-</div>
-</footer>
-<!-- Portfolio Modals begins -->
+                    <!-- The New Tech Spec Card -->
+                    <div
+                        class="glass-card rounded-3xl border border-white/10 relative overflow-hidden backdrop-blur-xl shadow-2xl animate-float">
 
-<!-- Portfolio Modal 1 -->
-<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
+                        <!-- Top Section: Current Role & PMP -->
+                        <div class="p-8 relative z-10">
+                            <!-- Header Row with Badge -->
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="p-3 bg-primary/10 rounded-xl border border-primary/20 text-primary">
+                                    <i class="ph-fill ph-briefcase text-2xl"></i>
+                                </div>
+                                <!-- Google PMP Badge -->
+                                <div
+                                    class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.1)]">
+                                    <i class="ph-fill ph-certificate text-yellow-400 text-lg"></i>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-[10px] font-bold text-yellow-500/80 uppercase leading-none">Certified</span>
+                                        <span class="text-xs font-bold text-yellow-100 leading-none mt-0.5">Google
+                                            PMP</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Role Title -->
+                            <h3 class="text-3xl font-bold text-white mb-2 leading-tight">Technical Project Manager</h3>
+                            <p class="text-slate-400 text-sm mb-6">Driving Strategy & Agentic AI Innovation</p>
+
+                            <!-- Status Pill -->
+                            <div
+                                class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                                <span class="relative flex h-2 w-2">
+                                    <span
+                                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                </span>
+                                Active at BetaCraft
+                            </div>
+                        </div>
+
+                        <!-- Bottom Section: Developer Roots (Darker Grounding) -->
+                        <div class="bg-black/30 p-6 border-t border-white/5 backdrop-blur-md relative">
+                            <!-- Background pattern for tech feel -->
+                            <div class="absolute inset-0 opacity-5"
+                                style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 10px 10px;">
+                            </div>
+
+                            <div class="relative z-10 flex items-center gap-5">
+                                <!-- Stats Box -->
+                                <div
+                                    class="bg-surface border border-white/10 rounded-xl p-3 text-center min-w-[70px] shadow-lg">
+                                    <span class="block text-2xl font-extrabold text-white">8.5<span
+                                            class="text-primary text-sm">+</span></span>
+                                    <span
+                                        class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Years</span>
+                                </div>
+
+                                <!-- Content -->
+                                <div>
+                                    <h4 class="text-white font-bold text-sm flex items-center gap-2">
+                                        Developer Roots
+                                        <i class="ph-fill ph-code text-laravel"></i>
+                                    </h4>
+                                    <p class="text-xs text-slate-400 mt-1 mb-2">Built on solid engineering principles.
+                                    </p>
+                                    <div class="flex gap-2">
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/5">PHP</span>
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/5">Laravel</span>
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/5">Backend</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Omnifoods</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="images/omnifoods-preview.png" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                            <p>
-                                <strong>Want to see the website live</strong> head over to: <a href="">github.com</a> For live demo of the website.</p>
-                            <ul class="list-inline">
-                                <li>Date: november 2015</li>
-                                <li>Client: Portfolio</li>
-                                <li>Category: web design</li>
+        </div>
+    </section>
+
+    <!-- Expertise: Bento Grid -->
+    <section id="expertise" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">The Toolkit.</h2>
+                <p class="text-slate-400 text-lg max-w-xl">A blend of hard technical skills and soft management
+                    strategy.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Card 1: Large Span - Management -->
+                <div class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div
+                        class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
+                        <i class="ph-fill ph-kanban text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Project Leadership</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-3 rounded-lg border border-white/5">
+                            <span class="block text-white font-semibold">Agile & Scrum</span>
+                            <span class="text-sm text-slate-500">Process Optimization</span>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg border border-white/5">
+                            <span class="block text-white font-semibold">Risk Management</span>
+                            <span class="text-sm text-slate-500">Mitigation Strategy</span>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg border border-white/5">
+                            <span class="block text-white font-semibold">Stakeholder Mgmt</span>
+                            <span class="text-sm text-slate-500">Client Alignment</span>
+                        </div>
+                        <!-- Highlighted AI Management Box -->
+                        <div
+                            class="bg-secondary/10 p-3 rounded-lg border border-secondary/20 relative overflow-hidden group/item">
+                            <div
+                                class="absolute inset-0 bg-secondary/5 blur-md opacity-0 group-hover/item:opacity-100 transition-opacity">
+                            </div>
+                            <span class="block text-white font-bold flex items-center gap-2 relative z-10">
+                                AI-Driven Tech Mgmt
+                                <i class="ph-fill ph-sparkle text-secondary animate-pulse"></i>
+                            </span>
+                            <span class="text-sm text-slate-300 relative z-10">Predictive Planning & Ops</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Strategic Comm -->
+                <div
+                    class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-32 bg-purple-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                    <i class="ph-duotone ph-chats-teardrop text-5xl text-purple-400 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Strategic Comms</h3>
+                    <p class="text-slate-400 text-sm mb-4">Translating "Dev-Speak" to "Biz-Speak" seamlessly.</p>
+                    <ul class="text-sm text-slate-300 space-y-2">
+                        <li>• Stakeholder Negotiation</li>
+                        <li>• Tech Translation</li>
+                        <li>• Cross-Functional Sync</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Engineering -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <i class="ph-duotone ph-code text-5xl text-laravel mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Engineering & APIs</h3>
+                    <p class="text-slate-400 text-sm mb-4">8.5 years of PHP/Laravel mastery.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-2 py-1 bg-laravel/10 text-laravel text-xs rounded border border-laravel/20">Laravel</span>
+                        <span
+                            class="px-2 py-1 bg-white/5 text-slate-300 text-xs rounded border border-white/10">MySQL</span>
+                        <span class="px-2 py-1 bg-white/5 text-slate-300 text-xs rounded border border-white/10">Amazon
+                            MWS</span>
+                        <span class="px-2 py-1 bg-white/5 text-slate-300 text-xs rounded border border-white/10">Etsy
+                            API</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Agentic AI - Large Span -->
+                <div
+                    class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group relative overflow-hidden">
+                    <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+                    <div class="flex flex-col md:flex-row gap-8 items-start md:items-center">
+                        <div class="flex-1">
+                            <div
+                                class="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-xs font-bold uppercase">
+                                <i class="ph-fill ph-sparkle"></i> Current Focus
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">AI Product R&D</h3>
+                            <p class="text-slate-400">Architecting systems where AI doesn't just chat, but <b>does</b>.
+                                Building autonomous agent workflows using LangChain and modern LLMs.</p>
+                        </div>
+                        <div class="bg-black/20 p-6 rounded-2xl border border-white/5 backdrop-blur-sm min-w-[200px]">
+                            <ul class="space-y-3">
+                                <li class="flex items-center text-sm text-slate-300"><i
+                                        class="ph-bold ph-check text-secondary mr-2"></i> Agentic Workflows</li>
+                                <li class="flex items-center text-sm text-slate-300"><i
+                                        class="ph-bold ph-check text-secondary mr-2"></i> Multi-Agent Systems</li>
+                                <li class="flex items-center text-sm text-slate-300"><i
+                                        class="ph-bold ph-check text-secondary mr-2"></i> RAG Pipelines</li>
                             </ul>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Modal</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Development History / Projects -->
+    <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Development History</h2>
+                <p class="text-slate-400 text-lg max-w-xl">Selected projects from my 8.5 years as a hands-on developer.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- KAFI CRM -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-primary uppercase tracking-wider">Xyfon Managed
+                                IT</span>
+                            <h3 class="text-xl font-bold text-white mt-1">KAFI CRM & Automation</h3>
+                        </div>
+                        <span class="text-xs text-slate-500 font-mono">2020-2022</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Automated order processing from multiple channels. Built modules for inventory, sales tracking,
+                        and fulfillment. Integrated <span class="text-white">Amazon SP-API</span>, <span
+                            class="text-white">WooCommerce</span>, and <span class="text-white">Etsy REST API</span> for
+                        seamless data sync.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">E-Commerce</span>
+                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">API
+                            Integration</span>
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Automation</span>
+                    </div>
+                </div>
+
+                <!-- Pendio CRM -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-secondary uppercase tracking-wider">WebCodeGenie</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Pendio CRM (AI-Driven)</h3>
+                        </div>
+                        <span class="text-xs text-slate-500 font-mono">Backend Lead</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Backend for brand visibility. Integrated <span class="text-white">GPT models</span> for
+                        automated content generation and <span class="text-white">Google My Business API</span> for
+                        auto-scheduling posts. Increased marketing efficiency by ~30%.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Generative
+                            AI</span>
+                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">GMB
+                            API</span>
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Laravel</span>
+                    </div>
+                </div>
+
+                <!-- DSM ERP -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-accent uppercase tracking-wider">SIIMTEQ</span>
+                            <h3 class="text-xl font-bold text-white mt-1">DSM Diamond ERP</h3>
+                        </div>
+                        <span class="text-xs text-slate-500 font-mono">2018-2019</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Streamlined operations for an Australian diamond wholesaler. Built custom modules for inventory
+                        and employee management, achieving a <span class="text-white">50% efficiency boost</span>.
+                        Created APIs for external WP plugins.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">ERP
+                            Architecture</span>
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Optimization</span>
+                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">API
+                            Dev</span>
+                    </div>
+                </div>
+
+                <!-- HAP Asset Management -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-green-500 uppercase tracking-wider">Arbox
+                                Renewable</span>
+                            <h3 class="text-xl font-bold text-white mt-1">HAP Asset Management</h3>
+                        </div>
+                        <span class="text-xs text-slate-500 font-mono">2019-2020</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        CRM for solar/wind energy tracking. Implemented invoicing automation and integrated <span
+                            class="text-white">Hardware APIs (Locus)</span> for real-time energy generation monitoring
+                        and reporting.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">IoT
+                            Integration</span>
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Renewable
+                            Energy</span>
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Billing</span>
+                    </div>
+                </div>
+
+                <!-- EasyR CRM -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">WebCodeGenie</span>
+                            <h3 class="text-xl font-bold text-white mt-1">EasyR CRM</h3>
+                        </div>
+                        <span class="text-xs text-slate-500 font-mono">Project Lead</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Led the development of a data-driven CRM for a Copenhagen client. Managed AWS infrastructure
+                        scaling for high user volume and led the team through rigorous <span
+                            class="text-white">Agile/Jira sprints</span>.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">AWS
+                            Scaling</span>
+                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Team
+                            Lead</span>
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Agile</span>
+                    </div>
+                </div>
+
+                <!-- Inventory App -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">WebCodeGenie</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Inventory & Monitoring</h3>
+                        </div>
+                        <span class="text-xs text-slate-500 font-mono">Developer</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Advanced inventory and ticketing system for a US IT firm. Integrated <span
+                            class="text-white">Uptime Kuma</span> for real-time status monitoring and built a robust
+                        asset tracking module.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Real-time
+                            Monitoring</span>
+                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Asset
+                            Mgmt</span>
+                        <span
+                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Laravel</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Education (Integrated Bento) -->
+    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 bg-black/20 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12">
+                <h2 class="font-heading text-3xl font-bold text-white">About & Credentials</h2>
+            </div>
+
+            <!-- Professional Summary (Refactored) -->
+            <div class="glass-card p-8 rounded-3xl mb-12 border border-white/10">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <h3 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">Professional Profile
+                        </h3>
+                        <h4 class="text-2xl font-bold text-white mb-4">Bridging Technical Complexity & Business
+                            Strategy.</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            As a <span class="text-primary font-semibold">Certified Google PMP</span> and Project Lead,
+                            I don't just manage tasks—I engineer solutions. My background in high-scale Laravel
+                            development allows me to lead with technical precision.
+                        </p>
+                    </div>
+
+                    <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Card 1 -->
+                        <div
+                            class="bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <i class="ph-fill ph-code text-2xl text-laravel mb-3"></i>
+                            <h5 class="text-white font-bold mb-2">Core Tech Stack</h5>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Specialization in <b>LAMP & Laravel</b> backend development. Deep expertise in complex
+                                API integrations (Amazon MWS, Etsy, WooCommerce).
+                            </p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div
+                            class="bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <i class="ph-fill ph-users-three text-2xl text-primary mb-3"></i>
+                            <h5 class="text-white font-bold mb-2">Leadership</h5>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Proven track record of leading <b>cross-functional teams</b> to deliver scalable
+                                solutions aligned with client goals and deadlines.
+                            </p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div
+                            class="bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <i class="ph-fill ph-sparkle text-2xl text-secondary mb-3"></i>
+                            <h5 class="text-white font-bold mb-2">AI Innovation</h5>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Passionate about <b>Prompt Engineering</b> and deploying AI-driven architectures to
+                                optimize business workflows and drive innovation.
+                            </p>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div
+                            class="bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <i class="ph-fill ph-buildings text-2xl text-accent mb-3"></i>
+                            <h5 class="text-white font-bold mb-2">Enterprise Systems</h5>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Solid understanding of building modules for inventory, sales, and employee management
+                                within <b>scalable ERP systems</b>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Certifications Column (Scrollable) -->
+                <div class="space-y-6 max-h-[800px] overflow-y-auto pr-4 custom-scrollbar">
+
+                    <!-- Group: AI & Strategy -->
+                    <div>
+                        <h3
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            AI & Strategy</h3>
+                        <div class="space-y-3">
+                            <!-- Cert Item -->
+                            <a href="https://www.coursera.org/account/accomplishments/specialization/XOE0VI9MODOS"
+                                target="_blank"
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-secondary/50 hover:bg-white/5 transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black">
+                                    <i class="ph-bold ph-brain text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold group-hover:text-secondary transition-colors">
+                                        Generative AI for Project Managers</h4>
+                                    <p class="text-xs text-slate-400">IBM • Specialization</p>
+                                </div>
+                            </a>
+
+                            <!-- Cert Item -->
+                            <a href="https://www.coursera.org/account/accomplishments/verify/KC1AB33DSZ3B"
+                                target="_blank"
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-secondary/50 hover:bg-white/5 transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black">
+                                    <i class="ph-bold ph-student text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold group-hover:text-secondary transition-colors">
+                                        Managing AI Projects</h4>
+                                    <p class="text-xs text-slate-400">Johns Hopkins University</p>
+                                </div>
+                            </a>
+
+                            <!-- Cert Item -->
+                            <a href="https://www.linkedin.com/learning/certificates/b7599254b0a8ada440f2ee39a3fc6e2e77119aa9ae7d0e53dd59a9324fa5e5be"
+                                target="_blank"
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-secondary/50 hover:bg-white/5 transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-[#0077b5] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    <i class="ph-bold ph-robot text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold group-hover:text-secondary transition-colors">
+                                        ChatGPT for Project Managers</h4>
+                                    <p class="text-xs text-slate-400">LinkedIn Learning</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Group: Project Management -->
+                    <div>
+                        <h3
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            Project Management</h3>
+                        <div class="space-y-3">
+                            <!-- Cert Item -->
+                            <a href="https://www.coursera.org/account/accomplishments/specialization/WLU6AFR46Z83"
+                                target="_blank"
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-primary/50 hover:bg-white/5 transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black">
+                                    <i class="ph-bold ph-google-logo text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold group-hover:text-primary transition-colors">Google
+                                        Project Management</h4>
+                                    <p class="text-xs text-slate-400">Google • Specialization</p>
+                                </div>
+                            </a>
+
+                            <!-- Cert Item -->
+                            <a href="https://www.coursera.org/account/accomplishments/specialization/77S1LEW8S3DM"
+                                target="_blank"
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-primary/50 hover:bg-white/5 transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black">
+                                    <i class="ph-bold ph-google-logo text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold group-hover:text-primary transition-colors">People
+                                        Management Essentials</h4>
+                                    <p class="text-xs text-slate-400">Google • Specialization</p>
+                                </div>
+                            </a>
+
+                            <!-- Cert Item -->
+                            <a href="https://www.linkedin.com/learning/certificates/f386f58337f6981edcf97c48315c247250b44c92ac6d210205f7a50f1c6ae994"
+                                target="_blank"
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/5 transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    <i class="ph-bold ph-check-circle text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold group-hover:text-blue-400 transition-colors">Agile
+                                        Project Management Pro</h4>
+                                    <p class="text-xs text-slate-400">Atlassian University</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Group: Technical Tools (Jira) -->
+                    <div>
+                        <h3
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            Technical Tools</h3>
+                        <div class="space-y-3">
+                            <!-- Cert Item -->
+                            <a href="https://www.coursera.org/account/accomplishments/verify/SVW5FIMBUK8H"
+                                target="_blank"
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/5 transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    <i class="ph-bold ph-kanban text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold group-hover:text-blue-400 transition-colors">Agile
+                                        with Atlassian Jira</h4>
+                                    <p class="text-xs text-slate-400">Atlassian</p>
+                                </div>
+                            </a>
+
+                            <!-- Cert Item -->
+                            <a href="https://www.coursera.org/account/accomplishments/certificate/0FQ4MMT3FRKC"
+                                target="_blank"
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/5 transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    <i class="ph-bold ph-gear text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold group-hover:text-blue-400 transition-colors">
+                                        Automate Tasks & Processes</h4>
+                                    <p class="text-xs text-slate-400">Jira • Coursera</p>
+                                </div>
+                            </a>
+
+                            <!-- Cert Item -->
+                            <a href="https://www.coursera.org/account/accomplishments/certificate/L6HB29JCN4RC"
+                                target="_blank"
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/5 transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    <i class="ph-bold ph-map-trifold text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold group-hover:text-blue-400 transition-colors">Using
+                                        Roadmaps in Jira</h4>
+                                    <p class="text-xs text-slate-400">Jira • Coursera</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Group: Communication -->
+                    <div>
+                        <h3
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            Professional Skills</h3>
+                        <!-- Cert Item -->
+                        <a href="https://www.linkedin.com/learning/certificates/8ef09f9955fc4e1697553a2e2d79463ca6676387d43aecafd953d2ff4c0ea623"
+                            target="_blank"
+                            class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-purple-500/50 hover:bg-white/5 transition-all group">
+                            <div
+                                class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center flex-shrink-0 text-purple-400 border border-purple-500/20">
+                                <i class="ph-bold ph-chats-circle text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold group-hover:text-purple-400 transition-colors">Essential
+                                    Business Communication</h4>
+                                <p class="text-xs text-slate-400">LinkedIn Learning • Professional Cert</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Education & Bio Column -->
+                <div class="space-y-8">
+                    <div
+                        class="glass-card p-8 rounded-3xl h-full sticky top-24 max-h-[800px] overflow-y-auto custom-scrollbar">
+
+                        <!-- Experience Timeline -->
+                        <div class="mb-12">
+                            <h3 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-6">Professional
+                                Experience</h3>
+
+                            <div class="relative pl-8 border-l border-white/10 space-y-10">
+                                <!-- BetaCraft -->
+                                <div class="relative">
+                                    <span
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-green-500 border-4 border-surface shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
+                                    <h4 class="text-white font-bold text-lg">Technical Project Manager</h4>
+                                    <p class="text-green-400 text-sm font-bold mb-1">BetaCraft · Full-time</p>
+                                    <p class="text-slate-500 text-xs mb-2">Sep 2024 - Present · Pune (Hybrid)</p>
+                                    <p class="text-slate-400 text-sm mb-2">Project sprint planning, client
+                                        communication, AI based project management.</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Tech
+                                            Mgmt</span>
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Leadership</span>
+                                    </div>
+                                </div>
+
+                                <!-- WebCodeGenie -->
+                                <div class="relative">
+                                    <span
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
+                                    <h4 class="text-white font-bold text-lg">Senior Software Engineer</h4>
+                                    <p class="text-primary text-sm font-bold mb-1">WebCodeGenie Technology · Full-time
+                                    </p>
+                                    <p class="text-slate-500 text-xs mb-2">Sep 2022 - Sep 2024 · Ahmedabad</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Database
+                                            Design</span>
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Programming</span>
+                                    </div>
+                                </div>
+
+                                <!-- Xyfon -->
+                                <div class="relative">
+                                    <span
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
+                                    <h4 class="text-white font-bold text-lg">Operations Manager</h4>
+                                    <p class="text-primary text-sm font-bold mb-1">Xyfon Managed IT · Full-time</p>
+                                    <p class="text-slate-500 text-xs mb-2">Jan 2022 - Sep 2022 · Ahmedabad</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Ops
+                                            Management</span>
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Communication</span>
+                                    </div>
+                                </div>
+
+                                <!-- Arbox Renewable (Grouped) -->
+                                <div class="relative">
+                                    <span
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
+                                    <h4 class="text-white font-bold text-lg">Full-stack & Web Developer</h4>
+                                    <p class="text-primary text-sm font-bold mb-1">Arbox Renewable Energy</p>
+                                    <p class="text-slate-500 text-xs mb-2">Sep 2019 - Jan 2022 · Ahmedabad</p>
+                                    <p class="text-slate-400 text-xs italic mb-2">Promoted from Web Developer (1.5 yrs)
+                                        to Full-stack Developer (1 yr).</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Full-stack</span>
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Requirements</span>
+                                    </div>
+                                </div>
+
+                                <!-- SIIMTEQ -->
+                                <div class="relative">
+                                    <span
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
+                                    <h4 class="text-white font-bold text-lg">Web Developer</h4>
+                                    <p class="text-primary text-sm font-bold mb-1">SIIMTEQ TECHNOLOGIES</p>
+                                    <p class="text-slate-500 text-xs mb-2">Jan 2018 - Aug 2019 · Vadodara</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Database
+                                            Design</span>
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Programming</span>
+                                    </div>
+                                </div>
+
+                                <!-- Amigos -->
+                                <div class="relative">
+                                    <span
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
+                                    <h4 class="text-white font-bold text-lg">Web Developer</h4>
+                                    <p class="text-primary text-sm font-bold mb-1">Amigos Automation Solutions</p>
+                                    <p class="text-slate-500 text-xs mb-2">Nov 2016 - Dec 2017 · Bengaluru</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span
+                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Programming</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education Timeline -->
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-6">Education</h3>
+
+                            <div class="relative pl-8 border-l border-white/10 space-y-8">
+                                <div class="relative">
+                                    <span
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-primary border-4 border-surface"></span>
+                                    <h4 class="text-white font-bold text-lg">Master of Computer Applications</h4>
+                                    <p class="text-primary text-sm">Administrative Management College</p>
+                                </div>
+                                <div class="relative">
+                                    <span
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
+                                    <h4 class="text-white font-bold text-lg">Bachelor of Computer Applications</h4>
+                                    <p class="text-slate-400 text-sm">Meghnad Saha Institute Of Technology</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Personal Interests / Beyond the Code (New Section) -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="glass-card rounded-3xl p-8 md:p-12 overflow-hidden relative border border-white/10">
+                <!-- Background decoration -->
+                <div
+                    class="absolute top-0 right-0 p-40 bg-accent/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none">
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                    <div class="space-y-6">
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-white">Beyond the Code</h2>
+                        <div class="space-y-4 text-slate-400 text-lg leading-relaxed">
+                            <p>
+                                I am <span class="text-white font-semibold">multi-lingual</span> (English, Hindi,
+                                Bengali) and multi-passionate. While I spend my days managing technical complexities, I
+                                believe in staying curious and creative in all aspects of life.
+                            </p>
+                            <p>
+                                When the laptop closes, you can usually find me exploring new travel destinations,
+                                capturing the world through my camera lens, hitting the open road on my bike, or
+                                experimenting with new recipes in the kitchen.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
+                        <!-- Card 1: Travel -->
+                        <div
+                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/5 transition-colors group cursor-default">
+                            <div
+                                class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400 group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-airplane-tilt text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-white">Travel</h3>
+                            <p class="text-xs text-slate-500 mt-1">Exploring the Unknown</p>
+                        </div>
+
+                        <!-- Card 2: Photography -->
+                        <div
+                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/5 transition-colors group cursor-default">
+                            <div
+                                class="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-purple-400 group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-camera text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-white">Photography</h3>
+                            <p class="text-xs text-slate-500 mt-1">Capturing Moments</p>
+                        </div>
+
+                        <!-- Card 3: Riding -->
+                        <div
+                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/5 transition-colors group cursor-default">
+                            <div
+                                class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-red-400 group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-motorcycle text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-white">Riding</h3>
+                            <p class="text-xs text-slate-500 mt-1">Chasing Horizons</p>
+                        </div>
+
+                        <!-- Card 4: Cooking -->
+                        <div
+                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/5 transition-colors group cursor-default">
+                            <div
+                                class="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-orange-400 group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-cooking-pot text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-white">Cooking</h3>
+                            <p class="text-xs text-slate-500 mt-1">Culinary Experiments</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-<!-- Portfolio Modals end -->
+    </section>
 
-<!-- Portfolio Modal 2 -->
-<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
+    <!-- Insights Section: Minimal Cards -->
+    <section id="writing" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10">
+                <h2 class="font-heading text-3xl font-bold text-white">Latest Insights</h2>
+                <a href="https://www.linkedin.com/in/aakashdhar"
+                    class="text-primary hover:text-white transition-colors text-sm font-medium mt-4 md:mt-0">View All on
+                    LinkedIn →</a>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>AppMart</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="images/appmart-preview.png" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                            <p>
-                                <strong>Want to see the website live</strong> head over to: <a href="">github.com</a> For live demo of the website.</p>
-                            <ul class="list-inline">
-                                <li>Date: november 2015</li>
-                                <li>Client: Portfolio</li>
-                                <li>Category: web design</li>
-                            </ul>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Modal</button>
-                        </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Post 1 -->
+                <a href="https://betacraft.com/2024-10-09-unexpected-challenges-we-faced-in-our-last-project-and-how-we-overcame-them/"
+                    target="_blank"
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-1 hover:bg-white/5 transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Project Mgmt</span>
+                        <i class="ph ph-arrow-up-right text-slate-500 group-hover:text-white"></i>
                     </div>
-                </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">Unexpected
+                        Challenges in Our Last Project</h3>
+                    <p class="text-sm text-slate-400 line-clamp-3">A deep dive into hurdles of software delivery and
+                        strategies used to overcome them without missing deadlines.</p>
+                </a>
+
+                <!-- Post 2 -->
+                <a href="https://betacraft.com/2024-10-09-how-to-use-solid-principles-in-daily-programming/"
+                    target="_blank"
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-1 hover:bg-white/5 transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Engineering</span>
+                        <i class="ph ph-arrow-up-right text-slate-500 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">How to Use
+                        SOLID Principles Daily</h3>
+                    <p class="text-sm text-slate-400 line-clamp-3">Moving beyond theory: Practical examples of how SOLID
+                        principles improved maintainability in our codebase.</p>
+                </a>
+
+                <!-- Post 3 -->
+                <a href="https://betacraft.com/2024-10-07-why-agile-methodology-worked-in-my-last-project/"
+                    target="_blank"
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-1 hover:bg-white/5 transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-green-400">Methodology</span>
+                        <i class="ph ph-arrow-up-right text-slate-500 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">Why Agile
+                        Worked in My Last Project</h3>
+                    <p class="text-sm text-slate-400 line-clamp-3">A retrospective on how Agile methodology transformed
+                        our team velocity and improved overall client satisfaction.</p>
+                </a>
             </div>
         </div>
-    </div>
-<!-- Portfolio Modals end -->
+    </section>
 
-<!-- Portfolio Modal 3 -->
-<div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
+    <!-- Modern Footer -->
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/5 relative z-10 bg-black/40">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-6">Ready to Collaborate?</h2>
+            <p class="text-slate-400 text-lg mb-10">Whether it's AI architecture or Project Strategy, I'm just a message
+                away.</p>
+
+            <a href="mailto:hello@aakashdhar.me"
+                class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform">
+                <i class="ph-bold ph-envelope-simple"></i> hello@aakashdhar.me
+            </a>
+
+            <div class="mt-16 flex justify-center gap-8">
+                <a href="https://www.linkedin.com/in/aakashdhar"
+                    class="text-slate-400 hover:text-white transition-colors"><i
+                        class="ph-fill ph-linkedin-logo text-2xl"></i></a>
+                <a href="https://github.com/aakashdhar" class="text-slate-400 hover:text-white transition-colors"><i
+                        class="ph-fill ph-github-logo text-2xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors"><i
+                        class="ph-fill ph-instagram-logo text-2xl"></i></a>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Shantivan</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="images/shantivan-preview.png" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                            <p>
-                                <strong>Want to see the website live</strong> head over to: <a href="">github.com</a> For live demo of the website.</p>
-                            <ul class="list-inline">
-                                <li>Date: november 2015</li>
-                                <li>Client: Portfolio</li>
-                                <li>Category: web design</li>
-                            </ul>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Modal</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <p class="mt-8 text-xs text-slate-600">© 2025 Aakash Dhar. Designed with <i
+                    class="ph-fill ph-heart text-red-900"></i> in Pune.</p>
         </div>
-    </div>
-<!-- Portfolio Modals end -->
+    </section>
 
-<!-- Portfolio Modal 4 -->
-<div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Blog</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="images/blog-preview.png" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                            <p>
-                                <strong>Want to see the website live</strong> head over to: <a href="">github.com</a> For live demo of the website.</p>
-                            <ul class="list-inline">
-                                <li>Date: november 2015</li>
-                                <li>Client: Portfolio</li>
-                                <li>Category: web design</li>
-                            </ul>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Modal</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- Portfolio Modals end -->
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
 
-<!-- Portfolio Modal 5 -->
-<div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Theater Plex</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="images/theater-preview.png" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                            <p>
-                                <strong>Want to see the website live</strong> head over to: <a href="">github.com</a> For live demo of the website.</p>
-                            <ul class="list-inline">
-                                <li>Date: november 2015</li>
-                                <li>Client: Portfolio</li>
-                                <li>Category: web design</li>
-                            </ul>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Modal</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- Portfolio Modals end -->
+        function toggleMenu() {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            document.body.classList.toggle('overflow-hidden');
+        }
 
-<!-- Portfolio Modal 6 -->
-<div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="images/roundicons-free.png" alt="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                            <p>
-                                <strong>Want to see the website live</strong> head over to: <a href="">github.com</a> For live demo of the website.</p>
-                            <ul class="list-inline">
-                                <li>Date: november 2015</li>
-                                <li>Client: Portfolio</li>
-                                <li>Category: web design</li>
-                            </ul>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Modal</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- Portfolio Modals end -->
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
 
-<!-- JavaScript -->
-	<script src="js/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.js"></script>
-<!-- support JavaScript -->
-    <script src="js/jquery.parallax-1.1.3.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/smoothscroll.js"></script>
-	<script src="js/wow.min.js"></script>
-<!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
- <!-- Custom Form JavaScript --> 
-	<script type="text/javascript" src="js/conceptionweb.js"></script>
+        links.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Scroll Animations (Simple Reveal)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        });
+
+        document.querySelectorAll('section > div').forEach((el) => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
 </body>
+
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now | Aakash Dhar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Manrope','sans-serif'],heading:['Manrope','sans-serif']},colors:{background:'#030712',surface:'#111827',primary:'#6366f1',secondary:'#d946ef',accent:'#14b8a6',laravel:'#FF2D20'}}}}</script>
+    <style>.glass-card{background:rgba(255,255,255,0.03);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.05);}.glass-nav{background:rgba(3,7,18,0.7);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);}</style>
+</head>
+<body class="bg-background text-slate-300 font-sans">
+    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+        <nav class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl w-full max-w-2xl">
+            <a href="index.html" class="font-heading font-bold text-xl text-white tracking-tight hover:text-primary transition-colors">AD.</a>
+            <a href="index.html" class="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i> Back Home</a>
+        </nav>
+    </div>
+    <section class="pt-40 pb-12 px-4 text-center">
+        <div class="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold uppercase"><span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Updated: Oct 2025</div>
+        <h1 class="font-heading text-4xl md:text-6xl font-bold text-white mb-6">Now.</h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">Focused on BetaCraft, Agentic AI, and life in Pune.</p>
+    </section>
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors">
+                <div class="flex items-center gap-4 mb-6"><div class="p-3 bg-primary/10 rounded-xl text-primary border border-primary/20"><i class="ph-fill ph-briefcase text-2xl"></i></div><div><h3 class="text-xl font-bold text-white">BetaCraft</h3><p class="text-sm text-slate-400">Technical Project Manager</p></div></div>
+                <p class="text-slate-300 leading-relaxed mb-4">Leading engineering teams to ship scalable products. Deep in the weeds of integrating LLMs into legacy workflows.</p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors relative overflow-hidden">
+                <i class="ph-fill ph-map-pin text-3xl text-accent mb-6 relative z-10"></i>
+                <h3 class="text-xl font-bold text-white mb-2 relative z-10">Pune, India</h3>
+                <p class="text-sm text-slate-400 relative z-10">Exploring places around Pune , taking the road lass travelled on my Royal Enfield himalayan 411 and chasing the perfect Misal.</p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors">
+                <i class="ph-fill ph-code text-3xl text-laravel mb-6"></i>
+                <h3 class="text-xl font-bold text-white mb-4">Building</h3>
+                <p class="text-sm text-slate-300 mb-4">Using <strong>Antigravity</strong> to build a personal TPM helper project called Agile Buddy , That help me create tickets, estimates and roadmaps faster.</p>
+                <div class="w-full bg-white/5 rounded-full h-2 mt-4 overflow-hidden"><div class="bg-gradient-to-r from-laravel to-orange-500 h-full w-3/4"></div></div>
+            </div>
+            <div class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors relative overflow-hidden">
+                <div class="flex items-center justify-between mb-6"><i class="ph-fill ph-camera text-3xl text-white"></i><i class="ph-fill ph-motorcycle text-3xl text-white"></i></div>
+                <h3 class="text-xl font-bold text-white mb-4">Offline Mode</h3>
+                <p class="text-sm text-slate-300">Riding out for landscape photography. Reading: "The Complete adventures of Feluda".</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

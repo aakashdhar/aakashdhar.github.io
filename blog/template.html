@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Title | Aakash Dhar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Manrope', 'sans-serif'], heading: ['Manrope', 'sans-serif'] }, colors: { background: '#030712', surface: '#111827', primary: '#6366f1', secondary: '#d946ef', accent: '#14b8a6', laravel: '#FF2D20' } } } }</script>
+    <style>
+        .prose p {
+            margin-bottom: 1.5rem;
+            color: #9ca3af;
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .prose h2 {
+            color: white;
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .prose blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 1.5rem;
+            font-style: italic;
+            color: #e2e8f0;
+            margin: 2rem 0;
+            background: rgba(99, 102, 241, 0.05);
+            padding: 1.5rem;
+        }
+
+        .glass-nav {
+            background: rgba(3, 7, 18, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-slate-300 font-sans">
+    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+        <nav
+            class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl w-full max-w-2xl">
+            <a href="../index.html"
+                class="font-heading font-bold text-xl text-white tracking-tight hover:text-primary transition-colors">AD.</a>
+            <a href="../index.html"
+                class="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors"><i
+                    class="ph-bold ph-arrow-left"></i> Back to Portfolio</a>
+        </nav>
+    </div>
+    <header
+        class="relative pt-40 pb-20 px-4 text-center z-10 border-b border-white/5 bg-gradient-to-b from-transparent to-black/20">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <div class="flex items-center justify-center gap-4 text-sm font-medium"><span
+                    class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20">Agentic
+                    AI</span><span class="text-slate-500">October 12, 2025</span></div>
+            <h1 class="font-heading text-4xl md:text-6xl font-bold text-white leading-tight">The Future of Autonomous
+                Agents</h1>
+        </div>
+    </header>
+    <article class="py-20 px-4 relative z-10">
+        <div class="max-w-3xl mx-auto prose">
+            <p>Write your content here...</p>
+        </div>
+    </article>
+</body>
+
+</html>

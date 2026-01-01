@@ -41,7 +41,6 @@
         content="Bridging complex code and business strategy. 8.5+ years of dev roots, now architecting Agentic AI systems and leading products.">
     <meta property="og:image"
         content="https://ui-avatars.com/api/?name=Aakash+Dhar&background=6366f1&color=fff&size=512">
-    <!-- Placeholder OG Image -->
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -69,6 +68,7 @@
 
     <script>
         tailwind.config = {
+            darkMode: 'class', // Enables class-based dark mode
             theme: {
                 extend: {
                     fontFamily: {
@@ -76,12 +76,16 @@
                         heading: ['Manrope', 'sans-serif'],
                     },
                     colors: {
-                        background: '#030712', // Darker cool gray
-                        surface: '#111827',
+                        background: 'rgb(var(--bg-color))', 
+                        surface: 'rgb(var(--surface-color))',
                         primary: '#6366f1', // Indigo-500
                         secondary: '#d946ef', // Fuchsia-500
                         accent: '#14b8a6', // Teal-500
                         laravel: '#FF2D20', // Laravel Red
+                        
+                        // Semantic Text Colors
+                        tprimary: 'rgb(var(--text-primary))',
+                        tsecondary: 'rgb(var(--text-secondary))',
                     },
                     animation: {
                         'float': 'float 8s ease-in-out infinite',
@@ -106,9 +110,44 @@
     </script>
 
     <style>
+        /* --- THEME VARIABLES --- */
+        :root {
+            /* Light Mode Default (Requested) */
+            --bg-color: 248 250 252;   /* Slate-50 */
+            --surface-color: 255 255 255;
+            --text-primary: 15 23 42;  /* Slate-900 */
+            --text-secondary: 71 85 105; /* Slate-600 */
+            
+            /* Glass Settings (Light) */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.06);
+            --glass-blur: 16px;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --nav-text: #0f172a;
+        }
+
+        .dark {
+            /* Dark Mode */
+            --bg-color: 3 7 18;        /* Original Dark */
+            --surface-color: 17 24 39;
+            --text-primary: 255 255 255;
+            --text-secondary: 148 163 184; /* Slate-400 */
+
+            /* Glass Settings (Dark) */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: 10px;
+            --nav-bg: rgba(3, 7, 18, 0.7);
+            --nav-text: #ffffff;
+        }
+
         /* Smooth Scroll Fallback */
         html {
             scroll-behavior: smooth;
+        }
+        
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Modern Scrollbar */
@@ -117,7 +156,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #030712;
+            background: rgb(var(--bg-color));
         }
 
         ::-webkit-scrollbar-thumb {
@@ -131,63 +170,98 @@
 
         /* Glass Card Utility */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+        
+        /* Dark mode shadow adjustment */
+        .dark .glass-card {
+             box-shadow: none;
         }
 
         .glass-nav {
-            background: rgba(3, 7, 18, 0.7);
+            background: var(--nav-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--glass-border);
+            color: var(--nav-text);
+            transition: all 0.3s ease;
         }
 
         /* Gradient Text */
         .text-gradient {
-            background: linear-gradient(to right, #818cf8, #e879f9);
+            background: linear-gradient(to right, #6366f1, #d946ef); /* Darker indigo for visibility on white */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        
+        .dark .text-gradient {
+             background: linear-gradient(to right, #818cf8, #e879f9);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(100, 116, 139, 0.2);
+            border-radius: 4px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 
-<body class="bg-background text-slate-300 font-sans selection:bg-primary selection:text-white overflow-x-hidden">
+<body class="bg-background text-tsecondary font-sans selection:bg-primary selection:text-white overflow-x-hidden">
 
     <!-- Ambient Background Glows -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div
-            class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-blob">
+            class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-40 animate-blob">
         </div>
         <div
-            class="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob animation-delay-2000">
+            class="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-30 animate-blob animation-delay-2000">
         </div>
         <div
-            class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-accent/10 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob animation-delay-4000">
+            class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-accent/10 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-30 animate-blob animation-delay-4000">
         </div>
     </div>
 
     <!-- Floating Navigation Pill -->
     <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <nav class="glass-nav rounded-full px-6 py-3 flex items-center gap-8 shadow-2xl shadow-black/50">
+        <nav class="glass-nav rounded-full px-6 py-3 flex items-center gap-8 shadow-2xl shadow-black/5 dark:shadow-black/50">
             <a href="#"
-                class="font-heading font-bold text-xl text-white tracking-tight hover:text-primary transition-colors">AD.</a>
+                class="font-heading font-bold text-xl text-tprimary tracking-tight hover:text-primary transition-colors">AD.</a>
 
-            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
-                <a href="#home" class="hover:text-white transition-colors">Home</a>
-                <a href="#expertise" class="hover:text-white transition-colors">Expertise</a>
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#writing" class="hover:text-white transition-colors">Insights</a>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-tsecondary">
+                <a href="#home" class="hover:text-tprimary transition-colors">Home</a>
+                <a href="#expertise" class="hover:text-tprimary transition-colors">Expertise</a>
+                <a href="#about" class="hover:text-tprimary transition-colors">About</a>
+                <a href="#writing" class="hover:text-tprimary transition-colors">Insights</a>
             </div>
 
-            <a href="#contact"
-                class="hidden md:inline-flex bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-full text-sm font-medium transition-all border border-white/5">
-                Connect
-            </a>
+            <div class="flex items-center gap-4">
+                 <!-- THEME TOGGLE BUTTON -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-tprimary" aria-label="Toggle Theme">
+                    <i class="ph-fill ph-sun hidden dark:block"></i> <!-- Sun shows in dark mode -->
+                    <i class="ph-fill ph-moon block dark:hidden"></i> <!-- Moon shows in light mode -->
+                </button>
+                
+                <a href="#contact"
+                    class="hidden md:inline-flex bg-primary text-white hover:bg-indigo-600 px-4 py-1.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/30">
+                    Connect
+                </a>
+            </div>
 
             <!-- Mobile Menu Toggle -->
-            <button id="mobile-menu-btn" class="md:hidden text-white text-xl">
+            <button id="mobile-menu-btn" class="md:hidden text-tprimary text-xl">
                 <i class="ph ph-list"></i>
             </button>
         </nav>
@@ -196,11 +270,11 @@
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu"
         class="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 hidden flex-col items-center justify-center space-y-8">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-white text-3xl"><i class="ph ph-x"></i></button>
-        <a href="#home" class="text-2xl font-bold text-white mobile-link">Home</a>
-        <a href="#expertise" class="text-2xl font-bold text-white mobile-link">Expertise</a>
-        <a href="#about" class="text-2xl font-bold text-white mobile-link">About</a>
-        <a href="#writing" class="text-2xl font-bold text-white mobile-link">Insights</a>
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-tprimary text-3xl"><i class="ph ph-x"></i></button>
+        <a href="#home" class="text-2xl font-bold text-tprimary mobile-link">Home</a>
+        <a href="#expertise" class="text-2xl font-bold text-tprimary mobile-link">Expertise</a>
+        <a href="#about" class="text-2xl font-bold text-tprimary mobile-link">About</a>
+        <a href="#writing" class="text-2xl font-bold text-tprimary mobile-link">Insights</a>
         <a href="#contact" class="text-2xl font-bold text-primary mobile-link">Contact</a>
     </div>
 
@@ -212,12 +286,12 @@
             <!-- Left: Text Content -->
             <div class="text-center lg:text-left space-y-8">
                 <div
-                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-semibold tracking-wide uppercase">
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-semibold tracking-wide uppercase">
                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                     Open to Collaborations
                 </div>
 
-                <h1 class="font-heading text-6xl md:text-8xl font-bold text-white leading-[0.9] tracking-tight">
+                <h1 class="font-heading text-6xl md:text-8xl font-bold text-slate-900 dark:text-white leading-[0.9] tracking-tight">
                     Aakash <br>
                     <span class="text-gradient">Dhar.</span>
                 </h1>
@@ -231,21 +305,19 @@
                 </div>
 
                 <div class="space-y-4 max-w-lg mx-auto lg:mx-0">
-                    <h2 class="text-2xl text-white font-medium">Technical Project Manager</h2>
-                    <p class="text-lg text-slate-400 leading-relaxed">
-                        I bridge the gap between <b>complex code</b> and <b>business strategy</b>. With 8.5+ years of
-                        dev roots and 2+ years of Technical Project Management at BetaCraft, I architect Agentic AI
-                        systems and lead products from chaos to clarity.
+                    <h2 class="text-2xl text-slate-800 dark:text-white font-medium">Technical Project Manager</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                        With 8.5 years of development roots and 1.5 years of Technical Project Management at BetaCraft, I bridge the gap between <b>complex code</b> and <b>business strategy</b>. I architect Agentic AI systems and lead products from chaos to clarity.
                     </p>
                 </div>
 
                 <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
                     <a href="#projects"
-                        class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-slate-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                        class="px-8 py-4 bg-slate-900 text-white dark:bg-white dark:text-black font-bold rounded-full hover:bg-slate-700 dark:hover:bg-slate-200 transition-colors shadow-lg shadow-black/20 dark:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                         Explore My Work
                     </a>
                     <a href="https://www.linkedin.com/in/aakashdhar" target="_blank"
-                        class="px-8 py-4 glass-card rounded-full text-white font-medium hover:bg-white/10 transition-colors flex items-center gap-2">
+                        class="px-8 py-4 glass-card rounded-full text-slate-900 dark:text-white font-medium hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center gap-2">
                         <i class="ph-fill ph-linkedin-logo text-xl"></i> LinkedIn
                     </a>
                 </div>
@@ -275,23 +347,23 @@
                                 <!-- Google PMP Badge -->
                                 <div
                                     class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.1)]">
-                                    <i class="ph-fill ph-certificate text-yellow-400 text-lg"></i>
+                                    <i class="ph-fill ph-certificate text-yellow-600 dark:text-yellow-400 text-lg"></i>
                                     <div class="flex flex-col">
                                         <span
-                                            class="text-[10px] font-bold text-yellow-500/80 uppercase leading-none">Certified</span>
-                                        <span class="text-xs font-bold text-yellow-100 leading-none mt-0.5">Google
+                                            class="text-[10px] font-bold text-yellow-600 dark:text-yellow-500/80 uppercase leading-none">Certified</span>
+                                        <span class="text-xs font-bold text-yellow-800 dark:text-yellow-100 leading-none mt-0.5">Google
                                             PMP</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Role Title -->
-                            <h3 class="text-3xl font-bold text-white mb-2 leading-tight">Technical Project Manager</h3>
-                            <p class="text-slate-400 text-sm mb-6">Driving Strategy & Agentic AI Innovation</p>
+                            <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">Technical Project Manager</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">Driving Strategy & Agentic AI Innovation</p>
 
                             <!-- Status Pill -->
                             <div
-                                class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                                class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/5 text-xs text-slate-600 dark:text-slate-300">
                                 <span class="relative flex h-2 w-2">
                                     <span
                                         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -302,17 +374,20 @@
                         </div>
 
                         <!-- Bottom Section: Developer Roots (Darker Grounding) -->
-                        <div class="bg-black/30 p-6 border-t border-white/5 backdrop-blur-md relative">
+                        <div class="bg-slate-50/50 dark:bg-black/30 p-6 border-t border-slate-200 dark:border-white/5 backdrop-blur-md relative">
                             <!-- Background pattern for tech feel -->
-                            <div class="absolute inset-0 opacity-5"
+                            <div class="absolute inset-0 opacity-5 dark:opacity-5"
+                                style="background-image: radial-gradient(#000000 1px, transparent 1px); background-size: 10px 10px;">
+                            </div>
+                             <div class="absolute inset-0 opacity-0 dark:opacity-5"
                                 style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 10px 10px;">
                             </div>
 
                             <div class="relative z-10 flex items-center gap-5">
                                 <!-- Stats Box -->
                                 <div
-                                    class="bg-surface border border-white/10 rounded-xl p-3 text-center min-w-[70px] shadow-lg">
-                                    <span class="block text-2xl font-extrabold text-white">8.5<span
+                                    class="bg-white dark:bg-surface border border-slate-200 dark:border-white/10 rounded-xl p-3 text-center min-w-[70px] shadow-lg">
+                                    <span class="block text-2xl font-extrabold text-slate-900 dark:text-white">8.5<span
                                             class="text-primary text-sm">+</span></span>
                                     <span
                                         class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Years</span>
@@ -320,19 +395,19 @@
 
                                 <!-- Content -->
                                 <div>
-                                    <h4 class="text-white font-bold text-sm flex items-center gap-2">
+                                    <h4 class="text-slate-900 dark:text-white font-bold text-sm flex items-center gap-2">
                                         Developer Roots
                                         <i class="ph-fill ph-code text-laravel"></i>
                                     </h4>
-                                    <p class="text-xs text-slate-400 mt-1 mb-2">Built on solid engineering principles.
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-2">Built on solid engineering principles.
                                     </p>
                                     <div class="flex gap-2">
                                         <span
-                                            class="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/5">PHP</span>
+                                            class="text-[10px] px-2 py-0.5 rounded bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/5">PHP</span>
                                         <span
-                                            class="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/5">Laravel</span>
+                                            class="text-[10px] px-2 py-0.5 rounded bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/5">Laravel</span>
                                         <span
-                                            class="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/5">Backend</span>
+                                            class="text-[10px] px-2 py-0.5 rounded bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/5">Backend</span>
                                     </div>
                                 </div>
                             </div>
@@ -348,31 +423,31 @@
     <section id="expertise" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16">
-                <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">The Toolkit.</h2>
-                <p class="text-slate-400 text-lg max-w-xl">A blend of hard technical skills and soft management
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">The Toolkit.</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg max-w-xl">A blend of hard technical skills and soft management
                     strategy.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 <!-- Card 1: Large Span - Management -->
-                <div class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                <div class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
                     <div
                         class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
                         <i class="ph-fill ph-kanban text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-4">Project Leadership</h3>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Project Leadership</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-white/5 p-3 rounded-lg border border-white/5">
-                            <span class="block text-white font-semibold">Agile & Scrum</span>
+                        <div class="bg-slate-50 dark:bg-white/5 p-3 rounded-lg border border-slate-200 dark:border-white/5">
+                            <span class="block text-slate-800 dark:text-white font-semibold">Agile & Scrum</span>
                             <span class="text-sm text-slate-500">Process Optimization</span>
                         </div>
-                        <div class="bg-white/5 p-3 rounded-lg border border-white/5">
-                            <span class="block text-white font-semibold">Risk Management</span>
+                        <div class="bg-slate-50 dark:bg-white/5 p-3 rounded-lg border border-slate-200 dark:border-white/5">
+                            <span class="block text-slate-800 dark:text-white font-semibold">Risk Management</span>
                             <span class="text-sm text-slate-500">Mitigation Strategy</span>
                         </div>
-                        <div class="bg-white/5 p-3 rounded-lg border border-white/5">
-                            <span class="block text-white font-semibold">Stakeholder Mgmt</span>
+                        <div class="bg-slate-50 dark:bg-white/5 p-3 rounded-lg border border-slate-200 dark:border-white/5">
+                            <span class="block text-slate-800 dark:text-white font-semibold">Stakeholder Mgmt</span>
                             <span class="text-sm text-slate-500">Client Alignment</span>
                         </div>
                         <!-- Highlighted AI Management Box -->
@@ -381,23 +456,23 @@
                             <div
                                 class="absolute inset-0 bg-secondary/5 blur-md opacity-0 group-hover/item:opacity-100 transition-opacity">
                             </div>
-                            <span class="block text-white font-bold flex items-center gap-2 relative z-10">
+                            <span class="block text-slate-900 dark:text-white font-bold flex items-center gap-2 relative z-10">
                                 AI-Driven Tech Mgmt
                                 <i class="ph-fill ph-sparkle text-secondary animate-pulse"></i>
                             </span>
-                            <span class="text-sm text-slate-300 relative z-10">Predictive Planning & Ops</span>
+                            <span class="text-sm text-slate-600 dark:text-slate-300 relative z-10">Predictive Planning & Ops</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 2: Strategic Comm -->
                 <div
-                    class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group relative overflow-hidden">
+                    class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-32 bg-purple-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
-                    <i class="ph-duotone ph-chats-teardrop text-5xl text-purple-400 mb-6"></i>
-                    <h3 class="text-xl font-bold text-white mb-2">Strategic Comms</h3>
-                    <p class="text-slate-400 text-sm mb-4">Translating "Dev-Speak" to "Biz-Speak" seamlessly.</p>
-                    <ul class="text-sm text-slate-300 space-y-2">
+                    <i class="ph-duotone ph-chats-teardrop text-5xl text-purple-500 dark:text-purple-400 mb-6"></i>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Strategic Comms</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Translating "Dev-Speak" to "Biz-Speak" seamlessly.</p>
+                    <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-2">
                         <li>• Stakeholder Negotiation</li>
                         <li>• Tech Translation</li>
                         <li>• Cross-Functional Sync</li>
@@ -405,25 +480,25 @@
                 </div>
 
                 <!-- Card 3: Engineering -->
-                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
                     <i class="ph-duotone ph-code text-5xl text-laravel mb-6"></i>
-                    <h3 class="text-xl font-bold text-white mb-2">Engineering & APIs</h3>
-                    <p class="text-slate-400 text-sm mb-4">8.5 years of PHP/Laravel mastery.</p>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Engineering & APIs</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">8.5 years of PHP/Laravel mastery.</p>
                     <div class="flex flex-wrap gap-2">
                         <span
                             class="px-2 py-1 bg-laravel/10 text-laravel text-xs rounded border border-laravel/20">Laravel</span>
                         <span
-                            class="px-2 py-1 bg-white/5 text-slate-300 text-xs rounded border border-white/10">MySQL</span>
-                        <span class="px-2 py-1 bg-white/5 text-slate-300 text-xs rounded border border-white/10">Amazon
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-white/10">MySQL</span>
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-white/10">Amazon
                             MWS</span>
-                        <span class="px-2 py-1 bg-white/5 text-slate-300 text-xs rounded border border-white/10">Etsy
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-white/10">Etsy
                             API</span>
                     </div>
                 </div>
 
                 <!-- Card 4: Agentic AI - Large Span -->
                 <div
-                    class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group relative overflow-hidden">
+                    class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group relative overflow-hidden">
                     <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
                     <div class="flex flex-col md:flex-row gap-8 items-start md:items-center">
                         <div class="flex-1">
@@ -431,17 +506,17 @@
                                 class="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-xs font-bold uppercase">
                                 <i class="ph-fill ph-sparkle"></i> Current Focus
                             </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">AI Product R&D</h3>
-                            <p class="text-slate-400">Architecting systems where AI doesn't just chat, but <b>does</b>.
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">AI Product R&D</h3>
+                            <p class="text-slate-600 dark:text-slate-400">Architecting systems where AI doesn't just chat, but <b>does</b>.
                                 Building autonomous agent workflows using LangChain and modern LLMs.</p>
                         </div>
-                        <div class="bg-black/20 p-6 rounded-2xl border border-white/5 backdrop-blur-sm min-w-[200px]">
+                        <div class="bg-slate-100 dark:bg-black/20 p-6 rounded-2xl border border-slate-200 dark:border-white/5 backdrop-blur-sm min-w-[200px]">
                             <ul class="space-y-3">
-                                <li class="flex items-center text-sm text-slate-300"><i
+                                <li class="flex items-center text-sm text-slate-700 dark:text-slate-300"><i
                                         class="ph-bold ph-check text-secondary mr-2"></i> Agentic Workflows</li>
-                                <li class="flex items-center text-sm text-slate-300"><i
+                                <li class="flex items-center text-sm text-slate-700 dark:text-slate-300"><i
                                         class="ph-bold ph-check text-secondary mr-2"></i> Multi-Agent Systems</li>
-                                <li class="flex items-center text-sm text-slate-300"><i
+                                <li class="flex items-center text-sm text-slate-700 dark:text-slate-300"><i
                                         class="ph-bold ph-check text-secondary mr-2"></i> RAG Pipelines</li>
                             </ul>
                         </div>
@@ -456,160 +531,160 @@
     <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Development History</h2>
-                <p class="text-slate-400 text-lg max-w-xl">Selected projects from my 8.5 years as a hands-on developer.
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Development History</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg max-w-xl">Selected projects from my 8.5 years as a hands-on developer.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                 <!-- KAFI CRM -->
-                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <span class="text-xs font-bold text-primary uppercase tracking-wider">Xyfon Managed
                                 IT</span>
-                            <h3 class="text-xl font-bold text-white mt-1">KAFI CRM & Automation</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">KAFI CRM & Automation</h3>
                         </div>
-                        <span class="text-xs text-slate-500 font-mono">2020-2022</span>
+                        <span class="text-xs text-slate-500 font-mono">Operations Manager</span>
                     </div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         Automated order processing from multiple channels. Built modules for inventory, sales tracking,
-                        and fulfillment. Integrated <span class="text-white">Amazon SP-API</span>, <span
-                            class="text-white">WooCommerce</span>, and <span class="text-white">Etsy REST API</span> for
+                        and fulfillment. Integrated <span class="text-slate-800 dark:text-white font-medium">Amazon SP-API</span>, <span
+                            class="text-slate-800 dark:text-white font-medium">WooCommerce</span>, and <span class="text-slate-800 dark:text-white font-medium">Etsy REST API</span> for
                         seamless data sync.
                     </p>
                     <div class="flex flex-wrap gap-2">
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">E-Commerce</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">API
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">E-Commerce</span>
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">API
                             Integration</span>
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Automation</span>
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Automation</span>
                     </div>
                 </div>
 
                 <!-- Pendio CRM -->
-                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <span class="text-xs font-bold text-secondary uppercase tracking-wider">WebCodeGenie</span>
-                            <h3 class="text-xl font-bold text-white mt-1">Pendio CRM (AI-Driven)</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">Pendio CRM (AI-Driven)</h3>
                         </div>
                         <span class="text-xs text-slate-500 font-mono">Backend Lead</span>
                     </div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                        Backend for brand visibility. Integrated <span class="text-white">GPT models</span> for
-                        automated content generation and <span class="text-white">Google My Business API</span> for
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
+                        Backend for brand visibility. Integrated <span class="text-slate-800 dark:text-white font-medium">GPT models</span> for
+                        automated content generation and <span class="text-slate-800 dark:text-white font-medium">Google My Business API</span> for
                         auto-scheduling posts. Increased marketing efficiency by ~30%.
                     </p>
                     <div class="flex flex-wrap gap-2">
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Generative
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Generative
                             AI</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">GMB
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">GMB
                             API</span>
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Laravel</span>
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Laravel</span>
                     </div>
                 </div>
 
                 <!-- DSM ERP -->
-                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <span class="text-xs font-bold text-accent uppercase tracking-wider">SIIMTEQ</span>
-                            <h3 class="text-xl font-bold text-white mt-1">DSM Diamond ERP</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">DSM Diamond ERP</h3>
                         </div>
-                        <span class="text-xs text-slate-500 font-mono">2018-2019</span>
+                        <span class="text-xs text-slate-500 font-mono">Backend developer</span>
                     </div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         Streamlined operations for an Australian diamond wholesaler. Built custom modules for inventory
-                        and employee management, achieving a <span class="text-white">50% efficiency boost</span>.
+                        and employee management, achieving a <span class="text-slate-800 dark:text-white font-medium">50% efficiency boost</span>.
                         Created APIs for external WP plugins.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">ERP
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">ERP
                             Architecture</span>
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Optimization</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">API
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Optimization</span>
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">API
                             Dev</span>
                     </div>
                 </div>
 
                 <!-- HAP Asset Management -->
-                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <span class="text-xs font-bold text-green-500 uppercase tracking-wider">Arbox
                                 Renewable</span>
-                            <h3 class="text-xl font-bold text-white mt-1">HAP Asset Management</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">HAP Asset Management</h3>
                         </div>
-                        <span class="text-xs text-slate-500 font-mono">2019-2020</span>
+                        <span class="text-xs text-slate-500 font-mono">Full Stack Developer</span>
                     </div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         CRM for solar/wind energy tracking. Implemented invoicing automation and integrated <span
-                            class="text-white">Hardware APIs (Locus)</span> for real-time energy generation monitoring
+                            class="text-slate-800 dark:text-white font-medium">Hardware APIs (Locus)</span> for real-time energy generation monitoring
                         and reporting.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">IoT
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">IoT
                             Integration</span>
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Renewable
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Renewable
                             Energy</span>
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Billing</span>
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Billing</span>
                     </div>
                 </div>
 
                 <!-- EasyR CRM -->
-                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">WebCodeGenie</span>
-                            <h3 class="text-xl font-bold text-white mt-1">EasyR CRM</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">EasyR CRM</h3>
                         </div>
                         <span class="text-xs text-slate-500 font-mono">Project Lead</span>
                     </div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         Led the development of a data-driven CRM for a Copenhagen client. Managed AWS infrastructure
                         scaling for high user volume and led the team through rigorous <span
-                            class="text-white">Agile/Jira sprints</span>.
+                            class="text-slate-800 dark:text-white font-medium">Agile/Jira sprints</span>.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">AWS
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">AWS
                             Scaling</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Team
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Team
                             Lead</span>
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Agile</span>
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Agile</span>
                     </div>
                 </div>
 
                 <!-- Inventory App -->
-                <div class="glass-card p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                <div class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">WebCodeGenie</span>
-                            <h3 class="text-xl font-bold text-white mt-1">Inventory & Monitoring</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">Inventory & Monitoring</h3>
                         </div>
-                        <span class="text-xs text-slate-500 font-mono">Developer</span>
+                        <span class="text-xs text-slate-500 font-mono">Project Lead</span>
                     </div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         Advanced inventory and ticketing system for a US IT firm. Integrated <span
-                            class="text-white">Uptime Kuma</span> for real-time status monitoring and built a robust
+                            class="text-slate-800 dark:text-white font-medium">Uptime Kuma</span> for real-time status monitoring and built a robust
                         asset tracking module.
                     </p>
                     <div class="flex flex-wrap gap-2">
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Real-time
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Real-time
                             Monitoring</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Asset
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Asset
                             Mgmt</span>
                         <span
-                            class="px-2 py-1 bg-white/5 text-xs rounded text-slate-300 border border-white/10">Laravel</span>
+                            class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-xs rounded text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">Laravel</span>
                     </div>
                 </div>
 
@@ -618,21 +693,21 @@
     </section>
 
     <!-- Certifications & Education (Integrated Bento) -->
-    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 bg-black/20 relative z-10">
+    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 bg-slate-100 dark:bg-black/20 relative z-10 transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="mb-12">
-                <h2 class="font-heading text-3xl font-bold text-white">About & Credentials</h2>
+                <h2 class="font-heading text-3xl font-bold text-slate-900 dark:text-white">About & Credentials</h2>
             </div>
 
             <!-- Professional Summary (Refactored) -->
-            <div class="glass-card p-8 rounded-3xl mb-12 border border-white/10">
+            <div class="glass-card p-8 rounded-3xl mb-12 border border-slate-200 dark:border-white/10">
                 <div class="flex flex-col md:flex-row gap-8 items-start">
                     <div class="md:w-1/3">
                         <h3 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">Professional Profile
                         </h3>
-                        <h4 class="text-2xl font-bold text-white mb-4">Bridging Technical Complexity & Business
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Bridging Technical Complexity & Business
                             Strategy.</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                             As a <span class="text-primary font-semibold">Certified Google PMP</span> and Project Lead,
                             I don't just manage tasks—I engineer solutions. My background in high-scale Laravel
                             development allows me to lead with technical precision.
@@ -642,10 +717,10 @@
                     <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <!-- Card 1 -->
                         <div
-                            class="bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                            class="bg-slate-50 dark:bg-white/5 p-5 rounded-2xl border border-slate-200 dark:border-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
                             <i class="ph-fill ph-code text-2xl text-laravel mb-3"></i>
-                            <h5 class="text-white font-bold mb-2">Core Tech Stack</h5>
-                            <p class="text-xs text-slate-400 leading-relaxed">
+                            <h5 class="text-slate-900 dark:text-white font-bold mb-2">Core Tech Stack</h5>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                                 Specialization in <b>LAMP & Laravel</b> backend development. Deep expertise in complex
                                 API integrations (Amazon MWS, Etsy, WooCommerce).
                             </p>
@@ -653,10 +728,10 @@
 
                         <!-- Card 2 -->
                         <div
-                            class="bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                            class="bg-slate-50 dark:bg-white/5 p-5 rounded-2xl border border-slate-200 dark:border-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
                             <i class="ph-fill ph-users-three text-2xl text-primary mb-3"></i>
-                            <h5 class="text-white font-bold mb-2">Leadership</h5>
-                            <p class="text-xs text-slate-400 leading-relaxed">
+                            <h5 class="text-slate-900 dark:text-white font-bold mb-2">Leadership</h5>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                                 Proven track record of leading <b>cross-functional teams</b> to deliver scalable
                                 solutions aligned with client goals and deadlines.
                             </p>
@@ -664,10 +739,10 @@
 
                         <!-- Card 3 -->
                         <div
-                            class="bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                            class="bg-slate-50 dark:bg-white/5 p-5 rounded-2xl border border-slate-200 dark:border-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
                             <i class="ph-fill ph-sparkle text-2xl text-secondary mb-3"></i>
-                            <h5 class="text-white font-bold mb-2">AI Innovation</h5>
-                            <p class="text-xs text-slate-400 leading-relaxed">
+                            <h5 class="text-slate-900 dark:text-white font-bold mb-2">AI Innovation</h5>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                                 Passionate about <b>Prompt Engineering</b> and deploying AI-driven architectures to
                                 optimize business workflows and drive innovation.
                             </p>
@@ -675,10 +750,10 @@
 
                         <!-- Card 4 -->
                         <div
-                            class="bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                            class="bg-slate-50 dark:bg-white/5 p-5 rounded-2xl border border-slate-200 dark:border-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
                             <i class="ph-fill ph-buildings text-2xl text-accent mb-3"></i>
-                            <h5 class="text-white font-bold mb-2">Enterprise Systems</h5>
-                            <p class="text-xs text-slate-400 leading-relaxed">
+                            <h5 class="text-slate-900 dark:text-white font-bold mb-2">Enterprise Systems</h5>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                                 Solid understanding of building modules for inventory, sales, and employee management
                                 within <b>scalable ERP systems</b>.
                             </p>
@@ -694,51 +769,51 @@
                     <!-- Group: AI & Strategy -->
                     <div>
                         <h3
-                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-50/95 dark:bg-[#070b14]/95 backdrop-blur z-10 py-2">
                             AI & Strategy</h3>
                         <div class="space-y-3">
                             <!-- Cert Item -->
                             <a href="https://www.coursera.org/account/accomplishments/specialization/XOE0VI9MODOS"
                                 target="_blank"
-                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-secondary/50 hover:bg-white/5 transition-all group">
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-secondary/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                                 <div
-                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black">
+                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black shadow-sm">
                                     <i class="ph-bold ph-brain text-2xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold group-hover:text-secondary transition-colors">
+                                    <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-secondary transition-colors">
                                         Generative AI for Project Managers</h4>
-                                    <p class="text-xs text-slate-400">IBM • Specialization</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">IBM • Specialization</p>
                                 </div>
                             </a>
 
                             <!-- Cert Item -->
                             <a href="https://www.coursera.org/account/accomplishments/verify/KC1AB33DSZ3B"
                                 target="_blank"
-                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-secondary/50 hover:bg-white/5 transition-all group">
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-secondary/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                                 <div
-                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black">
+                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black shadow-sm">
                                     <i class="ph-bold ph-student text-2xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold group-hover:text-secondary transition-colors">
+                                    <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-secondary transition-colors">
                                         Managing AI Projects</h4>
-                                    <p class="text-xs text-slate-400">Johns Hopkins University</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Johns Hopkins University</p>
                                 </div>
                             </a>
 
                             <!-- Cert Item -->
                             <a href="https://www.linkedin.com/learning/certificates/b7599254b0a8ada440f2ee39a3fc6e2e77119aa9ae7d0e53dd59a9324fa5e5be"
                                 target="_blank"
-                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-secondary/50 hover:bg-white/5 transition-all group">
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-secondary/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                                 <div
-                                    class="w-12 h-12 bg-[#0077b5] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    class="w-12 h-12 bg-[#0077b5] rounded-xl flex items-center justify-center flex-shrink-0 text-white shadow-sm">
                                     <i class="ph-bold ph-robot text-2xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold group-hover:text-secondary transition-colors">
+                                    <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-secondary transition-colors">
                                         ChatGPT for Project Managers</h4>
-                                    <p class="text-xs text-slate-400">LinkedIn Learning</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">LinkedIn Learning</p>
                                 </div>
                             </a>
                         </div>
@@ -747,51 +822,51 @@
                     <!-- Group: Project Management -->
                     <div>
                         <h3
-                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-50/95 dark:bg-[#070b14]/95 backdrop-blur z-10 py-2">
                             Project Management</h3>
                         <div class="space-y-3">
                             <!-- Cert Item -->
                             <a href="https://www.coursera.org/account/accomplishments/specialization/WLU6AFR46Z83"
                                 target="_blank"
-                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-primary/50 hover:bg-white/5 transition-all group">
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-primary/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                                 <div
-                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black">
+                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black shadow-sm">
                                     <i class="ph-bold ph-google-logo text-2xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold group-hover:text-primary transition-colors">Google
+                                    <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-primary transition-colors">Google
                                         Project Management</h4>
-                                    <p class="text-xs text-slate-400">Google • Specialization</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Google • Specialization</p>
                                 </div>
                             </a>
 
                             <!-- Cert Item -->
                             <a href="https://www.coursera.org/account/accomplishments/specialization/77S1LEW8S3DM"
                                 target="_blank"
-                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-primary/50 hover:bg-white/5 transition-all group">
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-primary/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                                 <div
-                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black">
+                                    class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-black shadow-sm">
                                     <i class="ph-bold ph-google-logo text-2xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold group-hover:text-primary transition-colors">People
+                                    <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-primary transition-colors">People
                                         Management Essentials</h4>
-                                    <p class="text-xs text-slate-400">Google • Specialization</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Google • Specialization</p>
                                 </div>
                             </a>
 
                             <!-- Cert Item -->
                             <a href="https://www.linkedin.com/learning/certificates/f386f58337f6981edcf97c48315c247250b44c92ac6d210205f7a50f1c6ae994"
                                 target="_blank"
-                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/5 transition-all group">
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                                 <div
-                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white shadow-sm">
                                     <i class="ph-bold ph-check-circle text-2xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold group-hover:text-blue-400 transition-colors">Agile
+                                    <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-blue-400 transition-colors">Agile
                                         Project Management Pro</h4>
-                                    <p class="text-xs text-slate-400">Atlassian University</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Atlassian University</p>
                                 </div>
                             </a>
                         </div>
@@ -800,51 +875,51 @@
                     <!-- Group: Technical Tools (Jira) -->
                     <div>
                         <h3
-                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-50/95 dark:bg-[#070b14]/95 backdrop-blur z-10 py-2">
                             Technical Tools</h3>
                         <div class="space-y-3">
                             <!-- Cert Item -->
                             <a href="https://www.coursera.org/account/accomplishments/verify/SVW5FIMBUK8H"
                                 target="_blank"
-                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/5 transition-all group">
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                                 <div
-                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white shadow-sm">
                                     <i class="ph-bold ph-kanban text-2xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold group-hover:text-blue-400 transition-colors">Agile
+                                    <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-blue-400 transition-colors">Agile
                                         with Atlassian Jira</h4>
-                                    <p class="text-xs text-slate-400">Atlassian</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Atlassian</p>
                                 </div>
                             </a>
 
                             <!-- Cert Item -->
                             <a href="https://www.coursera.org/account/accomplishments/certificate/0FQ4MMT3FRKC"
                                 target="_blank"
-                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/5 transition-all group">
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                                 <div
-                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white shadow-sm">
                                     <i class="ph-bold ph-gear text-2xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold group-hover:text-blue-400 transition-colors">
+                                    <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-blue-400 transition-colors">
                                         Automate Tasks & Processes</h4>
-                                    <p class="text-xs text-slate-400">Jira • Coursera</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Jira • Coursera</p>
                                 </div>
                             </a>
 
                             <!-- Cert Item -->
                             <a href="https://www.coursera.org/account/accomplishments/certificate/L6HB29JCN4RC"
                                 target="_blank"
-                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/5 transition-all group">
+                                class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                                 <div
-                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white">
+                                    class="w-12 h-12 bg-[#0052CC] rounded-xl flex items-center justify-center flex-shrink-0 text-white shadow-sm">
                                     <i class="ph-bold ph-map-trifold text-2xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold group-hover:text-blue-400 transition-colors">Using
+                                    <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-blue-400 transition-colors">Using
                                         Roadmaps in Jira</h4>
-                                    <p class="text-xs text-slate-400">Jira • Coursera</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Jira • Coursera</p>
                                 </div>
                             </a>
                         </div>
@@ -853,20 +928,20 @@
                     <!-- Group: Communication -->
                     <div>
                         <h3
-                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-50/95 dark:bg-[#070b14]/95 backdrop-blur z-10 py-2">
                             Professional Skills</h3>
                         <!-- Cert Item -->
                         <a href="https://www.linkedin.com/learning/certificates/8ef09f9955fc4e1697553a2e2d79463ca6676387d43aecafd953d2ff4c0ea623"
                             target="_blank"
-                            class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-purple-500/50 hover:bg-white/5 transition-all group">
+                            class="glass-card p-4 rounded-2xl flex items-center gap-4 hover:border-purple-500/50 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                             <div
-                                class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center flex-shrink-0 text-purple-400 border border-purple-500/20">
+                                class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center flex-shrink-0 text-purple-600 dark:text-purple-400 border border-purple-500/20">
                                 <i class="ph-bold ph-chats-circle text-2xl"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-bold group-hover:text-purple-400 transition-colors">Essential
+                                <h4 class="text-slate-900 dark:text-white font-bold group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors">Essential
                                     Business Communication</h4>
-                                <p class="text-xs text-slate-400">LinkedIn Learning • Professional Cert</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">LinkedIn Learning • Professional Cert</p>
                             </div>
                         </a>
                     </div>
@@ -882,97 +957,97 @@
                             <h3 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-6">Professional
                                 Experience</h3>
 
-                            <div class="relative pl-8 border-l border-white/10 space-y-10">
+                            <div class="relative pl-8 border-l border-slate-300 dark:border-white/10 space-y-10">
                                 <!-- BetaCraft -->
                                 <div class="relative">
                                     <span
-                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-green-500 border-4 border-surface shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
-                                    <h4 class="text-white font-bold text-lg">Technical Project Manager</h4>
-                                    <p class="text-green-400 text-sm font-bold mb-1">BetaCraft · Full-time</p>
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-green-500 border-4 border-slate-50 dark:border-surface shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
+                                    <h4 class="text-slate-900 dark:text-white font-bold text-lg">Technical Project Manager</h4>
+                                    <p class="text-green-600 dark:text-green-400 text-sm font-bold mb-1">BetaCraft · Full-time</p>
                                     <p class="text-slate-500 text-xs mb-2">Sep 2024 - Present · Pune (Hybrid)</p>
-                                    <p class="text-slate-400 text-sm mb-2">Project sprint planning, client
+                                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-2">Project sprint planning, client
                                         communication, AI based project management.</p>
                                     <div class="flex flex-wrap gap-1">
-                                        <span class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Tech
+                                        <span class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Tech
                                             Mgmt</span>
                                         <span
-                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Leadership</span>
+                                            class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Leadership</span>
                                     </div>
                                 </div>
 
                                 <!-- WebCodeGenie -->
                                 <div class="relative">
                                     <span
-                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
-                                    <h4 class="text-white font-bold text-lg">Senior Software Engineer</h4>
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-slate-50 dark:border-surface"></span>
+                                    <h4 class="text-slate-900 dark:text-white font-bold text-lg">Senior Software Engineer</h4>
                                     <p class="text-primary text-sm font-bold mb-1">WebCodeGenie Technology · Full-time
                                     </p>
                                     <p class="text-slate-500 text-xs mb-2">Sep 2022 - Sep 2024 · Ahmedabad</p>
                                     <div class="flex flex-wrap gap-1">
-                                        <span class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Database
+                                        <span class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Database
                                             Design</span>
                                         <span
-                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Programming</span>
+                                            class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Programming</span>
                                     </div>
                                 </div>
 
                                 <!-- Xyfon -->
                                 <div class="relative">
                                     <span
-                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
-                                    <h4 class="text-white font-bold text-lg">Operations Manager</h4>
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-slate-50 dark:border-surface"></span>
+                                    <h4 class="text-slate-900 dark:text-white font-bold text-lg">Operations Manager</h4>
                                     <p class="text-primary text-sm font-bold mb-1">Xyfon Managed IT · Full-time</p>
                                     <p class="text-slate-500 text-xs mb-2">Jan 2022 - Sep 2022 · Ahmedabad</p>
                                     <div class="flex flex-wrap gap-1">
-                                        <span class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Ops
+                                        <span class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Ops
                                             Management</span>
                                         <span
-                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Communication</span>
+                                            class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Communication</span>
                                     </div>
                                 </div>
 
                                 <!-- Arbox Renewable (Grouped) -->
                                 <div class="relative">
                                     <span
-                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
-                                    <h4 class="text-white font-bold text-lg">Full-stack & Web Developer</h4>
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-slate-50 dark:border-surface"></span>
+                                    <h4 class="text-slate-900 dark:text-white font-bold text-lg">Full-stack & Web Developer</h4>
                                     <p class="text-primary text-sm font-bold mb-1">Arbox Renewable Energy</p>
                                     <p class="text-slate-500 text-xs mb-2">Sep 2019 - Jan 2022 · Ahmedabad</p>
                                     <p class="text-slate-400 text-xs italic mb-2">Promoted from Web Developer (1.5 yrs)
                                         to Full-stack Developer (1 yr).</p>
                                     <div class="flex flex-wrap gap-1">
                                         <span
-                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Full-stack</span>
+                                            class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Full-stack</span>
                                         <span
-                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Requirements</span>
+                                            class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Requirements</span>
                                     </div>
                                 </div>
 
                                 <!-- SIIMTEQ -->
                                 <div class="relative">
                                     <span
-                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
-                                    <h4 class="text-white font-bold text-lg">Web Developer</h4>
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-slate-50 dark:border-surface"></span>
+                                    <h4 class="text-slate-900 dark:text-white font-bold text-lg">Web Developer</h4>
                                     <p class="text-primary text-sm font-bold mb-1">SIIMTEQ TECHNOLOGIES</p>
                                     <p class="text-slate-500 text-xs mb-2">Jan 2018 - Aug 2019 · Vadodara</p>
                                     <div class="flex flex-wrap gap-1">
-                                        <span class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Database
+                                        <span class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Database
                                             Design</span>
                                         <span
-                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Programming</span>
+                                            class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Programming</span>
                                     </div>
                                 </div>
 
                                 <!-- Amigos -->
                                 <div class="relative">
                                     <span
-                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
-                                    <h4 class="text-white font-bold text-lg">Web Developer</h4>
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-slate-50 dark:border-surface"></span>
+                                    <h4 class="text-slate-900 dark:text-white font-bold text-lg">Web Developer</h4>
                                     <p class="text-primary text-sm font-bold mb-1">Amigos Automation Solutions</p>
                                     <p class="text-slate-500 text-xs mb-2">Nov 2016 - Dec 2017 · Bengaluru</p>
                                     <div class="flex flex-wrap gap-1">
                                         <span
-                                            class="text-[10px] px-2 py-0.5 bg-white/5 rounded text-slate-400">Programming</span>
+                                            class="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-white/5 rounded text-slate-500 dark:text-slate-400">Programming</span>
                                     </div>
                                 </div>
                             </div>
@@ -982,18 +1057,18 @@
                         <div>
                             <h3 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-6">Education</h3>
 
-                            <div class="relative pl-8 border-l border-white/10 space-y-8">
+                            <div class="relative pl-8 border-l border-slate-300 dark:border-white/10 space-y-8">
                                 <div class="relative">
                                     <span
-                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-primary border-4 border-surface"></span>
-                                    <h4 class="text-white font-bold text-lg">Master of Computer Applications</h4>
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-primary border-4 border-slate-50 dark:border-surface"></span>
+                                    <h4 class="text-slate-900 dark:text-white font-bold text-lg">Master of Computer Applications</h4>
                                     <p class="text-primary text-sm">Administrative Management College</p>
                                 </div>
                                 <div class="relative">
                                     <span
-                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-surface"></span>
-                                    <h4 class="text-white font-bold text-lg">Bachelor of Computer Applications</h4>
-                                    <p class="text-slate-400 text-sm">Meghnad Saha Institute Of Technology</p>
+                                        class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-slate-50 dark:border-surface"></span>
+                                    <h4 class="text-slate-900 dark:text-white font-bold text-lg">Bachelor of Computer Applications</h4>
+                                    <p class="text-slate-500 dark:text-slate-400 text-sm">Meghnad Saha Institute Of Technology</p>
                                 </div>
                             </div>
                         </div>
@@ -1005,7 +1080,7 @@
     <!-- Personal Interests / Beyond the Code (New Section) -->
     <section class="py-12 px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-7xl mx-auto">
-            <div class="glass-card rounded-3xl p-8 md:p-12 overflow-hidden relative border border-white/10">
+            <div class="glass-card rounded-3xl p-8 md:p-12 overflow-hidden relative border border-slate-200 dark:border-white/10">
                 <!-- Background decoration -->
                 <div
                     class="absolute top-0 right-0 p-40 bg-accent/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none">
@@ -1013,10 +1088,10 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
                     <div class="space-y-6">
-                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-white">Beyond the Code</h2>
-                        <div class="space-y-4 text-slate-400 text-lg leading-relaxed">
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Beyond the Code</h2>
+                        <div class="space-y-4 text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
                             <p>
-                                I am <span class="text-white font-semibold">multi-lingual</span> (English, Hindi,
+                                I am <span class="text-slate-900 dark:text-white font-semibold">multi-lingual</span> (English, Hindi,
                                 Bengali) and multi-passionate. While I spend my days managing technical complexities, I
                                 believe in staying curious and creative in all aspects of life.
                             </p>
@@ -1031,45 +1106,45 @@
                     <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
                         <!-- Card 1: Travel -->
                         <div
-                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/5 transition-colors group cursor-default">
+                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/50 dark:hover:bg-white/5 transition-colors group cursor-default">
                             <div
-                                class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-500 dark:text-blue-400 group-hover:scale-110 transition-transform">
                                 <i class="ph-fill ph-airplane-tilt text-2xl"></i>
                             </div>
-                            <h3 class="font-bold text-white">Travel</h3>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Travel</h3>
                             <p class="text-xs text-slate-500 mt-1">Exploring the Unknown</p>
                         </div>
 
                         <!-- Card 2: Photography -->
                         <div
-                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/5 transition-colors group cursor-default">
+                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/50 dark:hover:bg-white/5 transition-colors group cursor-default">
                             <div
-                                class="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-purple-400 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-purple-500 dark:text-purple-400 group-hover:scale-110 transition-transform">
                                 <i class="ph-fill ph-camera text-2xl"></i>
                             </div>
-                            <h3 class="font-bold text-white">Photography</h3>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Photography</h3>
                             <p class="text-xs text-slate-500 mt-1">Capturing Moments</p>
                         </div>
 
                         <!-- Card 3: Riding -->
                         <div
-                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/5 transition-colors group cursor-default">
+                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/50 dark:hover:bg-white/5 transition-colors group cursor-default">
                             <div
-                                class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-red-400 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-red-500 dark:text-red-400 group-hover:scale-110 transition-transform">
                                 <i class="ph-fill ph-motorcycle text-2xl"></i>
                             </div>
-                            <h3 class="font-bold text-white">Riding</h3>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Riding</h3>
                             <p class="text-xs text-slate-500 mt-1">Chasing Horizons</p>
                         </div>
 
                         <!-- Card 4: Cooking -->
                         <div
-                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/5 transition-colors group cursor-default">
+                            class="glass-card p-6 rounded-2xl text-center hover:bg-white/50 dark:hover:bg-white/5 transition-colors group cursor-default">
                             <div
-                                class="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-orange-400 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-orange-500 dark:text-orange-400 group-hover:scale-110 transition-transform">
                                 <i class="ph-fill ph-cooking-pot text-2xl"></i>
                             </div>
-                            <h3 class="font-bold text-white">Cooking</h3>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Cooking</h3>
                             <p class="text-xs text-slate-500 mt-1">Culinary Experiments</p>
                         </div>
                     </div>
@@ -1082,9 +1157,9 @@
     <section id="writing" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-10">
-                <h2 class="font-heading text-3xl font-bold text-white">Latest Insights</h2>
+                <h2 class="font-heading text-3xl font-bold text-slate-900 dark:text-white">Latest Insights</h2>
                 <a href="https://www.linkedin.com/in/aakashdhar"
-                    class="text-primary hover:text-white transition-colors text-sm font-medium mt-4 md:mt-0">View All on
+                    class="text-primary hover:text-slate-900 dark:hover:text-white transition-colors text-sm font-medium mt-4 md:mt-0">View All on
                     LinkedIn →</a>
             </div>
 
@@ -1092,42 +1167,42 @@
                 <!-- Post 1 -->
                 <a href="https://betacraft.com/2024-10-09-unexpected-challenges-we-faced-in-our-last-project-and-how-we-overcame-them/"
                     target="_blank"
-                    class="glass-card p-6 rounded-2xl hover:-translate-y-1 hover:bg-white/5 transition-all group">
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-1 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                     <div class="flex justify-between items-start mb-4">
                         <span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Project Mgmt</span>
-                        <i class="ph ph-arrow-up-right text-slate-500 group-hover:text-white"></i>
+                        <i class="ph ph-arrow-up-right text-slate-500 group-hover:text-slate-900 dark:group-hover:text-white"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">Unexpected
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">Unexpected
                         Challenges in Our Last Project</h3>
-                    <p class="text-sm text-slate-400 line-clamp-3">A deep dive into hurdles of software delivery and
+                    <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3">A deep dive into hurdles of software delivery and
                         strategies used to overcome them without missing deadlines.</p>
                 </a>
 
                 <!-- Post 2 -->
                 <a href="https://betacraft.com/2024-10-09-how-to-use-solid-principles-in-daily-programming/"
                     target="_blank"
-                    class="glass-card p-6 rounded-2xl hover:-translate-y-1 hover:bg-white/5 transition-all group">
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-1 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                     <div class="flex justify-between items-start mb-4">
                         <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Engineering</span>
-                        <i class="ph ph-arrow-up-right text-slate-500 group-hover:text-white"></i>
+                        <i class="ph ph-arrow-up-right text-slate-500 group-hover:text-slate-900 dark:group-hover:text-white"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">How to Use
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">How to Use
                         SOLID Principles Daily</h3>
-                    <p class="text-sm text-slate-400 line-clamp-3">Moving beyond theory: Practical examples of how SOLID
+                    <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3">Moving beyond theory: Practical examples of how SOLID
                         principles improved maintainability in our codebase.</p>
                 </a>
 
                 <!-- Post 3 -->
                 <a href="https://betacraft.com/2024-10-07-why-agile-methodology-worked-in-my-last-project/"
                     target="_blank"
-                    class="glass-card p-6 rounded-2xl hover:-translate-y-1 hover:bg-white/5 transition-all group">
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-1 hover:bg-white/50 dark:hover:bg-white/5 transition-all group">
                     <div class="flex justify-between items-start mb-4">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-green-400">Methodology</span>
-                        <i class="ph ph-arrow-up-right text-slate-500 group-hover:text-white"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-green-600 dark:text-green-400">Methodology</span>
+                        <i class="ph ph-arrow-up-right text-slate-500 group-hover:text-slate-900 dark:group-hover:text-white"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">Why Agile
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">Why Agile
                         Worked in My Last Project</h3>
-                    <p class="text-sm text-slate-400 line-clamp-3">A retrospective on how Agile methodology transformed
+                    <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3">A retrospective on how Agile methodology transformed
                         our team velocity and improved overall client satisfaction.</p>
                 </a>
             </div>
@@ -1135,49 +1210,49 @@
     </section>
 
     <!-- Modern Footer -->
-    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/5 relative z-10 bg-black/40">
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-white/5 relative z-10 bg-slate-50 dark:bg-black/40 transition-colors duration-300">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-6">Ready to Collaborate?</h2>
-            <p class="text-slate-400 text-lg mb-10">Whether it's AI architecture or Project Strategy, I'm just a message
+            <h2 class="font-heading text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">Ready to Collaborate?</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-lg mb-10">Whether it's AI architecture or Project Strategy, I'm just a message
                 away.</p>
 
             <a href="mailto:hello@aakashdhar.me"
-                class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform">
+                class="inline-flex items-center gap-3 px-8 py-4 bg-slate-900 text-white dark:bg-white dark:text-black font-bold rounded-full hover:scale-105 transition-transform shadow-lg">
                 <i class="ph-bold ph-envelope-simple"></i> hello@aakashdhar.me
             </a>
 
             <div class="mt-16 flex justify-center gap-8">
                 <a href="https://www.linkedin.com/in/aakashdhar"
-                    class="text-slate-400 hover:text-white transition-colors"><i
+                    class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"><i
                         class="ph-fill ph-linkedin-logo text-2xl"></i></a>
-                <a href="https://github.com/aakashdhar" class="text-slate-400 hover:text-white transition-colors"><i
+                <a href="https://github.com/aakashdhar" class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"><i
                         class="ph-fill ph-github-logo text-2xl"></i></a>
-                <a href="#" class="text-slate-400 hover:text-white transition-colors"><i
+                <a href="https://www.instagram.com/dvagabondprince?igsh=cXNpamF3ZzcycHQ2" target="_blank" class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"><i
                         class="ph-fill ph-instagram-logo text-2xl"></i></a>
             </div>
 
                         <!-- Explore More Links -->
-            <div class="mt-16 pt-8 border-t border-white/5 w-full">
+            <div class="mt-16 pt-8 border-t border-slate-200 dark:border-white/5 w-full">
                 <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Explore More</p>
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="uses.html"
-                        class="group flex items-center gap-3 px-5 py-3 rounded-2xl glass-card hover:bg-white/10 transition-all border border-white/5 hover:border-white/20">
+                        class="group flex items-center gap-3 px-5 py-3 rounded-2xl glass-card hover:bg-slate-100 dark:hover:bg-white/10 transition-all border border-slate-200 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/20">
                         <span
                             class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"><i
                                 class="ph-fill ph-desktop"></i></span>
                         <div class="text-left">
-                            <span class="block text-xs text-slate-400 group-hover:text-slate-300">My Stack</span>
-                            <span class="block text-sm font-bold text-white">/uses</span>
+                            <span class="block text-xs text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300">My Stack</span>
+                            <span class="block text-sm font-bold text-slate-900 dark:text-white">/uses</span>
                         </div>
                     </a>
                     <a href="now.html"
-                        class="group flex items-center gap-3 px-5 py-3 rounded-2xl glass-card hover:bg-white/10 transition-all border border-white/5 hover:border-white/20">
+                        class="group flex items-center gap-3 px-5 py-3 rounded-2xl glass-card hover:bg-slate-100 dark:hover:bg-white/10 transition-all border border-slate-200 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/20">
                         <span
                             class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors"><i
                                 class="ph-fill ph-clock-countdown"></i></span>
                         <div class="text-left">
-                            <span class="block text-xs text-slate-400 group-hover:text-slate-300">Current Focus</span>
-                            <span class="block text-sm font-bold text-white">/now</span>
+                            <span class="block text-xs text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300">Current Focus</span>
+                            <span class="block text-sm font-bold text-slate-900 dark:text-white">/now</span>
                         </div>
                     </a>
                 </div>
@@ -1190,6 +1265,29 @@
 
     <!-- Scripts -->
     <script>
+        // --- Theme Toggle Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // 1. Check LocalStorage. Default is Light (no 'dark' class)
+        if (localStorage.theme === 'dark') {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        // 2. Toggle Function
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            
+            // Save preference
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
+        });
+
         // Mobile Menu Logic
         const menuBtn = document.getElementById('mobile-menu-btn');
         const closeBtn = document.getElementById('close-menu-btn');

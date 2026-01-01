@@ -1,0 +1,220 @@
+/* --- THEME VARIABLES --- */
+:root {
+    /* Light Mode Default (Requested) */
+    --bg-color: 248 250 252;
+    /* Slate-50 */
+    --surface-color: 255 255 255;
+    --text-primary: 15 23 42;
+    /* Slate-900 */
+    --text-secondary: 71 85 105;
+    /* Slate-600 */
+
+    /* Glass Settings (Light) */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.06);
+    --glass-blur: 16px;
+    --nav-bg: rgba(255, 255, 255, 0.85);
+    --nav-text: #0f172a;
+}
+
+.dark {
+    /* Dark Mode */
+    --bg-color: 3 7 18;
+    /* Original Dark */
+    --surface-color: 17 24 39;
+    --text-primary: 255 255 255;
+    --text-secondary: 148 163 184;
+    /* Slate-400 */
+
+    /* Glass Settings (Dark) */
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-blur: 10px;
+    --nav-bg: rgba(3, 7, 18, 0.7);
+    --nav-text: #ffffff;
+}
+
+/* Smooth Scroll Fallback */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(var(--bg-color));
+}
+
+::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4b5563;
+}
+
+/* Glass Card Utility */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+}
+
+/* Dark mode shadow adjustment */
+.dark .glass-card {
+    box-shadow: none;
+}
+
+.glass-nav {
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    color: var(--nav-text);
+    transition: all 0.3s ease;
+}
+
+/* Gradient Text */
+.text-gradient {
+    background: linear-gradient(to right, #6366f1, #d946ef);
+    /* Darker indigo for visibility on white */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* FIX: Re-applying clipping properties for Dark Mode to prevent box appearance */
+.dark .text-gradient {
+    background: linear-gradient(to right, #818cf8, #e879f9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.2);
+    border-radius: 4px;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Animation Utilities */
+.animate-delay-100 {
+    animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+    animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+    animation-delay: 300ms;
+}
+
+.animate-delay-400 {
+    animation-delay: 400ms;
+}
+
+.animate-delay-500 {
+    animation-delay: 500ms;
+}
+
+.animate-delay-700 {
+    animation-delay: 700ms;
+}
+
+.animate-delay-1000 {
+    animation-delay: 1000ms;
+}
+
+/* Hover Effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark .hover-lift:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 3D Tilt Effect */
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.tilt-card:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg);
+}
+
+/* Shimmer Effect */
+.shimmer {
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Gradient Animation */
+.gradient-animate {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+}
+
+/* Reveal on Scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Icon Bounce */
+.icon-bounce:hover i {
+    animation: bounce 0.6s ease;
+}
+
+/* Glow on Hover */
+.glow-on-hover {
+    transition: box-shadow 0.3s ease;
+}
+
+.glow-on-hover:hover {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.6), 0 0 40px rgba(99, 102, 241, 0.3);
+}
+
+/* Smooth Page Load */
+body {
+    animation: fadeIn 0.5s ease-in;
+}

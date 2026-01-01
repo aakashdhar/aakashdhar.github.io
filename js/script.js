@@ -1,75 +1,85 @@
-;(function(){
+// --- Theme Toggle Logic ---
+const themeToggleBtn = document.getElementById('theme-toggle');
+const htmlElement = document.documentElement;
 
-	if (window.jQuery) {
+// 1. Check LocalStorage. Default is Light (no 'dark' class)
+if (localStorage.theme === 'dark') {
+    htmlElement.classList.add('dark');
+} else {
+    htmlElement.classList.remove('dark');
+}
 
-		// jQuery version
-		$(document).ready(function(){
+// 2. Toggle Function
+themeToggleBtn.addEventListener('click', () => {
+    htmlElement.classList.toggle('dark');
 
-			// Add a 'js' class to the html tag
-			// If you're using modernizr or similar, you
-			// won't need to do this
-			$('html').addClass('js');
+    // Save preference
+    if (htmlElement.classList.contains('dark')) {
+        localStorage.theme = 'dark';
+    } else {
+        localStorage.theme = 'light';
+    }
+});
 
-			// Fade in videos
-			var $fade_in_videos = $('.video-bg video');
-			$fade_in_videos.each(function(){
-				if( $(this)[0].currentTime > 0 ) {
-					// It's already started playing
-					$(this).addClass('is-playing');
-				} else {
-					// It hasn't started yet, wait for the playing event
-					$(this).on('playing', function(){
-						$(this).addClass('is-playing');
-					});
-				}
-			});
+// Mobile Menu Logic
+const menuBtn = document.getElementById('mobile-menu-btn');
+const closeBtn = document.getElementById('close-menu-btn');
+const menu = document.getElementById('mobile-menu');
+const links = document.querySelectorAll('.mobile-link');
 
-			// Scrap videos on iOS because it won't autoplay,
-			// it adds it's own play icon and opens the
-			// media player when clicked
-			var iOS = /iPad|iPhone|iPod/.test(navigator.platform) || /iPad|iPhone|iPod/.test(navigator.userAgent);
-			if( iOS ) {
-				$('.video-bg video').remove();
-			}
+function toggleMenu() {
+    menu.classList.toggle('hidden');
+    menu.classList.toggle('flex');
+    document.body.classList.toggle('overflow-hidden');
+}
 
-		});
+menuBtn.addEventListener('click', toggleMenu);
+closeBtn.addEventListener('click', toggleMenu);
 
-	} else {
+links.forEach(link => {
+    link.addEventListener('click', toggleMenu);
+});
 
-		// Vanilla JS version
+// Enhanced Scroll Animations with Reveal
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
 
-		// Add a 'js' class to the html tag
-		// If you're using modernizr or similar, you
-		// won't need to do this
-		document.documentElement.className += " js";
+// Observe all elements with 'reveal' class
+document.querySelectorAll('.reveal').forEach((el) => {
+    revealObserver.observe(el);
+});
 
-		// Fade in videos
-		var fade_in_videos = document.querySelectorAll('.video-bg video');
-		for( i=0; i<fade_in_videos.length; i++ ) {
-			if( fade_in_videos[i].currentTime > 0 ) {
-				// It's already started playing
-				fade_in_videos[i].className += ' is-playing';
-			} else {
-				// It hasn't started yet, wait for the playing event
-				fade_in_videos[i].addEventListener("playing", function(){
-					if(this.className.indexOf('is-playing') < 0) {
-						this.className += ' is-playing';
-					}
-				});
-			}
-		} 
+// Add smooth scroll behavior
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href !== '') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    });
+});
 
-		// Scrap videos on iOS because it won't autoplay,
-		// it adds it's own play icon and opens the
-		// media player when clicked
-		var iOS = /iPad|iPhone|iPod/.test(navigator.platform);
-		if( iOS ) {
-			var background_videos = document.querySelectorAll('.video-bg video');
-			for( i=0; i<background_videos.length; i++ ) {
-				background_videos[i].parentNode.removeChild(background_videos[i]);
-			}
-		}
-
-	}
-
-})();
+// Add parallax effect to background blobs
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const blobs = document.querySelectorAll('.animate-blob');
+    blobs.forEach((blob, index) => {
+        const speed = 0.1 + (index * 0.05);
+        blob.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});

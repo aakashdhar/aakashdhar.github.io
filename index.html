@@ -76,16 +76,17 @@
                         heading: ['Manrope', 'sans-serif'],
                     },
                     colors: {
-                        background: 'rgb(var(--bg-color))', 
-                        surface: 'rgb(var(--surface-color))',
+                        // FIX: Added / <alpha-value> to allow opacity modifiers (like bg-background/95) to work
+                        background: 'rgb(var(--bg-color) / <alpha-value>)', 
+                        surface: 'rgb(var(--surface-color) / <alpha-value>)',
                         primary: '#6366f1', // Indigo-500
                         secondary: '#d946ef', // Fuchsia-500
                         accent: '#14b8a6', // Teal-500
                         laravel: '#FF2D20', // Laravel Red
                         
                         // Semantic Text Colors
-                        tprimary: 'rgb(var(--text-primary))',
-                        tsecondary: 'rgb(var(--text-secondary))',
+                        tprimary: 'rgb(var(--text-primary) / <alpha-value>)',
+                        tsecondary: 'rgb(var(--text-secondary) / <alpha-value>)',
                     },
                     animation: {
                         'float': 'float 8s ease-in-out infinite',
@@ -196,11 +197,16 @@
         .text-gradient {
             background: linear-gradient(to right, #6366f1, #d946ef); /* Darker indigo for visibility on white */
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
+        /* FIX: Re-applying clipping properties for Dark Mode to prevent box appearance */
         .dark .text-gradient {
              background: linear-gradient(to right, #818cf8, #e879f9);
+             -webkit-background-clip: text;
+             background-clip: text;
+             -webkit-text-fill-color: transparent;
         }
         
         .custom-scrollbar::-webkit-scrollbar {
@@ -470,13 +476,24 @@
                     class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-32 bg-purple-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
                     <i class="ph-duotone ph-chats-teardrop text-5xl text-purple-500 dark:text-purple-400 mb-6"></i>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Strategic Comms</h3>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Strategic Comms & Soft Skills</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Translating "Dev-Speak" to "Biz-Speak" seamlessly.</p>
-                    <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-2">
-                        <li>• Stakeholder Negotiation</li>
-                        <li>• Tech Translation</li>
-                        <li>• Cross-Functional Sync</li>
-                    </ul>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <!-- Harder Skills (Purple) -->
+                        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 text-xs rounded border border-purple-200 dark:border-purple-500/20">Strategic Comm</span>
+                        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 text-xs rounded border border-purple-200 dark:border-purple-500/20">Stakeholder Negotiation</span>
+                        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 text-xs rounded border border-purple-200 dark:border-purple-500/20">Tech Translation</span>
+                        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 text-xs rounded border border-purple-200 dark:border-purple-500/20">Cross-Functional Sync</span>
+                        
+                        <!-- Soft Skills (Neutral) -->
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-white/10">Adv. Problem Solving</span>
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-white/10">Delivering Business Value</span>
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-white/10">Critical Thinking</span>
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-white/10">Empathy</span>
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-white/10">Attention to Detail</span>
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs rounded border border-slate-200 dark:border-white/10">Continuous Learning</span>
+                    </div>
                 </div>
 
                 <!-- Card 3: Engineering -->
@@ -546,7 +563,7 @@
                                 IT</span>
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">KAFI CRM & Automation</h3>
                         </div>
-                        <span class="text-xs text-slate-500 font-mono">Operations Manager</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Operations Manager</span>
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         Automated order processing from multiple channels. Built modules for inventory, sales tracking,
@@ -596,7 +613,7 @@
                             <span class="text-xs font-bold text-accent uppercase tracking-wider">SIIMTEQ</span>
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">DSM Diamond ERP</h3>
                         </div>
-                        <span class="text-xs text-slate-500 font-mono">Backend developer</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Backend developer</span>
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         Streamlined operations for an Australian diamond wholesaler. Built custom modules for inventory
@@ -621,7 +638,7 @@
                                 Renewable</span>
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">HAP Asset Management</h3>
                         </div>
-                        <span class="text-xs text-slate-500 font-mono">Full Stack Developer</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Full Stack Developer</span>
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         CRM for solar/wind energy tracking. Implemented invoicing automation and integrated <span
@@ -646,7 +663,7 @@
                             <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">WebCodeGenie</span>
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">EasyR CRM</h3>
                         </div>
-                        <span class="text-xs text-slate-500 font-mono">Project Lead</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Project Lead</span>
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         Led the development of a data-driven CRM for a Copenhagen client. Managed AWS infrastructure
@@ -670,7 +687,7 @@
                             <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">WebCodeGenie</span>
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">Inventory & Monitoring</h3>
                         </div>
-                        <span class="text-xs text-slate-500 font-mono">Project Lead</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Project Lead</span>
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                         Advanced inventory and ticketing system for a US IT firm. Integrated <span
@@ -769,7 +786,7 @@
                     <!-- Group: AI & Strategy -->
                     <div>
                         <h3
-                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-50/95 dark:bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-100/95 dark:bg-background/95 backdrop-blur z-10 py-2">
                             AI & Strategy</h3>
                         <div class="space-y-3">
                             <!-- Cert Item -->
@@ -822,7 +839,7 @@
                     <!-- Group: Project Management -->
                     <div>
                         <h3
-                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-50/95 dark:bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-100/95 dark:bg-background/95 backdrop-blur z-10 py-2">
                             Project Management</h3>
                         <div class="space-y-3">
                             <!-- Cert Item -->
@@ -875,7 +892,7 @@
                     <!-- Group: Technical Tools (Jira) -->
                     <div>
                         <h3
-                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-50/95 dark:bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-100/95 dark:bg-background/95 backdrop-blur z-10 py-2">
                             Technical Tools</h3>
                         <div class="space-y-3">
                             <!-- Cert Item -->
@@ -928,7 +945,7 @@
                     <!-- Group: Communication -->
                     <div>
                         <h3
-                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-50/95 dark:bg-[#070b14]/95 backdrop-blur z-10 py-2">
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 sticky top-0 bg-slate-100/95 dark:bg-background/95 backdrop-blur z-10 py-2">
                             Professional Skills</h3>
                         <!-- Cert Item -->
                         <a href="https://www.linkedin.com/learning/certificates/8ef09f9955fc4e1697553a2e2d79463ca6676387d43aecafd953d2ff4c0ea623"

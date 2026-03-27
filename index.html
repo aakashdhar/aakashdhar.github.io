@@ -160,12 +160,22 @@
         .btn-o:hover{border-color:var(--terra);color:var(--terra);}
 
         @media(max-width:1024px){
-            .hero{grid-template-columns:1fr;min-height:auto;}
-            .hero-l{min-height:50vh;min-height:50dvh;padding:clamp(5rem,10vw,6rem) clamp(1.25rem,4vw,3rem) clamp(2rem,5vw,3rem);}
+            /* Switch to flex so order property can swap panels */
+            .hero{display:flex;flex-direction:column;min-height:auto;}
+            /* Name + intro comes FIRST on mobile */
+            .hero-r{order:1;justify-content:flex-start;padding:calc(60px + 2.5rem) clamp(1.25rem,5vw,3rem) 2.5rem;}
+            /* Dark role panel comes SECOND — compact, content top-aligned */
+            .hero-l{order:2;min-height:auto;justify-content:flex-start;padding:2.5rem clamp(1.25rem,5vw,3rem) 3rem;}
             .hero-vn{display:none;}
-            .hero-r{padding:clamp(2rem,5vw,3rem) clamp(1.25rem,4vw,3rem);}
         }
-        @media(max-width:480px){.hero-l{min-height:38vh;min-height:38dvh;}.hero-name{font-size:2.5rem;}.hero-role{font-size:1.7rem;}}
+        @media(max-width:600px){
+            .hero-name{font-size:clamp(2.4rem,9vw,3rem);}
+            .hero-role{font-size:clamp(1.55rem,5.5vw,2rem);}
+            .hero-sub{font-size:0.9rem;}
+            .hero-desc{font-size:1rem;}
+            .hero-acts{gap:0.65rem;}
+            .btn{padding:0.72rem 1.3rem;font-size:0.82rem;}
+        }
 
         /* ═══════════ SECTION HEADS ═══════════ */
         .sh{display:flex;align-items:flex-end;gap:clamp(0.8rem,2.5vw,2rem);margin-bottom:2.5rem;flex-wrap:wrap;}

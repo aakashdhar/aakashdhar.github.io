@@ -1,272 +1,320 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found | Aakash Dhar</title>
-
-    <!-- SEO & Meta Tags -->
+    <title>404 — Page Not Found | Aakash Dhar</title>
     <meta name="description" content="404 - Page Not Found. The page you're looking for doesn't exist.">
-    <meta name="author" content="Aakash Dhar">
-
-    <!-- Favicon (Inline SVG) -->
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%236366f1%22/><text x=%2250%22 y=%2265%22 font-family=%22sans-serif%22 font-size=%2245%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>AD</text></svg>">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts: Manrope (Variable Weight) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Manrope', 'sans-serif'],
-                    },
-                    colors: {
-                        background: 'rgb(var(--bg-color) / <alpha-value>)',
-                        surface: 'rgb(var(--surface-color) / <alpha-value>)',
-                        primary: '#6366f1',
-                        secondary: '#d946ef',
-                        accent: '#14b8a6',
-                        tprimary: 'rgb(var(--text-primary) / <alpha-value>)',
-                        tsecondary: 'rgb(var(--text-secondary) / <alpha-value>)',
-                    },
-                    animation: {
-                        'float': 'float 8s ease-in-out infinite',
-                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'blob': 'blob 7s infinite',
-                        'fade-in': 'fadeIn 0.8s ease-out',
-                        'fade-in-up': 'fadeInUp 0.8s ease-out',
-                        'scale-in': 'scaleIn 0.5s ease-out',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        },
-                        blob: {
-                            "0%": { transform: "translate(0px, 0px) scale(1)" },
-                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
-                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
-                            "100%": { transform: "translate(0px, 0px) scale(1)" }
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        fadeInUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        scaleIn: {
-                            '0%': { transform: 'scale(0.9)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' },
-                        },
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C2704E%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
     <style>
-        /* --- THEME VARIABLES --- */
         :root {
-            /* Light Mode Default */
-            --bg-color: 248 250 252;
-            --surface-color: 255 255 255;
-            --text-primary: 15 23 42;
-            --text-secondary: 71 85 105;
-
-            /* Glass Settings (Light) */
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.06);
-            --glass-blur: 16px;
+            --terra: #C2704E;
+            --terra-light: #D4896B;
+            --terra-glow: rgba(194,112,78,0.10);
+            --cream: #FDFAF6;
+            --cream-warm: #F7F0E8;
+            --sand: #E6DCD0;
+            --stone: #B5A899;
+            --bark: #7A6E62;
+            --charcoal: #3D352D;
+            --ink: #1C1815;
         }
 
-        .dark {
-            /* Dark Mode */
-            --bg-color: 3 7 18;
-            --surface-color: 17 24 39;
-            --text-primary: 255 255 255;
-            --text-secondary: 148 163 184;
-
-            /* Glass Settings (Dark) */
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-blur: 10px;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Syne', sans-serif;
+            background: var(--cream);
+            color: var(--bark);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
         }
 
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border: 1px solid var(--glass-border);
+        ::selection { background: var(--terra); color: #fff; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Grain */
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 9999;
+            opacity: 0.028;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ── Giant 404 Watermark ── */
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(14rem, 35vw, 28rem);
+            color: var(--sand);
+            opacity: 0.3;
+            line-height: 0.85;
+            letter-spacing: -0.06em;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+        }
+
+        /* ── Ambient orbs ── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 {
+            top: -8%;
+            left: -6%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(194,112,78,0.12), transparent 70%);
+            animation: drift 12s ease-in-out infinite;
+        }
+        .orb-2 {
+            bottom: -10%;
+            right: -8%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(90,107,74,0.08), transparent 70%);
+            animation: drift 15s ease-in-out infinite reverse;
+        }
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -15px); }
+        }
+
+        /* ── Card ── */
+        .card-404 {
+            position: relative;
+            z-index: 10;
+            background: #fff;
+            border: 1px solid var(--sand);
+            border-radius: 18px;
+            padding: clamp(2.5rem, 5vw, 3.5rem);
+            max-width: 540px;
+            width: 90%;
+            text-align: center;
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.03),
+                0 8px 32px rgba(0,0,0,0.06),
+                0 24px 60px rgba(0,0,0,0.04);
+
+            opacity: 0;
+            transform: translateY(24px);
+            animation: cardIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+        }
+        @keyframes cardIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Top accent stripe */
+        .card-404::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--terra);
+            border-radius: 18px 18px 0 0;
+        }
+
+        /* ── Compass Icon ── */
+        .compass-wrap {
+            width: 72px; height: 72px;
+            margin: 0 auto 1.8rem;
+            border-radius: 16px;
+            background: var(--terra-glow);
+            border: 1px solid rgba(194,112,78,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+            transform: scale(0.85);
+            animation: popIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.5s forwards;
+        }
+        @keyframes popIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .compass-wrap i {
+            font-size: 2.2rem;
+            color: var(--terra);
+            animation: spin-erratic 3s ease-in-out infinite;
+        }
+
+        @keyframes spin-erratic {
+            0%   { transform: rotate(0deg); }
+            15%  { transform: rotate(180deg); }
+            30%  { transform: rotate(120deg); }
+            45%  { transform: rotate(300deg); }
+            60%  { transform: rotate(200deg); }
+            75%  { transform: rotate(420deg); }
+            90%  { transform: rotate(340deg); }
+            100% { transform: rotate(720deg); }
+        }
+
+        /* ── Typography ── */
+        .card-404 h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            color: var(--ink);
+            line-height: 1.1;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.02em;
+        }
+
+        .card-404 h1 em {
+            font-style: italic;
+            color: var(--terra);
+        }
+
+        .card-404 .desc {
+            font-size: 1rem;
+            color: var(--bark);
+            line-height: 1.7;
+            max-width: 380px;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* ── Error Code Badge ── */
+        .error-badge {
+            display: inline-block;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            background: var(--cream-warm);
+            border: 1px solid var(--sand);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--stone);
+            margin-bottom: 2rem;
+        }
+        .error-badge .code { color: var(--terra); font-weight: 500; }
+        .error-badge .status { color: var(--charcoal); font-weight: 500; }
+
+        /* ── Button ── */
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--ink);
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
+        .btn-home:hover {
+            background: var(--terra);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(194,112,78,0.3);
+        }
+        .btn-home i { font-size: 1.1rem; }
 
-        .animate-delay-200 {
-            animation-delay: 200ms;
+        /* ── Back link ── */
+        .back-link {
+            position: fixed;
+            top: 1.5rem; left: 1.5rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--bark);
+            transition: color 0.3s;
+
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.3s forwards;
+        }
+        .back-link:hover { color: var(--terra); }
+
+        /* ── Logo ── */
+        .logo-mark {
+            position: fixed;
+            top: 1.5rem; right: 1.5rem;
+            z-index: 100;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--ink);
+            letter-spacing: -0.03em;
+
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.3s forwards;
+        }
+        .logo-mark i { font-style: italic; color: var(--terra); }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
-        .animate-delay-400 {
-            animation-delay: 400ms;
-        }
-
-        .animate-delay-600 {
-            animation-delay: 600ms;
-        }
-
-        /* Erratic spinning animation for compass */
-        @keyframes spin-erratic {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            15% {
-                transform: rotate(180deg);
-            }
-
-            30% {
-                transform: rotate(120deg);
-            }
-
-            45% {
-                transform: rotate(300deg);
-            }
-
-            60% {
-                transform: rotate(200deg);
-            }
-
-            75% {
-                transform: rotate(420deg);
-            }
-
-            90% {
-                transform: rotate(340deg);
-            }
-
-            100% {
-                transform: rotate(720deg);
-            }
-        }
-
-        .animate-spin-erratic {
-            animation: spin-erratic 3s ease-in-out infinite;
+        /* ── Decorative corner number ── */
+        .corner-num {
+            position: absolute;
+            bottom: -0.6rem; right: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 6rem;
+            color: var(--sand);
+            opacity: 0.2;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
         }
     </style>
 </head>
+<body>
 
-<body class="bg-background text-tsecondary font-sans selection:bg-primary selection:text-white overflow-hidden">
+<!-- Ambient -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
 
-    <!-- Ambient Background Glows -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div
-            class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-40 animate-blob">
-        </div>
-        <div
-            class="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-30 animate-blob animation-delay-2000">
-        </div>
-        <div
-            class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-accent/10 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-30 animate-blob animation-delay-4000">
-        </div>
+<!-- Watermark -->
+<div class="watermark">404</div>
+
+<!-- Nav elements -->
+<a href="index.html" class="back-link"><i class="ph-bold ph-arrow-left"></i> Back Home</a>
+<a href="index.html" class="logo-mark">A<i>.</i>Dhar</a>
+
+<!-- Card -->
+<div class="card-404">
+    <div class="corner-num">404</div>
+
+    <div class="compass-wrap">
+        <i class="ph-fill ph-compass"></i>
     </div>
 
-    <!-- Theme Toggle Button (Top Right) -->
-    <div class="fixed top-6 right-6 z-50">
-        <button id="theme-toggle"
-            class="glass-card p-3 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-tprimary shadow-lg animate-fade-in"
-            aria-label="Toggle Theme">
-            <i class="ph-fill ph-sun hidden dark:block text-xl"></i>
-            <i class="ph-fill ph-moon block dark:hidden text-xl"></i>
-        </button>
+    <h1>Lost in the <em>Code?</em></h1>
+    <p class="desc">This page doesn't exist in my digital universe. My AI agents are investigating the matter.</p>
+
+    <div class="error-badge">
+        Error: <span class="code">PAGE_NOT_FOUND</span> &nbsp;•&nbsp; Status: <span class="status">404</span>
     </div>
 
-    <!-- Main Content -->
-    <div class="relative z-10 h-screen flex items-center justify-center px-4">
-        <div class="relative max-w-2xl mx-auto w-full">
-            <!-- Large 404 Number (Background) -->
-            <h1
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-[14rem] md:text-[20rem] leading-none text-slate-200/10 dark:text-white/5 select-none animate-fade-in pointer-events-none">
-                404
-            </h1>
-
-            <!-- Glass Card with Message -->
-            <div
-                class="relative z-10 glass-card rounded-3xl p-8 md:p-12 shadow-2xl animate-fade-in-up animate-delay-200 text-center">
-                <div class="mb-6">
-                    <div
-                        class="w-20 h-20 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-6 animate-scale-in animate-delay-400">
-                        <i class="ph-fill ph-compass text-5xl text-primary animate-spin-erratic"></i>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-tprimary mb-4">Lost in the Code?</h2>
-                    <p class="text-lg text-tsecondary max-w-md mx-auto leading-relaxed mb-6">
-                        This page doesn't exist in my digital universe. My AI agents are investigating the matter.
-                    </p>
-                    <!-- Error Code Message -->
-                    <div
-                        class="inline-block px-4 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg">
-                        <p class="text-sm text-tsecondary font-mono">
-                            Error Code: <span class="text-primary font-bold">PAGE_NOT_FOUND</span> • Status: <span
-                                class="text-secondary font-bold">404</span>
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Action Button -->
-                <div class="pt-4">
-                    <a href="index.html"
-                        class="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white dark:bg-white dark:text-black font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-black/20 dark:shadow-white/20">
-                        <i class="ph-bold ph-house text-xl"></i>
-                        Return Home
-                    </a>
-                </div>
-            </div>
-
-
-        </div>
+    <div>
+        <a href="index.html" class="btn-home">
+            <i class="ph-bold ph-house"></i> Return Home
+        </a>
     </div>
+</div>
 
-    <!-- Theme Toggle Script -->
-    <script>
-        // Theme Toggle Logic
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-
-        // Check LocalStorage. Default is Light
-        if (localStorage.theme === 'dark') {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
-
-        // Toggle Function
-        themeToggleBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-
-            // Save preference
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.theme = 'dark';
-            } else {
-                localStorage.theme = 'light';
-            }
-        });
-    </script>
 </body>
-
 </html>

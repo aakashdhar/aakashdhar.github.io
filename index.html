@@ -7,7 +7,8 @@
     <meta name="description" content="Portfolio of Aakash Dhar - Technical Project Manager at BetaCraft, Google Certified PM & Agentic AI Architect.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alyamama:wght@300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
@@ -37,10 +38,10 @@
             /* Misc */
             --slate:#6B7F96;
             /* Cert */
-            --cert-bg:#FDFAF6;--cert-h:#fff;
+            --cert-bg:#F7F0E8;--cert-h:#F0E8DE;
             /* About */
-            --abt-bg:#fff;--abt-bd:#E6DCD0;
-            --po-bg:#F7F0E8;--po-card:#fff;
+            --abt-bg:#FDFAF6;--abt-bd:#E6DCD0;
+            --po-bg:#F7F0E8;--po-card:#FDFAF6;
             /* Beyond */
             --bey-bg:#F7F0E8;--bey-bd:#E6DCD0;
             /* Marker */
@@ -73,17 +74,22 @@
 
         /* ═══════════ BASE ═══════════ */
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-        html{scroll-behavior:smooth;}
-        body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--t2);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7;transition:background 0.5s,color 0.5s;}
+        /* Base font size raised to 17px (106.25%) so all rem values scale up proportionally,
+           improving readability across all text sizes site-wide */
+        html{scroll-behavior:smooth;font-size:106.25%;}
+        body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--t2);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.75;transition:background 0.5s,color 0.5s;}
         ::selection{background:var(--terra);color:#fff;}
         a{text-decoration:none;color:inherit;}
         img{max-width:100%;display:block;}
         ul{list-style:none;}
 
-        /* FONT FIX: Libre Caslon Display descender protection */
-        .hd{font-family:'Libre Caslon Display',serif;line-height:1.3;padding-bottom:0.1em;}
+        /* FONT FIX: Amiri descender protection
+           Amiri has deep descenders (~0.25em below baseline).
+           line-height:1.3 gives adequate half-leading; padding-bottom:0.18em
+           ensures the element's box never clips the glyph's descender pixels. */
+        .hd{font-family:'Amiri',serif;line-height:1.3;padding-bottom:0.18em;}
         /* Body text needs generous line-height */
-        p,li,.desc{line-height:1.75;}
+        p,li,.desc{line-height:1.8;}
 
         /* Grain */
         body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:var(--gr);background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
@@ -99,14 +105,14 @@
         /* ═══════════ NAV ═══════════ */
         .nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;padding:0 clamp(1.25rem,4vw,3.5rem);transition:background 0.4s,border-color 0.4s;}
         .nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--nav-bd);}
-        .nav-logo{font-family:'Libre Caslon Display',serif;font-size:1.35rem;color:var(--t1);letter-spacing:-0.02em;line-height:1.4;}
+        .nav-logo{font-family:'Amiri',serif;font-size:1.35rem;color:var(--t1);letter-spacing:-0.02em;line-height:1.4;}
         .nav-logo em{font-style:italic;color:var(--terra);}
         .nr{display:flex;align-items:center;gap:1.5rem;margin-left:auto;}
         .nl{display:flex;gap:1.8rem;align-items:center;}
         .nl a{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--t2);transition:color 0.3s;}
         .nl a:hover{color:var(--terra);}
-        .ncta{background:var(--t1);color:var(--bg);padding:0.45rem 1.2rem;border-radius:6px;font-size:0.75rem;font-weight:700;transition:background 0.3s,color 0.3s;}
-        .ncta:hover{background:var(--terra);color:#fff;}
+        .ncta{display:inline-flex;align-items:center;background:transparent;border:1.5px solid var(--t1);color:var(--t1);padding:0.4rem 1.1rem;border-radius:6px;font-size:0.75rem;font-weight:700;letter-spacing:0.03em;transition:background 0.22s,color 0.22s;}
+        .ncta:hover{background:var(--t1);color:var(--bg);}
         .thm{background:none;border:1px solid var(--bd);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t1);font-size:0.95rem;transition:all 0.3s;}
         .thm:hover{border-color:var(--terra);color:var(--terra);}
         .thm .s{display:none;}.thm .m{display:block;}
@@ -114,20 +120,22 @@
         .ham{display:none;background:none;border:none;font-size:1.4rem;color:var(--t1);cursor:pointer;}
         .mob{display:none;position:fixed;inset:0;z-index:300;background:var(--mob-bg);flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;transition:background 0.5s;}
         .mob.open{display:flex;}
-        .mob a{font-family:'Libre Caslon Display',serif;font-size:1.8rem;color:var(--t1);line-height:1.5;}
+        .mob a{font-family:'Amiri',serif;font-size:1.8rem;color:var(--t1);line-height:1.5;}
         .mob a:hover{color:var(--terra);}
         .mob-x{position:absolute;top:1rem;right:1.5rem;background:none;border:none;font-size:1.8rem;color:var(--t1);cursor:pointer;}
         @media(max-width:860px){.nl{display:none;}.ham{display:block;}.nr{gap:0.7rem;}}
 
         /* ═══════════ HERO ═══════════ */
         .hero{min-height:100vh;min-height:100dvh;display:grid;grid-template-columns:40% 1fr;}
-        .hero-l{background:var(--dk);position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(2rem,5vw,4rem);overflow:hidden;transition:background 0.5s;}
+        /* overflow:clip instead of overflow:hidden — clips the decorative orb pseudo-element
+           without creating a BFC scroll container that hard-clips glyph descenders */
+        .hero-l{background:var(--dk);position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(2rem,5vw,4rem);overflow:clip;transition:background 0.5s;}
         .hero-l::before{content:'';position:absolute;top:-15%;right:-25%;width:420px;height:420px;background:radial-gradient(circle,var(--dk-orb),transparent 70%);pointer-events:none;}
-        .hero-vn{font-family:'Libre Caslon Display',serif;font-size:clamp(4rem,9vw,8rem);color:rgba(255,255,255,0.05);writing-mode:vertical-rl;text-orientation:mixed;position:absolute;top:50%;right:1.5rem;transform:translateY(-50%);letter-spacing:-0.03em;line-height:1.2;user-select:none;}
+        .hero-vn{font-family:'Amiri',serif;font-size:clamp(4rem,9vw,8rem);color:rgba(255,255,255,0.05);writing-mode:vertical-rl;text-orientation:mixed;position:absolute;top:1.5rem;right:1.5rem;letter-spacing:-0.03em;line-height:1.2;user-select:none;}
         html.dark .hero-vn{color:rgba(232,224,216,0.03);}
         .hero-li{position:relative;z-index:2;}
         .hero-badge{display:inline-flex;align-items:center;gap:0.45rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:0.35rem 0.9rem;border-radius:100px;font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#fbbf24;margin-bottom:1.8rem;}
-        .hero-role{font-family:'Libre Caslon Display',serif;font-size:clamp(2.2rem,4.2vw,3.4rem);color:var(--dk-t);line-height:1.2;margin-bottom:0.5rem;padding-bottom:0.1em;}
+        .hero-role{font-family:'Amiri',serif;font-size:clamp(2.2rem,4.2vw,3.4rem);color:var(--dk-t);line-height:1.25;margin-bottom:0.5rem;padding-bottom:0.18em;}
         .hero-sub{color:var(--dk-t2);font-size:clamp(0.92rem,1.6vw,1.1rem);margin-bottom:1.8rem;line-height:1.7;}
         .hero-st{display:inline-flex;align-items:center;gap:0.45rem;padding:0.3rem 0.75rem;border-radius:6px;background:var(--g-bg);color:var(--g-t);font-size:0.7rem;font-weight:600;}
         .hero-st .dot{width:7px;height:7px;border-radius:50%;background:var(--g-dot);animation:blink 2s ease infinite;}
@@ -136,11 +144,13 @@
         .hero-r{display:flex;flex-direction:column;justify-content:center;padding:clamp(2rem,5vw,5rem);padding-top:5rem;}
         .hero-ey{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--terra);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem;}
         .hero-ey::before{content:'';width:28px;height:2px;background:var(--terra);}
-        .hero-name{font-family:'Libre Caslon Display',serif;font-size:clamp(3rem,6.5vw,6rem);color:var(--t1);line-height:1.1;letter-spacing:-0.02em;margin-bottom:0.5em;padding-bottom:0.1em;}
+        /* line-height raised 1.1→1.18: at 6rem the old value left only ~4.8px of half-leading,
+           causing Amiri descenders to clip. padding-bottom increased to 0.22em. */
+        .hero-name{font-family:'Alyamama',serif;font-size:clamp(3rem,6.5vw,6rem);color:var(--t1);line-height:1.18;letter-spacing:-0.02em;margin-bottom:0.5em;padding-bottom:0.22em;}
         .hero-name em{font-style:italic;color:var(--terra);display:block;}
         .hero-tags{display:flex;gap:1rem;margin-bottom:1.6rem;flex-wrap:wrap;}
         .hero-tags span{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--t3);}
-        .hero-desc{font-size:1.02rem;line-height:1.8;color:var(--t2);max-width:500px;margin-bottom:2.2rem;padding-bottom:0.15em;}
+        .hero-desc{font-size:1.1rem;line-height:1.85;color:var(--t2);max-width:520px;margin-bottom:2.2rem;padding-bottom:0.15em;}
         .hero-desc strong{color:var(--t1);font-weight:700;}
         .hero-acts{display:flex;gap:0.8rem;flex-wrap:wrap;}
         .btn{display:inline-flex;align-items:center;gap:0.45rem;font-weight:600;font-size:0.85rem;padding:0.8rem 1.6rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.3s;}
@@ -159,26 +169,47 @@
 
         /* ═══════════ SECTION HEADS ═══════════ */
         .sh{display:flex;align-items:flex-end;gap:clamp(0.8rem,2.5vw,2rem);margin-bottom:2.5rem;flex-wrap:wrap;}
-        .sh-n{font-family:'Libre Caslon Display',serif;font-size:clamp(4rem,10vw,8rem);color:var(--mk);line-height:1;letter-spacing:-0.04em;user-select:none;opacity:0.45;}
+        .sh-n{font-family:'Amiri',serif;font-size:clamp(4rem,10vw,8rem);color:var(--mk);line-height:1;letter-spacing:-0.04em;user-select:none;opacity:0.45;}
         .sh-t .lb{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:var(--terra);margin-bottom:0.4rem;}
-        .sh-t h2{font-family:'Libre Caslon Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--t1);line-height:1.2;letter-spacing:-0.01em;padding-bottom:0.1em;}
-        .sh-t p{font-size:0.95rem;color:var(--t2);margin-top:0.4rem;max-width:460px;line-height:1.7;}
+        .sh-t h2{font-family:'Amiri',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--t1);line-height:1.25;letter-spacing:-0.01em;padding-bottom:0.18em;}
+        .sh-t p{font-size:1rem;color:var(--t2);margin-top:0.4rem;max-width:460px;line-height:1.75;}
 
-        /* ═══════════ EXPERTISE ═══════════ */
-        .scr{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:1.2rem;scrollbar-width:none;margin-top:1.5rem;}
-        .scr::-webkit-scrollbar{display:none;}
-        .ec{flex:0 0 clamp(280px,35vw,380px);scroll-snap-align:start;background:var(--srf);border:1px solid var(--bd);border-radius:14px;padding:1.8rem;position:relative;transition:transform 0.4s,box-shadow 0.4s,border-color 0.4s;}
-        .ec:hover{transform:translateY(-5px);box-shadow:var(--sh-h);border-color:var(--bd-h);}
+        /* ═══════════ EXPERTISE — 3 + 1 Featured Layout ═══════════ */
+        /* Row 1: three equal cards. Row 2: one full-width featured card.
+           All cards share the same internal structure — no awkward exceptions. */
+        .exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.15rem;margin-top:1.5rem;}
+        /* Featured card spans all 3 columns */
+        .exp-grid .ec:nth-child(4){grid-column:1/-1;background:linear-gradient(110deg,var(--terra-glow) 0%,var(--bg2) 55%);border-color:rgba(194,112,78,0.28);}
+        html.dark .exp-grid .ec:nth-child(4){background:linear-gradient(110deg,rgba(194,112,78,0.08) 0%,rgba(255,245,235,0.04) 55%);}
+
+        .ec{background:var(--srf);border:1px solid var(--bd);border-radius:14px;padding:1.8rem;position:relative;transition:transform 0.4s,box-shadow 0.4s,border-color 0.4s;}
+        .ec:hover{transform:translateY(-4px);box-shadow:var(--sh-h);border-color:var(--bd-h);}
         .ec .bar{position:absolute;top:0;left:0;width:4px;height:100%;border-radius:14px 0 0 14px;}
         .ec .ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem;}
-        .ec h3{font-family:'Libre Caslon Display',serif;font-size:1.2rem;color:var(--t1);margin-bottom:0.4rem;line-height:1.3;padding-bottom:0.08em;}
-        .ec>p{font-size:0.85rem;color:var(--t2);line-height:1.75;margin-bottom:0.8rem;}
-        .scr-h{display:flex;align-items:center;gap:0.4rem;font-size:0.7rem;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.4rem;}
-        .scr-h i{font-size:0.9rem;animation:nudge 1.5s ease infinite;}
-        @keyframes nudge{0%,100%{transform:translateX(0);}50%{transform:translateX(5px);}}
+        .ec h3{font-family:'Amiri',serif;font-size:1.2rem;color:var(--t1);margin-bottom:0.4rem;line-height:1.35;padding-bottom:0.15em;}
+        .ec>p{font-size:0.9rem;color:var(--t2);line-height:1.78;margin-bottom:0.8rem;}
+
+        /* Featured card inner layout: left prose, right capability chips */
+        .ec-feat{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;}
+        .ec-feat-checks{display:grid;grid-template-columns:1fr 1fr;gap:0.55rem;}
+        .ec-check{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 0.9rem;border-radius:9px;background:rgba(194,112,78,0.07);border:1px solid rgba(194,112,78,0.16);font-size:0.88rem;color:var(--t2);}
+        .ec-check i{color:var(--terra);flex-shrink:0;font-size:0.95rem;}
+        html.dark .ec-check{background:rgba(194,112,78,0.06);border-color:rgba(194,112,78,0.14);}
+
+        @media(max-width:1024px){
+            .exp-grid{grid-template-columns:1fr 1fr;}
+            .exp-grid .ec:nth-child(3){grid-column:1/-1;}
+            .ec-feat{grid-template-columns:1fr;}
+            .ec-feat-checks{grid-template-columns:1fr 1fr;}
+        }
+        @media(max-width:560px){
+            .exp-grid{grid-template-columns:1fr;}
+            .exp-grid .ec:nth-child(3){grid-column:auto;}
+            .ec-feat-checks{grid-template-columns:1fr;}
+        }
 
         /* ═══════════ PROJECTS — Burnt Sienna Band ═══════════ */
-        .proj{background:var(--dk);color:var(--dk-t);position:relative;overflow:hidden;transition:background 0.5s;}
+        .proj{background:var(--dk);color:var(--dk-t);position:relative;overflow:clip;transition:background 0.5s;}
         .proj::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle fill='%23ffffff' cx='30' cy='30' r='0.5' opacity='0.04'/%3E%3C/svg%3E") repeat;pointer-events:none;}
         .proj .sh-n{color:var(--dk-ghost);opacity:1;}
         .proj .sh-t .lb{color:var(--terra-l);}
@@ -188,13 +219,12 @@
         .mi{padding:clamp(1.2rem,2.5vw,2rem);border-bottom:1px solid var(--dk-bd);position:relative;transition:background 0.4s;}
         .mi:nth-child(odd){border-right:1px solid var(--dk-bd);}
         .mi:hover{background:var(--dk-hover);}
-        .mi-n{font-family:'Libre Caslon Display',serif;font-size:2.5rem;color:var(--dk-ghost);position:absolute;top:0.8rem;right:1rem;line-height:1;}
+        .mi-n{font-family:'Amiri',serif;font-size:2.5rem;color:var(--dk-ghost);position:absolute;top:0.8rem;right:1rem;line-height:1;}
         .mi-o{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.35rem;}
         .mi-o.t{color:var(--terra-l);}.mi-o.b{color:#8BA3BC;}.mi-o.g{color:#86efac;}.mi-o.s{color:var(--dk-t3);}
-        .mi h3{font-family:'Libre Caslon Display',serif;font-size:1.15rem;color:var(--dk-t);margin-bottom:0.3rem;line-height:1.3;padding-bottom:0.08em;}
-        /* Role badge — prominent */
+        .mi h3{font-family:'Amiri',serif;font-size:1.15rem;color:var(--dk-t);margin-bottom:0.3rem;line-height:1.35;padding-bottom:0.15em;}
         .mi-r{display:inline-flex;align-items:center;font-size:0.73rem;font-weight:700;padding:0.3rem 0.7rem;border-radius:5px;background:rgba(212,137,107,0.15);color:#E8A88A;border:1px solid rgba(212,137,107,0.25);margin-bottom:0.8rem;letter-spacing:0.02em;}
-        .mi>p{font-size:0.85rem;line-height:1.75;color:var(--dk-t2);margin-bottom:1rem;}
+        .mi>p{font-size:0.9rem;line-height:1.78;color:var(--dk-t2);margin-bottom:1rem;}
         .mi strong{color:var(--dk-t);font-weight:600;}
         .mg .pill{border-color:var(--dk-bd2);color:var(--dk-t3);background:var(--dk-srf);}
         .mg .pill:hover{border-color:var(--terra-l);color:var(--terra-l);}
@@ -204,14 +234,14 @@
         .about{background:var(--abt-bg);border-top:1px solid var(--abt-bd);border-bottom:1px solid var(--abt-bd);transition:background 0.5s,border-color 0.5s;}
         .po{background:var(--po-bg);border:1px solid var(--bd);border-radius:16px;padding:clamp(1.5rem,3.5vw,2.5rem);margin-bottom:2.5rem;box-shadow:var(--sh);transition:all 0.5s;}
         .po-in{display:grid;grid-template-columns:1fr 2fr;gap:2.5rem;align-items:start;}
-        .po-in h3{font-family:'Libre Caslon Display',serif;font-size:clamp(1.3rem,2.2vw,1.8rem);color:var(--t1);line-height:1.3;margin-bottom:0.7rem;padding-bottom:0.1em;}
+        .po-in h3{font-family:'Amiri',serif;font-size:clamp(1.3rem,2.2vw,1.8rem);color:var(--t1);line-height:1.3;margin-bottom:0.7rem;padding-bottom:0.1em;}
         .po-in>div:first-child p{font-size:0.85rem;color:var(--t2);line-height:1.75;}
         .po-g{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
         .poc{padding:1.2rem;background:var(--po-card);border-radius:10px;border:1px solid var(--bd);transition:all 0.3s;}
         .poc:hover{border-color:var(--bd-h);transform:translateY(-2px);box-shadow:var(--sh);}
         .poc i{font-size:1.3rem;margin-bottom:0.6rem;display:block;}
         .poc h4{font-size:0.85rem;font-weight:700;color:var(--t1);margin-bottom:0.25rem;}
-        .poc p{font-size:0.72rem;color:var(--t3);line-height:1.6;}
+        .poc p{font-size:0.78rem;color:var(--t3);line-height:1.65;}
 
         /* Experience LEFT, Certs RIGHT */
         .ab-c{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:2.5rem;}
@@ -224,16 +254,23 @@
         .tld{position:absolute;left:-1.5rem;top:5px;width:12px;height:12px;border-radius:50%;background:var(--t3);border:3px solid var(--bg);}
         html.dark .tld{border-color:var(--bg);}
         .tld.now{background:var(--terra);box-shadow:0 0 0 4px var(--terra-glow);}
-        .tle h4{font-family:'Libre Caslon Display',serif;font-size:1rem;color:var(--t1);line-height:1.35;padding-bottom:0.05em;}
+        .tle h4{font-family:'Amiri',serif;font-size:1rem;color:var(--t1);line-height:1.4;padding-bottom:0.12em;}
         .tlco{font-size:0.82rem;font-weight:600;color:var(--terra);}
         .tldt{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--t3);margin-bottom:0.25rem;}
         .tlds{font-size:0.82rem;color:var(--t2);line-height:1.7;}
         .edu{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:0.5rem;}
-        .edu h4{font-family:'Libre Caslon Display',serif;font-size:0.95rem;color:var(--t1);line-height:1.35;padding-bottom:0.05em;}
+        .edu-inner{border:none;border-bottom:1px solid var(--bd);border-radius:0;margin-bottom:0;background:var(--cert-bg);}
+        .edu-inner:last-child{border-bottom:none;}
+        .edu h4{font-family:'Amiri',serif;font-size:0.95rem;color:var(--t1);line-height:1.4;padding-bottom:0.12em;}
         .edu p{font-size:0.8rem;color:var(--t3);}
         /* Certs */
         .cgl{font-size:0.66rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--t3);margin-bottom:0.7rem;margin-top:1.6rem;}
         .cgl:first-child{margin-top:0;}
+        .cg-wrap{border:1px solid var(--bd);border-radius:12px;overflow:hidden;margin-bottom:0.5rem;}
+        .cgl-inner{padding:0.55rem 0.9rem;background:var(--bg2);border-bottom:1px solid var(--bd);margin:0;color:var(--terra);}
+        .cg-wrap .cr{border:none;border-bottom:1px solid var(--bd);border-radius:0;margin-bottom:0;background:var(--cert-bg);}
+        .cg-wrap .cr:last-child{border-bottom:none;}
+        .cg-wrap .cr:hover{transform:none;background:var(--cert-bg);border-color:transparent;}
         .cr{display:flex;align-items:center;gap:0.7rem;padding:0.6rem 0.9rem;border-radius:10px;border:1px solid var(--bd);background:var(--cert-bg);margin-bottom:0.45rem;transition:all 0.3s;}
         .cr:hover{border-color:var(--bd-h);transform:translateX(3px);background:var(--cert-h);}
         .cri{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;}
@@ -248,8 +285,8 @@
         .beyond{background:var(--bey-bg);border-top:1px solid var(--bey-bd);border-bottom:1px solid var(--bey-bd);transition:background 0.5s,border-color 0.5s;}
         .bf{display:flex;gap:3.5rem;align-items:center;}
         .bf-t{flex:1;}
-        .bf-t h2{font-family:'Libre Caslon Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--t1);margin-bottom:1rem;line-height:1.25;padding-bottom:0.1em;}
-        .bf-t p{font-size:0.95rem;color:var(--t2);line-height:1.8;margin-bottom:0.7rem;}
+        .bf-t h2{font-family:'Amiri',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--t1);margin-bottom:1rem;line-height:1.3;padding-bottom:0.18em;}
+        .bf-t p{font-size:1rem;color:var(--t2);line-height:1.82;margin-bottom:0.7rem;}
         .bf-t strong{color:var(--t1);font-weight:700;}
         .hg{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;flex:1;}
         .ht{background:var(--srf);border:1px solid var(--bd);border-radius:12px;padding:1.3rem 0.8rem;text-align:center;transition:all 0.3s;}
@@ -274,29 +311,30 @@
         .ic.ft .it{color:var(--terra-l);}
         .ic.ft .id{color:var(--dk-t3);}
         .it{font-size:0.66rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--terra);margin-bottom:0.6rem;}
-        .ic h3{font-family:'Libre Caslon Display',serif;font-size:1.05rem;color:var(--t1);line-height:1.35;margin-bottom:0.5rem;flex:1;padding-bottom:0.08em;}
-        .ic p{font-size:0.82rem;color:var(--t2);line-height:1.75;margin-bottom:0.8rem;}
+        .ic h3{font-family:'Amiri',serif;font-size:1.05rem;color:var(--t1);line-height:1.4;margin-bottom:0.5rem;flex:1;padding-bottom:0.15em;}
+        .ic p{font-size:0.88rem;color:var(--t2);line-height:1.78;margin-bottom:0.8rem;}
         .id{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;color:var(--t3);}
         @media(max-width:860px){.ifl{grid-template-columns:1fr 1fr;}.ifl>:first-child{grid-row:span 1;}}
         @media(max-width:560px){.ifl{grid-template-columns:1fr;}}
 
         /* ═══════════ FOOTER — Burnt Sienna ═══════════ */
-        .foot{background:var(--dk);color:var(--dk-t2);padding:clamp(3.5rem,8vw,5.5rem) 0 1.8rem;position:relative;overflow:hidden;transition:background 0.5s;}
-        .foot::before{content:'AD';position:absolute;bottom:-2rem;right:-0.5rem;font-family:'Libre Caslon Display',serif;font-size:clamp(8rem,22vw,18rem);color:var(--dk-bd);line-height:1.1;pointer-events:none;opacity:0.5;}
+        .foot{background:var(--dk);color:var(--dk-t2);padding:clamp(3.5rem,8vw,5.5rem) 0 1.8rem;position:relative;overflow:clip;transition:background 0.5s;}
+        .foot::before{content:'AD';position:absolute;bottom:5.5rem;right:-0.5rem;font-family:'Amiri',serif;font-size:clamp(8rem,22vw,18rem);color:var(--dk-bd);line-height:1.1;pointer-events:none;opacity:0.5;}
         .fc{text-align:center;position:relative;z-index:2;}
-        .fc h2{font-family:'Libre Caslon Display',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--dk-t);margin-bottom:0.5rem;line-height:1.2;padding-bottom:0.1em;}
-        .fc>p{font-size:0.95rem;max-width:400px;margin:0 auto 1.8rem;line-height:1.7;}
+        .fc h2{font-family:'Amiri',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--dk-t);margin-bottom:0.5rem;line-height:1.25;padding-bottom:0.18em;}
+        .fc>p{font-size:1rem;max-width:420px;margin:0 auto 1.8rem;line-height:1.78;}
         .fb{display:inline-flex;align-items:center;gap:0.5rem;background:var(--dk-t);color:var(--dk);padding:0.85rem 2rem;border-radius:8px;font-weight:700;font-size:0.95rem;transition:all 0.3s;}
         .fb:hover{background:var(--terra);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(194,112,78,0.3);}
         .fso{display:flex;justify-content:center;gap:1.3rem;margin-top:1.5rem;}
         .fso a{font-size:1.3rem;color:var(--dk-t3);transition:color 0.3s;}
         .fso a:hover{color:var(--terra-l);}
         .fex{display:flex;justify-content:center;gap:0.8rem;margin-top:2rem;flex-wrap:wrap;}
-        .fxp{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;border-radius:8px;border:1px solid var(--dk-bd);background:var(--dk-srf);transition:all 0.3s;}
+        .fxp{display:flex;align-items:center;gap:0.4rem;padding:0.32rem 0.7rem;border-radius:7px;border:1px solid var(--dk-bd);background:var(--dk-srf);transition:all 0.3s;}
         .fxp:hover{border-color:var(--terra);background:rgba(194,112,78,0.06);}
-        .fxi{width:26px;height:26px;border-radius:50%;background:var(--dk-srf);display:flex;align-items:center;justify-content:center;color:var(--terra-l);font-size:0.8rem;}
-        .fxs{font-size:0.62rem;color:var(--dk-t3);}
-        .fxl{font-size:0.78rem;font-weight:700;color:var(--dk-t);}
+        .fxi{width:20px;height:20px;border-radius:50%;background:var(--dk-srf);display:flex;align-items:center;justify-content:center;color:var(--terra-l);font-size:0.68rem;}
+        .fxs{font-size:0.58rem;color:var(--dk-t3);}
+        .fxl{font-size:0.68rem;font-weight:700;color:var(--dk-t);}
+        .fxp>div:last-child{line-height:1.2;}
         .fcp{text-align:center;padding-top:2rem;margin-top:2rem;border-top:1px solid var(--dk-bd);font-size:0.7rem;color:var(--dk-t3);}
 
         /* ═══════════ ANIMATIONS ═══════════ */
@@ -342,7 +380,7 @@
     </div>
     <div class="hero-r">
         <div class="hero-ey hi-a hi1">Portfolio 2026</div>
-        <h1 class="hero-name hi-a hi2">Aakash<em>Dhar.</em></h1>
+        <h1 class="hero-name hi-a hi2">Aakash<em>Dhar</em></h1>
         <div class="hero-tags hi-a hi3"><span>// Coder</span><span>// Rider</span><span>// Photographer</span><span>// Cook</span></div>
         <p class="hero-desc hi-a hi4">With 8.5 years of development roots and 1.5 years of Technical Project Management at BetaCraft, I bridge the gap between <strong>complex code</strong> and <strong>business strategy</strong>. I architect Agentic AI systems and lead products from chaos to clarity.</p>
         <div class="hero-acts hi-a hi5">
@@ -357,13 +395,45 @@
     <div class="wrap">
         <div class="sh rv"><div class="sh-n">01</div><div class="sh-t"><div class="lb">Capabilities</div><h2>The Toolkit.</h2><p>A blend of hard technical skills and management strategy, refined over a decade.</p></div></div>
         <div class="rv d2">
-            <div class="scr">
-                <div class="ec"><div class="bar" style="background:var(--terra);"></div><div class="ico" style="background:var(--terra-glow);color:var(--terra);"><i class="ph-fill ph-kanban"></i></div><h3>Project Leadership</h3><p>Driving projects from inception to delivery with Agile precision and stakeholder alignment.</p><div class="pills"><span class="pill hl">Agile &amp; Scrum</span><span class="pill">Risk Management</span><span class="pill">Stakeholder Mgmt</span><span class="pill hl">AI-Driven Tech Mgmt</span></div></div>
-                <div class="ec"><div class="bar" style="background:var(--slate);"></div><div class="ico" style="background:rgba(107,127,150,0.08);color:var(--slate);"><i class="ph-duotone ph-chats-teardrop"></i></div><h3>Strategic Comms</h3><p>Translating "Dev-Speak" to "Biz-Speak" seamlessly across teams.</p><div class="pills"><span class="pill hl">Strategic Comm</span><span class="pill hl">Tech Translation</span><span class="pill">Negotiation</span><span class="pill">Empathy</span></div></div>
-                <div class="ec"><div class="bar" style="background:#FF2D20;"></div><div class="ico" style="background:rgba(255,45,32,0.07);color:#FF2D20;"><i class="ph-duotone ph-code"></i></div><h3>Engineering &amp; APIs</h3><p>8.5 years of PHP/Laravel mastery, building robust backends.</p><div class="pills"><span class="pill" style="border-color:#FF2D20;color:#FF2D20;background:rgba(255,45,32,0.05);">Laravel</span><span class="pill">MySQL</span><span class="pill">Amazon MWS</span><span class="pill">Etsy API</span></div></div>
-                <div class="ec" style="flex:0 0 clamp(310px,42vw,440px);"><div class="bar" style="background:linear-gradient(to bottom,var(--terra),var(--slate));"></div><div style="display:inline-flex;align-items:center;gap:0.35rem;background:var(--terra-glow);border:1px solid rgba(194,112,78,0.2);padding:0.22rem 0.6rem;border-radius:100px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--terra);margin-bottom:0.8rem;"><i class="ph-fill ph-sparkle"></i> Current Focus</div><h3>AI Product R&amp;D</h3><p>Architecting systems where AI doesn't just chat, but <strong style="color:var(--t1);">does</strong>. Building autonomous agent workflows.</p><ul style="list-style:none;margin-top:0.6rem;"><li style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;color:var(--t2);padding:0.25rem 0;"><i class="ph-bold ph-check" style="color:var(--terra);"></i> Agentic Workflows</li><li style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;color:var(--t2);padding:0.25rem 0;"><i class="ph-bold ph-check" style="color:var(--terra);"></i> Multi-Agent Systems</li><li style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;color:var(--t2);padding:0.25rem 0;"><i class="ph-bold ph-check" style="color:var(--terra);"></i> RAG Pipelines</li></ul></div>
+            <div class="exp-grid">
+                <div class="ec">
+                    <div class="bar" style="background:var(--terra);"></div>
+                    <div class="ico" style="background:var(--terra-glow);color:var(--terra);"><i class="ph-fill ph-kanban"></i></div>
+                    <h3>Project Leadership</h3>
+                    <p>Driving projects from inception to delivery with Agile precision and stakeholder alignment.</p>
+                    <div class="pills"><span class="pill hl">Agile &amp; Scrum</span><span class="pill">Risk Management</span><span class="pill">Stakeholder Mgmt</span><span class="pill hl">AI-Driven Tech Mgmt</span></div>
+                </div>
+                <div class="ec">
+                    <div class="bar" style="background:var(--slate);"></div>
+                    <div class="ico" style="background:rgba(107,127,150,0.08);color:var(--slate);"><i class="ph-duotone ph-chats-teardrop"></i></div>
+                    <h3>Strategic Comms</h3>
+                    <p>Translating "Dev-Speak" to "Biz-Speak" seamlessly across teams.</p>
+                    <div class="pills"><span class="pill hl">Strategic Comm</span><span class="pill hl">Tech Translation</span><span class="pill">Negotiation</span><span class="pill">Empathy</span></div>
+                </div>
+                <div class="ec">
+                    <div class="bar" style="background:#FF2D20;"></div>
+                    <div class="ico" style="background:rgba(255,45,32,0.07);color:#FF2D20;"><i class="ph-duotone ph-code"></i></div>
+                    <h3>Engineering &amp; APIs</h3>
+                    <p>8.5 years of PHP/Laravel mastery, building robust backends and third-party integrations at scale.</p>
+                    <div class="pills"><span class="pill" style="border-color:#FF2D20;color:#FF2D20;background:rgba(255,45,32,0.05);">Laravel</span><span class="pill">MySQL</span><span class="pill">Amazon MWS</span><span class="pill">Etsy API</span><span class="pill">WooCommerce</span><span class="pill">REST APIs</span></div>
+                </div>
+                <div class="ec">
+                    <div class="bar" style="background:linear-gradient(to bottom,var(--terra),var(--slate));"></div>
+                    <div class="ec-feat">
+                        <div>
+                            <div style="display:inline-flex;align-items:center;gap:0.35rem;background:var(--terra-glow);border:1px solid rgba(194,112,78,0.2);padding:0.22rem 0.6rem;border-radius:100px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--terra);margin-bottom:0.85rem;"><i class="ph-fill ph-sparkle"></i> Current Focus</div>
+                            <h3>AI Product R&amp;D</h3>
+                            <p>Architecting systems where AI doesn't just chat, but <strong style="color:var(--t1);">does</strong>. Building autonomous agent workflows that replace entire manual pipelines.</p>
+                        </div>
+                        <div class="ec-feat-checks">
+                            <div class="ec-check"><i class="ph-bold ph-check"></i> Agentic Workflows</div>
+                            <div class="ec-check"><i class="ph-bold ph-check"></i> Multi-Agent Systems</div>
+                            <div class="ec-check"><i class="ph-bold ph-check"></i> RAG Pipelines</div>
+                            <div class="ec-check"><i class="ph-bold ph-check"></i> Prompt Engineering</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="scr-h"><span>Scroll to explore</span> <i class="ph ph-arrow-right"></i></div>
         </div>
     </div>
 </section>
@@ -411,26 +481,37 @@
                     <div class="tle"><div class="tld"></div><h4>Web Developer</h4><div class="tlco">SIIMTEQ Technologies</div><div class="tldt">Jan 2018 – Aug 2019 · Vadodara</div><div class="tlds">Custom ERP modules; streamlined operations by 30%.</div></div>
                     <div class="tle"><div class="tld"></div><h4>Web Developer</h4><div class="tlco">Amigos Automation Solutions</div><div class="tldt">Nov 2016 – Dec 2017 · Bengaluru</div><div class="tlds">Front-end interfaces and backend APIs.</div></div>
                 </div>
-                <div class="ab-label" style="margin-top:2rem;">Education</div>
-                <div class="edu"><h4>Master of Computer Applications</h4><p>Administrative Management College</p></div>
-                <div class="edu"><h4>Bachelor of Computer Applications</h4><p>Meghnad Saha Institute Of Technology</p></div>
+                <div class="cg-wrap" style="margin-top:2rem;">
+                    <div class="cgl cgl-inner">Education</div>
+                    <div class="edu edu-inner"><h4>Master of Computer Applications</h4><p>Administrative Management College</p></div>
+                    <div class="edu edu-inner"><h4>Bachelor of Computer Applications</h4><p>Meghnad Saha Institute Of Technology</p></div>
+                </div>
             </div>
             <!-- RIGHT: Certs -->
             <div class="rv d3">
-                <div class="cgl">AI &amp; Strategy</div>
-                <a href="https://www.coursera.org/account/accomplishments/specialization/XOE0VI9MODOS" target="_blank" class="cr"><div class="cri dk"><i class="ph-bold ph-brain"></i></div><div class="crt"><h5>Generative AI for Project Managers</h5><span>IBM · Specialization</span></div></a>
-                <a href="https://www.coursera.org/account/accomplishments/verify/KC1AB33DSZ3B" target="_blank" class="cr"><div class="cri dk"><i class="ph-bold ph-student"></i></div><div class="crt"><h5>Managing AI Projects</h5><span>Johns Hopkins University</span></div></a>
-                <a href="#" class="cr"><div class="cri li"><i class="ph-bold ph-robot"></i></div><div class="crt"><h5>ChatGPT for Project Managers</h5><span>LinkedIn Learning</span></div></a>
-                <div class="cgl">Project Management</div>
-                <a href="https://www.coursera.org/account/accomplishments/specialization/WLU6AFR46Z83" target="_blank" class="cr"><div class="cri dk"><i class="ph-bold ph-google-logo"></i></div><div class="crt"><h5>Google Project Management</h5><span>Google · Specialization</span></div></a>
-                <a href="https://www.coursera.org/account/accomplishments/specialization/77S1LEW8S3DM" target="_blank" class="cr"><div class="cri dk"><i class="ph-bold ph-google-logo"></i></div><div class="crt"><h5>People Management Essentials</h5><span>Google · Specialization</span></div></a>
-                <a href="#" class="cr"><div class="cri bl"><i class="ph-bold ph-check-circle"></i></div><div class="crt"><h5>Agile Project Management Pro</h5><span>Atlassian University</span></div></a>
-                <div class="cgl">Technical Tools</div>
-                <a href="#" class="cr"><div class="cri bl"><i class="ph-bold ph-kanban"></i></div><div class="crt"><h5>Agile with Atlassian Jira</h5><span>Atlassian</span></div></a>
-                <a href="#" class="cr"><div class="cri bl"><i class="ph-bold ph-gear"></i></div><div class="crt"><h5>Automate Tasks &amp; Processes</h5><span>Jira · Coursera</span></div></a>
-                <a href="#" class="cr"><div class="cri bl"><i class="ph-bold ph-map-trifold"></i></div><div class="crt"><h5>Using Roadmaps in Jira</h5><span>Jira · Coursera</span></div></a>
-                <div class="cgl">Professional Skills</div>
-                <a href="#" class="cr"><div class="cri pu"><i class="ph-bold ph-chats-circle"></i></div><div class="crt"><h5>Essential Business Communication</h5><span>LinkedIn Learning</span></div></a>
+                <div class="ab-label">Certifications</div>
+                <div class="cg-wrap">
+                    <div class="cgl cgl-inner">AI &amp; Strategy</div>
+                    <a href="https://www.coursera.org/account/accomplishments/specialization/XOE0VI9MODOS" target="_blank" class="cr"><div class="cri dk"><i class="ph-bold ph-brain"></i></div><div class="crt"><h5>Generative AI for Project Managers</h5><span>IBM · Specialization</span></div></a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/KC1AB33DSZ3B" target="_blank" class="cr"><div class="cri dk"><i class="ph-bold ph-student"></i></div><div class="crt"><h5>Managing AI Projects</h5><span>Johns Hopkins University</span></div></a>
+                    <a href="#" class="cr"><div class="cri li"><i class="ph-bold ph-robot"></i></div><div class="crt"><h5>ChatGPT for Project Managers</h5><span>LinkedIn Learning</span></div></a>
+                </div>
+                <div class="cg-wrap">
+                    <div class="cgl cgl-inner">Project Management</div>
+                    <a href="https://www.coursera.org/account/accomplishments/specialization/WLU6AFR46Z83" target="_blank" class="cr"><div class="cri dk"><i class="ph-bold ph-google-logo"></i></div><div class="crt"><h5>Google Project Management</h5><span>Google · Specialization</span></div></a>
+                    <a href="https://www.coursera.org/account/accomplishments/specialization/77S1LEW8S3DM" target="_blank" class="cr"><div class="cri dk"><i class="ph-bold ph-google-logo"></i></div><div class="crt"><h5>People Management Essentials</h5><span>Google · Specialization</span></div></a>
+                    <a href="#" class="cr"><div class="cri bl"><i class="ph-bold ph-check-circle"></i></div><div class="crt"><h5>Agile Project Management Pro</h5><span>Atlassian University</span></div></a>
+                </div>
+                <div class="cg-wrap">
+                    <div class="cgl cgl-inner">Technical Tools</div>
+                    <a href="#" class="cr"><div class="cri bl"><i class="ph-bold ph-kanban"></i></div><div class="crt"><h5>Agile with Atlassian Jira</h5><span>Atlassian</span></div></a>
+                    <a href="#" class="cr"><div class="cri bl"><i class="ph-bold ph-gear"></i></div><div class="crt"><h5>Automate Tasks &amp; Processes</h5><span>Jira · Coursera</span></div></a>
+                    <a href="#" class="cr"><div class="cri bl"><i class="ph-bold ph-map-trifold"></i></div><div class="crt"><h5>Using Roadmaps in Jira</h5><span>Jira · Coursera</span></div></a>
+                </div>
+                <div class="cg-wrap">
+                    <div class="cgl cgl-inner">Professional Skills</div>
+                    <a href="#" class="cr"><div class="cri pu"><i class="ph-bold ph-chats-circle"></i></div><div class="crt"><h5>Essential Business Communication</h5><span>LinkedIn Learning</span></div></a>
+                </div>
             </div>
         </div>
     </div>

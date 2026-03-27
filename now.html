@@ -1,213 +1,533 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Now | Aakash Dhar</title>
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts: Manrope -->
+    <title>Now — Aakash Dhar</title>
+    <meta name="description" content="What Aakash Dhar is focused on right now — BetaCraft, Agentic AI, and life in Pune.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-
-    <!-- Phosphor Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Manrope', 'sans-serif'],
-                        heading: ['Manrope', 'sans-serif'],
-                    },
-                    colors: {
-                        background: 'rgb(var(--bg-color) / <alpha-value>)',
-                        surface: 'rgb(var(--surface-color) / <alpha-value>)',
-                        primary: '#6366f1',
-                        secondary: '#d946ef',
-                        accent: '#14b8a6',
-                        laravel: '#FF2D20',
-                        tprimary: 'rgb(var(--text-primary) / <alpha-value>)',
-                        tsecondary: 'rgb(var(--text-secondary) / <alpha-value>)',
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C2704E%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
     <style>
-        /* Theme Variables */
         :root {
-            /* Light Mode Default */
-            --bg-color: 248 250 252;
-            --surface-color: 255 255 255;
-            --text-primary: 15 23 42;
-            --text-secondary: 71 85 105;
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.06);
-            --glass-blur: 16px;
-            --nav-bg: rgba(255, 255, 255, 0.85);
+            --terra: #C2704E;
+            --terra-light: #D4896B;
+            --terra-pale: #F2E0D4;
+            --terra-glow: rgba(194,112,78,0.10);
+            --cream: #FDFAF6;
+            --cream-warm: #F7F0E8;
+            --sand: #E6DCD0;
+            --stone: #B5A899;
+            --bark: #7A6E62;
+            --charcoal: #3D352D;
+            --ink: #1C1815;
+            --olive: #5A6B4A;
+            --sage-glow: rgba(90,107,74,0.08);
+            --slate: #6B7F96;
+            --laravel: #FF2D20;
         }
 
-        .dark {
-            /* Dark Mode */
-            --bg-color: 3 7 18;
-            --surface-color: 17 24 39;
-            --text-primary: 255 255 255;
-            --text-secondary: 148 163 184;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-blur: 10px;
-            --nav-bg: rgba(3, 7, 18, 0.7);
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Syne', sans-serif;
+            background: var(--cream);
+            color: var(--bark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
 
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
+        ::selection { background: var(--terra); color: #fff; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Grain */
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 9999;
+            opacity: 0.028;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        .glass-nav {
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
+        /* ── Navigation ── */
+        .topnav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            padding: 0 clamp(1.5rem, 4vw, 3rem);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(253,250,246,0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--sand);
+        }
+        .topnav-logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--ink);
+            letter-spacing: -0.03em;
+        }
+        .topnav-logo i { font-style: italic; color: var(--terra); }
+        .topnav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--bark);
+            transition: color 0.3s;
+        }
+        .topnav-back:hover { color: var(--terra); }
+
+        /* ── Page Layout ── */
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 3rem);
+        }
+
+        /* ── Hero — Asymmetric with giant watermark ── */
+        .now-hero {
+            padding-top: clamp(7rem, 14vw, 10rem);
+            padding-bottom: clamp(2rem, 5vw, 3.5rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .now-hero-watermark {
+            position: absolute;
+            top: 50%;
+            right: -3%;
+            transform: translateY(-55%);
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(10rem, 28vw, 22rem);
+            color: var(--sand);
+            opacity: 0.35;
+            line-height: 0.85;
+            letter-spacing: -0.06em;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .now-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 620px;
+        }
+
+        .now-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 100px;
+            background: rgba(74,222,128,0.08);
+            border: 1px solid rgba(74,222,128,0.2);
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #15803d;
+            margin-bottom: 1.8rem;
+        }
+        .now-badge .dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: blink 2s ease infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+        .now-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            color: var(--ink);
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.5em;
+        }
+        .now-title em {
+            font-style: italic;
+            color: var(--terra);
+        }
+
+        .now-subtitle {
+            font-size: 1.1rem;
+            color: var(--bark);
+            line-height: 1.7;
+            max-width: 480px;
+        }
+
+        /* ── Divider ── */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, var(--sand), transparent);
+            margin: 0 0 3rem;
+        }
+
+        /* ── Asymmetric Content Grid ── */
+        .now-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 1.2rem;
+            padding-bottom: clamp(4rem, 10vw, 6rem);
+        }
+
+        .now-card {
+            background: #fff;
+            border: 1px solid var(--sand);
+            border-radius: 14px;
+            padding: clamp(1.5rem, 3vw, 2.2rem);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+        }
+
+        .now-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .now-card:hover::before { transform: scaleX(1); }
+
+        .now-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.07);
+            border-color: var(--terra-light);
+        }
+
+        /* Card accents */
+        .now-card.accent-terra::before { background: var(--terra); }
+        .now-card.accent-olive::before { background: var(--olive); }
+        .now-card.accent-laravel::before { background: var(--laravel); }
+        .now-card.accent-slate::before { background: var(--slate); }
+
+        /* Wide card spans full width */
+        .now-card.wide { grid-column: 1 / -1; }
+        /* Tall card spans 2 rows */
+        .now-card.tall { grid-row: span 2; }
+
+        .card-icon-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .card-icon.terra { background: var(--terra-glow); color: var(--terra); border: 1px solid rgba(194,112,78,0.15); }
+        .card-icon.olive { background: var(--sage-glow); color: var(--olive); border: 1px solid rgba(90,107,74,0.15); }
+        .card-icon.red { background: rgba(255,45,32,0.06); color: var(--laravel); border: 1px solid rgba(255,45,32,0.12); }
+        .card-icon.slate { background: rgba(107,127,150,0.08); color: var(--slate); border: 1px solid rgba(107,127,150,0.12); }
+
+        .card-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--stone);
+        }
+
+        .now-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .now-card p {
+            font-size: 0.9rem;
+            color: var(--bark);
+            line-height: 1.7;
+        }
+
+        .now-card strong { color: var(--ink); font-weight: 700; }
+
+        /* Progress bar */
+        .progress-track {
+            width: 100%;
+            height: 6px;
+            background: var(--cream-warm);
+            border-radius: 100px;
+            margin-top: 1.2rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 100px;
+            background: linear-gradient(90deg, var(--laravel), #f97316);
+            width: 75%;
+            position: relative;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--stone);
+            margin-top: 0.5rem;
+        }
+
+        /* Decorative number in card */
+        .card-num {
+            position: absolute;
+            bottom: -0.3rem;
+            right: 0.8rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 5rem;
+            color: var(--sand);
+            opacity: 0.25;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Offline mode — dual icon header */
+        .dual-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+        .dual-icons .card-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+        .dual-icons .separator {
+            width: 24px;
+            height: 1px;
+            background: var(--sand);
+        }
+
+        /* Reading pill */
+        .reading-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            background: var(--cream-warm);
+            border: 1px solid var(--sand);
+            font-size: 0.78rem;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+        .reading-pill i { color: var(--terra); }
+
+        /* ── Footer ── */
+        .now-footer {
+            border-top: 1px solid var(--sand);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .now-footer p {
+            font-size: 0.75rem;
+            color: var(--stone);
+        }
+        .now-footer a {
+            color: var(--terra);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .now-footer a:hover { color: var(--ink); }
+
+        /* ── Animations ── */
+        .rv {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+        }
+        .rv.vis { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.05s; }
+        .d2 { transition-delay: 0.1s; }
+        .d3 { transition-delay: 0.15s; }
+        .d4 { transition-delay: 0.2s; }
+        .d5 { transition-delay: 0.25s; }
+
+        /* Hero entrance */
+        .h-in {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: hUp 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
+        .h1 { animation-delay: 0.1s; }
+        .h2 { animation-delay: 0.2s; }
+        .h3 { animation-delay: 0.35s; }
+        .h4 { animation-delay: 0.5s; }
+        @keyframes hUp { to { opacity:1; transform:translateY(0); } }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .now-grid {
+                grid-template-columns: 1fr;
+            }
+            .now-card.tall { grid-row: span 1; }
+            .now-hero-watermark { font-size: 8rem; right: -5%; opacity: 0.2; }
         }
     </style>
 </head>
+<body>
 
-<body class="bg-background text-tsecondary font-sans">
-    <!-- Navigation -->
-    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <nav
-            class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl w-full max-w-2xl">
-            <a href="index.html"
-                class="font-heading font-bold text-xl text-tprimary tracking-tight hover:text-primary transition-colors">AD.</a>
+<!-- Navigation -->
+<nav class="topnav">
+    <a href="index.html" class="topnav-logo">A<i>.</i>Dhar</a>
+    <a href="index.html" class="topnav-back"><i class="ph-bold ph-arrow-left"></i> Back Home</a>
+</nav>
 
-            <div class="flex items-center gap-4">
-                <!-- Theme Toggle -->
-                <button id="theme-toggle"
-                    class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-tprimary"
-                    aria-label="Toggle Theme">
-                    <i class="ph-fill ph-sun hidden dark:block"></i>
-                    <i class="ph-fill ph-moon block dark:hidden"></i>
-                </button>
-
-                <a href="index.html"
-                    class="flex items-center gap-2 text-sm font-medium text-tsecondary hover:text-tprimary transition-colors">
-                    <i class="ph-bold ph-arrow-left"></i> Back Home
-                </a>
-            </div>
-        </nav>
+<!-- Hero -->
+<section class="now-hero">
+    <div class="page-wrap" style="position: relative;">
+        <div class="now-hero-watermark">Now</div>
+        <div class="now-hero-inner">
+            <div class="now-badge h-in h1"><div class="dot"></div> Updated: Jan 2026</div>
+            <h1 class="now-title h-in h2">Now<em>.</em></h1>
+            <p class="now-subtitle h-in h3">Focused on BetaCraft, Agentic AI, and life in Pune.</p>
+        </div>
     </div>
+</section>
 
-    <!-- Header Section -->
-    <section class="pt-40 pb-12 px-4 text-center">
-        <div
-            class="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-bold uppercase">
-            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Updated: Jan 2026
-        </div>
-        <h1 class="font-heading text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">Now.</h1>
-        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Focused on BetaCraft, Agentic AI, and
-            life in Pune.</p>
-    </section>
+<!-- Content -->
+<section>
+    <div class="page-wrap">
+        <div class="divider rv"></div>
 
-    <!-- Content Grid -->
-    <section class="py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- BetaCraft Card -->
-            <div
-                class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="p-3 bg-primary/10 rounded-xl text-primary border border-primary/20">
-                        <i class="ph-fill ph-briefcase text-2xl"></i>
-                    </div>
+        <div class="now-grid">
+
+            <!-- BetaCraft — wide + prominent -->
+            <div class="now-card accent-terra tall rv d1">
+                <div class="card-num">01</div>
+                <div class="card-icon-row">
+                    <div class="card-icon terra"><i class="ph-fill ph-briefcase"></i></div>
                     <div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">BetaCraft</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400">Technical Project Manager</p>
+                        <div class="card-label">Current Role</div>
                     </div>
                 </div>
-                <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-                    Leading engineering teams to ship scalable products. Deep in the weeds of integrating LLMs into
-                    legacy workflows.
-                </p>
-            </div>
+                <h3>BetaCraft</h3>
+                <p style="margin-bottom: 0.3rem;"><strong>Technical Project Manager</strong></p>
+                <p>Leading engineering teams to ship scalable products. Deep in the weeds of integrating LLMs into legacy workflows — building the bridge between traditional development and AI-augmented delivery.</p>
 
-            <!-- Location Card -->
-            <div
-                class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors relative overflow-hidden">
-                <i class="ph-fill ph-map-pin text-3xl text-accent mb-6 relative z-10"></i>
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 relative z-10">Pune, India</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 relative z-10">
-                    Exploring places around Pune, taking the road less travelled on my Royal Enfield Himalayan 411 and
-                    chasing the perfect Misal.
-                </p>
-            </div>
-
-            <!-- Building Card -->
-            <div class="glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors">
-                <i class="ph-fill ph-code text-3xl text-laravel mb-6"></i>
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Building</h3>
-                <p class="text-sm text-slate-700 dark:text-slate-300 mb-4">
-                    Using <strong>Antigravity</strong> to build a personal TPM helper project called Agile Buddy, that
-                    helps me create tickets, estimates and roadmaps faster.
-                </p>
-                <div class="w-full bg-slate-200 dark:bg-white/5 rounded-full h-2 mt-4 overflow-hidden">
-                    <div class="bg-gradient-to-r from-laravel to-orange-500 h-full w-3/4"></div>
+                <div style="margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--sand);">
+                    <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone); margin-bottom: 0.6rem;">Focus Areas</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                        <span style="font-size:0.7rem; padding:0.25rem 0.6rem; border-radius:100px; border:1px solid rgba(194,112,78,0.2); color:var(--terra); background:var(--terra-glow); font-weight:600;">Sprint Planning</span>
+                        <span style="font-size:0.7rem; padding:0.25rem 0.6rem; border-radius:100px; border:1px solid var(--sand); color:var(--bark); background:var(--cream-warm);">Client Comms</span>
+                        <span style="font-size:0.7rem; padding:0.25rem 0.6rem; border-radius:100px; border:1px solid var(--sand); color:var(--bark); background:var(--cream-warm);">AI Integration</span>
+                        <span style="font-size:0.7rem; padding:0.25rem 0.6rem; border-radius:100px; border:1px solid var(--sand); color:var(--bark); background:var(--cream-warm);">Team Leadership</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Offline Mode Card -->
-            <div
-                class="md:col-span-2 glass-card p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors relative overflow-hidden">
-                <div class="flex items-center justify-between mb-6">
-                    <i class="ph-fill ph-camera text-3xl text-slate-700 dark:text-white"></i>
-                    <i class="ph-fill ph-motorcycle text-3xl text-slate-700 dark:text-white"></i>
+            <!-- Location -->
+            <div class="now-card accent-olive rv d2">
+                <div class="card-num">02</div>
+                <div class="card-icon-row">
+                    <div class="card-icon olive"><i class="ph-fill ph-map-pin"></i></div>
+                    <div><div class="card-label">Based In</div></div>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Offline Mode</h3>
-                <p class="text-sm text-slate-700 dark:text-slate-300">
-                    Riding out for landscape photography. Reading: "The Complete Adventures of Feluda".
-                </p>
+                <h3>Pune, India</h3>
+                <p>Exploring places around Pune, taking the road less travelled on my <strong>Royal Enfield Himalayan 411</strong> and chasing the perfect Misal.</p>
             </div>
+
+            <!-- Building -->
+            <div class="now-card accent-laravel rv d3">
+                <div class="card-num">03</div>
+                <div class="card-icon-row">
+                    <div class="card-icon red"><i class="ph-fill ph-code"></i></div>
+                    <div><div class="card-label">Side Project</div></div>
+                </div>
+                <h3>Building</h3>
+                <p>Using <strong>Antigravity</strong> to build a personal TPM helper project called <strong>Agile Buddy</strong> — helps me create tickets, estimates and roadmaps faster.</p>
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-label">
+                    <span>Progress</span>
+                    <span>75%</span>
+                </div>
+            </div>
+
+            <!-- Offline Mode — wide -->
+            <div class="now-card accent-slate wide rv d4">
+                <div class="card-num" style="font-size: 4rem;">04</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+                    <div>
+                        <div class="dual-icons">
+                            <div class="card-icon slate"><i class="ph-fill ph-camera"></i></div>
+                            <div class="separator"></div>
+                            <div class="card-icon slate"><i class="ph-fill ph-motorcycle"></i></div>
+                        </div>
+                        <h3>Offline Mode</h3>
+                        <p>Riding out for landscape photography. Capturing the Western Ghats on two wheels — where the road bends and the light is just right.</p>
+                    </div>
+                    <div style="background: var(--cream-warm); border: 1px solid var(--sand); border-radius: 10px; padding: 1.2rem;">
+                        <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone); margin-bottom: 0.6rem;">Currently Reading</div>
+                        <div class="reading-pill">
+                            <i class="ph-fill ph-book-open"></i>
+                            The Complete Adventures of Feluda
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--stone); margin-top: 0.5rem;">— Satyajit Ray</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Theme Toggle Script -->
-    <script>
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
+<!-- Footer -->
+<footer class="now-footer">
+    <div class="page-wrap">
+        <p>This is a <a href="https://nownownow.com/about" target="_blank">/now page</a> — inspired by Derek Sivers. <br>© 2026 Aakash Dhar.</p>
+    </div>
+</footer>
 
-        // Check LocalStorage. Default is Light
-        if (localStorage.theme === 'dark') {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
-
-        // Toggle Function
-        themeToggleBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.theme = 'dark';
-            } else {
-                localStorage.theme = 'light';
-            }
-        });
-    </script>
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
 </body>
-
 </html>

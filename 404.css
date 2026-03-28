@@ -1,0 +1,266 @@
+:root {
+            --terra: #C2704E;
+            --terra-light: #D4896B;
+            --terra-glow: rgba(194,112,78,0.10);
+            --cream: #FDFAF6;
+            --cream-warm: #F7F0E8;
+            --sand: #E6DCD0;
+            --stone: #B5A899;
+            --bark: #7A6E62;
+            --charcoal: #3D352D;
+            --ink: #1C1815;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--cream);
+            color: var(--bark);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        ::selection { background: var(--terra); color: #fff; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Grain */
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 9999;
+            opacity: 0.028;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ── Giant 404 Watermark ── */
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(14rem, 35vw, 28rem);
+            color: var(--sand);
+            opacity: 0.3;
+            line-height: 0.85;
+            letter-spacing: -0.06em;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+        }
+
+        /* ── Ambient orbs ── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 {
+            top: -8%;
+            left: -6%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(194,112,78,0.12), transparent 70%);
+            animation: drift 12s ease-in-out infinite;
+        }
+        .orb-2 {
+            bottom: -10%;
+            right: -8%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(90,107,74,0.08), transparent 70%);
+            animation: drift 15s ease-in-out infinite reverse;
+        }
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -15px); }
+        }
+
+        /* ── Card ── */
+        .card-404 {
+            position: relative;
+            z-index: 10;
+            background: #fff;
+            border: 1px solid var(--sand);
+            border-radius: 18px;
+            padding: clamp(2.5rem, 5vw, 3.5rem);
+            max-width: 540px;
+            width: 90%;
+            text-align: center;
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.03),
+                0 8px 32px rgba(0,0,0,0.06),
+                0 24px 60px rgba(0,0,0,0.04);
+
+            opacity: 0;
+            transform: translateY(24px);
+            animation: cardIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+        }
+        @keyframes cardIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Top accent stripe */
+        .card-404::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--terra);
+            border-radius: 18px 18px 0 0;
+        }
+
+        /* ── Compass Icon ── */
+        .compass-wrap {
+            width: 72px; height: 72px;
+            margin: 0 auto 1.8rem;
+            border-radius: 16px;
+            background: var(--terra-glow);
+            border: 1px solid rgba(194,112,78,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+            transform: scale(0.85);
+            animation: popIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.5s forwards;
+        }
+        @keyframes popIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .compass-wrap i {
+            font-size: 2.2rem;
+            color: var(--terra);
+            animation: spin-erratic 3s ease-in-out infinite;
+        }
+
+        @keyframes spin-erratic {
+            0%   { transform: rotate(0deg); }
+            15%  { transform: rotate(180deg); }
+            30%  { transform: rotate(120deg); }
+            45%  { transform: rotate(300deg); }
+            60%  { transform: rotate(200deg); }
+            75%  { transform: rotate(420deg); }
+            90%  { transform: rotate(340deg); }
+            100% { transform: rotate(720deg); }
+        }
+
+        /* ── Typography ── */
+        .card-404 h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            color: var(--ink);
+            line-height: 1.1;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.02em;
+        }
+
+        .card-404 h1 em {
+            font-style: italic;
+            color: var(--terra);
+        }
+
+        .card-404 .desc {
+            font-size: 1rem;
+            color: var(--bark);
+            line-height: 1.7;
+            max-width: 380px;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* ── Error Code Badge ── */
+        .error-badge {
+            display: inline-block;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            background: var(--cream-warm);
+            border: 1px solid var(--sand);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--stone);
+            margin-bottom: 2rem;
+        }
+        .error-badge .code { color: var(--terra); font-weight: 500; }
+        .error-badge .status { color: var(--charcoal); font-weight: 500; }
+
+        /* ── Button ── */
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--ink);
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-home:hover {
+            background: var(--terra);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(194,112,78,0.3);
+        }
+        .btn-home i { font-size: 1.1rem; }
+
+        /* ── Back link ── */
+        .back-link {
+            position: fixed;
+            top: 1.5rem; left: 1.5rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--bark);
+            transition: color 0.3s;
+
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.3s forwards;
+        }
+        .back-link:hover { color: var(--terra); }
+
+        /* ── Logo ── */
+        .logo-mark {
+            position: fixed;
+            top: 1.5rem; right: 1.5rem;
+            z-index: 100;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--ink);
+            letter-spacing: -0.03em;
+
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.3s forwards;
+        }
+        .logo-mark i { font-style: italic; color: var(--terra); }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* ── Decorative corner number ── */
+        .corner-num {
+            position: absolute;
+            bottom: -0.6rem; right: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 6rem;
+            color: var(--sand);
+            opacity: 0.2;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }

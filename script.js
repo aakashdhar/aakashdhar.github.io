@@ -1,85 +1,54 @@
-// --- Theme Toggle Logic ---
-const themeToggleBtn = document.getElementById('theme-toggle');
-const htmlElement = document.documentElement;
+// ── Theme ─────────────────────────────────────────────────────────────────────
+const html = document.documentElement;
 
-// 1. Check LocalStorage. Default is Light (no 'dark' class)
-if (localStorage.theme === 'dark') {
-    htmlElement.classList.add('dark');
-} else {
-    htmlElement.classList.remove('dark');
+try {
+    if (localStorage.getItem('theme') === 'dark') html.classList.add('dark');
+} catch (e) {}
+
+const thmBtn = document.getElementById('thm');
+if (thmBtn) {
+    thmBtn.addEventListener('click', function () {
+        html.classList.toggle('dark');
+        try {
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        } catch (e) {}
+    });
 }
 
-// 2. Toggle Function
-themeToggleBtn.addEventListener('click', () => {
-    htmlElement.classList.toggle('dark');
-
-    // Save preference
-    if (htmlElement.classList.contains('dark')) {
-        localStorage.theme = 'dark';
-    } else {
-        localStorage.theme = 'light';
-    }
-});
-
-// Mobile Menu Logic
-const menuBtn = document.getElementById('mobile-menu-btn');
-const closeBtn = document.getElementById('close-menu-btn');
-const menu = document.getElementById('mobile-menu');
-const links = document.querySelectorAll('.mobile-link');
-
-function toggleMenu() {
-    menu.classList.toggle('hidden');
-    menu.classList.toggle('flex');
-    document.body.classList.toggle('overflow-hidden');
+// ── Nav scroll behaviour ──────────────────────────────────────────────────────
+const nav = document.getElementById('nav');
+if (nav) {
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
 }
 
-menuBtn.addEventListener('click', toggleMenu);
-closeBtn.addEventListener('click', toggleMenu);
+// ── Mobile menu ───────────────────────────────────────────────────────────────
+const ham  = document.getElementById('ham');
+const mobx = document.getElementById('mobx');
+const mob  = document.getElementById('mob');
 
-links.forEach(link => {
-    link.addEventListener('click', toggleMenu);
-});
+if (ham && mob)  ham.onclick  = () => mob.classList.add('open');
+if (mobx && mob) mobx.onclick = () => mob.classList.remove('open');
+if (mob) {
+    document.querySelectorAll('.ml').forEach(l => l.onclick = () => mob.classList.remove('open'));
+}
 
-// Enhanced Scroll Animations with Reveal
-const revealObserver = new IntersectionObserver((entries) => {
+// ── Scroll reveal ─────────────────────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('active');
+            entry.target.classList.add('vis');
+            observer.unobserve(entry.target);
         }
     });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-});
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-// Observe all elements with 'reveal' class
-document.querySelectorAll('.reveal').forEach((el) => {
-    revealObserver.observe(el);
-});
+document.querySelectorAll('.rv').forEach(el => observer.observe(el));
 
-// Add smooth scroll behavior
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && href !== '') {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-    });
-});
-
-// Add parallax effect to background blobs
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const blobs = document.querySelectorAll('.animate-blob');
-    blobs.forEach((blob, index) => {
-        const speed = 0.1 + (index * 0.05);
-        blob.style.transform = `translateY(${scrolled * speed}px)`;
+// ── Smooth scroll ─────────────────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });

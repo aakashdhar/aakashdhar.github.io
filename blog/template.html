@@ -1,74 +1,583 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║              AAKASH DHAR — BLOG POST TEMPLATE                   ║
+║                                                                  ║
+║  HOW TO USE WITH CLAUDE.AI:                                      ║
+║  1. Paste this entire file into Claude.ai                        ║
+║  2. Provide the article title, category, date, and raw content   ║
+║  3. Ask Claude to fill in all <!-- FILL: ... --> markers         ║
+║  4. All design/structure is already done — only content changes  ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Post Title | Aakash Dhar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Manrope', 'sans-serif'], heading: ['Manrope', 'sans-serif'] }, colors: { background: '#030712', surface: '#111827', primary: '#6366f1', secondary: '#d946ef', accent: '#14b8a6', laravel: '#FF2D20' } } } }</script>
+
+    <!-- FILL: Page title → "Article Title | Aakash Dhar" -->
+    <title>ARTICLE TITLE | Aakash Dhar</title>
+    <meta name="title" content="ARTICLE TITLE | Aakash Dhar">
+
+    <!-- FILL: 1–2 sentence description of the article for SEO -->
+    <meta name="description" content="ARTICLE DESCRIPTION">
+
+    <!-- FILL: 5–8 comma-separated keywords relevant to the article -->
+    <meta name="keywords" content="KEYWORD 1, KEYWORD 2, KEYWORD 3">
+
+    <meta name="author" content="Aakash Dhar">
+
+    <!-- FILL: Canonical URL → https://aakashdhar.me/blog/FILENAME.html -->
+    <link rel="canonical" href="https://aakashdhar.me/blog/FILENAME.html">
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content="article">
+    <!-- FILL: og:url → https://aakashdhar.me/blog/FILENAME.html -->
+    <meta property="og:url" content="https://aakashdhar.me/blog/FILENAME.html">
+    <!-- FILL: og:title → Article title (no site name needed) -->
+    <meta property="og:title" content="ARTICLE TITLE">
+    <!-- FILL: og:description → 1-sentence hook for social sharing -->
+    <meta property="og:description" content="SOCIAL DESCRIPTION">
+    <meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <!-- FILL: twitter:url → same as og:url -->
+    <meta property="twitter:url" content="https://aakashdhar.me/blog/FILENAME.html">
+    <!-- FILL: twitter:title → same as og:title -->
+    <meta property="twitter:title" content="ARTICLE TITLE">
+    <!-- FILL: twitter:description → same as og:description -->
+    <meta property="twitter:description" content="SOCIAL DESCRIPTION">
+    <meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "ARTICLE TITLE",
+      "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Aakash Dhar",
+        "url": "https://www.linkedin.com/in/aakashdhar"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Aakash Dhar",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aakashdhar.me/logo.png"
+        }
+      },
+      "datePublished": "YYYY-MM-DD",
+      "description": "ARTICLE DESCRIPTION",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://aakashdhar.me/blog/FILENAME.html"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C2704E%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+
+    <link rel="stylesheet" href="../styles.css">
+
     <style>
-        .prose p {
-            margin-bottom: 1.5rem;
-            color: #9ca3af;
-            font-size: 1.125rem;
-            line-height: 1.8;
+        /* ── Blog Header ── */
+        .blog-header {
+            background: var(--dk);
+            padding: clamp(5.5rem, 10vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+            position: relative;
+            overflow: clip;
+            transition: background 0.5s;
         }
-
-        .prose h2 {
-            color: white;
-            font-size: 1.875rem;
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, var(--dk-orb), transparent 70%);
+            pointer-events: none;
+        }
+        .blog-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+        .blog-cat {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.66rem;
             font-weight: 700;
-            margin-top: 3rem;
-            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.28rem 0.8rem;
+            border-radius: 100px;
+            background: var(--terra-glow);
+            border: 1px solid rgba(212, 137, 107, 0.3);
+            color: var(--terra-l);
         }
-
-        .prose blockquote {
-            border-left: 4px solid #6366f1;
-            padding-left: 1.5rem;
+        .blog-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--dk-t3);
+            letter-spacing: 0.05em;
+        }
+        .blog-title {
+            font-family: 'Amiri', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            color: var(--dk-t);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            padding-bottom: 0.2em;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+        .blog-title em {
             font-style: italic;
-            color: #e2e8f0;
-            margin: 2rem 0;
-            background: rgba(99, 102, 241, 0.05);
-            padding: 1.5rem;
+            color: var(--terra-l);
+        }
+        .blog-sub {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--dk-t2);
+            max-width: 580px;
         }
 
-        .glass-nav {
-            background: rgba(3, 7, 18, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* ── Article Body ── */
+        .blog-body {
+            padding: clamp(3rem, 6vw, 5rem) 0;
+        }
+        .prose {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .prose p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--t2);
+            margin-bottom: 1.5rem;
+        }
+        .prose h2 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.65rem, 3vw, 2.1rem);
+            color: var(--t1);
+            font-weight: 700;
+            margin-top: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            padding-bottom: 0.15em;
+        }
+        .prose h2::after {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 2px;
+            background: var(--terra);
+            margin-top: 0.5rem;
+        }
+        .prose h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--terra);
+            margin-top: 2.25rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+        .prose ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.75rem;
+        }
+        .prose ul li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.65rem;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--t2);
+        }
+        .prose ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--terra);
+            font-weight: 700;
+        }
+        .prose strong {
+            color: var(--t1);
+            font-weight: 700;
+        }
+        .prose em {
+            font-style: italic;
+        }
+        .prose a {
+            color: var(--terra-l);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s;
+        }
+        .prose a:hover {
+            color: var(--terra);
+        }
+        .prose code {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82em;
+            color: var(--terra-l);
+            background: var(--bg2);
+            padding: 0.12em 0.4em;
+            border-radius: 4px;
+            border: 1px solid var(--bd);
+        }
+        .prose pre {
+            background: var(--dk);
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            border: 1px solid var(--dk-bd2);
+            margin-bottom: 1.75rem;
+        }
+        .prose pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            color: var(--dk-t2);
+            font-size: 0.88rem;
+        }
+        .prose blockquote {
+            border-left: 3px solid var(--terra);
+            padding: 1.4rem 1.75rem;
+            margin: 2.5rem 0;
+            background: var(--bg2);
+            border-radius: 0 8px 8px 0;
+        }
+        .prose blockquote p {
+            font-family: 'Amiri', serif;
+            font-size: 1.12rem;
+            font-style: italic;
+            color: var(--t1);
+            margin-bottom: 0.75rem;
+            line-height: 1.75;
+        }
+        .prose blockquote p:last-child {
+            margin-bottom: 0;
+        }
+        .prose blockquote strong {
+            color: var(--terra);
+            font-style: normal;
+        }
+
+        /* ── Comparison Table (optional — remove if unused) ── */
+        .prose .table-wrap {
+            overflow-x: auto;
+            margin: 2.5rem 0;
+            border-radius: 10px;
+            border: 1px solid var(--bd);
+        }
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: var(--bg2);
+        }
+        .prose thead tr {
+            background: var(--dk);
+        }
+        .prose thead th {
+            text-align: left;
+            padding: 0.85rem 1.1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--dk-t2);
+            border-bottom: 1px solid var(--dk-bd2);
+            white-space: nowrap;
+        }
+        .prose thead th:first-child {
+            color: var(--terra-l);
+        }
+        .prose tbody tr {
+            border-bottom: 1px solid var(--bd);
+            transition: background 0.2s;
+        }
+        .prose tbody tr:last-child {
+            border-bottom: none;
+        }
+        .prose tbody tr:hover {
+            background: var(--bg);
+        }
+        .prose td {
+            padding: 0.85rem 1.1rem;
+            vertical-align: top;
+            color: var(--t2);
+            line-height: 1.7;
+        }
+        .prose td:first-child {
+            font-weight: 600;
+            color: var(--t1);
+            white-space: nowrap;
+        }
+
+        /* ── Blog Footer ── */
+        .blog-footer {
+            background: var(--dk);
+            padding: clamp(3rem, 6vw, 5rem) 0;
+            text-align: center;
+            border-top: 1px solid var(--dk-bd);
+            transition: background 0.5s;
+        }
+        .blog-footer h3 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--dk-t);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.15em;
+            line-height: 1.3;
+        }
+        .blog-footer p {
+            color: var(--dk-t2);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        .blog-footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+        .blog-footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dk-t2);
+            transition: color 0.3s;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--dk-bd2);
+            border-radius: 8px;
+        }
+        .blog-footer-links a:hover {
+            color: var(--terra-l);
+            border-color: rgba(212, 137, 107, 0.35);
+        }
+        .blog-footer-copy {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            color: var(--dk-t3);
         }
     </style>
 </head>
 
-<body class="bg-background text-slate-300 font-sans">
-    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <nav
-            class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl w-full max-w-2xl">
-            <a href="../index.html"
-                class="font-heading font-bold text-xl text-white tracking-tight hover:text-primary transition-colors">AD.</a>
-            <a href="../index.html"
-                class="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors"><i
-                    class="ph-bold ph-arrow-left"></i> Back to Portfolio</a>
-        </nav>
-    </div>
-    <header
-        class="relative pt-40 pb-20 px-4 text-center z-10 border-b border-white/5 bg-gradient-to-b from-transparent to-black/20">
-        <div class="max-w-3xl mx-auto space-y-6">
-            <div class="flex items-center justify-center gap-4 text-sm font-medium"><span
-                    class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20">Agentic
-                    AI</span><span class="text-slate-500">October 12, 2025</span></div>
-            <h1 class="font-heading text-4xl md:text-6xl font-bold text-white leading-tight">The Future of Autonomous
-                Agents</h1>
+<body>
+
+<!-- NAV — do not edit -->
+<nav class="nav" id="nav">
+    <a href="../index.html" class="nav-logo">A<em>.</em>Dhar</a>
+    <div class="nr">
+        <div class="nl">
+            <a href="../index.html#insights">Writing</a>
+            <a href="../index.html" class="ncta"><i class="ph ph-arrow-left"></i> Portfolio</a>
         </div>
-    </header>
-    <article class="py-20 px-4 relative z-10">
-        <div class="max-w-3xl mx-auto prose">
-            <p>Write your content here...</p>
+        <button class="thm" id="thm" aria-label="Toggle theme">
+            <i class="ph-fill ph-sun s"></i>
+            <i class="ph-fill ph-moon m"></i>
+        </button>
+        <button class="ham" id="ham"><i class="ph ph-list"></i></button>
+    </div>
+</nav>
+
+<!-- Mobile menu — do not edit -->
+<div class="mob" id="mob">
+    <button class="mob-x" id="mobx"><i class="ph ph-x"></i></button>
+    <a href="../index.html" class="ml">Portfolio</a>
+    <a href="../index.html#insights" class="ml">Writing</a>
+    <a href="../index.html#contact" class="ml" style="color:var(--terra);">Contact</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     BLOG HEADER
+     FILL IN:
+       1. blog-cat  → category label  e.g. "Agentic AI" | "Engineering" | "Project Mgmt"
+       2. blog-date → human-readable date  e.g. "March 29, 2026"
+       3. blog-title → wrap key phrase in <em>...</em> for italic terra accent
+       4. blog-sub  → one or two sentence subtitle / hook
+     ══════════════════════════════════════════════════════════════ -->
+<header class="blog-header">
+    <div class="wrap">
+        <div class="blog-eyebrow">
+            <span class="blog-cat"><!-- FILL: Category --></span>
+            <span class="blog-date"><!-- FILL: Date  e.g. March 29, 2026 --></span>
+        </div>
+        <h1 class="blog-title"><!-- FILL: Title. Wrap a key phrase in <em>italics</em> --></h1>
+        <p class="blog-sub"><!-- FILL: 1–2 sentence subtitle / hook --></p>
+    </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ARTICLE CONTENT
+     Delete the reference blocks you don't need.
+     Keep the ones you use and fill them in.
+     ══════════════════════════════════════════════════════════════ -->
+<div class="blog-body">
+    <article class="wrap">
+        <div class="prose">
+
+            <!-- ─── Opening paragraph(s) ─────────────────────────── -->
+            <p><!-- FILL: Opening paragraph --></p>
+            <p><!-- FILL: Second paragraph (optional, delete if unused) --></p>
+
+
+            <!-- ─── Section heading (h2) ─────────────────────────── -->
+            <!-- Renders: Amiri serif, auto terra underline bar below -->
+            <h2><!-- FILL: Section heading --></h2>
+
+
+            <!-- ─── Sub-label (h3) ───────────────────────────────── -->
+            <!-- Renders: tiny uppercase Syne in terra color — use as a label -->
+            <!-- <h3>Sub-label here</h3> -->
+
+
+            <!-- ─── Body paragraph ───────────────────────────────── -->
+            <p><!-- FILL: Body paragraph. Use <strong>bold</strong> for emphasis --></p>
+
+
+            <!-- ─── Bullet list ───────────────────────────────────── -->
+            <!-- Each <li> gets a terra — em-dash bullet automatically -->
+            <ul>
+                <li><strong>Term:</strong> <!-- FILL: explanation --></li>
+                <li><strong>Term:</strong> <!-- FILL: explanation --></li>
+                <li><strong>Term:</strong> <!-- FILL: explanation --></li>
+            </ul>
+
+
+            <!-- ─── Pull quote / blockquote ───────────────────────── -->
+            <!-- Renders: Amiri italic, terra left border, warm bg -->
+            <!-- Wrap each logical block in its own <p> -->
+            <!--
+            <blockquote>
+                <p><!-- FILL: Quote text. Use <strong>key phrase</strong> for terra highlight --></p>
+                <p><!-- FILL: Optional second line / attribution --></p>
+            </blockquote>
+            -->
+
+
+            <!-- ─── Inline code ───────────────────────────────────── -->
+            <!-- Use <code>snippet</code> inline inside a <p> or <li> -->
+
+
+            <!-- ─── Code block ────────────────────────────────────── -->
+            <!--
+            <pre><code>// FILL: paste code here</code></pre>
+            -->
+
+
+            <!-- ─── Comparison table (optional) ──────────────────── -->
+            <!--
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><!-- FILL: Row label column header (e.g. "Feature") --></th>
+                            <th><!-- FILL: Column A header --></th>
+                            <th><!-- FILL: Column B header --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong><!-- FILL: Row label --></strong></td>
+                            <td><!-- FILL: Column A value --></td>
+                            <td><!-- FILL: Column B value --></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            -->
+
+
+            <!-- ─── Closing paragraph(s) ─────────────────────────── -->
+            <h2><!-- FILL: Conclusion heading --></h2>
+            <p><!-- FILL: Closing thought --></p>
+
+            <!-- Optional closing blockquote / takeaway -->
+            <!--
+            <blockquote>
+                <p><!-- FILL: Final takeaway or call to action --></p>
+            </blockquote>
+            -->
+
         </div>
     </article>
-</body>
+</div>
 
+<!-- FOOTER — do not edit -->
+<footer class="blog-footer">
+    <div class="wrap">
+        <h3>Enjoyed this read?</h3>
+        <p>Connect on LinkedIn or head back to the portfolio for more.</p>
+        <div class="blog-footer-links">
+            <a href="https://www.linkedin.com/in/aakashdhar" target="_blank">
+                <i class="ph-fill ph-linkedin-logo"></i> Connect on LinkedIn
+            </a>
+            <a href="../index.html#insights">
+                <i class="ph ph-newspaper"></i> More Writing
+            </a>
+            <a href="../index.html">
+                <i class="ph ph-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+        <p class="blog-footer-copy">© 2026 Aakash Dhar. Built with Code &amp; Coffee.</p>
+    </div>
+</footer>
+
+<!-- SCRIPTS — do not edit -->
+<script>
+    const thm = document.getElementById('thm');
+    const html = document.documentElement;
+    if (localStorage.theme === 'dark') {
+        html.classList.add('dark');
+    } else {
+        html.classList.remove('dark');
+    }
+    thm.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    const ham = document.getElementById('ham');
+    const mob = document.getElementById('mob');
+    const mobx = document.getElementById('mobx');
+    ham.addEventListener('click', () => mob.classList.add('open'));
+    mobx.addEventListener('click', () => mob.classList.remove('open'));
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+</script>
+
+</body>
 </html>

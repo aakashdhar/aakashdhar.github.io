@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -57,272 +57,281 @@
     }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Manrope', 'sans-serif'],
-                        heading: ['Manrope', 'sans-serif'],
-                    },
-                    colors: {
-                        background: 'rgb(var(--bg-color) / <alpha-value>)',
-                        surface: 'rgb(var(--surface-color) / <alpha-value>)',
-                        primary: '#6366f1',
-                        secondary: '#d946ef',
-                        accent: '#14b8a6',
-                        tprimary: 'rgb(var(--text-primary) / <alpha-value>)',
-                        tsecondary: 'rgb(var(--text-secondary) / <alpha-value>)',
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                    },
-                    keyframes: {
-                        blob: {
-                            "0%": { transform: "translate(0px, 0px) scale(1)" },
-                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
-                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
-                            "100%": { transform: "translate(0px, 0px) scale(1)" }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C2704E%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+
+    <link rel="stylesheet" href="../styles.css">
 
     <style>
-        /* Theme Variables */
-        :root {
-            /* Light Mode Default */
-            --bg-color: 241 245 249;
-            --surface-color: 255 255 255;
-            --text-primary: 15 23 42;
-            --text-secondary: 71 85 105;
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.06);
-            --glass-blur: 16px;
-            --nav-bg: rgba(255, 255, 255, 0.85);
+        /* ── Blog Header ── */
+        .blog-header {
+            background: var(--dk);
+            padding: clamp(5.5rem, 10vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+            position: relative;
+            overflow: clip;
+            transition: background 0.5s;
         }
-
-        .dark {
-            /* Dark Mode */
-            --bg-color: 3 7 18;
-            --surface-color: 17 24 39;
-            --text-primary: 255 255 255;
-            --text-secondary: 148 163 184;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-blur: 10px;
-            --nav-bg: rgba(3, 7, 18, 0.7);
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, var(--dk-orb), transparent 70%);
+            pointer-events: none;
         }
-
-        body {
-            transition: background-color 0.3s ease, color 0.3s ease;
+        .blog-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
         }
-
-        /* Typography for Blog Content */
-        .prose p {
-            margin-bottom: 1.5rem;
-            color: rgb(var(--text-secondary));
-            font-size: 1.125rem;
-            line-height: 1.8;
-        }
-
-        .prose h2 {
-            color: rgb(var(--text-primary));
-            font-size: 1.875rem;
+        .blog-cat {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.66rem;
             font-weight: 700;
-            margin-top: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.28rem 0.8rem;
+            border-radius: 100px;
+            background: var(--terra-glow);
+            border: 1px solid rgba(212, 137, 107, 0.3);
+            color: var(--terra-l);
+        }
+        .blog-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--dk-t3);
+            letter-spacing: 0.05em;
+        }
+        .blog-title {
+            font-family: 'Amiri', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            color: var(--dk-t);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            padding-bottom: 0.2em;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+        .blog-title em {
+            font-style: italic;
+            color: var(--terra-l);
+        }
+        .blog-sub {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--dk-t2);
+            max-width: 580px;
+        }
+
+        /* ── Article Body ── */
+        .blog-body {
+            padding: clamp(3rem, 6vw, 5rem) 0;
+        }
+        .prose {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .prose p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--t2);
+            margin-bottom: 1.5rem;
+        }
+        .prose h2 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.65rem, 3vw, 2.1rem);
+            color: var(--t1);
+            font-weight: 700;
+            margin-top: 3.5rem;
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
+            line-height: 1.3;
+            padding-bottom: 0.15em;
         }
-
+        .prose h2::after {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 2px;
+            background: var(--terra);
+            margin-top: 0.5rem;
+        }
         .prose h3 {
-            color: rgb(var(--text-primary));
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 2rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--terra);
+            margin-top: 2.25rem;
             margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
         }
-
         .prose ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: rgb(var(--text-secondary));
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.75rem;
         }
-
-        .prose li {
-            margin-bottom: 0.5rem;
+        .prose ul li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.65rem;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--t2);
         }
-
+        .prose ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--terra);
+            font-weight: 700;
+        }
         .prose strong {
-            color: rgb(var(--text-primary));
-            font-weight: 600;
+            color: var(--t1);
+            font-weight: 700;
         }
-
-        .prose a {
-            color: #818cf8;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            transition: color 0.2s;
-        }
-
-        .prose a:hover {
-            color: #a5b4fc;
-        }
-
-        .prose blockquote {
-            border-left: 4px solid #6366f1;
-            padding-left: 1.5rem;
+        .prose em {
             font-style: italic;
-            color: rgb(var(--text-primary));
-            margin: 2rem 0;
-            background: rgba(99, 102, 241, 0.05);
-            padding: 1.5rem;
-            border-radius: 0 0.5rem 0.5rem 0;
         }
-
-        .prose pre {
-            background: var(--glass-bg);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            overflow-x: auto;
-            border: 1px solid var(--glass-border);
-            margin-bottom: 1.5rem;
-        }
-
         .prose code {
-            font-family: monospace;
-            color: #d946ef;
-            font-size: 0.9em;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82em;
+            color: var(--terra-l);
+            background: var(--bg2);
+            padding: 0.12em 0.4em;
+            border-radius: 4px;
+            border: 1px solid var(--bd);
+        }
+        .prose blockquote {
+            border-left: 3px solid var(--terra);
+            padding: 1.4rem 1.75rem;
+            margin: 2.5rem 0;
+            background: var(--bg2);
+            border-radius: 0 8px 8px 0;
+        }
+        .prose blockquote p {
+            font-family: 'Amiri', serif;
+            font-size: 1.12rem;
+            font-style: italic;
+            color: var(--t1);
+            margin-bottom: 0.75rem;
+            line-height: 1.75;
+        }
+        .prose blockquote p:last-child {
+            margin-bottom: 0;
+        }
+        .prose blockquote strong {
+            color: var(--terra);
+            font-style: normal;
         }
 
-        /* Glass Utilities */
-        .glass-nav {
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
+        /* ── Blog Footer ── */
+        .blog-footer {
+            background: var(--dk);
+            padding: clamp(3rem, 6vw, 5rem) 0;
+            text-align: center;
+            border-top: 1px solid var(--dk-bd);
+            transition: background 0.5s;
         }
-
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
+        .blog-footer h3 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--dk-t);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.15em;
+            line-height: 1.3;
         }
-
-        /* Hover Effects */
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .blog-footer p {
+            color: var(--dk-t2);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
-
-        .hover-lift:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        .blog-footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
         }
-
-        /* Text Gradient */
-        .text-gradient {
-            background: linear-gradient(135deg, #6366f1 0%, #d946ef 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .blog-footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dk-t2);
+            transition: color 0.3s;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--dk-bd2);
+            border-radius: 8px;
         }
-
-        /* Smooth Scroll & Scrollbar */
-        html {
-            scroll-behavior: smooth;
+        .blog-footer-links a:hover {
+            color: var(--terra-l);
+            border-color: rgba(212, 137, 107, 0.35);
         }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgb(var(--bg-color));
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #374151;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4b5563;
+        .blog-footer-copy {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            color: var(--dk-t3);
         }
     </style>
 </head>
 
-<body class="bg-background text-tsecondary font-sans selection:bg-primary selection:text-white overflow-x-hidden">
+<body>
 
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div
-            class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-40 animate-blob">
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <a href="../index.html" class="nav-logo">A<em>.</em>Dhar</a>
+    <div class="nr">
+        <div class="nl">
+            <a href="../index.html#insights">Writing</a>
+            <a href="../index.html" class="ncta"><i class="ph ph-arrow-left"></i> Portfolio</a>
         </div>
-        <div
-            class="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-30 animate-blob animation-delay-2000">
-        </div>
+        <button class="thm" id="thm" aria-label="Toggle theme">
+            <i class="ph-fill ph-sun s"></i>
+            <i class="ph-fill ph-moon m"></i>
+        </button>
+        <button class="ham" id="ham"><i class="ph ph-list"></i></button>
     </div>
+</nav>
 
-    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <nav
-            class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl w-full max-w-2xl">
-            <a href="../index.html"
-                class="font-heading font-bold text-xl text-tprimary tracking-tight hover:text-primary transition-colors">AD.</a>
+<div class="mob" id="mob">
+    <button class="mob-x" id="mobx"><i class="ph ph-x"></i></button>
+    <a href="../index.html" class="ml">Portfolio</a>
+    <a href="../index.html#insights" class="ml">Writing</a>
+    <a href="../index.html#contact" class="ml" style="color:var(--terra);">Contact</a>
+</div>
 
-            <div class="flex items-center gap-4">
-                <button id="theme-toggle"
-                    class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-tprimary"
-                    aria-label="Toggle Theme">
-                    <i class="ph-fill ph-sun hidden dark:block"></i>
-                    <i class="ph-fill ph-moon block dark:hidden"></i>
-                </button>
-
-                <a href="../index.html"
-                    class="flex items-center gap-2 text-sm font-medium text-tsecondary hover:text-tprimary transition-colors">
-                    <i class="ph-bold ph-arrow-left"></i> Back to Portfolio
-                </a>
-            </div>
-        </nav>
-    </div>
-
-    <header
-        class="relative pt-40 pb-20 px-4 text-center z-10 border-b border-slate-200 dark:border-white/5 bg-gradient-to-b from-slate-50 to-background dark:from-slate-900/50 dark:to-background">
-        <div class="max-w-3xl mx-auto space-y-6">
-            <div class="flex items-center justify-center gap-4 text-sm font-medium">
-                <span
-                    class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 font-semibold">Agentic
-                    AI</span>
-                <span class="text-slate-500 dark:text-slate-400">January 1, 2026</span>
-            </div>
-
-            <h1
-                class="font-heading text-4xl md:text-6xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight">
-                The Future of <span class="text-gradient">Autonomous Agents</span> in Project Management
-            </h1>
-
-            <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-                Why chatbots are just the beginning, and how multi-agent systems will redefine how we track progress and
-                mitigate risks.
-            </p>
+<!-- BLOG HEADER -->
+<header class="blog-header">
+    <div class="wrap">
+        <div class="blog-eyebrow">
+            <span class="blog-cat">Agentic AI</span>
+            <span class="blog-date">January 1, 2026</span>
         </div>
-    </header>
+        <h1 class="blog-title">The Future of <em>Autonomous Agents</em> in Project Management</h1>
+        <p class="blog-sub">Why chatbots are just the beginning, and how multi-agent systems will redefine how we track progress and mitigate risks.</p>
+    </div>
+</header>
 
-    <article class="py-20 px-4 relative z-10 bg-white dark:bg-background">
-        <div class="max-w-3xl mx-auto prose">
+<!-- ARTICLE -->
+<div class="blog-body">
+    <article class="wrap">
+        <div class="prose">
 
             <h2>The Core Shift: From Tools to Teammates</h2>
             <p>
@@ -331,7 +340,6 @@
                 down high-level goals, and self-correct when obstacles arise (like an intern finding a new flight when
                 the first is cancelled).
             </p>
-
             <p>
                 <strong>The Analogy:</strong> Traditional automation solves <em>Equations</em> (2x + 4 = 10) where there
                 is one right answer. Agents solve <em>Word Problems</em>, requiring context, planning, and adaptation to
@@ -342,23 +350,17 @@
             <p>
                 To trust these systems, one must understand their cognitive architecture, which mimics human workflow:
             </p>
-
             <ul>
-                <li><strong>The Brain (LLM):</strong> Handles reasoning and planning (Decomposition → Planning →
-                    Reflection).</li>
-                <li><strong>The Hands (Tools):</strong> API connections that allow the agent to execute actions (e.g.,
-                    actually sending the calendar invite via <code>calendar.create_event</code>).</li>
-                <li><strong>The Memory:</strong> Solves "catastrophic forgetting" by maintaining both short-term context
-                    and long-term history (vector databases) to recall past decisions and preferences.</li>
+                <li><strong>The Brain (LLM):</strong> Handles reasoning and planning (Decomposition → Planning → Reflection).</li>
+                <li><strong>The Hands (Tools):</strong> API connections that allow the agent to execute actions (e.g., actually sending the calendar invite via <code>calendar.create_event</code>).</li>
+                <li><strong>The Memory:</strong> Solves "catastrophic forgetting" by maintaining both short-term context and long-term history (vector databases) to recall past decisions and preferences.</li>
             </ul>
 
-            <h3>The Ladder of Autonomy:</h3>
+            <h3>The Ladder of Autonomy</h3>
             <ul>
                 <li><strong>Reflex Agents:</strong> Simple "If-Then" triggers.</li>
-                <li><strong>Goal-Based Agents:</strong> Given a target ("Plan the sprint"), they figure out the steps.
-                </li>
-                <li><strong>Utility-Based Agents:</strong> Optimize for trade-offs (e.g., minimizing cost vs. maximizing
-                    team happiness).</li>
+                <li><strong>Goal-Based Agents:</strong> Given a target ("Plan the sprint"), they figure out the steps.</li>
+                <li><strong>Utility-Based Agents:</strong> Optimize for trade-offs (e.g., minimizing cost vs. maximizing team happiness).</li>
                 <li><strong>Learning Agents:</strong> Improve over time based on feedback loops.</li>
             </ul>
 
@@ -366,36 +368,24 @@
             <p>
                 Agents move beyond administrative tasks to solve complex cognitive problems:
             </p>
-
             <ul>
-                <li><strong>Dynamic Scheduling:</strong> Eliminates "Calendar Tetris." Agents use utility functions to
-                    slot tasks based on priority and instantly reshuffle the entire team's schedule when conflicts or
-                    delays occur.</li>
-                <li><strong>Resource Allocation ("Moneyball"):</strong> Uses data to match skills to tasks and prevent
-                    burnout by monitoring employee "burn rates" in real-time.</li>
-                <li><strong>Predictive Risk:</strong> Scans "digital exhaust" (Slack sentiment, Jira comments) to
-                    predict delays or morale dips before they happen.</li>
-                <li><strong>Knowledge Synthesis:</strong> Replaces daily standups by scraping code repos and task boards
-                    to generate automatic progress reports.</li>
+                <li><strong>Dynamic Scheduling:</strong> Eliminates "Calendar Tetris." Agents use utility functions to slot tasks based on priority and instantly reshuffle the entire team's schedule when conflicts or delays occur.</li>
+                <li><strong>Resource Allocation ("Moneyball"):</strong> Uses data to match skills to tasks and prevent burnout by monitoring employee "burn rates" in real-time.</li>
+                <li><strong>Predictive Risk:</strong> Scans "digital exhaust" (Slack sentiment, Jira comments) to predict delays or morale dips before they happen.</li>
+                <li><strong>Knowledge Synthesis:</strong> Replaces daily standups by scraping code repos and task boards to generate automatic progress reports.</li>
             </ul>
 
             <h2>The Human Element: The "AI Project Manager"</h2>
             <blockquote>
-                AI will not replace the Project Manager, but it will force an evolution from Administrator to Strategic
-                Leader.
-                <br><br>
-                <strong>The End of "Nagging":</strong> Agents take over the "bad cop" role of chasing updates and
-                timesheets.
+                <p>AI will not replace the Project Manager, but it will force an evolution from Administrator to Strategic Leader.</p>
+                <p><strong>The End of "Nagging":</strong> Agents take over the "bad cop" role of chasing updates and timesheets.</p>
             </blockquote>
 
-            <h3>New Core Skills:</h3>
+            <h3>New Core Skills</h3>
             <ul>
-                <li><strong>Emotional Intelligence (EQ):</strong> Humans must focus on negotiation, empathy, and
-                    "reading between the lines" (subtext) that AI misses.</li>
-                <li><strong>AI Fluency:</strong> The ability to orchestrate agents, engineer prompts, and validate AI
-                    work to ensure it hasn't "hallucinated."</li>
-                <li><strong>Superagency:</strong> To unlock value, workflows must be redesigned for agents. Layering AI
-                    on broken processes only creates "faster chaos."</li>
+                <li><strong>Emotional Intelligence (EQ):</strong> Humans must focus on negotiation, empathy, and "reading between the lines" (subtext) that AI misses.</li>
+                <li><strong>AI Fluency:</strong> The ability to orchestrate agents, engineer prompts, and validate AI work to ensure it hasn't "hallucinated."</li>
+                <li><strong>Superagency:</strong> To unlock value, workflows must be redesigned for agents. Layering AI on broken processes only creates "faster chaos."</li>
             </ul>
 
             <h2>Conclusion</h2>
@@ -403,48 +393,62 @@
                 The future is symbiotic. Agents handle the "Science" (data, probability, scheduling), liberating humans
                 to focus on the "Art" (strategy, leadership, empathy).
             </p>
-
             <blockquote>
-                Don't just layer AI on top of bad processes. Redesign your workflow to let the AI handle the
-                administration so you can handle the strategy.
+                <p>Don't just layer AI on top of bad processes. Redesign your workflow to let the AI handle the administration so you can handle the strategy.</p>
             </blockquote>
+
         </div>
     </article>
+</div>
 
-    <footer class="py-12 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-black/40 relative z-10">
-        <div class="max-w-3xl mx-auto px-4 text-center">
-            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Enjoyed this read?</h3>
-            <div class="flex justify-center gap-6">
-                <a href="https://www.linkedin.com/in/aakashdhar" target="_blank"
-                    class="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
-                    <i class="ph-fill ph-linkedin-logo text-xl"></i> Connect on LinkedIn
-                </a>
-            </div>
-            <p class="mt-8 text-xs text-slate-500 dark:text-slate-600">© 2026 Aakash Dhar. Built with Code & Coffee.</p>
+<!-- FOOTER -->
+<footer class="blog-footer">
+    <div class="wrap">
+        <h3>Enjoyed this read?</h3>
+        <p>Connect on LinkedIn or head back to the portfolio for more.</p>
+        <div class="blog-footer-links">
+            <a href="https://www.linkedin.com/in/aakashdhar" target="_blank">
+                <i class="ph-fill ph-linkedin-logo"></i> Connect on LinkedIn
+            </a>
+            <a href="../index.html#insights">
+                <i class="ph ph-newspaper"></i> More Writing
+            </a>
+            <a href="../index.html">
+                <i class="ph ph-arrow-left"></i> Back to Portfolio
+            </a>
         </div>
-    </footer>
+        <p class="blog-footer-copy">© 2026 Aakash Dhar. Built with Code &amp; Coffee.</p>
+    </div>
+</footer>
 
-    <script>
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
+<script>
+    // Theme toggle — mirrors index.html logic (html.dark class)
+    const thm = document.getElementById('thm');
+    const html = document.documentElement;
+    if (localStorage.theme === 'dark') {
+        html.classList.add('dark');
+    } else {
+        html.classList.remove('dark');
+    }
+    thm.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
 
-        // Check LocalStorage. Default is Light
-        if (localStorage.theme === 'dark') {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
+    // Mobile menu
+    const ham = document.getElementById('ham');
+    const mob = document.getElementById('mob');
+    const mobx = document.getElementById('mobx');
+    ham.addEventListener('click', () => mob.classList.add('open'));
+    mobx.addEventListener('click', () => mob.classList.remove('open'));
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
 
-        // Toggle Function
-        themeToggleBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
+    // Nav scroll border
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+</script>
 
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.theme = 'dark';
-            } else {
-                localStorage.theme = 'light';
-            }
-        });
-    </script>
 </body>
 </html>

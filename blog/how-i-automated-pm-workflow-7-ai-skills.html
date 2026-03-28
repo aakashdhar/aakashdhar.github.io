@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How I Automated My Entire PM Workflow With 7 AI Skills | Aakash Dhar</title>
+    <meta name="title" content="How I Automated My Entire PM Workflow With 7 AI Skills | Aakash Dhar">
+    <meta name="description"
+        content="How I built 7 AI-powered skills that handle everything from call transcripts to client contracts — so I can focus on actually managing projects.">
+    <meta name="keywords"
+        content="PM Automation, AI Project Management, Claude Skills, Transcript Digester, SOW Generator, Estimate Generator, Agentic AI, BetaCraft, Technical PM">
+    <meta name="author" content="Aakash Dhar">
+
+    <link rel="canonical" href="https://aakashdhar.me/blog/how-i-automated-pm-workflow-7-ai-skills.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://aakashdhar.me/blog/how-i-automated-pm-workflow-7-ai-skills.html">
+    <meta property="og:title" content="How I Automated My Entire PM Workflow With 7 AI Skills">
+    <meta property="og:description"
+        content="From call transcripts to signed contracts — 7 skills that cover the entire client-facing PM lifecycle.">
+    <meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aakashdhar.me/blog/how-i-automated-pm-workflow-7-ai-skills.html">
+    <meta property="twitter:title" content="How I Automated My Entire PM Workflow With 7 AI Skills">
+    <meta property="twitter:description"
+        content="From call transcripts to signed contracts — 7 skills that cover the entire client-facing PM lifecycle.">
+    <meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "How I Automated My Entire PM Workflow With 7 AI Skills",
+      "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Aakash Dhar",
+        "url": "https://www.linkedin.com/in/aakashdhar"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Aakash Dhar",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aakashdhar.me/logo.png"
+        }
+      },
+      "datePublished": "2026-03-29",
+      "description": "How I built 7 AI-powered skills that handle everything from call transcripts to client contracts — so I can focus on actually managing projects.",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://aakashdhar.me/blog/how-i-automated-pm-workflow-7-ai-skills.html"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C2704E%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+        /* ── Blog Header ── */
+        .blog-header {
+            background: var(--dk);
+            padding: clamp(5.5rem, 10vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+            position: relative;
+            overflow: clip;
+            transition: background 0.5s;
+        }
+
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, var(--dk-orb), transparent 70%);
+            pointer-events: none;
+        }
+
+        .blog-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .blog-cat {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.28rem 0.8rem;
+            border-radius: 100px;
+            background: var(--terra-glow);
+            border: 1px solid rgba(212, 137, 107, 0.3);
+            color: var(--terra-l);
+        }
+
+        .blog-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--dk-t3);
+            letter-spacing: 0.05em;
+        }
+
+        .blog-title {
+            font-family: 'Amiri', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            color: var(--dk-t);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            padding-bottom: 0.2em;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .blog-title em {
+            font-style: italic;
+            color: var(--terra-l);
+        }
+
+        .blog-sub {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--dk-t2);
+            max-width: 580px;
+        }
+
+        /* ── Article Body ── */
+        .blog-body {
+            padding: clamp(3rem, 6vw, 5rem) 0;
+        }
+
+        .prose {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .prose p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--t2);
+            margin-bottom: 1.5rem;
+        }
+
+        .prose h2 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.65rem, 3vw, 2.1rem);
+            color: var(--t1);
+            font-weight: 700;
+            margin-top: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            padding-bottom: 0.15em;
+        }
+
+        .prose h2::after {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 2px;
+            background: var(--terra);
+            margin-top: 0.5rem;
+        }
+
+        .prose ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.75rem;
+        }
+
+        .prose ul li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.65rem;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--t2);
+        }
+
+        .prose ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--terra);
+            font-weight: 700;
+        }
+
+        .prose strong {
+            color: var(--t1);
+            font-weight: 700;
+        }
+
+        .prose em {
+            font-style: italic;
+        }
+
+        .prose a {
+            color: var(--terra-l);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s;
+        }
+
+        .prose a:hover {
+            color: var(--terra);
+        }
+
+        .prose code {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82em;
+            color: var(--terra-l);
+            background: var(--bg2);
+            padding: 0.12em 0.4em;
+            border-radius: 4px;
+            border: 1px solid var(--bd);
+        }
+
+        .prose blockquote {
+            border-left: 3px solid var(--terra);
+            padding: 1.4rem 1.75rem;
+            margin: 2.5rem 0;
+            background: var(--bg2);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .prose blockquote p {
+            font-family: 'Amiri', serif;
+            font-size: 1.12rem;
+            font-style: italic;
+            color: var(--t1);
+            margin-bottom: 0.75rem;
+            line-height: 1.75;
+        }
+
+        .prose blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        .prose blockquote strong {
+            color: var(--terra);
+            font-style: normal;
+        }
+
+        /* ── Skill divider — reused from spec-before-code post ── */
+        .skill-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 3rem 0 1.25rem;
+        }
+
+        .skill-num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--t3);
+            letter-spacing: 0.1em;
+            flex-shrink: 0;
+        }
+
+        .skill-name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--terra-l);
+            background: var(--bg2);
+            padding: 0.2em 0.6em;
+            border-radius: 4px;
+            border: 1px solid var(--bd);
+            flex-shrink: 0;
+        }
+
+        .skill-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--t3);
+            letter-spacing: 0.03em;
+        }
+
+        .skill-line {
+            flex: 1;
+            height: 1px;
+            background: var(--bd);
+        }
+
+        /* ── Pipeline flow list ── */
+        .pipeline {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .pipeline li {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 0.85rem 1.2rem;
+            background: var(--bg2);
+            border: 1px solid var(--bd);
+            border-bottom: none;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--t2);
+        }
+
+        .pipeline li:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .pipeline li:last-child {
+            border-bottom: 1px solid var(--bd);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .pipeline li:only-child {
+            border-radius: 8px;
+        }
+
+        .pipeline-arrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--terra);
+            font-weight: 700;
+            flex-shrink: 0;
+            padding-top: 0.1rem;
+        }
+
+        .pipeline code {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8em;
+            color: var(--terra-l);
+            background: var(--bg);
+            padding: 0.1em 0.35em;
+            border-radius: 3px;
+            border: 1px solid var(--bd);
+        }
+
+        /* ── Before / After callout ── */
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0 2.5rem;
+        }
+
+        .ba-card {
+            padding: 1.25rem 1.4rem;
+            border-radius: 8px;
+            border: 1px solid var(--bd);
+        }
+
+        .ba-card.before {
+            background: var(--bg2);
+        }
+
+        .ba-card.after {
+            background: var(--dk);
+            border-color: rgba(212, 137, 107, 0.2);
+        }
+
+        .ba-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .ba-card.before .ba-label {
+            color: var(--t3);
+        }
+
+        .ba-card.after .ba-label {
+            color: var(--terra-l);
+        }
+
+        .ba-card ul {
+            margin-bottom: 0;
+        }
+
+        .ba-card.before li {
+            color: var(--t2);
+            font-size: 0.88rem;
+        }
+
+        .ba-card.after li {
+            color: var(--dk-t2);
+            font-size: 0.88rem;
+        }
+
+        .ba-card.before li::before {
+            color: var(--t3);
+        }
+
+        .ba-card.after li::before {
+            color: var(--terra-l);
+        }
+
+        @media(max-width:600px) {
+            .before-after {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── Blog Footer ── */
+        .blog-footer {
+            background: var(--dk);
+            padding: clamp(3rem, 6vw, 5rem) 0;
+            text-align: center;
+            border-top: 1px solid var(--dk-bd);
+            transition: background 0.5s;
+        }
+
+        .blog-footer h3 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--dk-t);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.15em;
+            line-height: 1.3;
+        }
+
+        .blog-footer p {
+            color: var(--dk-t2);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .blog-footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .blog-footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dk-t2);
+            transition: color 0.3s;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--dk-bd2);
+            border-radius: 8px;
+        }
+
+        .blog-footer-links a:hover {
+            color: var(--terra-l);
+            border-color: rgba(212, 137, 107, 0.35);
+        }
+
+        .blog-footer-copy {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            color: var(--dk-t3);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <a href="../index.html" class="nav-logo">A<em>.</em>Dhar</a>
+        <div class="nr">
+            <div class="nl">
+                <a href="../index.html#insights">Writing</a>
+                <a href="../index.html" class="ncta"><i class="ph ph-arrow-left"></i> Portfolio</a>
+            </div>
+            <button class="thm" id="thm" aria-label="Toggle theme">
+                <i class="ph-fill ph-sun s"></i>
+                <i class="ph-fill ph-moon m"></i>
+            </button>
+            <button class="ham" id="ham"><i class="ph ph-list"></i></button>
+        </div>
+    </nav>
+
+    <div class="mob" id="mob">
+        <button class="mob-x" id="mobx"><i class="ph ph-x"></i></button>
+        <a href="../index.html" class="ml">Portfolio</a>
+        <a href="../index.html#insights" class="ml">Writing</a>
+        <a href="../index.html#contact" class="ml" style="color:var(--terra);">Contact</a>
+    </div>
+
+    <!-- BLOG HEADER -->
+    <header class="blog-header">
+        <div class="wrap">
+            <div class="blog-eyebrow">
+                <span class="blog-cat">Agentic AI</span>
+                <span class="blog-date">March 29, 2026</span>
+            </div>
+            <h1 class="blog-title">How I <em>Automated My Entire PM Workflow</em> With 7 AI Skills</h1>
+            <p class="blog-sub">Transcripts, estimates, SOWs, and more — so I can focus on actually managing projects.
+            </p>
+        </div>
+    </header>
+
+    <!-- ARTICLE -->
+    <div class="blog-body">
+        <article class="wrap">
+            <div class="prose">
+
+                <h2>The Reality of Being a Technical PM</h2>
+                <p>
+                    Nobody tells you this when you become a technical project manager, but a huge chunk of the job isn't
+                    project management at all.
+                </p>
+                <p>
+                    It's writing the same types of emails over and over. It's converting a 45-minute client call into
+                    structured notes, action items, and a follow-up email — every single time. It's building an
+                    estimation
+                    sheet from scratch because the last one was a different format. It's generating a Statement of Work
+                    that looks identical to the last one except for the project name and the numbers.
+                </p>
+                <p>
+                    These tasks aren't hard. They're just relentless. And every hour spent doing them is an hour not
+                    spent
+                    talking to clients, unblocking developers, or thinking about what actually needs to happen next.
+                </p>
+                <p>
+                    I got tired of it. So I built a fix.
+                </p>
+
+                <h2>What Is a PM Skill?</h2>
+                <p>
+                    Same concept as the <a href="spec-before-code-9-skill-framework-ai-development.html">vibe-*
+                        development skills</a>
+                    — a named, step-by-step workflow that loads into Claude's context and replaces improvisation with a
+                    repeatable, auditable process.
+                </p>
+                <p>
+                    The difference is the domain. These skills aren't for building software. They're for managing the
+                    humans, the communications, and the paperwork that surround the software.
+                </p>
+                <p>
+                    Seven skills. Each one handles a specific PM workflow. Together they cover the entire client-facing
+                    lifecycle — from the moment a call recording arrives to the moment a contract is signed.
+                </p>
+
+                <h2>The Seven Skills</h2>
+
+                <!-- 01 transcript-digester -->
+                <div class="skill-divider">
+                    <span class="skill-num">01</span>
+                    <span class="skill-name">transcript-digester</span>
+                    <span class="skill-tag">Turn a 45-minute call into structured intelligence</span>
+                    <span class="skill-line"></span>
+                </div>
+                <p>
+                    Every client call and internal standup produces a transcript. <code>transcript-digester</code>
+                    converts
+                    that raw text into structured, trackable project intelligence — automatically.
+                </p>
+                <p>
+                    Two trigger modes. <strong>Automated:</strong> Fathom detects a call has ended and fires the
+                    transcript
+                    directly into the skill. <strong>Manual:</strong> drop a <code>.txt</code> file into the session and
+                    it
+                    processes on demand.
+                </p>
+                <p>
+                    Two meeting types handled differently. <code>[CLIENT-X]</code> calls extract scope signals,
+                    commitments
+                    made, open questions, client sentiment, red flags, and action items — then update
+                    <code>client-brief.md</code> and <code>comms-log.md</code>. <code>[STANDUP-X]</code> calls extract
+                    blockers, what was built, what's next, and team health — then update <code>project-status.md</code>.
+                </p>
+                <p>
+                    Everything is dated, attributed, and saved to the correct project folder. Nothing lives only in the
+                    chat window. Nothing gets lost because someone forgot to write it down.
+                </p>
+                <blockquote>
+                    <p><strong>Before:</strong> manually re-reading a 45-minute transcript, writing notes into four
+                        different documents, hoping you caught everything important.</p>
+                    <p><strong>After:</strong> drop the file, review the structured output, done in three minutes.</p>
+                </blockquote>
+
+                <!-- 02 email-thread-analyzer -->
+                <div class="skill-divider">
+                    <span class="skill-num">02</span>
+                    <span class="skill-name">email-thread-analyzer</span>
+                    <span class="skill-tag">Extract intelligence from every client email</span>
+                    <span class="skill-line"></span>
+                </div>
+                <p>
+                    Client emails aren't just messages. They're data. They contain scope signals, unanswered questions,
+                    sentiment shifts, and commitments — often buried in the middle of a casual paragraph.
+                </p>
+                <p>
+                    <code>email-thread-analyzer</code> reads every new client email and extracts six categories of
+                    intelligence: client sentiment, unanswered questions from previous threads, new scope signals,
+                    commitments made, red flags, and action items.
+                </p>
+                <p>
+                    It updates <code>comms-log.md</code> with every finding — dated and attributed. If a response is
+                    needed, it automatically triggers <code>client-email-drafter</code>. The PM reviews everything
+                    before
+                    anything is sent.
+                </p>
+                <p>
+                    Two trigger modes. <strong>Automated</strong> via Gmail MCP when a new email arrives from a known
+                    client domain. <strong>Manual</strong> when the PM pastes an email thread and says "analyze this."
+                </p>
+                <p>
+                    The key insight: client emails should be analyzed in the context of the full project history — not
+                    just
+                    the latest message. What did they ask three emails ago that never got answered? What commitment did
+                    you
+                    make in the last call that this email is referencing? The skill reads <code>comms-log.md</code> and
+                    <code>client-brief.md</code> before analyzing anything.
+                </p>
+
+                <!-- 03 estimate-generator -->
+                <div class="skill-divider">
+                    <span class="skill-num">03</span>
+                    <span class="skill-name">estimate-generator</span>
+                    <span class="skill-tag">Generate a structured XLSX estimate from a call transcript</span>
+                    <span class="skill-line"></span>
+                </div>
+                <p>
+                    The most time-consuming deliverable after a client call. Every project needs one. Every estimate
+                    needs
+                    to be consistent in format, accurate in structure, and immediately shareable with the dev team.
+                </p>
+                <p>
+                    <code>estimate-generator</code> takes a call transcript — or a feature list, or a
+                    <code>client-brief.md</code> — and produces a structured XLSX file with backend hours, frontend
+                    hours,
+                    QA (auto-calculated at 30% of dev), and PM (auto-calculated at 15% of dev). Totals across all
+                    features. No cost figures, no money — hours only.
+                </p>
+                <ul>
+                    <li><strong>Mode A — New projects:</strong> greenfield builds where nothing exists yet, features
+                        scoped from scratch.</li>
+                    <li><strong>Mode B — Existing projects:</strong> adding to a live codebase, adjusted hours based on
+                        existing complexity.</li>
+                </ul>
+                <p>
+                    <strong>AI-adjusted hours.</strong> It doesn't just transcribe what was discussed — it applies
+                    intelligent reductions based on task type. Standard CRUD with existing patterns gets reduced. Pure
+                    UI
+                    with no logic gets reduced. Tests for already-covered logic get reduced. Novel integration work does
+                    not get reduced.
+                </p>
+                <p>
+                    Fixed ratios that never change: QA = (Backend + Frontend) × 0.30. PM = (Backend + Frontend) × 0.15.
+                    This consistency matters when a client asks why one project's QA allocation looks different from
+                    another's.
+                </p>
+
+                <!-- 04 sow-generator -->
+                <div class="skill-divider">
+                    <span class="skill-num">04</span>
+                    <span class="skill-name">sow-generator</span>
+                    <span class="skill-tag">Client-ready Statement of Work, ready for signature</span>
+                    <span class="skill-line"></span>
+                </div>
+                <p>
+                    The confirmation estimate is approved. Now you need a contract. <code>sow-generator</code> takes the
+                    confirmed XLSX and produces a professionally formatted <code>.docx</code> — BetaCraft's exact SOW
+                    format — ready for client signature.
+                </p>
+                <p>
+                    Auto-calculates development hours, fees, milestones, and payment splits. Standard payment split is
+                    50% / 25% / 25% with PM override available. Development hours always combine backend and frontend —
+                    the client never sees the split.
+                </p>
+                <p>
+                    The output isn't a template with blanks. It's a complete document. Client name, effective date, MSA
+                    reference, scope description, milestone definitions, payment schedule, terms — all populated from
+                    the
+                    confirmation estimate and project context.
+                </p>
+                <p>
+                    No more spending an hour reformatting last month's SOW for the new project. Drop the estimate,
+                    review
+                    the output, send to the client.
+                </p>
+
+                <!-- 05 ticket-generator -->
+                <div class="skill-divider">
+                    <span class="skill-num">05</span>
+                    <span class="skill-name">ticket-generator</span>
+                    <span class="skill-tag">Convert an estimate into Jira-ready tickets</span>
+                    <span class="skill-line"></span>
+                </div>
+                <p>
+                    The estimate is confirmed by the dev team. Now someone has to turn it into Jira tickets. This is the
+                    task that gets done badly when it's done manually — vague acceptance criteria, no file paths, no
+                    codebase context, tickets that mean nothing to the developer who picks them up.
+                </p>
+                <p>
+                    <code>ticket-generator</code> reads the confirmed XLSX and produces a single <code>.md</code> file —
+                    copy-paste ready for Jira. Feature rows become Epics. Task rows become Stories under their Epic. RnD
+                    rows become Spikes with research briefs. Pending design rows become Placeholders that are blocked
+                    until
+                    design is ready.
+                </p>
+                <p>
+                    The codebase-aware part is what makes it different. It reads <code>vibe/CODEBASE.md</code> and
+                    <code>vibe/ARCHITECTURE.md</code> before writing a single ticket. Every Story includes the exact
+                    file
+                    paths that need to be touched, the existing patterns to follow, and acceptance criteria grounded in
+                    the actual codebase — not invented from the scope description alone.
+                </p>
+                <p>
+                    A developer picking up a ticket generated this way knows exactly where to start, what convention to
+                    follow, and how to verify they're done.
+                </p>
+
+                <!-- 06 client-email-drafter -->
+                <div class="skill-divider">
+                    <span class="skill-num">06</span>
+                    <span class="skill-name">client-email-drafter</span>
+                    <span class="skill-tag">Context-first drafting — never a quick reply</span>
+                    <span class="skill-line"></span>
+                </div>
+                <p>
+                    <code>email-thread-analyzer</code> extracts the intelligence. <code>client-email-drafter</code> uses
+                    it to write the response. These two skills work together as a single pipeline.
+                </p>
+                <p>
+                    <code>client-email-drafter</code> is context-first. Before writing a single word, it reads four
+                    documents: <code>comms-log.md</code> (full email history and analysis), <code>client-brief.md</code>
+                    (what the client wants to build and existing commitments), <code>scope.md</code> (what's in scope,
+                    what isn't), and the analyzed thread from the analyzer.
+                </p>
+                <p>
+                    The result is a draft that sounds like a PM who has been working on this project for months —
+                    because
+                    it has access to everything a PM working on the project for months would know. It references
+                    previous
+                    commitments. It addresses unanswered questions from earlier threads. It matches the tone of the
+                    existing relationship.
+                </p>
+                <blockquote>
+                    <p>The PM always reviews before sending. Never sent automatically. The skill is a <strong>first
+                            draft, not an autopilot.</strong></p>
+                    <p>One rule it enforces: never draft an email without the full context loaded. No quick replies
+                        based only on the incoming message. Every draft is grounded in the full project history.</p>
+                </blockquote>
+
+                <!-- 07 project-status-dashboard -->
+                <div class="skill-divider">
+                    <span class="skill-num">07</span>
+                    <span class="skill-name">project-status-dashboard</span>
+                    <span class="skill-tag">Weekly health across all active projects</span>
+                    <span class="skill-line"></span>
+                </div>
+                <p>
+                    Every Monday at 9 AM — or on demand — the dashboard skill reads across every active project and
+                    generates a single standalone HTML file: the weekly project health report.
+                </p>
+                <p>
+                    One file. Opens in any browser. Shareable with stakeholders or printable for a meeting.
+                </p>
+                <ul>
+                    <li><strong>Per project:</strong> overall health status, week-over-week comparison, active blockers,
+                        client sentiment trend, hours consumed vs estimated, upcoming milestones.</li>
+                    <li><strong>Across all projects:</strong> portfolio-level view — which projects are healthy, which
+                        need attention, which are at risk.</li>
+                </ul>
+                <p>
+                    Data sources are all automatic. <code>project-status.md</code>, <code>session-notes/</code>,
+                    <code>comms-log.md</code>, confirmed estimates, standup history. The PM doesn't assemble anything —
+                    the skill reads everything and renders the dashboard.
+                </p>
+                <p>
+                    The design follows BetaCraft's studio aesthetic — warm off-white palette, editorial typography,
+                    clean
+                    information hierarchy. It looks like something you'd want to share in a client meeting, not a
+                    spreadsheet you scraped together on a Monday morning.
+                </p>
+
+                <h2>How They Connect</h2>
+                <p>
+                    The skills aren't seven isolated tools. They're a pipeline. Each step updates the shared context
+                    files; every subsequent step reads them. Nothing is re-entered. Nothing is lost.
+                </p>
+
+                <ul class="pipeline">
+                    <li><span class="pipeline-arrow">→</span> Client call ends — <code>transcript-digester</code>
+                        processes the recording, updates <code>client-brief.md</code> and <code>comms-log.md</code>,
+                        extracts action items.</li>
+                    <li><span class="pipeline-arrow">→</span> Client email arrives — <code>email-thread-analyzer</code>
+                        extracts intelligence, updates <code>comms-log.md</code>, flags if a response is needed.</li>
+                    <li><span class="pipeline-arrow">→</span> Response needed — <code>client-email-drafter</code> reads
+                        full project context, drafts the reply, waits for PM review.</li>
+                    <li><span class="pipeline-arrow">→</span> New features scoped — <code>estimate-generator</code>
+                        reads the transcript and produces the XLSX.</li>
+                    <li><span class="pipeline-arrow">→</span> Estimate confirmed — <code>sow-generator</code> produces
+                        the SOW for signature.</li>
+                    <li><span class="pipeline-arrow">→</span> SOW signed, dev starts — <code>ticket-generator</code>
+                        converts the estimate into codebase-aware Jira tickets.</li>
+                    <li><span class="pipeline-arrow">→</span> Every Monday — <code>project-status-dashboard</code>
+                        renders the weekly health report across all active projects.</li>
+                </ul>
+
+                <h2>What Actually Changed</h2>
+
+                <div class="before-after">
+                    <div class="ba-card before">
+                        <div class="ba-label">Before</div>
+                        <ul>
+                            <li>45 min call → 45 min of note-taking</li>
+                            <li>30 min writing the follow-up email</li>
+                            <li>1 hour building the estimate from scratch</li>
+                            <li>1 hour reformatting last month's SOW</li>
+                            <li>30 min writing Jira tickets too vague to use</li>
+                        </ul>
+                    </div>
+                    <div class="ba-card after">
+                        <div class="ba-label">After</div>
+                        <ul>
+                            <li>Call ends → structured output in 3 minutes</li>
+                            <li>Email drafted from full context in 10 min</li>
+                            <li>Estimate generated from the same transcript</li>
+                            <li>SOW generated from the estimate</li>
+                            <li>Tickets generated from the SOW — with file paths</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p>
+                    The paperwork doesn't disappear. But it stops being the job.
+                </p>
+                <p>
+                    The job becomes what it was always supposed to be: understanding what the client needs, keeping the
+                    team unblocked, and making sure the right things get built in the right order.
+                </p>
+                <blockquote>
+                    <p><strong>The paperwork doesn't disappear — it just stops being your problem.</strong></p>
+                </blockquote>
+
+            </div>
+        </article>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="blog-footer">
+        <div class="wrap">
+            <h3>Enjoyed this read?</h3>
+            <p>Connect on LinkedIn or head back to the portfolio for more.</p>
+            <div class="blog-footer-links">
+                <a href="https://www.linkedin.com/in/aakashdhar" target="_blank">
+                    <i class="ph-fill ph-linkedin-logo"></i> Connect on LinkedIn
+                </a>
+                <a href="../index.html#insights">
+                    <i class="ph ph-newspaper"></i> More Writing
+                </a>
+                <a href="../index.html">
+                    <i class="ph ph-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+            <p class="blog-footer-copy">© 2026 Aakash Dhar. Built with Code &amp; Coffee.</p>
+        </div>
+    </footer>
+
+    <script>
+        const thm = document.getElementById('thm');
+        const html = document.documentElement;
+        if (localStorage.theme === 'dark') {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        thm.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        const ham = document.getElementById('ham');
+        const mob = document.getElementById('mob');
+        const mobx = document.getElementById('mobx');
+        ham.addEventListener('click', () => mob.classList.add('open'));
+        mobx.addEventListener('click', () => mob.classList.remove('open'));
+        mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+    </script>
+
+</body>
+
+</html>

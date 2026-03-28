@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Spec Before Code: How I Built a 9-Skill Framework for AI-Driven Development | Aakash Dhar</title>
+    <meta name="title" content="Spec Before Code: How I Built a 9-Skill Framework for AI-Driven Development | Aakash Dhar">
+    <meta name="description"
+        content="How I stopped re-explaining my project every session by building 9 structured skills that give Claude a full context handoff — covering spec, architecture, features, bugs, design, and code review.">
+    <meta name="keywords"
+        content="AI Coding Framework, Claude Code Skills, Agentic AI, Vibe Framework, Spec Before Code, AI-Driven Development, Claude Code, Autonomous Agents, BetaCraft">
+    <meta name="author" content="Aakash Dhar">
+
+    <link rel="canonical" href="https://aakashdhar.me/blog/spec-before-code-9-skill-framework-ai-development.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://aakashdhar.me/blog/spec-before-code-9-skill-framework-ai-development.html">
+    <meta property="og:title" content="Spec Before Code: How I Built a 9-Skill Framework for AI-Driven Development">
+    <meta property="og:description"
+        content="9 named, step-by-step workflows that load into Claude's context at runtime — replacing improvisation with a repeatable, auditable process.">
+    <meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aakashdhar.me/blog/spec-before-code-9-skill-framework-ai-development.html">
+    <meta property="twitter:title" content="Spec Before Code: How I Built a 9-Skill Framework for AI-Driven Development">
+    <meta property="twitter:description"
+        content="9 named, step-by-step workflows that load into Claude's context at runtime — replacing improvisation with a repeatable, auditable process.">
+    <meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Spec Before Code: How I Built a 9-Skill Framework for AI-Driven Development",
+      "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Aakash Dhar",
+        "url": "https://www.linkedin.com/in/aakashdhar"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Aakash Dhar",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aakashdhar.me/logo.png"
+        }
+      },
+      "datePublished": "2026-03-29",
+      "description": "How I stopped re-explaining my project every session by building 9 structured skills that give Claude a full context handoff.",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://aakashdhar.me/blog/spec-before-code-9-skill-framework-ai-development.html"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C2704E%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+        /* ── Blog Header ── */
+        .blog-header {
+            background: var(--dk);
+            padding: clamp(5.5rem, 10vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+            position: relative;
+            overflow: clip;
+            transition: background 0.5s;
+        }
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, var(--dk-orb), transparent 70%);
+            pointer-events: none;
+        }
+        .blog-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+        .blog-cat {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.28rem 0.8rem;
+            border-radius: 100px;
+            background: var(--terra-glow);
+            border: 1px solid rgba(212, 137, 107, 0.3);
+            color: var(--terra-l);
+        }
+        .blog-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--dk-t3);
+            letter-spacing: 0.05em;
+        }
+        .blog-title {
+            font-family: 'Amiri', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            color: var(--dk-t);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            padding-bottom: 0.2em;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+        .blog-title em {
+            font-style: italic;
+            color: var(--terra-l);
+        }
+        .blog-sub {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--dk-t2);
+            max-width: 580px;
+        }
+
+        /* ── Article Body ── */
+        .blog-body {
+            padding: clamp(3rem, 6vw, 5rem) 0;
+        }
+        .prose {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .prose p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--t2);
+            margin-bottom: 1.5rem;
+        }
+        .prose h2 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.65rem, 3vw, 2.1rem);
+            color: var(--t1);
+            font-weight: 700;
+            margin-top: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            padding-bottom: 0.15em;
+        }
+        .prose h2::after {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 2px;
+            background: var(--terra);
+            margin-top: 0.5rem;
+        }
+        .prose h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--terra);
+            margin-top: 2.5rem;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.06em;
+        }
+        .prose ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.75rem;
+        }
+        .prose ul li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.65rem;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--t2);
+        }
+        .prose ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--terra);
+            font-weight: 700;
+        }
+        .prose ol {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.75rem;
+            counter-reset: prose-counter;
+        }
+        .prose ol li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.6rem;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--t2);
+            counter-increment: prose-counter;
+        }
+        .prose ol li::before {
+            content: counter(prose-counter);
+            position: absolute;
+            left: 0;
+            width: 1.4rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--terra);
+            top: 0.25rem;
+        }
+        .prose strong {
+            color: var(--t1);
+            font-weight: 700;
+        }
+        .prose em {
+            font-style: italic;
+        }
+        .prose a {
+            color: var(--terra-l);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s;
+        }
+        .prose a:hover {
+            color: var(--terra);
+        }
+        .prose code {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82em;
+            color: var(--terra-l);
+            background: var(--bg2);
+            padding: 0.12em 0.4em;
+            border-radius: 4px;
+            border: 1px solid var(--bd);
+        }
+        .prose blockquote {
+            border-left: 3px solid var(--terra);
+            padding: 1.4rem 1.75rem;
+            margin: 2.5rem 0;
+            background: var(--bg2);
+            border-radius: 0 8px 8px 0;
+        }
+        .prose blockquote p {
+            font-family: 'Amiri', serif;
+            font-size: 1.12rem;
+            font-style: italic;
+            color: var(--t1);
+            margin-bottom: 0.75rem;
+            line-height: 1.75;
+        }
+        .prose blockquote p:last-child {
+            margin-bottom: 0;
+        }
+        .prose blockquote strong {
+            color: var(--terra);
+            font-style: normal;
+        }
+
+        /* ── Skills divider ── */
+        .skill-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 3rem 0 1.25rem;
+        }
+        .skill-num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--t3);
+            letter-spacing: 0.1em;
+            flex-shrink: 0;
+        }
+        .skill-name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--terra-l);
+            background: var(--bg2);
+            padding: 0.2em 0.6em;
+            border-radius: 4px;
+            border: 1px solid var(--bd);
+            flex-shrink: 0;
+        }
+        .skill-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--t3);
+            letter-spacing: 0.03em;
+        }
+        .skill-line {
+            flex: 1;
+            height: 1px;
+            background: var(--bd);
+        }
+
+        /* ── Blog Footer ── */
+        .blog-footer {
+            background: var(--dk);
+            padding: clamp(3rem, 6vw, 5rem) 0;
+            text-align: center;
+            border-top: 1px solid var(--dk-bd);
+            transition: background 0.5s;
+        }
+        .blog-footer h3 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--dk-t);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.15em;
+            line-height: 1.3;
+        }
+        .blog-footer p {
+            color: var(--dk-t2);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        .blog-footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+        .blog-footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dk-t2);
+            transition: color 0.3s;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--dk-bd2);
+            border-radius: 8px;
+        }
+        .blog-footer-links a:hover {
+            color: var(--terra-l);
+            border-color: rgba(212, 137, 107, 0.35);
+        }
+        .blog-footer-copy {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            color: var(--dk-t3);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <a href="../index.html" class="nav-logo">A<em>.</em>Dhar</a>
+    <div class="nr">
+        <div class="nl">
+            <a href="../index.html#insights">Writing</a>
+            <a href="../index.html" class="ncta"><i class="ph ph-arrow-left"></i> Portfolio</a>
+        </div>
+        <button class="thm" id="thm" aria-label="Toggle theme">
+            <i class="ph-fill ph-sun s"></i>
+            <i class="ph-fill ph-moon m"></i>
+        </button>
+        <button class="ham" id="ham"><i class="ph ph-list"></i></button>
+    </div>
+</nav>
+
+<div class="mob" id="mob">
+    <button class="mob-x" id="mobx"><i class="ph ph-x"></i></button>
+    <a href="../index.html" class="ml">Portfolio</a>
+    <a href="../index.html#insights" class="ml">Writing</a>
+    <a href="../index.html#contact" class="ml" style="color:var(--terra);">Contact</a>
+</div>
+
+<!-- BLOG HEADER -->
+<header class="blog-header">
+    <div class="wrap">
+        <div class="blog-eyebrow">
+            <span class="blog-cat">Agentic AI</span>
+            <span class="blog-date">March 29, 2026</span>
+        </div>
+        <h1 class="blog-title">Spec Before Code: How I Built a <em>9-Skill Framework</em> for AI-Driven Development</h1>
+        <p class="blog-sub">And stopped describing my project from scratch every single session.</p>
+    </div>
+</header>
+
+<!-- ARTICLE -->
+<div class="blog-body">
+    <article class="wrap">
+        <div class="prose">
+
+            <h2>The Problem Nobody Talks About</h2>
+            <p>
+                AI coding agents are genuinely impressive. They can scaffold a React app, write tests, debug race
+                conditions, and explain architecture decisions — all in plain English.
+            </p>
+            <p>
+                But here's what happens after the first session ends.
+            </p>
+            <p>
+                You come back the next day, open a new conversation, and the agent has no idea what you built yesterday.
+                No memory of the folder structure you agreed on. No recollection of the TypeScript conventions you
+                locked in. No awareness that you already have a storage abstraction layer and absolutely do not want
+                anything touching <code>localStorage</code> directly.
+            </p>
+            <p>
+                You describe the project again. The agent makes reasonable assumptions. Some of them are wrong. By the
+                third feature, the codebase is inconsistent — three different patterns across three files, a scope
+                change absorbed silently mid-task, and a bug introduced because nobody wrote a regression test before
+                the fix.
+            </p>
+            <p>
+                This isn't a Claude problem. This is a structural problem. Agents improvise. They forget. They drift.
+            </p>
+            <p>
+                I got tired of it. So I built a fix.
+            </p>
+
+            <h2>What Is a Skill?</h2>
+            <p>
+                Think of it like handing a new assistant a printed instruction manual before they start work.
+            </p>
+            <p>
+                The manual says: here's what to ask first. Here's what not to touch. Here's how to know when you're done.
+            </p>
+            <p>
+                A skill is that manual. It's a named, step-by-step workflow that loads into Claude's context at runtime
+                — replacing improvisation with a repeatable, auditable process. Nine skills. Each one handles a specific
+                moment in the development lifecycle. Together they form a complete framework for building with AI agents
+                without losing control.
+            </p>
+
+            <h2>The Nine Skills</h2>
+
+            <!-- 01 brainstorm -->
+            <div class="skill-divider">
+                <span class="skill-num">01</span>
+                <span class="skill-name">brainstorm:</span>
+                <span class="skill-tag">Shape the idea before writing a line of spec</span>
+                <span class="skill-line"></span>
+            </div>
+            <p>
+                Every project starts with a fuzzy idea. <code>brainstorm:</code> turns it into a validated, buildable
+                brief through structured discovery.
+            </p>
+            <p>
+                It won't let you skip the hard questions. What is the actual problem? Who has it? If this could only do
+                one thing perfectly, what would it be? What does v1 genuinely need — not what would be nice, what's
+                actually required?
+            </p>
+            <p>
+                Two paths: a <strong>personal project flow</strong> (8 steps) and a <strong>client project flow</strong>
+                (13 steps). The client path adds stakeholders, measurable success metrics, constraints, IP ownership,
+                and delivery definition — because those are the questions that cause chaos mid-build if you skip them.
+            </p>
+            <p>
+                A fast path exists for well-formed ideas. If your message already contains the problem, user, core
+                value, features, stack, and constraints — it detects this and goes straight to BRIEF.md.
+            </p>
+            <p>
+                The output is a single document that every downstream skill reads. Nothing gets asked twice.
+            </p>
+            <blockquote>
+                <p>The question it always asks: <strong>If this could only do ONE thing perfectly, what would it be? Not a feature — the outcome.</strong></p>
+            </blockquote>
+
+            <!-- 02 architect -->
+            <div class="skill-divider">
+                <span class="skill-num">02</span>
+                <span class="skill-name">architect:</span>
+                <span class="skill-tag">Lock every code pattern before a single line of spec exists</span>
+                <span class="skill-line"></span>
+            </div>
+            <p>
+                Without deliberate architecture decisions, agents make reasonable but unconsidered defaults. Folder
+                structure just happens. State management is inconsistent across features. By Phase 2 it's too late to
+                fix without a full refactor.
+            </p>
+            <p>
+                <code>architect:</code> is a recommendation-first conversation. It presents options, you say "sounds
+                good" or override. Folder structure, state management, TypeScript settings, component library, testing
+                philosophy, git conventions — all decided explicitly before any code exists.
+            </p>
+            <p>
+                The output is <strong>ARCHITECTURE.md</strong> — the agent's constitution for the project. Every task
+                from Phase 1 through Phase 3 is measured against it. The <code>review:</code> skill uses it as its
+                primary reference for drift detection.
+            </p>
+            <p>
+                Good architecture on a small project costs 20 minutes. Bad architecture on a small project costs days
+                of refactoring.
+            </p>
+
+            <!-- 03 new -->
+            <div class="skill-divider">
+                <span class="skill-num">03</span>
+                <span class="skill-name">new:</span>
+                <span class="skill-tag">Generate the full project kit in one shot</span>
+                <span class="skill-line"></span>
+            </div>
+            <p>
+                After <code>brainstorm:</code> and <code>architect:</code>, <code>new:</code> reads both documents and
+                generates everything the agent needs to work autonomously.
+            </p>
+            <ul>
+                <li>SPEC.md with acceptance criteria</li>
+                <li>An interactive HTML wireframe covering all screens</li>
+                <li>PLAN.md with phases, data model, and API contract</li>
+                <li>TASKS.md with phase gates built in from day one</li>
+                <li>CLAUDE.md at the project root — the file the agent reads at the start of every single session</li>
+                <li>A CODEBASE.md placeholder that gets populated after Phase 1 completes</li>
+            </ul>
+            <p>
+                The key is <strong>TASKS.md</strong>. It's the only file you ever need to open. Plain English
+                throughout. Updated after every task. One word to keep building: <em>next</em>.
+            </p>
+            <p>
+                After <code>new:</code> runs, the agent is never blank again. Every future session starts by reading
+                five files in order. Context is preserved automatically.
+            </p>
+
+            <!-- 04 feature -->
+            <div class="skill-divider">
+                <span class="skill-num">04</span>
+                <span class="skill-name">feature:</span>
+                <span class="skill-tag">Spec before code, every time, for every addition</span>
+                <span class="skill-line"></span>
+            </div>
+            <p>
+                Features should never be added informally. "Just quickly add dark mode" mid-task produces a codebase
+                that doesn't match its documentation, a data model that wasn't planned for, and a change log that has
+                no record of why things shifted.
+            </p>
+            <p>
+                <code>feature:</code> runs spec before code every time. It checks for an existing incomplete feature
+                with the same name before creating a duplicate. It reads the current SPEC.md to ensure the new feature
+                doesn't contradict existing acceptance criteria. It asks a graduated UI question — full wireframe,
+                brief note, or skip — so you're not generating wireframes for backend-only work.
+            </p>
+            <p>
+                Every task gets a size estimate (S/M/L) and a total hours estimate upfront. Every task has exact file
+                paths, acceptance criteria, and a self-verify step. A conformance checklist at the end that must be
+                fully ticked before the feature is shippable.
+            </p>
+            <p>
+                The output is a dated folder in <code>vibe/features/</code> with three files: FEATURE_SPEC.md,
+                FEATURE_PLAN.md, and FEATURE_TASKS.md. TASKS.md and CLAUDE.md are updated so the agent knows what's
+                active next session.
+            </p>
+
+            <!-- 05 design -->
+            <div class="skill-divider">
+                <span class="skill-num">05</span>
+                <span class="skill-name">design:</span>
+                <span class="skill-tag">Logic first. Design after. Never mixed.</span>
+                <span class="skill-line"></span>
+            </div>
+            <p>
+                The line between logic and aesthetics blurs when you're building fast. A developer styles a component
+                while building its state management. The design tokens are inconsistent. DESIGN_SYSTEM.md doesn't
+                exist. The next session invents new colours from scratch.
+            </p>
+            <p>
+                <code>design:</code> enforces a hard separation. The vibe agent owns logic, data flow, spec compliance,
+                and tests. <code>design:</code> owns aesthetics, layout, feel, and interactions. These never mix. If a
+                design change requires a logic change — it stops, flags it, logs it, and refuses to proceed.
+            </p>
+            <p>
+                It reads DESIGN_SYSTEM.md first every time. Detects conflicts between DESIGN_SYSTEM.md and SPEC.md
+                before starting. For three or more components, generates a design plan and waits for one approval
+                before executing everything in order.
+            </p>
+            <p>
+                Dark mode is a <strong>dual-token system</strong>. Every color needs a light and dark value,
+                implemented at the token level — not by overriding component styles. That's the difference between a
+                maintainable design system and a pile of one-off overrides.
+            </p>
+
+            <!-- 06 bug -->
+            <div class="skill-divider">
+                <span class="skill-num">06</span>
+                <span class="skill-name">bug:</span>
+                <span class="skill-tag">Regression test first. Root cause confirmed. Smallest fix.</span>
+                <span class="skill-line"></span>
+            </div>
+            <p>
+                The first thing <code>bug:</code> does is triage. Not diagnose, not fix — triage.
+            </p>
+            <ul>
+                <li><strong>Trivial:</strong> root cause is immediately obvious, fix is 1–2 lines in one file, no regression risk. Three tasks, no folder created, inline in TASKS.md. Done in minutes.</li>
+                <li><strong>Significant:</strong> root cause needs investigation, multiple files involved, regression risk. Full workflow kicks in. A <code>vibe/bugs/[date-slug]/</code> folder is created. BUG_SPEC.md, BUG_PLAN.md, BUG_TASKS.md generated. Diagnosis before fix. Regression test written and confirmed to fail before a single line of fix code is written.</li>
+            </ul>
+            <p>
+                The principle: <strong>smallest possible change</strong>. If you notice other bugs while fixing this
+                one — log them separately. Never fix other bugs "while you're there."
+            </p>
+
+            <!-- 07 change -->
+            <div class="skill-divider">
+                <span class="skill-num">07</span>
+                <span class="skill-name">change:</span>
+                <span class="skill-tag">Impact shown before any file is touched</span>
+                <span class="skill-line"></span>
+            </div>
+            <p>
+                Scope changes are inevitable. They're also the most common cause of silent codebase drift.
+            </p>
+            <p>
+                Someone says "actually also add a note field to check-ins" mid-task. The agent does it. The storage
+                model changes without a retrofit task. SPEC.md still shows the old acceptance criteria. DECISIONS.md
+                has no record. The <code>review:</code> skill finds a data model that doesn't match the spec with no
+                explanation.
+            </p>
+            <p>
+                <code>change:</code> stops everything. Assesses impact. Shows you the build stage, what files change,
+                which tasks need retrofitting, what already-built code is affected, and the estimated effort. Waits for
+                your confirmation. Never touches a file without it.
+            </p>
+            <p>
+                Every change gets a <strong>D-ID</strong> in DECISIONS.md. If you later say "revert the note field
+                change we made last week" — <code>change:</code> finds the D-ID, identifies what was built since then,
+                and adds retrofit tasks to undo it. The history is always there.
+            </p>
+
+            <!-- 08 review -->
+            <div class="skill-divider">
+                <span class="skill-num">08</span>
+                <span class="skill-name">review:</span>
+                <span class="skill-tag">Mandatory gate. No phase progresses without passing.</span>
+                <span class="skill-line"></span>
+            </div>
+            <p>
+                Issues caught at Phase 1 are cheap — fix once, never propagates. Issues caught at Phase 3 are
+                expensive — retrofit across every feature. Issues caught at deploy are very expensive — production risk.
+            </p>
+            <p>
+                <code>review:</code> runs automated checks first. Tests, linter, TypeScript, <code>npm audit</code>.
+                Machines verify before the agent touches anything.
+            </p>
+            <p>
+                Then architecture drift. Any violation of ARCHITECTURE.md is automatically <strong>P0</strong> — the
+                most severe finding. File path and line number required. No vague feedback. If it can't be backed by
+                evidence, it doesn't go in the report.
+            </p>
+            <ul>
+                <li><strong>P0</strong> — blocks the gate, generates fix tasks in TASKS.md immediately</li>
+                <li><strong>P1</strong> — logged to a backlog, must be resolved before deploy</li>
+                <li><strong>P2/P3</strong> — logged and escalating; unresolved P1s escalate to P0 on next review</li>
+            </ul>
+            <p>
+                Final phase review: P0 and P1 both zero before deploy. No exceptions. Score formula:
+                10.0 − 1.0 per P0 − 0.5 per P1 − 0.2 per P2.
+            </p>
+
+            <!-- 09 progress -->
+            <div class="skill-divider">
+                <span class="skill-num">09</span>
+                <span class="skill-name">progress:</span>
+                <span class="skill-tag">One command. Full picture.</span>
+                <span class="skill-line"></span>
+            </div>
+            <p>
+                A read-only ASCII dashboard generated from TASKS.md and git history. No files modified. Always safe
+                to run.
+            </p>
+            <ul>
+                <li>Overall percentage complete with phase-by-phase progress bars</li>
+                <li>Phase gate status — reviewed, in progress, pending, or blocked</li>
+                <li>Active work with individual task checkboxes and a ← next marker</li>
+                <li>Backlog count, active bugs, scope changes logged, commits this week</li>
+                <li>Last git commit and next task in plain English</li>
+            </ul>
+            <p>
+                For a non-technical audience it's the clearest possible answer to "where are we?" For you it's the
+                sanity check before a new session.
+            </p>
+
+            <h2>The File System: Two Audiences</h2>
+            <p>
+                The entire framework is built around one principle: <strong>one file for you, everything else for the
+                agent.</strong>
+            </p>
+            <p>
+                <code>vibe/TASKS.md</code> is the only file you ever need to open. Plain English. Updated after every
+                single task. Tells you exactly what was just built, what's next, and what the phase gates look like.
+            </p>
+            <p>
+                Everything else — ARCHITECTURE.md, SPEC.md, SPEC_INDEX.md, PLAN.md, CODEBASE.md, DECISIONS.md,
+                DESIGN_SYSTEM.md, the features and bugs folders — is for the agent. You never need to open any of it.
+            </p>
+            <p>
+                The agent reads five files at the start of every session, in order:
+            </p>
+            <ol>
+                <li>CLAUDE.md</li>
+                <li>vibe/CODEBASE.md</li>
+                <li>vibe/ARCHITECTURE.md</li>
+                <li>vibe/SPEC_INDEX.md</li>
+                <li>vibe/TASKS.md</li>
+            </ol>
+            <p>
+                Then it confirms the first task before writing any code. Context is fully restored. Every decision made
+                in previous sessions is available. The agent never starts blind again.
+            </p>
+
+            <h2>The Four Principles Underneath Everything</h2>
+            <ul>
+                <li><strong>Spec before code.</strong> No task starts without acceptance criteria. The agent re-reads the spec after every task and ticks every criterion before marking done.</li>
+                <li><strong>Context preservation.</strong> Agents forget between sessions. The framework maintains five documents that are read at every session start — so the agent never re-discovers what exists or what decisions have been made.</li>
+                <li><strong>Incremental verifiable progress.</strong> One task at a time. Confirm → build → verify → commit → signal done. No batching. No running ahead.</li>
+                <li><strong>Drift prevention.</strong> DECISIONS.md logs every deviation. <code>change:</code> stops the build and assesses impact. <code>review:</code> checks architecture at every phase gate. Nothing is absorbed silently.</li>
+            </ul>
+
+            <h2>What Actually Changed</h2>
+            <p>
+                Before the framework, a typical session looked like this: describe the project from scratch, agent makes
+                assumptions, some wrong, patterns inconsistent across features, scope change absorbed silently, bug
+                fixed by guessing, no regression test, same bug reappears.
+            </p>
+            <p>
+                After the framework: first session reads five documents and already knows everything. Every feature
+                starts with a spec. Every pattern decision is documented and enforced. Every scope change is logged
+                with full impact assessment. Every bug has a regression test written before the fix. Every phase has
+                a gate.
+            </p>
+            <p>
+                The codebase is consistent. The history is auditable. The agent is a collaborator, not a guesser.
+            </p>
+
+            <h2>Try It</h2>
+            <p>
+                The full interactive presentation is live at
+                <a href="https://vibe-skill-presentation.vercel.app/" target="_blank">vibe-skill-presentation.vercel.app</a> —
+                17 slides covering all nine skills with real conversation examples and the complete end-to-end project
+                arc from first brainstorm to a reviewed, ship-ready build.
+            </p>
+            <p>
+                If you're building anything serious with AI agents, the framework is worth understanding. Even if you
+                only adopt two or three skills, the discipline around spec-before-code and drift prevention will change
+                how you work.
+            </p>
+            <blockquote>
+                <p><strong>Spec before code. Context preserved. Always.</strong></p>
+            </blockquote>
+
+        </div>
+    </article>
+</div>
+
+<!-- FOOTER -->
+<footer class="blog-footer">
+    <div class="wrap">
+        <h3>Enjoyed this read?</h3>
+        <p>Connect on LinkedIn or head back to the portfolio for more.</p>
+        <div class="blog-footer-links">
+            <a href="https://www.linkedin.com/in/aakashdhar" target="_blank">
+                <i class="ph-fill ph-linkedin-logo"></i> Connect on LinkedIn
+            </a>
+            <a href="../index.html#insights">
+                <i class="ph ph-newspaper"></i> More Writing
+            </a>
+            <a href="../index.html">
+                <i class="ph ph-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+        <p class="blog-footer-copy">© 2026 Aakash Dhar. Built with Code &amp; Coffee.</p>
+    </div>
+</footer>
+
+<script>
+    const thm = document.getElementById('thm');
+    const html = document.documentElement;
+    if (localStorage.theme === 'dark') {
+        html.classList.add('dark');
+    } else {
+        html.classList.remove('dark');
+    }
+    thm.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    const ham = document.getElementById('ham');
+    const mob = document.getElementById('mob');
+    const mobx = document.getElementById('mobx');
+    ham.addEventListener('click', () => mob.classList.add('open'));
+    mobx.addEventListener('click', () => mob.classList.remove('open'));
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+</script>
+
+</body>
+</html>

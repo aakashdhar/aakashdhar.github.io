@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -57,356 +57,378 @@
     }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Manrope', 'sans-serif'],
-                        heading: ['Manrope', 'sans-serif'],
-                    },
-                    colors: {
-                        background: 'rgb(var(--bg-color) / <alpha-value>)',
-                        surface: 'rgb(var(--surface-color) / <alpha-value>)',
-                        primary: '#6366f1',
-                        secondary: '#d946ef',
-                        accent: '#14b8a6',
-                        tprimary: 'rgb(var(--text-primary) / <alpha-value>)',
-                        tsecondary: 'rgb(var(--text-secondary) / <alpha-value>)',
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                    },
-                    keyframes: {
-                        blob: {
-                            "0%": { transform: "translate(0px, 0px) scale(1)" },
-                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
-                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
-                            "100%": { transform: "translate(0px, 0px) scale(1)" }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C2704E%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+
+    <link rel="stylesheet" href="../styles.css">
 
     <style>
-        /* Theme Variables */
-        :root {
-            /* Light Mode Default */
-            --bg-color: 241 245 249;
-            --surface-color: 255 255 255;
-            --text-primary: 15 23 42;
-            --text-secondary: 71 85 105;
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.06);
-            --glass-blur: 16px;
-            --nav-bg: rgba(255, 255, 255, 0.85);
+        /* ── Blog Header ── */
+        .blog-header {
+            background: var(--dk);
+            padding: clamp(5.5rem, 10vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+            position: relative;
+            overflow: clip;
+            transition: background 0.5s;
         }
-
-        .dark {
-            /* Dark Mode */
-            --bg-color: 3 7 18;
-            --surface-color: 17 24 39;
-            --text-primary: 255 255 255;
-            --text-secondary: 148 163 184;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-blur: 10px;
-            --nav-bg: rgba(3, 7, 18, 0.7);
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, var(--dk-orb), transparent 70%);
+            pointer-events: none;
         }
-
-        body {
-            transition: background-color 0.3s ease, color 0.3s ease;
+        .blog-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
         }
-
-        /* Typography for Blog Content */
-        .prose p {
-            margin-bottom: 1.5rem;
-            color: rgb(var(--text-secondary));
-            font-size: 1.125rem;
-            line-height: 1.8;
-        }
-
-        .prose h2 {
-            color: rgb(var(--text-primary));
-            font-size: 1.875rem;
+        .blog-cat {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.66rem;
             font-weight: 700;
-            margin-top: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.28rem 0.8rem;
+            border-radius: 100px;
+            background: var(--terra-glow);
+            border: 1px solid rgba(212, 137, 107, 0.3);
+            color: var(--terra-l);
+        }
+        .blog-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--dk-t3);
+            letter-spacing: 0.05em;
+        }
+        .blog-title {
+            font-family: 'Amiri', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            color: var(--dk-t);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            padding-bottom: 0.2em;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+        .blog-title em {
+            font-style: italic;
+            color: var(--terra-l);
+        }
+        .blog-sub {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--dk-t2);
+            max-width: 580px;
+        }
+
+        /* ── Article Body ── */
+        .blog-body {
+            padding: clamp(3rem, 6vw, 5rem) 0;
+        }
+        .prose {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .prose p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--t2);
+            margin-bottom: 1.5rem;
+        }
+        .prose h2 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.65rem, 3vw, 2.1rem);
+            color: var(--t1);
+            font-weight: 700;
+            margin-top: 3.5rem;
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
+            line-height: 1.3;
+            padding-bottom: 0.15em;
         }
-
+        .prose h2::after {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 2px;
+            background: var(--terra);
+            margin-top: 0.5rem;
+        }
         .prose h3 {
-            color: rgb(var(--text-primary));
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 2rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--terra);
+            margin-top: 2.25rem;
             margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
         }
-
         .prose ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: rgb(var(--text-secondary));
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.75rem;
         }
-
-        .prose li {
-            margin-bottom: 0.5rem;
+        .prose ul li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.65rem;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--t2);
         }
-
+        .prose ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--terra);
+            font-weight: 700;
+        }
         .prose strong {
-            color: rgb(var(--text-primary));
-            font-weight: 600;
+            color: var(--t1);
+            font-weight: 700;
         }
-
-        .prose a {
-            color: #818cf8;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            transition: color 0.2s;
-        }
-
-        .prose a:hover {
-            color: #a5b4fc;
-        }
-
-        .prose blockquote {
-            border-left: 4px solid #6366f1;
-            padding-left: 1.5rem;
+        .prose em {
             font-style: italic;
-            color: rgb(var(--text-primary));
-            margin: 2rem 0;
-            background: rgba(99, 102, 241, 0.05);
-            padding: 1.5rem;
-            border-radius: 0 0.5rem 0.5rem 0;
         }
-
-        .prose pre {
-            background: var(--glass-bg);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            overflow-x: auto;
-            border: 1px solid var(--glass-border);
-            margin-bottom: 1.5rem;
-        }
-
         .prose code {
-            font-family: monospace;
-            color: #d946ef;
-            font-size: 0.9em;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82em;
+            color: var(--terra-l);
+            background: var(--bg2);
+            padding: 0.12em 0.4em;
+            border-radius: 4px;
+            border: 1px solid var(--bd);
+        }
+        .prose blockquote {
+            border-left: 3px solid var(--terra);
+            padding: 1.4rem 1.75rem;
+            margin: 2.5rem 0;
+            background: var(--bg2);
+            border-radius: 0 8px 8px 0;
+        }
+        .prose blockquote p {
+            font-family: 'Amiri', serif;
+            font-size: 1.12rem;
+            font-style: italic;
+            color: var(--t1);
+            margin-bottom: 0.75rem;
+            line-height: 1.75;
+        }
+        .prose blockquote p:last-child {
+            margin-bottom: 0;
+        }
+        .prose blockquote strong {
+            color: var(--terra);
+            font-style: normal;
         }
 
-        /* Table Utilities */
+        /* ── Comparison Table ── */
+        .prose .table-wrap {
+            overflow-x: auto;
+            margin: 2.5rem 0;
+            border-radius: 10px;
+            border: 1px solid var(--bd);
+        }
         .prose table {
             width: 100%;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
             border-collapse: collapse;
-            font-size: 0.95rem;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            background: var(--glass-bg);
+            font-size: 0.88rem;
+            background: var(--bg2);
         }
-
-        .prose th {
+        .prose thead tr {
+            background: var(--dk);
+        }
+        .prose thead th {
             text-align: left;
-            padding: 1rem;
-            border-bottom: 2px solid var(--glass-border);
-            color: rgb(var(--text-primary));
-            background: rgba(0, 0, 0, 0.02);
+            padding: 0.85rem 1.1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--dk-t2);
+            border-bottom: 1px solid var(--dk-bd2);
+            white-space: nowrap;
         }
-
-        .dark .prose th {
-            background: rgba(255, 255, 255, 0.02);
+        .prose thead th:first-child {
+            color: var(--terra-l);
         }
-
-        .prose td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--glass-border);
-            vertical-align: top;
-            color: rgb(var(--text-secondary));
+        .prose tbody tr {
+            border-bottom: 1px solid var(--bd);
+            transition: background 0.2s;
         }
-
-        .prose tr:last-child td {
+        .prose tbody tr:last-child {
             border-bottom: none;
         }
-
-        /* Glass Utilities */
-        .glass-nav {
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
+        .prose tbody tr:hover {
+            background: var(--bg);
+        }
+        .prose td {
+            padding: 0.85rem 1.1rem;
+            vertical-align: top;
+            color: var(--t2);
+            line-height: 1.7;
+        }
+        .prose td:first-child {
+            font-weight: 600;
+            color: var(--t1);
+            white-space: nowrap;
+        }
+        .prose td strong {
+            color: var(--t1);
         }
 
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
+        /* ── Blog Footer ── */
+        .blog-footer {
+            background: var(--dk);
+            padding: clamp(3rem, 6vw, 5rem) 0;
+            text-align: center;
+            border-top: 1px solid var(--dk-bd);
+            transition: background 0.5s;
         }
-
-        /* Hover Effects */
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .blog-footer h3 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--dk-t);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.15em;
+            line-height: 1.3;
         }
-
-        .hover-lift:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        .blog-footer p {
+            color: var(--dk-t2);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
-
-        /* Text Gradient */
-        .text-gradient {
-            background: linear-gradient(135deg, #6366f1 0%, #d946ef 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .blog-footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
         }
-
-        /* Smooth Scroll & Scrollbar */
-        html {
-            scroll-behavior: smooth;
+        .blog-footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dk-t2);
+            transition: color 0.3s;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--dk-bd2);
+            border-radius: 8px;
         }
-
-        ::-webkit-scrollbar {
-            width: 6px;
+        .blog-footer-links a:hover {
+            color: var(--terra-l);
+            border-color: rgba(212, 137, 107, 0.35);
         }
-
-        ::-webkit-scrollbar-track {
-            background: rgb(var(--bg-color));
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #374151;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4b5563;
+        .blog-footer-copy {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            color: var(--dk-t3);
         }
     </style>
 </head>
 
-<body class="bg-background text-tsecondary font-sans selection:bg-primary selection:text-white overflow-x-hidden">
+<body>
 
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div
-            class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-40 animate-blob">
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <a href="../index.html" class="nav-logo">A<em>.</em>Dhar</a>
+    <div class="nr">
+        <div class="nl">
+            <a href="../index.html#insights">Writing</a>
+            <a href="../index.html" class="ncta"><i class="ph ph-arrow-left"></i> Portfolio</a>
         </div>
-        <div
-            class="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20 dark:opacity-30 animate-blob animation-delay-2000">
-        </div>
+        <button class="thm" id="thm" aria-label="Toggle theme">
+            <i class="ph-fill ph-sun s"></i>
+            <i class="ph-fill ph-moon m"></i>
+        </button>
+        <button class="ham" id="ham"><i class="ph ph-list"></i></button>
     </div>
+</nav>
 
-    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <nav
-            class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl w-full max-w-2xl">
-            <a href="../index.html"
-                class="font-heading font-bold text-xl text-tprimary tracking-tight hover:text-primary transition-colors">AD.</a>
+<div class="mob" id="mob">
+    <button class="mob-x" id="mobx"><i class="ph ph-x"></i></button>
+    <a href="../index.html" class="ml">Portfolio</a>
+    <a href="../index.html#insights" class="ml">Writing</a>
+    <a href="../index.html#contact" class="ml" style="color:var(--terra);">Contact</a>
+</div>
 
-            <div class="flex items-center gap-4">
-                <button id="theme-toggle"
-                    class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-tprimary"
-                    aria-label="Toggle Theme">
-                    <i class="ph-fill ph-sun hidden dark:block"></i>
-                    <i class="ph-fill ph-moon block dark:hidden"></i>
-                </button>
-
-                <a href="../index.html"
-                    class="flex items-center gap-2 text-sm font-medium text-tsecondary hover:text-tprimary transition-colors">
-                    <i class="ph-bold ph-arrow-left"></i> Back to Portfolio
-                </a>
-            </div>
-        </nav>
-    </div>
-
-    <header
-        class="relative pt-40 pb-20 px-4 text-center z-10 border-b border-slate-200 dark:border-white/5 bg-gradient-to-b from-slate-50 to-background dark:from-slate-900/50 dark:to-background">
-        <div class="max-w-3xl mx-auto space-y-6">
-            <div class="flex items-center justify-center gap-4 text-sm font-medium">
-                <span
-                    class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 font-semibold">Engineering</span>
-                <span class="text-slate-500 dark:text-slate-400">February 24, 2026</span>
-            </div>
-
-            <h1
-                class="font-heading text-4xl md:text-6xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight">
-                The Glass Ceiling of <span class="text-gradient">Gemini 3.1</span><br />A Developer’s Post-Mortem
-            </h1>
-
-            <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-                Why the latest iteration is hitting a wall for serious coding tasks, and how it compares to alternatives
-                like Claude 4.6 Sonnet.
-            </p>
+<!-- BLOG HEADER -->
+<header class="blog-header">
+    <div class="wrap">
+        <div class="blog-eyebrow">
+            <span class="blog-cat">Engineering</span>
+            <span class="blog-date">February 24, 2026</span>
         </div>
-    </header>
+        <h1 class="blog-title">The Glass Ceiling of <em>Gemini 3.1</em><br>A Developer's Post-Mortem</h1>
+        <p class="blog-sub">Why the latest iteration is hitting a wall for serious coding tasks, and how it compares to alternatives like Claude 4.6 Sonnet.</p>
+    </div>
+</header>
 
-    <article class="py-20 px-4 relative z-10 bg-white dark:bg-background">
-        <div class="max-w-3xl mx-auto prose">
+<!-- ARTICLE -->
+<div class="blog-body">
+    <article class="wrap">
+        <div class="prose">
 
             <p>
-                As developers, we’ve been conditioned to chase the next version number like a fix for a production bug.
+                As developers, we've been conditioned to chase the next version number like a fix for a production bug.
                 When Gemini 3.1 dropped, the promise of a massive context window and "reasoning" capabilities felt like
                 the upgrade our IDEs desperately needed.
             </p>
-
             <p>
                 But after a few weeks in the trenches, the reality is starting to set in. For serious coding tasks,
-                Gemini 3.1 feels less like a senior partner and more like a distracted intern who’s had one too many
+                Gemini 3.1 feels less like a senior partner and more like a distracted intern who's had one too many
                 espressos. Here is why the latest iteration is hitting a wall.
             </p>
 
             <h2>1. The "Drift" Problem: Precision is Optional</h2>
             <p>
-                The hallmark of a professional workflow is the <strong>Spec Doc</strong> and the <strong>Plan
-                    Doc</strong>. We provide these so the AI stays within the guardrails of the architecture. However,
-                Gemini 3.1 has a recurring habit of "creative drifting."
+                The hallmark of a professional workflow is the <strong>Spec Doc</strong> and the <strong>Plan Doc</strong>.
+                We provide these so the AI stays within the guardrails of the architecture. However, Gemini 3.1 has a
+                recurring habit of "creative drifting."
             </p>
             <p>
                 Even when handed a structured prompt with explicit constraints, the model tends to:
             </p>
             <ul>
-                <li><strong>Ignore the Spec:</strong> You ask for a REST endpoint using a specific library; it gives you
-                    a boilerplate snippet using something else entirely.</li>
-                <li><strong>Memory Decay:</strong> Halfway through a feature implementation, it "forgets" the utility
-                    functions it wrote ten minutes ago, forcing you to constantly re-paste context.</li>
-                <li><strong>Instruction Overload:</strong> It seems to struggle with hierarchy. If you give it ten
-                    requirements, it nails the first three and treats the remaining seven as "suggestions."</li>
+                <li><strong>Ignore the Spec:</strong> You ask for a REST endpoint using a specific library; it gives you a boilerplate snippet using something else entirely.</li>
+                <li><strong>Memory Decay:</strong> Halfway through a feature implementation, it "forgets" the utility functions it wrote ten minutes ago, forcing you to constantly re-paste context.</li>
+                <li><strong>Instruction Overload:</strong> It seems to struggle with hierarchy. If you give it ten requirements, it nails the first three and treats the remaining seven as "suggestions."</li>
             </ul>
 
             <h2>2. The Long-Form Hallucination Loop</h2>
             <p>
-                Gemini’s massive context window is its biggest selling point, but for coding, it’s proving to be a
+                Gemini's massive context window is its biggest selling point, but for coding, it's proving to be a
                 double-edged sword. In long, multi-turn conversations, the "intelligence" begins to degrade
                 exponentially.
             </p>
             <p>
-                Once you hit a certain depth of back-and-forth—especially when utilizing features like
-                <strong>Canvas</strong> for real-time editing—the model enters a state of confident delusion. It starts:
+                Once you hit a certain depth of back-and-forth — especially when utilizing features like
+                <strong>Canvas</strong> for real-time editing — the model enters a state of confident delusion. It starts:
             </p>
             <ul>
-                <li><strong>Inventing APIs:</strong> It will hallucinate methods that don't exist in the libraries you
-                    are using.</li>
-                <li><strong>Circular Logic:</strong> You point out a bug, it apologizes, provides a "fix" that is
-                    identical to the broken code, and then claims the issue is resolved.</li>
-                <li><strong>Canvas Conflicts:</strong> When working in a live code block, the synchronization between
-                    the chat logic and the document often breaks, leading to Gemini overwriting working code with
-                    nonsensical placeholders.</li>
+                <li><strong>Inventing APIs:</strong> It will hallucinate methods that don't exist in the libraries you are using.</li>
+                <li><strong>Circular Logic:</strong> You point out a bug, it apologizes, provides a "fix" that is identical to the broken code, and then claims the issue is resolved.</li>
+                <li><strong>Canvas Conflicts:</strong> When working in a live code block, the synchronization between the chat logic and the document often breaks, leading to Gemini overwriting working code with nonsensical placeholders.</li>
             </ul>
 
             <h2>Comparison: Gemini 3.1 vs. Claude 4.6 Sonnet for Codebase Management</h2>
@@ -415,13 +437,13 @@
                 like Claude 4.6 Sonnet, specifically when dealing with complex codebase management tasks.
             </p>
 
-            <div class="overflow-x-auto my-8">
+            <div class="table-wrap">
                 <table>
                     <thead>
                         <tr>
-                            <th>Feature / Model</th>
-                            <th>Gemini 3.1 (for coding)</th>
-                            <th>Claude 4.6 Sonnet (for coding)</th>
+                            <th>Feature</th>
+                            <th>Gemini 3.1</th>
+                            <th>Claude 4.6 Sonnet</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -441,12 +463,12 @@
                             <td>Often more accurate and robust for larger, integrated code blocks.</td>
                         </tr>
                         <tr>
-                            <td><strong>Refactoring & Bug Fixing</strong></td>
+                            <td><strong>Refactoring &amp; Bug Fixing</strong></td>
                             <td>Can introduce new issues or repeat previous mistakes in iterative fixes.</td>
                             <td>More reliable in identifying and rectifying bugs, with fewer regressions.</td>
                         </tr>
                         <tr>
-                            <td><strong>API/Library Awareness</strong></td>
+                            <td><strong>API / Library Awareness</strong></td>
                             <td>May hallucinate non-existent functions or misapply usage.</td>
                             <td>Generally more accurate in applying established API patterns and library functions.</td>
                         </tr>
@@ -456,7 +478,7 @@
                             <td>Less prone to real-time sync conflicts; handles iterative editing more gracefully.</td>
                         </tr>
                         <tr>
-                            <td><strong>Overall Developer Sentiment</strong></td>
+                            <td><strong>Developer Sentiment</strong></td>
                             <td>Frustration due to lack of precision and memory decay.</td>
                             <td>Generally positive for structured coding tasks and deeper engagements.</td>
                         </tr>
@@ -467,10 +489,9 @@
             <h2>The Verdict: Great for Snippets, Risky for Systems</h2>
             <p>
                 If you need a quick Regex or a simple CSS flexbox layout, Gemini 3.1 is snappy. But for <strong>system
-                    design</strong> or <strong>refactoring complex state logic</strong>, the cognitive overhead of
+                design</strong> or <strong>refactoring complex state logic</strong>, the cognitive overhead of
                 "babysitting" the AI is starting to outweigh the productivity gains.
             </p>
-
             <p>
                 We don't just need a bigger window; we need better <strong>adherence</strong>. Until the model can
                 respect a Plan Doc as a set of laws rather than a list of vibes, it remains a secondary tool in the
@@ -479,42 +500,56 @@
 
         </div>
     </article>
+</div>
 
-    <footer class="py-12 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-black/40 relative z-10">
-        <div class="max-w-3xl mx-auto px-4 text-center">
-            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Enjoyed this read?</h3>
-            <div class="flex justify-center gap-6">
-                <a href="https://www.linkedin.com/in/aakashdhar" target="_blank"
-                    class="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
-                    <i class="ph-fill ph-linkedin-logo text-xl"></i> Connect on LinkedIn
-                </a>
-            </div>
-            <p class="mt-8 text-xs text-slate-500 dark:text-slate-600">© 2026 Aakash Dhar. Built with Code & Coffee.</p>
+<!-- FOOTER -->
+<footer class="blog-footer">
+    <div class="wrap">
+        <h3>Enjoyed this read?</h3>
+        <p>Connect on LinkedIn or head back to the portfolio for more.</p>
+        <div class="blog-footer-links">
+            <a href="https://www.linkedin.com/in/aakashdhar" target="_blank">
+                <i class="ph-fill ph-linkedin-logo"></i> Connect on LinkedIn
+            </a>
+            <a href="../index.html#insights">
+                <i class="ph ph-newspaper"></i> More Writing
+            </a>
+            <a href="../index.html">
+                <i class="ph ph-arrow-left"></i> Back to Portfolio
+            </a>
         </div>
-    </footer>
+        <p class="blog-footer-copy">© 2026 Aakash Dhar. Built with Code &amp; Coffee.</p>
+    </div>
+</footer>
 
-    <script>
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
+<script>
+    // Theme toggle — mirrors index.html logic (html.dark class)
+    const thm = document.getElementById('thm');
+    const html = document.documentElement;
+    if (localStorage.theme === 'dark') {
+        html.classList.add('dark');
+    } else {
+        html.classList.remove('dark');
+    }
+    thm.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
 
-        // Check LocalStorage. Default is Light
-        if (localStorage.theme === 'dark') {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
+    // Mobile menu
+    const ham = document.getElementById('ham');
+    const mob = document.getElementById('mob');
+    const mobx = document.getElementById('mobx');
+    ham.addEventListener('click', () => mob.classList.add('open'));
+    mobx.addEventListener('click', () => mob.classList.remove('open'));
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
 
-        // Toggle Function
-        themeToggleBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
+    // Nav scroll border
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+</script>
 
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.theme = 'dark';
-            } else {
-                localStorage.theme = 'light';
-            }
-        });
-    </script>
 </body>
-
 </html>

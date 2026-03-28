@@ -77,7 +77,7 @@
         /* Base font size raised to 17px (106.25%) so all rem values scale up proportionally,
            improving readability across all text sizes site-wide */
         html{scroll-behavior:smooth;font-size:106.25%;}
-        body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--t2);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.75;transition:background 0.5s,color 0.5s;}
+        body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--t2);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.8;transition:background 0.5s,color 0.5s;}
         ::selection{background:var(--terra);color:#fff;}
         a{text-decoration:none;color:inherit;}
         img{max-width:100%;display:block;}
@@ -87,7 +87,7 @@
            Amiri has deep descenders (~0.25em below baseline).
            line-height:1.3 gives adequate half-leading; padding-bottom:0.18em
            ensures the element's box never clips the glyph's descender pixels. */
-        .hd{font-family:'Amiri',serif;line-height:1.3;padding-bottom:0.18em;}
+        .hd{font-family:'Amiri',serif;line-height:1.3;padding-bottom:0.2em;}
         /* Body text needs generous line-height */
         p,li,.desc{line-height:1.8;}
 
@@ -96,7 +96,7 @@
 
         /* ═══════════ UTILITIES ═══════════ */
         .wrap{max-width:1320px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3.5rem);}
-        .sec{padding:clamp(3.5rem,8vw,6rem) 0;}
+        .sec{padding:clamp(3.5rem,calc(8vw + 40px),calc(6rem + 40px)) 0;}
         .pills{display:flex;flex-wrap:wrap;gap:0.4rem;}
         .pill{font-size:0.7rem;font-weight:500;padding:0.28rem 0.65rem;border-radius:100px;border:1px solid var(--bd);color:var(--t2);background:var(--bg2);transition:all 0.2s;white-space:nowrap;}
         .pill:hover{border-color:var(--terra);color:var(--terra);}
@@ -105,7 +105,7 @@
         /* ═══════════ NAV ═══════════ */
         .nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;padding:0 clamp(1.25rem,4vw,3.5rem);transition:background 0.4s,border-color 0.4s;}
         .nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--nav-bd);}
-        .nav-logo{font-family:'Amiri',serif;font-size:1.35rem;color:var(--t1);letter-spacing:-0.02em;line-height:1.4;}
+        .nav-logo{font-family:'Amiri',serif;font-size:1.35rem;color:var(--t1);letter-spacing:-0.02em;line-height:1.4;display:inline-block;padding-bottom:0.15em;}
         .nav-logo em{font-style:italic;color:var(--terra);}
         .nr{display:flex;align-items:center;gap:1.5rem;margin-left:auto;}
         .nl{display:flex;gap:1.8rem;align-items:center;}
@@ -120,7 +120,7 @@
         .ham{display:none;background:none;border:none;font-size:1.4rem;color:var(--t1);cursor:pointer;}
         .mob{display:none;position:fixed;inset:0;z-index:300;background:var(--mob-bg);flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;transition:background 0.5s;}
         .mob.open{display:flex;}
-        .mob a{font-family:'Amiri',serif;font-size:1.8rem;color:var(--t1);line-height:1.5;}
+        .mob a{font-family:'Amiri',serif;font-size:1.8rem;color:var(--t1);line-height:1.5;padding-bottom:0.2em;}
         .mob a:hover{color:var(--terra);}
         .mob-x{position:absolute;top:1rem;right:1.5rem;background:none;border:none;font-size:1.8rem;color:var(--t1);cursor:pointer;}
         @media(max-width:860px){.nl{display:none;}.ham{display:block;}.nr{gap:0.7rem;}}
@@ -135,7 +135,7 @@
         html.dark .hero-vn{color:rgba(232,224,216,0.03);}
         .hero-li{position:relative;z-index:2;}
         .hero-badge{display:inline-flex;align-items:center;gap:0.45rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:0.35rem 0.9rem;border-radius:100px;font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#fbbf24;margin-bottom:1.8rem;}
-        .hero-role{font-family:'Amiri',serif;font-size:clamp(2.2rem,4.2vw,3.4rem);color:var(--dk-t);line-height:1.25;margin-bottom:0.5rem;padding-bottom:0.18em;}
+        .hero-role{font-family:'Amiri',serif;font-size:clamp(2.2rem,4.2vw,3.4rem);color:var(--dk-t);line-height:1.3;margin-bottom:0.5rem;padding-bottom:0.2em;}
         .hero-sub{color:var(--dk-t2);font-size:clamp(0.92rem,1.6vw,1.1rem);margin-bottom:1.8rem;line-height:1.7;}
         .hero-st{display:inline-flex;align-items:center;gap:0.45rem;padding:0.3rem 0.75rem;border-radius:6px;background:var(--g-bg);color:var(--g-t);font-size:0.7rem;font-weight:600;}
         .hero-st .dot{width:7px;height:7px;border-radius:50%;background:var(--g-dot);animation:blink 2s ease infinite;}
@@ -146,7 +146,7 @@
         .hero-ey::before{content:'';width:28px;height:2px;background:var(--terra);}
         /* line-height raised 1.1→1.18: at 6rem the old value left only ~4.8px of half-leading,
            causing Amiri descenders to clip. padding-bottom increased to 0.22em. */
-        .hero-name{font-family:'Alyamama',serif;font-size:clamp(3rem,6.5vw,6rem);color:var(--t1);line-height:1.18;letter-spacing:-0.02em;margin-bottom:0.5em;padding-bottom:0.22em;}
+        .hero-name{font-family:'Alyamama',serif;font-size:clamp(3rem,6.5vw,6rem);color:var(--t1);line-height:1.2;letter-spacing:-0.02em;margin-bottom:0.5em;padding-bottom:0.25em;}
         .hero-name em{font-style:italic;color:var(--terra);display:block;}
         .hero-tags{display:flex;gap:1rem;margin-bottom:1.6rem;flex-wrap:wrap;}
         .hero-tags span{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--t3);}
@@ -181,7 +181,7 @@
         .sh{display:flex;align-items:flex-end;gap:clamp(0.8rem,2.5vw,2rem);margin-bottom:2.5rem;flex-wrap:wrap;}
         .sh-n{font-family:'Amiri',serif;font-size:clamp(4rem,10vw,8rem);color:var(--mk);line-height:1;letter-spacing:-0.04em;user-select:none;opacity:0.45;}
         .sh-t .lb{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:var(--terra);margin-bottom:0.4rem;}
-        .sh-t h2{font-family:'Amiri',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--t1);line-height:1.25;letter-spacing:-0.01em;padding-bottom:0.18em;}
+        .sh-t h2{font-family:'Amiri',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--t1);line-height:1.3;letter-spacing:-0.01em;padding-bottom:0.2em;}
         .sh-t p{font-size:1rem;color:var(--t2);margin-top:0.4rem;max-width:460px;line-height:1.75;}
 
         /* ═══════════ EXPERTISE — 3 + 1 Featured Layout ═══════════ */
@@ -196,7 +196,7 @@
         .ec:hover{transform:translateY(-4px);box-shadow:var(--sh-h);border-color:var(--bd-h);}
         .ec .bar{position:absolute;top:0;left:0;width:4px;height:100%;border-radius:14px 0 0 14px;}
         .ec .ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem;}
-        .ec h3{font-family:'Amiri',serif;font-size:1.2rem;color:var(--t1);margin-bottom:0.4rem;line-height:1.35;padding-bottom:0.15em;}
+        .ec h3{font-family:'Amiri',serif;font-size:1.2rem;color:var(--t1);margin-bottom:0.4rem;line-height:1.35;padding-bottom:0.2em;}
         .ec>p{font-size:0.9rem;color:var(--t2);line-height:1.78;margin-bottom:0.8rem;}
 
         /* Featured card inner layout: left prose, right capability chips */
@@ -232,7 +232,7 @@
         .mi-n{font-family:'Amiri',serif;font-size:2.5rem;color:var(--dk-ghost);position:absolute;top:0.8rem;right:1rem;line-height:1;}
         .mi-o{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.35rem;}
         .mi-o.t{color:var(--terra-l);}.mi-o.b{color:#8BA3BC;}.mi-o.g{color:#86efac;}.mi-o.s{color:var(--dk-t3);}
-        .mi h3{font-family:'Amiri',serif;font-size:1.15rem;color:var(--dk-t);margin-bottom:0.3rem;line-height:1.35;padding-bottom:0.15em;}
+        .mi h3{font-family:'Amiri',serif;font-size:1.15rem;color:var(--dk-t);margin-bottom:0.3rem;line-height:1.35;padding-bottom:0.2em;}
         .mi-r{display:inline-flex;align-items:center;font-size:0.73rem;font-weight:700;padding:0.3rem 0.7rem;border-radius:5px;background:rgba(212,137,107,0.15);color:#E8A88A;border:1px solid rgba(212,137,107,0.25);margin-bottom:0.8rem;letter-spacing:0.02em;}
         .mi>p{font-size:0.9rem;line-height:1.78;color:var(--dk-t2);margin-bottom:1rem;}
         .mi strong{color:var(--dk-t);font-weight:600;}
@@ -244,7 +244,7 @@
         .about{background:var(--abt-bg);border-top:1px solid var(--abt-bd);border-bottom:1px solid var(--abt-bd);transition:background 0.5s,border-color 0.5s;}
         .po{background:var(--po-bg);border:1px solid var(--bd);border-radius:16px;padding:clamp(1.5rem,3.5vw,2.5rem);margin-bottom:2.5rem;box-shadow:var(--sh);transition:all 0.5s;}
         .po-in{display:grid;grid-template-columns:1fr 2fr;gap:2.5rem;align-items:start;}
-        .po-in h3{font-family:'Amiri',serif;font-size:clamp(1.3rem,2.2vw,1.8rem);color:var(--t1);line-height:1.3;margin-bottom:0.7rem;padding-bottom:0.1em;}
+        .po-in h3{font-family:'Amiri',serif;font-size:clamp(1.3rem,2.2vw,1.8rem);color:var(--t1);line-height:1.3;margin-bottom:0.7rem;padding-bottom:0.2em;}
         .po-in>div:first-child p{font-size:0.85rem;color:var(--t2);line-height:1.75;}
         .po-g{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
         .poc{padding:1.2rem;background:var(--po-card);border-radius:10px;border:1px solid var(--bd);transition:all 0.3s;}
@@ -257,26 +257,26 @@
         .ab-c{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:2.5rem;}
         .ab-label{font-size:0.66rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--t3);margin-bottom:1rem;}
         /* Timeline */
-        .tl{position:relative;padding-left:1.5rem;}
-        .tl::before{content:'';position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--bd);}
-        .tle{position:relative;padding-bottom:2rem;}
+        .tl{position:relative;padding-left:1.5rem;padding-top:1.2rem;}
+        .tl::before{content:'';position:absolute;left:5px;top:16px;bottom:0;width:2px;background:var(--bd);}
+        .tle{position:relative;padding-bottom:3rem;padding-top:0.5rem;}
         .tle:last-child{padding-bottom:0;}
-        .tld{position:absolute;left:-1.5rem;top:5px;width:12px;height:12px;border-radius:50%;background:var(--t3);border:3px solid var(--bg);}
+        .tld{position:absolute;left:-1.5rem;top:0;margin-top:4px;width:12px;height:12px;border-radius:50%;background:var(--t3);border:3px solid var(--bg);}
         html.dark .tld{border-color:var(--bg);}
         .tld.now{background:var(--terra);box-shadow:0 0 0 4px var(--terra-glow);}
-        .tle h4{font-family:'Amiri',serif;font-size:1rem;color:var(--t1);line-height:1.4;padding-bottom:0.12em;}
+        .tle h4{font-family:'Amiri',serif;font-size:1rem;color:var(--t1);line-height:1.4;padding-bottom:0.2em;}
         .tlco{font-size:0.82rem;font-weight:600;color:var(--terra);}
         .tldt{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--t3);margin-bottom:0.25rem;}
         .tlds{font-size:0.82rem;color:var(--t2);line-height:1.7;}
         .edu{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:0.5rem;}
         .edu-inner{border:none;border-bottom:1px solid var(--bd);border-radius:0;margin-bottom:0;background:var(--cert-bg);}
         .edu-inner:last-child{border-bottom:none;}
-        .edu h4{font-family:'Amiri',serif;font-size:0.95rem;color:var(--t1);line-height:1.4;padding-bottom:0.12em;}
+        .edu h4{font-family:'Amiri',serif;font-size:0.95rem;color:var(--t1);line-height:1.4;padding-bottom:0.2em;}
         .edu p{font-size:0.8rem;color:var(--t3);}
         /* Certs */
         .cgl{font-size:0.66rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--t3);margin-bottom:0.7rem;margin-top:1.6rem;}
         .cgl:first-child{margin-top:0;}
-        .cg-wrap{border:1px solid var(--bd);border-radius:12px;overflow:hidden;margin-bottom:0.5rem;}
+        .cg-wrap{border:1px solid var(--bd);border-radius:12px;overflow:clip;margin-bottom:0.5rem;}
         .cgl-inner{padding:0.55rem 0.9rem;background:var(--bg2);border-bottom:1px solid var(--bd);margin:0;color:var(--terra);}
         .cg-wrap .cr{border:none;border-bottom:1px solid var(--bd);border-radius:0;margin-bottom:0;background:var(--cert-bg);}
         .cg-wrap .cr:last-child{border-bottom:none;}
@@ -286,7 +286,7 @@
         .cri{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;}
         .cri.dk{background:var(--t1);color:var(--bg);}.cri.bl{background:#0052CC;color:#fff;}
         .cri.li{background:#0077b5;color:#fff;}.cri.pu{background:rgba(168,85,247,0.1);color:#a855f7;}
-        .crt h5{font-size:0.78rem;font-weight:600;color:var(--t1);}
+        .crt h5{font-size:0.78rem;font-weight:600;color:var(--t1);line-height:1.3;padding-bottom:0.2em;}
         .crt span{font-size:0.68rem;color:var(--t3);}
         @media(max-width:1024px){.po-in{grid-template-columns:1fr;}.po-g{grid-template-columns:1fr 1fr;}}
         @media(max-width:768px){.ab-c{grid-template-columns:1fr;}.po-g{grid-template-columns:1fr;}}
@@ -295,7 +295,7 @@
         .beyond{background:var(--bey-bg);border-top:1px solid var(--bey-bd);border-bottom:1px solid var(--bey-bd);transition:background 0.5s,border-color 0.5s;}
         .bf{display:flex;gap:3.5rem;align-items:center;}
         .bf-t{flex:1;}
-        .bf-t h2{font-family:'Amiri',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--t1);margin-bottom:1rem;line-height:1.3;padding-bottom:0.18em;}
+        .bf-t h2{font-family:'Amiri',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--t1);margin-bottom:1rem;line-height:1.3;padding-bottom:0.2em;}
         .bf-t p{font-size:1rem;color:var(--t2);line-height:1.82;margin-bottom:0.7rem;}
         .bf-t strong{color:var(--t1);font-weight:700;}
         .hg{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;flex:1;}
@@ -321,7 +321,7 @@
         .ic.ft .it{color:var(--terra-l);}
         .ic.ft .id{color:var(--dk-t3);}
         .it{font-size:0.66rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--terra);margin-bottom:0.6rem;}
-        .ic h3{font-family:'Amiri',serif;font-size:1.05rem;color:var(--t1);line-height:1.4;margin-bottom:0.5rem;flex:1;padding-bottom:0.15em;}
+        .ic h3{font-family:'Amiri',serif;font-size:1.05rem;color:var(--t1);line-height:1.4;margin-bottom:0.5rem;flex:1;padding-bottom:0.2em;}
         .ic p{font-size:0.88rem;color:var(--t2);line-height:1.78;margin-bottom:0.8rem;}
         .id{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;color:var(--t3);}
         @media(max-width:860px){.ifl{grid-template-columns:1fr 1fr;}.ifl>:first-child{grid-row:span 1;}}
@@ -331,7 +331,7 @@
         .foot{background:var(--dk);color:var(--dk-t2);padding:clamp(3.5rem,8vw,5.5rem) 0 1.8rem;position:relative;overflow:clip;transition:background 0.5s;}
         .foot::before{content:'AD';position:absolute;bottom:5.5rem;right:-0.5rem;font-family:'Amiri',serif;font-size:clamp(8rem,22vw,18rem);color:var(--dk-bd);line-height:1.1;pointer-events:none;opacity:0.5;}
         .fc{text-align:center;position:relative;z-index:2;}
-        .fc h2{font-family:'Amiri',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--dk-t);margin-bottom:0.5rem;line-height:1.25;padding-bottom:0.18em;}
+        .fc h2{font-family:'Amiri',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--dk-t);margin-bottom:0.5rem;line-height:1.3;padding-bottom:0.2em;}
         .fc>p{font-size:1rem;max-width:420px;margin:0 auto 1.8rem;line-height:1.78;}
         .fb{display:inline-flex;align-items:center;gap:0.5rem;background:var(--dk-t);color:var(--dk);padding:0.85rem 2rem;border-radius:8px;font-weight:700;font-size:0.95rem;transition:all 0.3s;}
         .fb:hover{background:var(--terra);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(194,112,78,0.3);}
@@ -355,7 +355,7 @@
         .lc .bar{position:absolute;top:0;left:0;width:4px;height:100%;border-radius:14px 0 0 14px;}
         .lc-in{display:flex;align-items:flex-start;gap:1.1rem;}
         .lc .ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
-        .lc h3{font-family:'Amiri',serif;font-size:1.1rem;color:var(--t1);margin-bottom:0.3rem;line-height:1.35;padding-bottom:0.1em;}
+        .lc h3{font-family:'Amiri',serif;font-size:1.1rem;color:var(--t1);margin-bottom:0.3rem;line-height:1.35;padding-bottom:0.2em;}
         .lc>div>p{font-size:0.88rem;color:var(--t2);line-height:1.75;}
         .lead-txt{flex:1;display:flex;align-items:center;}
         .lead-quote{border-left:3px solid var(--terra);padding-left:1.6rem;position:relative;}
@@ -374,6 +374,146 @@
         .hi1{animation-delay:0.1s;}.hi2{animation-delay:0.2s;}.hi3{animation-delay:0.3s;}
         .hi4{animation-delay:0.4s;}.hi5{animation-delay:0.55s;}.hi6{animation-delay:0.7s;}
         @keyframes hu{to{opacity:1;transform:translateY(0);}}
+
+        /* ═══════════════════════════════════════════════════════════════
+           VISUAL DESIGN PASS — CHANGES 1–12
+           All color references use existing CSS vars. No new hex colors.
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* ── C1: Typography Breathing Room ─────────────────────────────
+           body line-height raised 1.75→1.8 in body{} rule above.
+           letter-spacing added here for p and li.                      */
+        p, li { letter-spacing: 0.015em; }
+
+        /* ── C2: Text Opacity Hierarchy ──────────────────────────────── */
+        h1, h2, h3, h4 { opacity: 1; }
+        p { opacity: 0.7; }
+        li { opacity: 0.75; }
+        .pill { opacity: 0.85; }
+        /* Small labels / section counters / mono text: 55% */
+        .lb, .ab-label, .mi-o, .it, .id, .tldt, .hero-tags span, .fxs { opacity: 0.55; }
+        /* Dark-band card paragraphs: keep opacity 1 — var(--dk-t2) color already
+           provides the visual softening; this allows chip <strong> elements to pop */
+        .mi > p { opacity: 1; }
+
+        /* ── C3: Bullets → Arrow Prefix (MI cards only) ─────────────── */
+        .mi ul {
+            list-style: none !important; /* !important: overrides inline list-style:disc */
+            padding-left: 0 !important;  /* !important: overrides inline padding-left:1.2rem */
+        }
+        .mi ul > li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            opacity: 1;       /* reset: var(--dk-t2) color handles visual softening */
+            margin-bottom: 0; /* gap on <ul> handles spacing; prevents double gap with C12 */
+        }
+        .mi ul > li::before {
+            content: '→';
+            color: var(--terra-l);
+            opacity: 0.65;
+            flex-shrink: 0;
+            line-height: 1.72;
+        }
+
+        /* ── C4: Experience Timeline Two-Column Layout ───────────────── */
+        .tle {
+            display: grid;
+            grid-template-columns: minmax(180px, 32%) 1fr;
+            column-gap: 1.5rem;
+            align-items: start;
+            padding-top: 0.5rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--bd);
+        }
+        .tle:last-child { border-bottom: none; padding-bottom: 0; }
+        /* Left column: role, company, date */
+        .tle h4    { grid-column: 1; grid-row: 1; font-weight: 700; opacity: 1; padding-top: 0; }
+        .tle .tlco { grid-column: 1; grid-row: 2; opacity: 0.5; }
+        .tle .tldt { grid-column: 1; grid-row: 3; opacity: 0.5; margin-bottom: 0; }
+        /* Right column: description spans all 3 rows */
+        .tle .tlds { grid-column: 2; grid-row: 1 / span 3; opacity: 0.7; line-height: 1.8; align-self: start; padding-top: 0; }
+        /* Mobile: revert to single column, left content above description */
+        @media (max-width: 768px) {
+            .tle { display: block; padding-left: 0; }
+        }
+
+        /* ── C5: Section Padding — updated in .sec{} rule above ─────── */
+
+        /* ── C6: Metrics as Inline Chips (.mi > p > strong only) ─────── */
+        .mi > p > strong {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(212,137,107,0.12);
+            border: 1px solid rgba(212,137,107,0.30);
+            color: var(--terra-l);
+            font-size: 0.82em;
+            font-weight: 700;
+            vertical-align: middle;
+            margin: 0 1px;
+            opacity: 1; /* explicit reset: not cascaded from parent p */
+            letter-spacing: 0;
+        }
+
+        /* ── C7: Certifications Density ─────────────────────────────── */
+        .cr       { padding: 0.5rem 0.9rem; }
+        .cri      { width: 30px; height: 30px; }
+        .crt h5   { font-size: 0.75rem; }
+        .crt span { font-size: 0.65rem; }
+
+        /* ── C8: Decorative Section Numbers (Light sections only) ────── */
+        /* Dark band .proj .sh-n{color:var(--dk-ghost);opacity:1} retains its
+           higher specificity (0,1,1) and is unaffected by this base rule (0,0,1) */
+        .sh-n { font-size: clamp(6rem, 14vw, 11rem); opacity: 0.18; }
+
+        /* ── C9: Portfolio Cards — Metric Row Divider ────────────────── */
+        /* Cards 01,02,03,05 have 2+ metric values (nth-child 1,2,3,5)   */
+        .proj .mg .mi > p + .pills {
+            border-top: 1px solid var(--dk-bd);
+            padding-top: 0.85rem;
+            margin-top: 0.85rem;
+        }
+
+        /* ── C10: AI Systems Card Density Reduction ─────────────────── */
+        #ai-systems .mi ul {
+            gap: 0.3rem !important;           /* !important: overrides inline gap:0.4rem */
+            margin-bottom: 0.7rem !important; /* !important: overrides inline margin-bottom:1rem */
+        }
+        /* Skill-chain pills div immediately follows the <ul> */
+        #ai-systems .mi ul + .pills {
+            margin-bottom: 0.6rem !important; /* !important: overrides inline margin-bottom:1rem */
+        }
+
+        /* ── C11: Leadership Cards Left Bar Enhancement ──────────────── */
+        .lc .bar { width: 5px; }
+        .lc      { padding-left: 1.9rem; }
+        .lc:hover {
+            background: linear-gradient(to right, rgba(194,112,78,0.03) 0%, transparent 40%);
+        }
+
+        /* ── C12: General Spacing Refinements ────────────────────────── */
+        .pills { gap: 0.6rem; }
+        .pill  { padding: 0.32rem 0.8rem; }
+        /* Global h3/h4 margin-bottom increase (~+2px baseline).
+           Higher-specificity existing rules (.ec h3, .mi h3 etc.) that declare
+           their own values are unaffected; this rule covers all other h3/h4.  */
+        h3 { margin-bottom: 0.5rem; }
+        h4 { margin-bottom: 0.3rem; }
+        li { margin-bottom: 0.55rem; }
+
+        /* ── AI Systems intro grid mobile stack ──────────────────────── */
+        @media (max-width: 768px) {
+            .ai-intro-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            .ai-stat-block {
+                padding-left: 0 !important;
+                border-left: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -602,7 +742,25 @@
 <section class="proj sec" id="ai-systems">
     <div class="wrap">
         <div class="sh rv"><div class="sh-n">06</div><div class="sh-t"><div class="lb">AI Systems</div><h2>What I Build for Myself.</h2><p>Agentic systems that run the shop — dev side and PM side.</p></div></div>
-        <p class="rv d1" style="font-size:0.97rem;line-height:1.85;color:var(--dk-t2);max-width:680px;margin-bottom:2.5rem;">Most PMs use tools. I build them. These are two internal systems I architected and run live at BetaCraft — one that structures how our developers build, and one that automates how I manage projects. Both powered by Claude, both in active production.</p>
+        <div class="ai-intro-grid rv d1" style="display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;margin-bottom:2.5rem;">
+            <p style="font-size:0.97rem;line-height:1.85;color:var(--dk-t2);margin:0;">Most PMs use tools. I build them. These are two internal systems I architected and run live at BetaCraft — one that structures how our developers build, and one that automates how I manage projects. Both powered by Claude, both in active production.</p>
+            <div class="ai-stat-block" style="padding-left:2rem;border-left:1px solid var(--dk-bd2);">
+                <div style="display:flex;gap:2.5rem;align-items:flex-start;">
+                    <div>
+                        <div style="font-family:'Amiri',serif;font-size:clamp(2.5rem,4vw,3.5rem);color:var(--terra-l);line-height:1;">10</div>
+                        <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dk-t2);margin-top:0.3rem;">Dev Workflow Skills</div>
+                    </div>
+                    <div>
+                        <div style="font-family:'Amiri',serif;font-size:clamp(2.5rem,4vw,3.5rem);color:var(--terra-l);line-height:1;">7</div>
+                        <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dk-t2);margin-top:0.3rem;">PM Automation Skills</div>
+                    </div>
+                    <div>
+                        <div style="font-family:'Amiri',serif;font-size:clamp(2.5rem,4vw,3.5rem);color:var(--terra-l);line-height:1;">2</div>
+                        <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dk-t2);margin-top:0.3rem;">Systems in Production</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="mg rv d2">
             <div class="mi">
                 <div class="mi-n">A</div>
@@ -689,13 +847,24 @@
                 <a href="https://www.instagram.com/dvagabondprince" target="_blank"><i class="ph-fill ph-instagram-logo"></i></a>
             </div>
             <div class="fex">
-                <a href="uses.html" class="fxp"><div class="fxi"><i class="ph-fill ph-desktop"></i></div><div><span class="fxs">My Stack</span><br><span class="fxl">/uses</span></div></a>
                 <a href="now.html" class="fxp"><div class="fxi"><i class="ph-fill ph-clock-countdown"></i></div><div><span class="fxs">Current Focus</span><br><span class="fxl">/now</span></div></a>
             </div>
         </div>
         <div class="fcp">© 2026 Aakash Dhar. Designed with <i class="ph-fill ph-heart" style="color:var(--terra-l);"></i> in Pune.</div>
     </div>
 </footer>
+
+<!-- DENSITY NOTE: #ai-systems .mi cards still look dense because each card has four layers
+     (intro p → arrow bullets → skill-chain pills → tag pills). Suggested fix: collapse the
+     skill-chain pill row into the tag pill row on narrower cards by removing the
+     margin-bottom on the first .pills and letting them reflow as one combined strip.
+     Not applied automatically. -->
+
+<!-- DENSITY NOTE: .about .ab-c timeline column looks packed at 6 entries because the
+     two-column layout reduces each entry's line count but the column itself is 50% width.
+     Suggested fix: add a subtle background tint (var(--bg2)) alternating on every other
+     .tle entry to create visual separation without extra margin.
+     Not applied automatically. -->
 
 <script>
 const h=document.documentElement;

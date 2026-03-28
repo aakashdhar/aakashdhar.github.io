@@ -347,6 +347,25 @@
         .fxp>div:last-child{line-height:1.2;}
         .fcp{text-align:center;padding-top:2rem;margin-top:2rem;border-top:1px solid var(--dk-bd);font-size:0.7rem;color:var(--dk-t3);}
 
+        /* ═══════════ LEADERSHIP ═══════════ */
+        .lead-body{display:flex;gap:3.5rem;align-items:flex-start;}
+        .lead-cards{flex:2;display:flex;flex-direction:column;gap:1rem;}
+        .lc{background:var(--srf);border:1px solid var(--bd);border-radius:14px;padding:1.6rem 1.8rem;position:relative;transition:transform 0.4s,box-shadow 0.4s,border-color 0.4s;}
+        .lc:hover{transform:translateY(-4px);box-shadow:var(--sh-h);border-color:var(--bd-h);}
+        .lc .bar{position:absolute;top:0;left:0;width:4px;height:100%;border-radius:14px 0 0 14px;}
+        .lc-in{display:flex;align-items:flex-start;gap:1.1rem;}
+        .lc .ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+        .lc h3{font-family:'Amiri',serif;font-size:1.1rem;color:var(--t1);margin-bottom:0.3rem;line-height:1.35;padding-bottom:0.1em;}
+        .lc>div>p{font-size:0.88rem;color:var(--t2);line-height:1.75;}
+        .lead-txt{flex:1;display:flex;align-items:center;}
+        .lead-quote{border-left:3px solid var(--terra);padding-left:1.6rem;position:relative;}
+        .lead-quote::before{content:'\201C';font-family:'Amiri',serif;font-size:5rem;color:var(--terra-glow);line-height:1;display:block;margin-bottom:-1rem;margin-left:-0.25rem;}
+        html.dark .lead-quote::before{color:rgba(212,137,107,0.15);}
+        .lead-quote p{font-size:1.05rem;line-height:1.88;color:var(--t2);}
+        .lead-quote strong{color:var(--t1);}
+        @media(max-width:1024px){.lead-body{flex-direction:column-reverse;gap:2rem;}.lead-cards{flex-direction:column;width:100%}.lead-txt{width:100%;}}
+
+
         /* ═══════════ ANIMATIONS ═══════════ */
         .rv{opacity:0;transform:translateY(24px);transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1);}
         .rv.vis{opacity:1;transform:translateY(0);}
@@ -364,7 +383,7 @@
     <a href="#" class="nav-logo">A<em>.</em>Dhar</a>
     <div class="nr">
         <div class="nl">
-            <a href="#expertise">Expertise</a><a href="#projects">Work</a><a href="#about">About</a><a href="#insights">Insights</a>
+            <a href="#expertise">Expertise</a><a href="#projects">Work</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#ai-systems">AI</a><a href="#insights">Insights</a>
             <a href="#contact" class="ncta">Let's Talk</a>
         </div>
         <button class="thm" id="thm" aria-label="Toggle theme"><i class="ph-fill ph-sun s"></i><i class="ph-fill ph-moon m"></i></button>
@@ -373,7 +392,7 @@
 </nav>
 <div class="mob" id="mob">
     <button class="mob-x" id="mobx"><i class="ph ph-x"></i></button>
-    <a href="#expertise" class="ml">Expertise</a><a href="#projects" class="ml">Work</a><a href="#about" class="ml">About</a><a href="#insights" class="ml">Insights</a>
+    <a href="#expertise" class="ml">Expertise</a><a href="#projects" class="ml">Work</a><a href="#about" class="ml">About</a><a href="#leadership" class="ml">Leadership</a><a href="#ai-systems" class="ml">AI Systems</a><a href="#insights" class="ml">Insights</a>
     <a href="#contact" class="ml" style="color:var(--terra);">Contact</a>
 </div>
 
@@ -424,8 +443,8 @@
                     <div class="bar" style="background:#FF2D20;"></div>
                     <div class="ico" style="background:rgba(255,45,32,0.07);color:#FF2D20;"><i class="ph-duotone ph-code"></i></div>
                     <h3>Engineering &amp; APIs</h3>
-                    <p>8.5 years of PHP/Laravel mastery, building robust backends and third-party integrations at scale.</p>
-                    <div class="pills"><span class="pill" style="border-color:#FF2D20;color:#FF2D20;background:rgba(255,45,32,0.05);">Laravel</span><span class="pill">MySQL</span><span class="pill">Amazon MWS</span><span class="pill">Etsy API</span><span class="pill">WooCommerce</span><span class="pill">REST APIs</span></div>
+                    <p>8.5 years of PHP/Laravel mastery, building robust backends and third-party integrations at scale. Comprehensive Swagger documentation across every major project — reducing developer onboarding time by up to 25%.</p>
+                    <div class="pills"><span class="pill" style="border-color:#FF2D20;color:#FF2D20;background:rgba(255,45,32,0.05);">Laravel</span><span class="pill">MySQL</span><span class="pill">Amazon MWS</span><span class="pill">Etsy API</span><span class="pill">WooCommerce</span><span class="pill">REST APIs</span><span class="pill">Swagger / OpenAPI</span><span class="pill">API Documentation</span></div>
                 </div>
                 <div class="ec">
                     <div class="bar" style="background:linear-gradient(to bottom,var(--terra),var(--slate));"></div>
@@ -453,12 +472,12 @@
     <div class="wrap">
         <div class="sh rv"><div class="sh-n">02</div><div class="sh-t"><div class="lb">Portfolio</div><h2>Development History</h2><p>Selected projects from 8.5 years as a hands-on developer.</p></div></div>
         <div class="mg rv d2">
-            <div class="mi"><div class="mi-n">01</div><div class="mi-o t">Xyfon Managed IT</div><h3>KAFI CRM &amp; Automation</h3><div class="mi-r">Operations Manager</div><p>Automated order processing from multiple channels. Integrated <strong>Amazon SP-API</strong>, <strong>WooCommerce</strong>, and <strong>Etsy REST API</strong>.</p><div class="pills"><span class="pill">E-Commerce</span><span class="pill">API Integration</span><span class="pill">Automation</span></div></div>
-            <div class="mi"><div class="mi-n">02</div><div class="mi-o t">WebCodeGenie</div><h3>Pendio CRM (AI-Driven)</h3><div class="mi-r">Backend Lead</div><p>Integrated <strong>GPT models</strong> for content generation and <strong>Google My Business API</strong>. ~30% efficiency increase.</p><div class="pills"><span class="pill">Generative AI</span><span class="pill">GMB API</span><span class="pill">Laravel</span></div></div>
-            <div class="mi"><div class="mi-n">03</div><div class="mi-o b">SIIMTEQ</div><h3>DSM Diamond ERP</h3><div class="mi-r">Backend Developer</div><p>Streamlined operations for an Australian diamond wholesaler — <strong>50% efficiency boost</strong>.</p><div class="pills"><span class="pill">ERP Architecture</span><span class="pill">Optimization</span><span class="pill">API Dev</span></div></div>
+            <div class="mi"><div class="mi-n">01</div><div class="mi-o t">Xyfon Managed IT</div><h3>KAFI CRM &amp; Automation</h3><div class="mi-r">Operations Manager</div><p>Automated order processing from multiple channels. Integrated <strong>Amazon SP-API</strong>, <strong>WooCommerce</strong>, and <strong>Etsy REST API</strong>. Improved processing efficiency by <strong>30%</strong> across multiple platforms in high-load environments.</p><div class="pills"><span class="pill">E-Commerce</span><span class="pill">API Integration</span><span class="pill">Automation</span></div></div>
+            <div class="mi"><div class="mi-n">02</div><div class="mi-o t">WebCodeGenie</div><h3>Pendio CRM (AI-Driven)</h3><div class="mi-r">Backend Lead</div><p>Integrated <strong>GPT models</strong> for content generation and <strong>Google My Business API</strong>. <strong>20%</strong> increase in campaign effectiveness via GMB API automation. <strong>25–30%</strong> marketing efficiency gain through GPT-driven content integration.</p><div class="pills"><span class="pill">Generative AI</span><span class="pill">GMB API</span><span class="pill">Laravel</span><span class="pill">Zapier</span></div></div>
+            <div class="mi"><div class="mi-n">03</div><div class="mi-o b">SIIMTEQ</div><h3>DSM Diamond ERP</h3><div class="mi-r">Backend Developer</div><p>Streamlined operations for an Australian diamond wholesaler — <strong>50% efficiency boost</strong>. <strong>20%</strong> increase in customer engagement via custom WordPress API. <strong>15%</strong> boost in sales from customer-facing inventory display. <strong>40%</strong> improvement in system capabilities from two new subsystems.</p><div class="pills"><span class="pill">ERP Architecture</span><span class="pill">Optimization</span><span class="pill">API Dev</span></div></div>
             <div class="mi"><div class="mi-n">04</div><div class="mi-o g">Arbox Renewable</div><h3>HAP Asset Management</h3><div class="mi-r">Full Stack Developer</div><p>CRM for solar/wind energy. Integrated <strong>Hardware APIs (Locus)</strong> for real-time monitoring.</p><div class="pills"><span class="pill">IoT Integration</span><span class="pill">Renewable Energy</span><span class="pill">Billing</span></div></div>
-            <div class="mi"><div class="mi-n">05</div><div class="mi-o s">WebCodeGenie</div><h3>EasyR CRM</h3><div class="mi-r">Project Lead</div><p>Data-driven CRM for a Copenhagen client. AWS scaling. <strong>Agile/Jira sprints</strong>.</p><div class="pills"><span class="pill">AWS Scaling</span><span class="pill">Team Lead</span><span class="pill">Agile</span></div></div>
-            <div class="mi"><div class="mi-n">06</div><div class="mi-o s">WebCodeGenie</div><h3>Inventory &amp; Monitoring</h3><div class="mi-r">Project Lead</div><p>Integrated <strong>Uptime Kuma</strong> for real-time status monitoring. Robust asset tracking.</p><div class="pills"><span class="pill">Real-time Monitoring</span><span class="pill">Asset Mgmt</span><span class="pill">Laravel</span></div></div>
+            <div class="mi"><div class="mi-n">05</div><div class="mi-o s">WebCodeGenie</div><h3>EasyR CRM</h3><div class="mi-r">Project Lead</div><p>Data-driven CRM for a Copenhagen client. Infrastructure scaled for a projected user base of <strong>millions via AWS</strong>. <strong>100%</strong> on-time sprint delivery across cross-functional Agile teams.</p><div class="pills"><span class="pill">AWS Scaling</span><span class="pill">Team Lead</span><span class="pill">Agile</span></div></div>
+            <div class="mi"><div class="mi-n">06</div><div class="mi-o s">WebCodeGenie</div><h3>Inventory &amp; Monitoring</h3><div class="mi-r">Project Lead</div><p>Built ticketing and asset management system improving issue resolution visibility. Integrated <strong>Uptime Kuma</strong> for real-time status monitoring.</p><div class="pills"><span class="pill">Real-time Monitoring</span><span class="pill">Asset Mgmt</span><span class="pill">Laravel</span><span class="pill">Uptime Kuma</span></div></div>
         </div>
     </div>
 </section>
@@ -485,9 +504,9 @@
                 <div class="ab-label">Professional Experience</div>
                 <div class="tl">
                     <div class="tle"><div class="tld now"></div><h4>Technical Project Manager</h4><div class="tlco">BetaCraft · Full-time</div><div class="tldt">Sep 2024 – Present · Pune</div><div class="tlds">Sprint planning, client communication, AI-based project management.</div></div>
-                    <div class="tle"><div class="tld"></div><h4>Senior Software Engineer</h4><div class="tlco">WebCodeGenie Technology</div><div class="tldt">Sep 2022 – Sep 2024 · Ahmedabad</div><div class="tlds">100% on-time delivery; reduced onboarding time by 25%.</div></div>
+                    <div class="tle"><div class="tld"></div><h4>Senior Software Engineer &amp; Project Lead</h4><div class="tlco">WebCodeGenie Technology</div><div class="tldt">Sep 2022 – Sep 2024 · Ahmedabad</div><div class="tlds">Reduced new developer onboarding time by 25% through Swagger documentation and structured onboarding protocols. 30% reduction in code-related issues through rigorous code review and inspections. Improved junior developer task efficiency by 25% through direct mentorship. Increased team development speed by 20% by implementing process improvements and best practices.</div></div>
                     <div class="tle"><div class="tld"></div><h4>Operations Manager</h4><div class="tlco">Xyfon Managed IT</div><div class="tldt">Jan 2022 – Sep 2022 · Ahmedabad</div><div class="tlds">Optimized high-load CRM systems for 30% efficiency gain.</div></div>
-                    <div class="tle"><div class="tld"></div><h4>Full-stack &amp; Web Developer</h4><div class="tlco">Arbox Renewable Energy</div><div class="tldt">Sep 2019 – Jan 2022 · Ahmedabad</div><div class="tlds">Cloud-based CRM modules. Promoted from Web Dev to Full-stack.</div></div>
+                    <div class="tle"><div class="tld"></div><h4>Full Stack Developer <span style="font-weight:400;color:var(--t3);">← Promoted from Web Developer</span></h4><div class="tlco">Arbox Renewable Energy</div><div class="tldt">Sep 2019 – Jan 2022 · Ahmedabad</div><div class="tlds">Promoted from Web Developer to Full Stack Developer within the same organisation, taking on CRM architecture and client escalation ownership — reducing project delays by 20%.</div></div>
                     <div class="tle"><div class="tld"></div><h4>Web Developer</h4><div class="tlco">SIIMTEQ Technologies</div><div class="tldt">Jan 2018 – Aug 2019 · Vadodara</div><div class="tlds">Custom ERP modules; streamlined operations by 30%.</div></div>
                     <div class="tle"><div class="tld"></div><h4>Web Developer</h4><div class="tlco">Amigos Automation Solutions</div><div class="tldt">Nov 2016 – Dec 2017 · Bengaluru</div><div class="tlds">Front-end interfaces and backend APIs.</div></div>
                 </div>
@@ -542,11 +561,109 @@
     </div>
 </section>
 
+<!-- LEADERSHIP -->
+<section class="sec" id="leadership" style="border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);">
+    <div class="wrap">
+        <div class="sh rv"><div class="sh-n">05</div><div class="sh-t"><div class="lb">Leadership</div><h2>Beyond the Build.</h2><p>Growing teams, not just shipping code.</p></div></div>
+        <div class="lead-body rv d2">
+            <div class="lead-cards">
+                <div class="lc">
+                    <div class="bar" style="background:var(--terra);"></div>
+                    <div class="lc-in">
+                        <div class="ico" style="background:var(--terra-glow);color:var(--terra);"><i class="ph-fill ph-users-three"></i></div>
+                        <div><h3>PHP Intern Batches · 2023 &amp; 2024</h3><p>Led end-to-end training for two consecutive PHP intern cohorts at WebCodeGenie — from onboarding through to live project contribution.</p></div>
+                    </div>
+                </div>
+                <div class="lc">
+                    <div class="bar" style="background:var(--slate);"></div>
+                    <div class="lc-in">
+                        <div class="ico" style="background:rgba(107,127,150,0.08);color:var(--slate);"><i class="ph-duotone ph-book-open"></i></div>
+                        <div><h3>Training Modules &amp; Assessments</h3><p>Designed structured training modules and skill assessments from scratch, aligned to real job requirements — not generic tutorials.</p></div>
+                    </div>
+                </div>
+                <div class="lc">
+                    <div class="bar" style="background:#16a34a;"></div>
+                    <div class="lc-in">
+                        <div class="ico" style="background:rgba(22,163,74,0.08);color:#16a34a;"><i class="ph-duotone ph-handshake"></i></div>
+                        <div><h3>Soft Skills &amp; Client Communication</h3><p>Formulated communication strategies for client-facing interns — covering technical documentation, requirement gathering, and professional negotiation.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="lead-txt">
+                <div class="lead-quote">
+                    <p>As a <strong>Senior Engineer and Project Lead</strong>, I didn't just write code — I built the people who write it. From designing training curricula to leading intern cohorts, I've always believed that a team's ceiling is set by how well it learns.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI SYSTEMS -->
+<section class="proj sec" id="ai-systems">
+    <div class="wrap">
+        <div class="sh rv"><div class="sh-n">06</div><div class="sh-t"><div class="lb">AI Systems</div><h2>What I Build for Myself.</h2><p>Agentic systems that run the shop — dev side and PM side.</p></div></div>
+        <p class="rv d1" style="font-size:0.97rem;line-height:1.85;color:var(--dk-t2);max-width:680px;margin-bottom:2.5rem;">Most PMs use tools. I build them. These are two internal systems I architected and run live at BetaCraft — one that structures how our developers build, and one that automates how I manage projects. Both powered by Claude, both in active production.</p>
+        <div class="mg rv d2">
+            <div class="mi">
+                <div class="mi-n">A</div>
+                <div class="mi-o t">BetaCraft Internal</div>
+                <h3>Vibe-* Framework</h3>
+                <div class="mi-r">Agentic Dev Workflow System · 10 Skills</div>
+                <p>Structured, repeatable engineering workflows for the full dev lifecycle.</p>
+                <ul style="margin:0 0 1rem;padding-left:1.2rem;list-style:disc;display:flex;flex-direction:column;gap:0.4rem;">
+                    <li style="font-size:0.88rem;line-height:1.72;color:var(--dk-t2);">10 purpose-built skills covering every phase — from idea to shipped feature</li>
+                    <li style="font-size:0.88rem;line-height:1.72;color:var(--dk-t2);">Replaces ad-hoc AI prompting with structured, consistent dev execution</li>
+                    <li style="font-size:0.88rem;line-height:1.72;color:var(--dk-t2);">Used live on active BetaCraft client projects</li>
+                </ul>
+                <div class="pills" style="margin-bottom:1rem;gap:0.3rem;align-items:center;">
+                    <span class="pill">brainstorm</span><span style="color:var(--terra-l);font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">architect</span><span style="color:var(--terra-l);font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">new</span><span style="color:var(--terra-l);font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">feature</span><span style="color:var(--terra-l);font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">design</span><span style="color:var(--terra-l);font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">bug</span><span style="color:var(--terra-l);font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">change</span><span style="color:var(--terra-l);font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">review</span><span style="color:var(--terra-l);font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">progress</span>
+                </div>
+                <div class="pills">
+                    <span class="pill" style="border-color:rgba(212,137,107,0.35);color:var(--terra-l);background:rgba(212,137,107,0.1);">Claude Code</span>
+                    <span class="pill">Agentic AI</span><span class="pill">Dev Workflows</span><span class="pill">BetaCraft Internal</span>
+                </div>
+            </div>
+            <div class="mi">
+                <div class="mi-n">B</div>
+                <div class="mi-o b">BetaCraft Internal</div>
+                <h3>PM Skills System</h3>
+                <div class="mi-r">Claude-Powered PM Operations · 7 Skills</div>
+                <p>Automates the full PM admin layer — from client call to Jira ticket.</p>
+                <ul style="margin:0 0 1rem;padding-left:1.2rem;list-style:disc;display:flex;flex-direction:column;gap:0.4rem;">
+                    <li style="font-size:0.88rem;line-height:1.72;color:var(--dk-t2);">7 skills: call digestion, hour estimation, SOW generation, email analysis, client drafting, status dashboards</li>
+                    <li style="font-size:0.88rem;line-height:1.72;color:var(--dk-t2);">Built on Claude Code + MCP integrations with live project context</li>
+                    <li style="font-size:0.88rem;line-height:1.72;color:var(--dk-t2);">Cuts PM overhead significantly — outputs fed directly into client deliverables</li>
+                </ul>
+                <div class="pills" style="margin-bottom:1rem;gap:0.3rem;align-items:center;">
+                    <span class="pill">Transcript</span><span style="color:#8BA3BC;font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">Brief</span><span style="color:#8BA3BC;font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">Estimate</span><span style="color:#8BA3BC;font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">SOW</span><span style="color:#8BA3BC;font-size:0.72rem;font-weight:700;padding:0 0.1rem;">→</span>
+                    <span class="pill">Jira</span>
+                </div>
+                <div class="pills">
+                    <span class="pill" style="border-color:rgba(212,137,107,0.35);color:var(--terra-l);background:rgba(212,137,107,0.1);">Claude Code</span>
+                    <span class="pill">MCP</span><span class="pill">Prompt Engineering</span><span class="pill">BetaCraft Internal</span>
+                </div>
+            </div>
+        </div>
+        <p class="rv" style="text-align:center;font-size:0.72rem;color:var(--dk-t3);margin-top:2rem;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;">Both systems are internal to BetaCraft — built, maintained, and evolved by me.</p>
+    </div>
+</section>
+
 <!-- INSIGHTS -->
 <section class="sec" id="insights">
     <div class="wrap">
         <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
-            <div class="sh rv"><div class="sh-n">04</div><div class="sh-t"><div class="lb">Writing</div><h2>Latest Insights</h2></div></div>
+            <div class="sh rv"><div class="sh-n">07</div><div class="sh-t"><div class="lb">Writing</div><h2>Latest Insights</h2></div></div>
             <a href="https://www.linkedin.com/in/aakashdhar" class="rv" style="font-size:0.85rem;font-weight:600;color:var(--terra);">View All on LinkedIn →</a>
         </div>
         <div class="ifl rv d2">

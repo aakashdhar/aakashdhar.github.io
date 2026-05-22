@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>ctx/window · Edition 15</title>
+<title>ctx/window · Edition 1</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=Syne:wght@500;600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -92,17 +92,14 @@ html,body{width:100%;background:#FAFAF8;}
     <div class="mh-tagline">AI Digest · curated by Aakash Dhar</div>
   </div>
   <div class="mh-center">
-    <div class="mh-edition-num">15</div>
+    <div class="mh-edition-num">1</div>
   </div>
   <div class="mh-right">
     <div class="mh-date">Friday<br>22 May 2026</div>
     <div class="mh-story-count">11 stories · 4 categories</div>
   </div>
 </div>
-<div class="lede-bar">
-  <div class="lede-accent"></div>
-  <div class="lede-text">Forget raw benchmarks—this week, the real story was teams of AI that actually execute.</div>
-</div>
+
 <div class="hero">
   <div class="hero-inner">
     <div>
@@ -118,36 +115,36 @@ html,body{width:100%;background:#FAFAF8;}
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-body">Anthropic's Claude Opus 4.7 sets a new bar across agentic coding, long-horizon autonomy, and multimodal understanding — with partners reporting 13–98% gains over Opus 4.6 on benchmarks spanning code review, document reasoning, and penetration testing. What stands out is the model's loop resistance and self-correction: it catches its own logical faults mid-execution, pushes through tool failures that stopped previous models cold, and is the first to pass implicit-need tests in multi-step workflows. For teams running agent fleets rather than single-session interactions, this is the reliability floor that makes production deployment credible.</div>
+      <div class="hero-body">Anthropic's Claude Opus 4.7 sets a new ceiling for agentic coding and long-horizon reasoning — partners are reporting 13–70% task resolution gains over Opus 4.6, with the model notably self-correcting during planning rather than after failure. The headline differentiators are loop resistance, lower tool-error rates, and sustained coherence across multi-step workflows that previously stalled frontier models. For teams running autonomous engineering agents, this looks like the first model that reliably finishes what it starts.</div>
       <a class="hero-rm" href="https://www.anthropic.com/news/claude-opus-4-7">Read more &#8594;</a>
     </div>
   </div>
-  <div class="hero-ghost">15</div>
+  <div class="hero-ghost">1</div>
 </div>
 <div class="band slant-dr c-dark">
   <div class="band-inner">
     <span class="band-label">Models</span>
-    <span class="band-count">5 stories</span>
+    <span class="band-count">4 stories</span>
   </div>
 </div>
 <div class="grid grid-4">
-<div class="art" style="padding-left:0;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:0.5px solid #D8D4CC">
+<div class="art" style="padding-left:0;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">How WeatherNext helped the National Hurricane Center better predict Hurricane Melissa’s historic landfall in Jamaica</div>
+    <span class="art-pill">Google DeepMind</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">Google DeepMind's WeatherNext demonstrated real operational value when it gave the National Hurricane Center sharper early guidance on Hurricane Melissa's track ahead of a historic Jamaica landfall — a concrete deployment win beyond benchmark comparisons. This is the clearest public evidence yet that ML-based weather models are being integrated into live emergency forecasting workflows, not just evaluated in hindsight. The gap between traditional NWP and neural forecasters is closing fast enough that national meteorological agencies are acting on the outputs.</div>
+  <a class="art-rm" href="https://deepmind.google/blog/how-weathernext-helped-the-national-hurricane-center-better-predict-hurricane-melissas-historic-landfall-in-jamaica/">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
   <div class="art-header">
     <div class="art-title">Remote agents in Vibe. Powered by Mistral Medium 3.5.</div>
     <span class="art-pill">Mistral AI</span>
   </div>
   <span class="art-age">just now</span>
-  <div class="art-body">Mistral ships Medium 3.5, a 128B dense model scoring 77.6% on SWE-Bench Verified that replaces Devstral 2 as the default in their Vibe coding agent — the first model they describe as genuinely making async cloud agents practical. Alongside it, Vibe gains remote agent execution: sessions run in isolated cloud sandboxes, can be spawned or teleported from the CLI or Le Chat, and complete autonomously with GitHub PR output. Le Chat also gets a new Work mode that runs the same agent as an execution backend for cross-tool, multi-step tasks like inbox triage, research synthesis, and calendar prep.</div>
+  <div class="art-body">Mistral ships Medium 3.5, a dense 128B open-weights model scoring 77.6% on SWE-Bench Verified, and uses it to power async cloud coding agents in Vibe — sessions now run in parallel on remote infrastructure, teleport from local CLI, and land as GitHub PRs without developer babysitting. The same model drives a new Work mode in Le Chat that chains tools across email, calendar, docs, and issue trackers to complete multi-step tasks end-to-end. This is a direct shot at the GitHub Copilot Workspace / Devin tier of autonomous coding, but with open weights self-hostable on four GPUs.</div>
   <a class="art-rm" href="https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5">Read more &#8594;</a>
-</div>
-<div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
-  <div class="art-header">
-    <div class="art-title">Speaking of Voxtral</div>
-    <span class="art-pill">Mistral AI</span>
-  </div>
-  <span class="art-age">just now</span>
-  <div class="art-body">Mistral is entering the TTS market with Voxtral, a 4B-parameter model that matches ElevenLabs v3 quality while beating ElevenLabs Flash v2.5 on naturalness in human evaluations across 9 languages. At 70ms latency and $0.016/1k characters, the pitch is cost-effective enterprise voice agents with zero-shot voice adaptation from as little as 3 seconds of reference audio. The architecture is notably compact — a Ministral 3B backbone plus flow-matching and codec heads — and weights ship on Hugging Face under CC BY NC 4.0.</div>
-  <a class="art-rm" href="https://mistral.ai/news/voxtral-tts">Read more &#8594;</a>
 </div>
 <div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
   <div class="art-header">
@@ -155,25 +152,16 @@ html,body{width:100%;background:#FAFAF8;}
     <span class="art-pill">Mistral AI</span>
   </div>
   <span class="art-age">just now</span>
-  <div class="art-body">Mistral Small 4 is a 119B MoE model that unifies reasoning, multimodal, and coding capabilities into a single open-source release under Apache 2.0 — ending the need to juggle Magistral, Pixtral, and Devstral separately. The standout engineering choice is a configurable `reasoning_effort` parameter that lets users dial between low-latency chat and deep step-by-step reasoning at runtime. Benchmark results show it matches or beats GPT-OSS 120B while generating 20–75% shorter outputs, which translates directly to lower inference costs at scale.</div>
+  <div class="art-body">Mistral Small 4 collapses three previously separate models — Magistral (reasoning), Devstral (coding), and Pixtral (vision) — into a single 119B MoE model with only 6B active parameters per token. The standout engineering choice is a configurable `reasoning_effort` parameter that lets you dial between low-latency chat and deep chain-of-thought without switching models. Benchmarks show it matches or beats GPT-OSS 120B on reasoning tasks while producing 20–40% shorter outputs, which matters directly for inference cost at scale.</div>
   <a class="art-rm" href="https://mistral.ai/news/mistral-small-4">Read more &#8594;</a>
 </div>
 <div class="art" style="padding-left:28px;padding-right:0;border-right:none;border-bottom:none">
-  <div class="art-header">
-    <div class="art-title">Leanstral: Open-Source foundation for trustworthy vibe-coding</div>
-    <span class="art-pill">Mistral AI</span>
-  </div>
-  <span class="art-age">just now</span>
-  <div class="art-body">Mistral releases Leanstral, a 6B-active-parameter open-source agent purpose-built for Lean 4 formal verification — the first model trained specifically for realistic proof engineering in live repositories rather than isolated competition math. At pass@2 it beats Claude Sonnet on their FLTEval benchmark at 1/15th the cost, and scales linearly with additional passes while larger open-source models plateau. We get Apache 2.0 weights, a free API endpoint, and native MCP support targeting the lean-lsp-mcp toolchain.</div>
-  <a class="art-rm" href="https://mistral.ai/news/leanstral">Read more &#8594;</a>
-</div>
-<div class="art" style="padding-left:0;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
   <div class="art-header">
     <div class="art-title">EMO: Pretraining mixture of experts for emergent modularity</div>
     <span class="art-pill">Hugging Face</span>
   </div>
   <span class="art-age">just now</span>
-  <div class="art-body">AllenAI's EMO is a 1B-active/14B-total MoE that achieves something standard MoEs can't: coherent expert subsets that map to semantic domains like health or code rather than surface-level syntax. By constraining all tokens in a document to route through a shared expert pool during training, EMO lets you run just 12.5% of experts for a specific task with only ~3% performance drop — whereas a standard MoE collapses near random under the same constraint. We get a composable architecture where a single pretrained model can be sliced into domain-specific modules at inference time, meaningfully improving memory-accuracy tradeoffs for large sparse models.</div>
+  <div class="art-body">AllenAI's EMO is a 1B-active/14B-total MoE that learns domain-coherent expert groups end-to-end — no predefined domain labels required. By constraining all tokens in a document to share an expert pool during training, EMO achieves near full-model performance using just 12.5% of experts on a given task, while standard MoEs collapse to near-random under the same conditions. We get semantic expert clusters (Health, US Politics, Film) instead of the syntactic noise (prepositions, definite articles) that standard MoE routing produces.</div>
   <a class="art-rm" href="https://huggingface.co/blog/allenai/emo">Read more &#8594;</a>
 </div>
 </div>
@@ -181,45 +169,54 @@ html,body{width:100%;background:#FAFAF8;}
 <div class="band slant-ul c-teal">
   <div class="band-inner">
     <span class="band-label">Research</span>
-    <span class="band-count">2 stories</span>
+    <span class="band-count">1 story</span>
   </div>
 </div>
-<div class="grid grid-2">
-<div class="art" style="padding-left:0;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+<div class="grid grid-1">
+<div class="art" style="padding-left:0;padding-right:0;border-right:none;border-bottom:none">
   <div class="art-header">
     <div class="art-title">An OpenAI model has disproved a central conjecture in discrete geometryResearchMay 20, 2026</div>
     <span class="art-pill">OpenAI</span>
   </div>
   <span class="art-age">just now</span>
-  <div class="art-body">An OpenAI model has disproved a central conjecture in discrete geometry — a genuine mathematical result, not a benchmark score. This marks a meaningful step toward AI systems that can produce novel, verifiable contributions to pure mathematics rather than just assist with known techniques.</div>
+  <div class="art-body">An OpenAI model has disproved a central conjecture in discrete geometry — a meaningful milestone for AI-assisted mathematical reasoning. This is the kind of result that moves AI beyond pattern-matching into genuine mathematical discovery, with implications for how we use these systems in hard theoretical domains. We're watching the boundary between 'AI as tool' and 'AI as collaborator' shift in real time.</div>
   <a class="art-rm" href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/">Read more &#8594;</a>
-</div>
-<div class="art" style="padding-left:28px;padding-right:0;border-right:none;border-bottom:none">
-  <div class="art-header">
-    <div class="art-title">Co-Scientist: A multi-agent AI partner to accelerate research</div>
-    <span class="art-pill">Google DeepMind</span>
-  </div>
-  <span class="art-age">just now</span>
-  <div class="art-body">Google DeepMind's Co-Scientist multi-agent system is surfacing drug-repurposing candidates that human researchers miss — in one Stanford case, it identified a compound that blocked 91% of a fibrosis-linked scarring response in lab tests, with findings published in Advanced Science. We're watching a shift from AI as literature search tool to AI as active hypothesis generator in wet-lab science. The liver fibrosis result is early but concrete, and it signals that multi-agent reasoning over biomedical corpora is past the proof-of-concept stage.</div>
-  <a class="art-rm" href="https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/">Read more &#8594;</a>
 </div>
 </div>
 <div class="gap"></div>
 <div class="band slant-dl c-amber-band">
   <div class="band-inner">
     <span class="band-label">Product</span>
-    <span class="band-count">2 stories</span>
+    <span class="band-count">4 stories</span>
   </div>
 </div>
-<div class="grid grid-2">
+<div class="grid grid-4">
 <div class="art" style="padding-left:0;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
   <div class="art-header">
     <div class="art-title">I/O 2026: Welcome to the agentic Gemini era</div>
     <span class="art-pill">Google AI Blog</span>
   </div>
   <span class="art-age">just now</span>
-  <div class="art-body">Google's I/O 2026 keynote marks a decisive shift toward agentic AI across every product surface — Gemini 3.5 Flash leads the charge as a frontier-tier model running 4x faster than competitors at half the price, while Gemini Spark debuts as a 24/7 personal agent running on dedicated cloud VMs with MCP integration coming soon. We're also watching Antigravity 2.0 evolve from a coding tool into a full agent orchestration platform, and the SynthID watermarking coalition just got significantly stronger with OpenAI, Kakao, and ElevenLabs signing on. Token consumption tells the real story of adoption scale: Google's internal tooling hit 3 trillion tokens per day in May, up from 480 trillion per month a year ago.</div>
+  <div class="art-body">Google's I/O 2026 keynote marks a decisive pivot to agentic AI across its entire product surface — Gemini 3.5 Flash arrives as a frontier-capable model that is 4x faster and half the price of comparable models, while Antigravity 2.0 turns Google's internal dev platform into a multi-agent orchestration environment available to developers. The headline consumer product is Gemini Spark, a 24/7 personal agent running on dedicated cloud VMs with MCP integration coming, alongside information agents baked into Search. Token throughput at Google has reached 3.2 quadrillion per month, and infrastructure spend is scaling to $180–190B this year — the numbers confirm this is no longer a demo cycle.</div>
   <a class="art-rm" href="https://blog.google/innovation-and-ai/sundar-pichai-io-2026/">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">Co-Scientist: A multi-agent AI partner to accelerate research</div>
+    <span class="art-pill">Google DeepMind</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">Google DeepMind's Co-Scientist multi-agent system is showing real traction in biomedical research — it surfaced overlooked drug-repurposing candidates for liver fibrosis that blocked 91% of a scarring-linked response in lab tests, results now published in Advanced Science. We're watching a pattern where LLM reasoning over the full corpus of biomedical literature outperforms narrow literature searches by finding cross-domain connections human researchers miss. This is one of the cleaner real-world validations of agentic AI as a genuine research accelerant rather than a productivity wrapper.</div>
+  <a class="art-rm" href="https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">The Gemini app becomes more agentic, delivering proactive, 24/7 help</div>
+    <span class="art-pill">Google AI Blog</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">Google is making Gemini meaningfully more agentic with two headline launches: Daily Brief (a proactive morning digest pulling from Gmail and Calendar) and Gemini Spark, a 24/7 cloud-based agent that runs persistent workflows in the background even when your device is off. Spark runs on Gemini 3.5 with an &quot;Antigravity&quot; harness and ships with MCP connections to Canva, OpenTable, and Instacart — the clearest signal yet that Google is treating MCP as a real interoperability standard. They also dropped Gemini Omni for text-to-video generation and a full UI redesign, but the agentic infrastructure is the part worth watching.</div>
+  <a class="art-rm" href="https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/">Read more &#8594;</a>
 </div>
 <div class="art" style="padding-left:28px;padding-right:0;border-right:none;border-bottom:none">
   <div class="art-header">
@@ -227,7 +224,7 @@ html,body{width:100%;background:#FAFAF8;}
     <span class="art-pill">Google AI Blog</span>
   </div>
   <span class="art-age">just now</span>
-  <div class="art-body">Google is launching Gemini for Science, a suite of three agentic research tools — Hypothesis Generation (multi-agent idea tournaments via Co-Scientist), Computational Discovery (parallel code variation testing via AlphaEvolve), and Literature Insights (structured paper synthesis via NotebookLM) — now entering gradual public access via Google Labs. Enterprise deployments are already live with BASF, Klarna, Bayer, and U.S. National Labs, with validation papers for ERA and Co-Scientist published today in Nature. The Science Skills bundle adds direct integration with 30+ life science databases including UniProt and AlphaFold on Google Antigravity, collapsing hours of structural bioinformatics work to minutes.</div>
+  <div class="art-body">Google is launching Gemini for Science — a suite of three experimental agentic tools (Hypothesis Generation, Computational Discovery, Literature Insights) built on Co-Scientist, AlphaEvolve, and NotebookLM — alongside Science Skills, which plugs into 30+ life science databases for structural bioinformatics and genomic analysis. The push is to make multi-agent AI a general-purpose research accelerator across fields, not just biology, with validation papers landing in Nature today. Enterprise partners including BASF, Bayer, and U.S. National Labs are already in private preview, signaling this is closer to production than a research demo.</div>
   <a class="art-rm" href="https://blog.google/innovation-and-ai/technology/research/gemini-for-science-io-2026/">Read more &#8594;</a>
 </div>
 </div>
@@ -245,7 +242,7 @@ html,body{width:100%;background:#FAFAF8;}
     <span class="art-pill">Google AI Blog</span>
   </div>
   <span class="art-age">just now</span>
-  <div class="art-body">Google is opening its internal agent infrastructure to developers via Managed Agents in the Gemini API — a single API call now spins up an ephemeral Linux sandbox where an agent can reason, run code, and browse the web without any orchestration scaffolding on your end. The new Antigravity agent, built on Gemini 3.5 Flash, is the runtime; you customize it by dropping AGENTS.md and SKILL.md files rather than writing glue code. This is a direct play to commoditize the hardest part of production agent deployment, putting Google's harness in direct competition with hosted offerings from Anthropic and OpenAI.</div>
+  <div class="art-body">Google is opening up its agent infrastructure to developers via Managed Agents in the Gemini API — a single API call now provisions an ephemeral Linux sandbox where an agent can reason, execute code, browse the web, and maintain session state. The underlying Antigravity agent runs on Gemini 3.5 Flash, and developers define custom behavior through AGENTS.md and SKILL.md files rather than orchestration code. This is Google abstracting the production-grade agent scaffolding it built internally and making it available at API scale.</div>
   <a class="art-rm" href="https://blog.google/innovation-and-ai/technology/developers-tools/managed-agents-gemini-api/">Read more &#8594;</a>
 </div>
 <div class="art" style="padding-left:28px;padding-right:0;border-right:none;border-bottom:none">
@@ -254,7 +251,7 @@ html,body{width:100%;background:#FAFAF8;}
     <span class="art-pill">Hugging Face</span>
   </div>
   <span class="art-age">just now</span>
-  <div class="art-body">Hugging Face has released LeRobot Humanoid, a $2,500 open-source bipedal robot built from 3D-printed parts designed specifically for robot learning research. What sets this apart from typical humanoid projects is the full-stack release: hardware files, simulation assets, identification tools, and training environments that close the entire loop from mechanical design to real-world policy deployment. We see this as a meaningful democratization effort — most labs can train policies in simulation but can't validate them on real humanoid hardware, and this project directly attacks that bottleneck.</div>
+  <div class="art-body">Hugging Face has released LeRobot Humanoid, a $2,500 open-source bipedal robot built from 3D-printed parts and off-the-shelf components — and unlike most humanoid projects, it ships as a complete stack covering hardware, simulation, identification, and policy training. The full loop from mechanical design through sim-to-real deployment is open and reproducible, which has been the missing piece keeping humanoid robot learning confined to well-funded labs. We think the real unlock here is the identification pipeline that fits simulator parameters from real robot data, directly attacking the sim-to-real gap that kills most cheap robot projects.</div>
   <a class="art-rm" href="https://huggingface.co/blog/VirgileBatto/lerobot-humanoid">Read more &#8594;</a>
 </div>
 </div>
@@ -266,7 +263,7 @@ html,body{width:100%;background:#FAFAF8;}
         No tracking. No paywall. No noise.</div>
     </div>
     <div class="footer-center">
-      <div class="footer-num">15</div>
+      <div class="footer-num">1</div>
     </div>
     <div class="footer-right">
       <div class="footer-tag">

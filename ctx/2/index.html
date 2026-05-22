@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ctx/window · Edition 2</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=Syne:wght@500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;background:#FAFAF8;}
+:root{
+  --ink:#0F0E0C;--ink-2:#1C1B18;--ink-3:#2A2820;
+  --muted:#5A5850;--faint:#8A8780;--ghost:#B4B0A8;
+  --rule:#D8D4CC;--rule-subtle:#E8E4DC;
+  --paper:#FAFAF8;--paper-2:#F5F2EC;--paper-3:#F0ECE6;
+  --amber:#EF9F27;--amber-dark:#A86010;
+  --dark:#111110;--dark-2:#161614;--dark-3:#1C1B18;
+  --teal:#0A5C48;--amber-band:#7A4408;--purple:#2D2882;--tools:#1A3A1A;
+  --px:52px;
+}
+.nl{font-family:'Syne',sans-serif;color:var(--ink);width:100%;overflow-x:hidden;}
+.mh{background:var(--dark);padding:32px var(--px) 26px;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;border-bottom:2px solid var(--amber);}
+.mh-brand-name{font-size:32px;font-weight:800;color:#fff;letter-spacing:-0.04em;line-height:1;font-family:'Syne',sans-serif;}
+.mh-brand-name em{color:var(--amber);font-style:normal;}
+.mh-tagline{font-size:9px;font-weight:600;color:#444441;letter-spacing:0.14em;text-transform:uppercase;margin-top:6px;font-family:'Syne',sans-serif;}
+.mh-center{text-align:center;border-left:1px solid #222220;border-right:1px solid #222220;padding:0 40px;}
+.mh-edition-num{font-size:72px;font-weight:800;color:#1A1A18;letter-spacing:-0.06em;line-height:1;font-family:'Syne',sans-serif;}
+.mh-right{text-align:right;}
+.mh-date{font-size:11px;font-weight:600;color:#444441;letter-spacing:0.08em;text-transform:uppercase;line-height:1.6;font-family:'Syne',sans-serif;}
+.mh-story-count{font-size:10px;color:#333331;margin-top:4px;letter-spacing:0.04em;font-family:'Syne',sans-serif;}
+.lede-bar{padding:22px var(--px) 20px;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;align-items:stretch;}
+.lede-accent{width:4px;background:var(--amber);flex-shrink:0;margin-right:20px;}
+.lede-text{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--ink-3);line-height:1.5;flex:1;}
+.hero{background:var(--dark);padding:44px var(--px) 0;position:relative;overflow:hidden;clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),0 100%);}
+.hero-inner{display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:start;}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.hero-label{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--dark);background:var(--amber);padding:5px 14px;font-family:'Syne',sans-serif;}
+.hero-source{font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#555553;font-family:'Syne',sans-serif;}
+.hero-age{font-size:10px;color:#444441;}
+.hero-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-0.02em;margin-bottom:22px;}
+.hero-title em{color:var(--amber);font-style:normal;}
+.hero-tags{display:flex;gap:7px;margin-top:24px;padding:18px 0 0;border-top:0.5px solid #222220;}
+.hero-tag{font-size:9px;font-weight:600;padding:4px 10px;letter-spacing:0.08em;text-transform:uppercase;border:0.5px solid #2A2A28;color:#555553;font-family:'Syne',sans-serif;}
+.hero-right{border-left:1px solid #1A1A18;padding-left:40px;padding-bottom:40px;}
+.hero-body{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:#888780;line-height:1.75;margin-bottom:24px;}
+.hero-rm{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;color:var(--amber);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-family:'Syne',sans-serif;border-bottom:1.5px solid var(--amber);padding-bottom:3px;}
+.hero-ghost{font-size:160px;font-weight:800;color:#141412;line-height:1;letter-spacing:-0.08em;position:absolute;right:calc(var(--px) - 20px);bottom:-10px;font-family:'Syne',sans-serif;user-select:none;pointer-events:none;}
+.band{padding:20px var(--px) 18px;min-height:64px;}
+.band-inner{display:flex;align-items:center;justify-content:space-between;height:100%;min-height:44px;}
+.band-label{font-size:13px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#fff;font-family:'Syne',sans-serif;}
+.band-count{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-family:'Syne',sans-serif;}
+.slant-dr{clip-path:polygon(0 0,100% 20px,100% 100%,0 100%);}
+.slant-ul{clip-path:polygon(0 20px,100% 0,100% 100%,0 100%);}
+.slant-dl{clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 20px));}
+.slant-ur{clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),0 100%);}
+.c-dark{background:var(--dark-3);}
+.c-teal{background:var(--teal);}
+.c-amber-band{background:var(--amber-band);}
+.c-purple{background:var(--purple);}
+.c-tools{background:var(--tools);}
+.grid{display:grid;padding:0 var(--px);gap:0;}
+.grid-1{grid-template-columns:1fr;}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+.art{padding:24px 28px;}
+.art-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.art-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);line-height:1.3;flex:1;}
+.art-pill{font-size:8px;font-weight:700;padding:3px 8px;background:var(--dark);color:#fff;letter-spacing:0.07em;text-transform:uppercase;font-family:'Syne',sans-serif;flex-shrink:0;margin-top:3px;white-space:nowrap;}
+.art-age{font-size:10px;color:var(--ghost);font-family:'Syne',sans-serif;font-weight:500;margin-bottom:10px;display:block;}
+.art-body{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:var(--muted);line-height:1.72;margin-bottom:14px;}
+.art-rm{font-size:9px;font-weight:700;color:var(--amber-dark);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-family:'Syne',sans-serif;display:inline-flex;align-items:center;gap:6px;border-bottom:1.5px solid var(--amber-dark);padding-bottom:2px;}
+.gap{height:12px;background:var(--paper);}
+.footer{background:var(--dark);clip-path:polygon(0 20px,100% 0,100% 100%,0 100%);padding:48px var(--px) 36px;margin-top:40px;}
+.footer-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:40px;}
+.footer-brand-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.02em;font-family:'Syne',sans-serif;}
+.footer-brand-name em{color:var(--amber);font-style:normal;}
+.footer-meta{font-size:11px;color:#444441;margin-top:8px;line-height:1.8;font-family:'Syne',sans-serif;}
+.footer-meta a{color:#555553;text-decoration:none;}
+.footer-center{text-align:center;border-left:1px solid #1A1A18;border-right:1px solid #1A1A18;padding:0 40px;}
+.footer-num{font-size:52px;font-weight:800;color:#1A1A18;line-height:1;letter-spacing:-0.06em;font-family:'Syne',sans-serif;}
+.footer-right{text-align:right;}
+.footer-tag{font-size:10px;color:#444441;letter-spacing:0.06em;font-family:'Syne',sans-serif;line-height:1.8;}
+.footer-tag a{color:#555553;text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="nl">
+<div class="mh">
+  <div>
+    <div class="mh-brand-name"><em>[</em>ctx/window<em>]</em></div>
+    <div class="mh-tagline">AI Digest · curated by Aakash Dhar</div>
+  </div>
+  <div class="mh-center">
+    <div class="mh-edition-num">2</div>
+  </div>
+  <div class="mh-right">
+    <div class="mh-date">Friday<br>22 May 2026</div>
+    <div class="mh-story-count">14 stories · 5 categories</div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="hero-label">&#9889; Top story</span>
+        <span class="hero-source">Anthropic</span>
+        <span class="hero-age">· just now</span>
+      </div>
+      <div class="hero-title"><em style="color:#EF9F27;font-style:normal;">Introducing Claude Opus</em> 4.7</div>
+      <div class="hero-tags">
+        <span class="hero-tag">Models</span>
+        <span class="hero-tag">Anthropic</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-body">Anthropic's Claude Opus 4.7 is their strongest model yet, with double-digit gains over Opus 4.6 across coding, agentic, and document reasoning benchmarks — including a 3x improvement on production SWE-Bench tasks and 98.5% on visual acuity versus 54.5% for its predecessor. What stands out is the sustained reliability in long-running autonomous workflows: better loop resistance, fewer tool errors, and the ability to push through failures that previously stopped agents cold. For teams running multi-agent or CI/CD pipelines, this is the first Opus that feels production-safe rather than impressive-but-fragile.</div>
+      <a class="hero-rm" href="https://www.anthropic.com/news/claude-opus-4-7">Read more &#8594;</a>
+    </div>
+  </div>
+  <div class="hero-ghost">2</div>
+</div>
+<div class="band slant-dr c-dark">
+  <div class="band-inner">
+    <span class="band-label">Models</span>
+    <span class="band-count">1 story</span>
+  </div>
+</div>
+<div class="grid grid-1">
+<div class="art" style="padding-left:0;padding-right:0;border-right:none;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">Project Glasswing</div>
+    <span class="art-pill">Anthropic</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">Anthropic's unreleased Claude Mythos Preview has autonomously discovered thousands of zero-day vulnerabilities across every major OS and browser — including a 27-year-old OpenBSD flaw and a 16-year-old FFmpeg bug that survived five million automated test runs. Rather than sit on these offensive capabilities, we're routing them toward defense through Project Glasswing: a controlled rollout to AWS, Microsoft, Google, Cisco, CrowdStrike, and 40+ critical infrastructure maintainers, backed by $100M in usage credits. The model scores 83.1% on CyberGym versus Opus 4.6's 66.6%, and Anthropic is explicitly holding back general availability until new safeguards ship with a future Opus release.</div>
+  <a class="art-rm" href="https://www.anthropic.com/glasswing">Read more &#8594;</a>
+</div>
+</div>
+<div class="gap"></div>
+<div class="band slant-ul c-teal">
+  <div class="band-inner">
+    <span class="band-label">Research</span>
+    <span class="band-count">2 stories</span>
+  </div>
+</div>
+<div class="grid grid-2">
+<div class="art" style="padding-left:0;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">An OpenAI model has disproved a central conjecture in discrete geometryResearchMay 20, 2026</div>
+    <span class="art-pill">OpenAI</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">An OpenAI model has disproved a longstanding conjecture in discrete geometry — a domain where human intuition has historically been the primary driver. This marks a meaningful step beyond pattern matching or code generation into genuine mathematical reasoning, the kind that requires constructing valid counterexamples rather than approximating known answers.</div>
+  <a class="art-rm" href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:0;border-right:none;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">Co-Scientist: A multi-agent AI partner to accelerate research</div>
+    <span class="art-pill">Google DeepMind</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">Google DeepMind's Co-Scientist multi-agent system is showing real traction in drug repurposing — it surfaced overlooked candidates for liver fibrosis treatment, one of which blocked 91% of a scarring-linked response in lab tests. The results, published in Advanced Science, mark a concrete step beyond benchmark performance into peer-reviewed biomedical utility. We're watching the gap between 'AI as search' and 'AI as research collaborator' close faster than most expected.</div>
+  <a class="art-rm" href="https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/">Read more &#8594;</a>
+</div>
+</div>
+<div class="gap"></div>
+<div class="band slant-dl c-amber-band">
+  <div class="band-inner">
+    <span class="band-label">Product</span>
+    <span class="band-count">7 stories</span>
+  </div>
+</div>
+<div class="grid grid-4">
+<div class="art" style="padding-left:0;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:0.5px solid #D8D4CC">
+  <div class="art-header">
+    <div class="art-title">Introducing Claude Design by Anthropic Labs</div>
+    <span class="art-pill">Anthropic</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">Anthropic has launched Claude Design, a generative UI tool that turns prompts into interactive, editable prototypes — with direct export to Canva and tight Claude Code handoff. Early users report collapsing week-long design cycles into single conversations, and complex pages that took 20+ prompts in competing tools down to two. This is Anthropic moving up the product stack, from API provider to end-to-end design workflow.</div>
+  <a class="art-rm" href="https://www.anthropic.com/news/claude-design-anthropic-labs">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:0.5px solid #D8D4CC">
+  <div class="art-header">
+    <div class="art-title">Claude is a space to think</div>
+    <span class="art-pill">Anthropic</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">Anthropic frames Claude not just as a task executor but as a cognitive workspace — a place to reason through problems, not just retrieve answers. The piece articulates the product philosophy behind Claude's design, positioning extended thinking and open-ended exploration as core to what separates it from transactional AI tools. This is Anthropic staking out a deliberate identity for Claude at a moment when every frontier lab is racing to define what their model is actually for.</div>
+  <a class="art-rm" href="https://www.anthropic.com/news/claude-is-a-space-to-think">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:0.5px solid #D8D4CC">
+  <div class="art-header">
+    <div class="art-title">OpenAI named a Leader in enterprise coding agents by GartnerAI AdoptionMay 22, 2026</div>
+    <span class="art-pill">OpenAI</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">OpenAI has been named a Leader in the Gartner Magic Quadrant for enterprise coding agents, marking a formal analyst recognition of its position in the agentic coding market. This is less a technical milestone than a commercial signal — Gartner placement shapes enterprise procurement decisions, and OpenAI landing in the Leaders quadrant will accelerate its deals with large engineering orgs. Worth tracking as a benchmark for how the agentic coding space is being carved up at the enterprise level.</div>
+  <a class="art-rm" href="https://openai.com/index/gartner-2026-agentic-coding-leader/">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:0;border-right:none;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">OpenAI and Dell Technologies partner to bring Codex to hybrid and on-premises enterprise environmentsCompanyMay 18, 2026</div>
+    <span class="art-pill">OpenAI</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">OpenAI and Dell are teaming up to bring Codex into hybrid and on-premises enterprise environments — a clear signal that the coding agent is being positioned for regulated industries and air-gapped infrastructure where cloud-only deployment is a non-starter. This matters for teams whose organizations block external API calls: Codex capability without the SaaS dependency.</div>
+  <a class="art-rm" href="https://openai.com/index/dell-codex-enterprise-partnership/">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:0;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">A new personal finance experience in ChatGPTProductMay 15, 2026</div>
+    <span class="art-pill">OpenAI</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">OpenAI is rolling out a dedicated personal finance experience inside ChatGPT, pushing the product further into high-stakes advisory territory that has historically required licensed professionals. This is a direct bid to make ChatGPT a daily financial companion — budgeting, planning, and analysis — rather than a general-purpose assistant. The move signals OpenAI's intent to own consumer financial workflows before specialized fintech AI players can establish footholds.</div>
+  <a class="art-rm" href="https://openai.com/index/personal-finance-chatgpt/">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">Work with Codex from anywhereProductMay 14, 2026</div>
+    <span class="art-pill">OpenAI</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">OpenAI has expanded Codex access beyond its primary interface, letting developers invoke it across more surfaces and workflows. The move signals OpenAI's push to embed Codex deeper into the day-to-day coding stack rather than keeping it siloed to a single entry point.</div>
+  <a class="art-rm" href="https://openai.com/index/work-with-codex-from-anywhere/">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">Helping ChatGPT better recognize context in sensitive conversationsSafetyMay 14, 2026</div>
+    <span class="art-pill">OpenAI</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">OpenAI is updating ChatGPT to better read contextual signals before responding to sensitive topics — a direct acknowledgment that blanket refusals and over-cautious defaults have been a real problem. This is part of a broader push to make safety behavior more situationally aware rather than purely keyword-triggered. We'll be watching whether the changes meaningfully reduce false positives or just shift where the friction lands.</div>
+  <a class="art-rm" href="https://openai.com/index/chatgpt-recognize-context-in-sensitive-conversations/">Read more &#8594;</a>
+</div>
+</div>
+<div class="gap"></div>
+<div class="band slant-ur c-purple">
+  <div class="band-inner">
+    <span class="band-label">Policy</span>
+    <span class="band-count">3 stories</span>
+  </div>
+</div>
+<div class="grid grid-3">
+<div class="art" style="padding-left:0;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">What 81,000 people want from AI</div>
+    <span class="art-pill">Anthropic</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">The article content was not retrievable — the page returned a JavaScript challenge block instead of body text, so no editorial summary can be written. Based on the title alone, Anthropic appears to have published findings from a large-scale public survey (81,000 respondents) on AI preferences and values, but the substance cannot be confirmed from available content.</div>
+  <a class="art-rm" href="https://www.anthropic.com/81k-interviews">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:28px;border-right:0.5px solid #D8D4CC;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">Advancing content provenance for a safer, more transparent AI ecosystemSafetyMay 19, 2026</div>
+    <span class="art-pill">OpenAI</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">OpenAI is pushing forward on content provenance — the technical infrastructure for tracking whether media was AI-generated. This matters because attribution at scale is unsolved, and the ecosystem needs interoperable standards before synthetic content becomes indistinguishable noise. We're watching whether this moves toward real tooling or stays at the level of public commitment.</div>
+  <a class="art-rm" href="https://openai.com/index/advancing-content-provenance/">Read more &#8594;</a>
+</div>
+<div class="art" style="padding-left:28px;padding-right:0;border-right:none;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">Strengthening Singapore’s AI Future: A New National Partnership</div>
+    <span class="art-pill">Google DeepMind</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">Google DeepMind has announced a national partnership with Singapore aimed at advancing the country's AI capabilities and ecosystem. The collaboration signals DeepMind's continued push to embed itself in government-level AI strategy across Asia. With Singapore positioning itself as a regional AI hub, this kind of institutional alignment gives DeepMind both influence over policy direction and access to public sector research infrastructure.</div>
+  <a class="art-rm" href="https://deepmind.google/blog/strengthening-singapores-ai-future-a-new-national-partnership/">Read more &#8594;</a>
+</div>
+</div>
+<div class="gap"></div>
+<div class="band slant-dr c-tools">
+  <div class="band-inner">
+    <span class="band-label">Tools</span>
+    <span class="band-count">1 story</span>
+  </div>
+</div>
+<div class="grid grid-1">
+<div class="art" style="padding-left:0;padding-right:0;border-right:none;border-bottom:none">
+  <div class="art-header">
+    <div class="art-title">Building a safe, effective sandbox to enable Codex on WindowsEngineeringMay 13, 2026</div>
+    <span class="art-pill">OpenAI</span>
+  </div>
+  <span class="art-age">just now</span>
+  <div class="art-body">OpenAI details the engineering work behind bringing Codex to Windows via a purpose-built sandbox that isolates code execution safely. We get a rare look at the infrastructure constraints of running an agentic coding system on Windows, a platform historically underserved by AI dev tooling. The sandboxing approach matters for anyone thinking about deploying code-executing agents in controlled environments.</div>
+  <a class="art-rm" href="https://openai.com/index/building-codex-windows-sandbox/">Read more &#8594;</a>
+</div>
+</div>
+<div class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name"><em>[</em>ctx/window<em>]</em></div>
+      <div class="footer-meta">by Aakash Dhar · aakashdhar.me ·
+        No tracking. No paywall. No noise.</div>
+    </div>
+    <div class="footer-center">
+      <div class="footer-num">2</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-tag">
+        <a href="https://">All editions &#8594; </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

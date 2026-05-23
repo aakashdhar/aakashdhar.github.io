@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ctx/window · Edition 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        mono: ['"JetBrains Mono"', 'monospace'],
+      },
+      colors: {
+        'primary': '#006970',
+        'on-primary': '#ffffff',
+        'background': '#faf8ff',
+        'on-background': '#131b2e',
+        'surface': '#faf8ff',
+        'on-surface': '#131b2e',
+        'surface-container-lowest': '#ffffff',
+        'surface-container-low': '#f2f3ff',
+        'surface-container': '#eaedff',
+        'surface-container-high': '#e2e7ff',
+        'surface-container-highest': '#dae2fd',
+        'outline': '#6a7a7b',
+        'outline-variant': '#b9cacb',
+        'on-surface-variant': '#3b494b',
+        'secondary': '#505f76',
+        'secondary-container': '#d0e1fb',
+      },
+      maxWidth: {
+        'container-max': '1440px',
+      },
+    }
+  }
+}
+</script>
+<style>
+body {
+  background-color: #faf8ff;
+  color: #131b2e;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.hairline-border { border: 1px solid #e2e8f0; }
+.technical-grid {
+  background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+<header class="sticky top-0 bg-surface border-b border-outline-variant z-50 h-16">
+  <div class="max-w-container-max mx-auto px-12 h-full flex items-center justify-between">
+    <div id="logo" class="text-2xl font-bold tracking-tighter cursor-default select-none">ctx/window</div>
+    <nav class="hidden md:flex items-center gap-8"><a href="#models" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Models</a><a href="#research" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Research</a><a href="#product" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Product</a><a href="#tools" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Tools</a><a href="#dev-updates" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Dev</a></nav>
+    <div class="flex items-center gap-4">
+      <span class="font-mono text-[10px] border border-outline-variant px-3 py-1 uppercase tracking-wider">EDITION #5</span>
+      <span class="font-mono text-[10px] text-outline">23 MAY 2026</span>
+    </div>
+  </div>
+</header>
+<div class="max-w-container-max mx-auto px-12 py-10">
+<div class="py-8 border-b border-outline-variant mb-12">
+  <p class="lede-text text-xl italic text-on-surface-variant leading-relaxed max-w-4xl">All the labs shipping agents now. Watch for the ones that survive contact with users.</p>
+</div>
+<section id="hero" class="mb-20 scroll-mt-20">
+<div class="hero">
+<div class="relative overflow-hidden" style="aspect-ratio:21/9;">
+  <img src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbmV1cmFsJTIwbmV0d29ya3xlbnwxfDB8fHwxNzc5NTY4MTExfDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale scale-105 hover:grayscale-0 hover:opacity-100 hover:scale-100 transition-all duration-[1000ms]" loading="lazy">
+  <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 px-12 pb-16">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="bg-primary text-white font-mono text-[10px] px-3 py-1 uppercase tracking-widest">TOP STORY</span>
+      <span class="font-mono text-[10px] text-on-surface uppercase tracking-wider">Anthropic — JUST NOW</span>
+    </div>
+    <h1 class="text-6xl font-extrabold tracking-tighter leading-[0.95] text-on-background mb-6"><em style="color:#006970;font-style:normal;">Introducing Claude Opus</em> 4.7</h1>
+    <p class="text-xl text-on-surface-variant mb-8 max-w-3xl">Anthropic released Claude Opus 4.7, their strongest coding model to date. Partner evals show a 13% lift on internal coding benchmarks over Opus 4.6, with fewer tool errors and better follow-through on long-running agentic tasks — Notion, Replit, and Vercel all report double-digit gains on their specific workloads.</p>
+    <a href="https://www.anthropic.com/news/claude-opus-4-7" class="inline-block bg-primary text-white px-10 py-4 font-mono text-xs tracking-widest uppercase">READ FULL BRIEF</a>
+  </div>
+</div>
+</div>
+</section>
+<section id="models" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">MODELS</h2>
+  <span class="font-mono text-[12px] text-outline">4 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google DeepMind</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">How WeatherNext helped the National Hurricane Center better predict Hurricane Melissa’s historic landfall in Jamaica</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">WeatherNext gave forecasters an early edge on Hurricane Melissa — the first hurricane to make landfall in Jamaica in over 50 years. DeepMind's model consistently outperformed traditional numerical forecasts in the days before the storm hit, giving the National Hurricane Center more lead time to act. We're watching AI weather models move from benchmarks to operational value in real emergencies.</p>
+    <a href="https://deepmind.google/blog/how-weathernext-helped-the-national-hurricane-center-better-predict-hurricane-melissas-historic-landfall-in-jamaica/" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1692900856320-91a898b7ecbb?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwyfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbmV1cmFsJTIwbmV0d29ya3xlbnwxfDJ8fHwxNzc5NTc0NDk5fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Remote agents in Vibe. Powered by Mistral Medium 3.5.</h3>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <a href="https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Speaking of Voxtral</h3>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <a href="https://mistral.ai/news/voxtral-tts" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-8 bg-surface-container-lowest hairline-border p-8 relative overflow-hidden">
+  <div class="mb-4"><span class="bg-primary text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span><span class="ml-2 bg-primary text-white text-[10px] px-3 py-1 font-mono uppercase">TRENDING</span></div>
+  <h3 class="text-3xl font-bold leading-tight mb-2">Introducing Mistral Small 4</h3>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-6">Mistral Small 4 collapses three separate models — Magistral (reasoning), Devstral (coding), Pixtral (vision) — into one 119B MoE with a 256k context window and a `reasoning_effort` toggle. In benchmarks it matches or beats GPT-OSS 120B while producing 20–40% shorter outputs, which matters more than the headline numbers. Apache 2.0, runs on 4x H100 minimum, available on vLLM and llama.cpp today.</p>
+  <a href="https://mistral.ai/news/mistral-small-4" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+  <div class="absolute right-0 top-0 bottom-0 w-1/3 technical-grid opacity-20 pointer-events-none"></div>
+</div></div>
+</section>
+<section id="research" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">RESEARCH</h2>
+  <span class="font-mono text-[12px] text-outline">2 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-7 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  <div class="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-primary/20"></div>
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">OpenAI</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">An OpenAI model has disproved a central conjecture in discrete geometryResearchMay 20, 2026</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">An OpenAI model has disproved a long-standing conjecture in discrete geometry — one of those results that matters because it came from the model doing actual mathematical reasoning, not retrieval. We're watching the boundary between 'useful for coding' and 'useful for original research' move in real time.</p>
+    <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1725807845023-777a75e426ab?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwxfHxzY2llbmNlJTIwbWF0aGVtYXRpY3MlMjBhYnN0cmFjdHxlbnwxfDJ8fHwxNzc5NTY4MTEzfDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-5 bg-white hairline-border p-6 md:pt-16">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google DeepMind</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Co-Scientist: A multi-agent AI partner to accelerate research</h3>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <a href="https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div></div>
+</section>
+<section id="product" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">PRODUCT</h2>
+  <span class="font-mono text-[12px] text-outline">3 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">I/O 2026: Welcome to the agentic Gemini era</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">Google I/O 2026 was essentially a full-stack agent announcement: Gemini 3.5 Flash ships today, benchmarking ahead of Gemini 3.1 Pro at 4x the output speed of comparable frontier models and roughly half the price. The bigger structural move is Antigravity 2.0 — Google's internal dev platform is now a public desktop app for orchestrating autonomous agent cohorts, and it's the harness powering Gemini Spark, a 24/7 personal agent running on dedicated Cloud VMs with MCP integration coming shortly. Token volume internally jumped from 0.5T to 3T tokens/day in weeks, which gives a sense of how aggressively Google is eating its own cooking on agentic workflows.</p>
+    <a href="https://blog.google/innovation-and-ai/sundar-pichai-io-2026/" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1423450822265-fcd97e52ecb5?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwyfHxJTyUyMDIwMjYlMjBXZWxjb21lJTIwdG98ZW58MXwyfHx8MTc3OTU2ODExMnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">The Gemini app becomes more agentic, delivering proactive, 24/7 help</h3>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <a href="https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-12 bg-surface-container-lowest hairline-border p-8 relative overflow-hidden">
+  <div class="mb-4"><span class="bg-primary text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span><span class="ml-2 bg-primary text-white text-[10px] px-3 py-1 font-mono uppercase">TRENDING</span></div>
+  <h3 class="text-3xl font-bold leading-tight mb-2">Gemini for Science: AI experiments and tools for a new era of discovery</h3>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-6">Google is rolling out Gemini for Science — three experimental tools on Google Labs (Hypothesis Generation, Computational Discovery, Literature Insights) plus a Science Skills bundle that pulls from 30+ life science databases. The tools are built on Co-Scientist, AlphaEvolve, and NotebookLM, and are already in enterprise preview with BASF, Bayer, and Daiichi Sankyo. ERA and Co-Scientist papers drop today in Nature, and access opens gradually via labs.google/science.</p>
+  <a href="https://blog.google/innovation-and-ai/technology/research/gemini-for-science-io-2026/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+  <div class="absolute right-0 top-0 bottom-0 w-1/3 technical-grid opacity-20 pointer-events-none"></div>
+</div></div>
+</section>
+<section id="tools" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">TOOLS</h2>
+  <span class="font-mono text-[12px] text-outline">2 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-7 bg-on-surface hairline-border p-10 flex gap-8 group hover:ring-2 hover:ring-primary">
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-primary text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+    <h3 class="text-3xl font-bold text-white leading-tight mb-2">Introducing Managed Agents in the Gemini API</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+    <p class="text-sm leading-relaxed mb-6" style="color:rgba(250,248,255,0.7);">Google is opening up the agent infrastructure behind Deep Research so we can run our own custom agents with a single API call. Each call provisions an isolated Linux sandbox with Gemini 3.5 Flash — web access, code execution, persistent state across sessions. Agent behavior is defined in AGENTS.md and SKILL.md files, which sidesteps most of the orchestration scaffolding we'd otherwise write ourselves.</p>
+    <a href="https://blog.google/innovation-and-ai/technology/developers-tools/managed-agents-gemini-api/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1585247226801-bc613c441316?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwzfHxkZXZlbG9wZXIlMjB0b29scyUyMHByb2dyYW1taW5nJTIwY29kZXxlbnwxfDJ8fHwxNzc5NTY4MTEyfDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-5 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">LeRobot Humanoid: An Open, Low-Cost, 3D-Printed Humanoid for Robot Learning</h3>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <a href="https://huggingface.co/blog/VirgileBatto/lerobot-humanoid" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div></div>
+</section>
+
+<section id="tips" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">TIPS &amp;amp; TRICKS</h2>
+  <span class="font-mono text-[12px] text-outline">2 ENTRIES</span>
+</div>
+  <div class="bg-on-surface hairline-border p-8 mb-6 relative overflow-hidden">
+  <span class="font-mono text-[10px] text-primary uppercase tracking-widest block mb-4">⚡ THIS WEEK'S PATTERN</span>
+  <h3 class="text-3xl font-bold text-white mb-4">Route cheap tasks to Flash, not Pro</h3>
+  <p class="text-base leading-relaxed mb-6" style="color:rgba(250,248,255,0.7);">Gemini 3.5 Flash benchmarks ahead of 3.1 Pro at 4x the output speed and half the price — which means the only reason to reach for Pro is when the task genuinely needs it. Audit your agent pipeline: classification, summarization, and structured extraction almost never do. Reserve the heavy model for reasoning chains, multi-step planning, and anything where a wrong answer is expensive to catch downstream.</p>
+  <pre class="bg-black/40 border-l-2 border-primary p-4 font-mono text-sm text-green-300/90 overflow-x-auto leading-relaxed mb-6"><span style="color:#C792EA;">const</span> MODEL_ROUTING = {
+  classify: <span style="color:#C3E88D;">'gemini-3.5-flash'</span>,
+  summarize: <span style="color:#C3E88D;">'gemini-3.5-flash'</span>,
+  extractJson: <span style="color:#C3E88D;">'gemini-3.5-flash'</span>,
+  planSteps: <span style="color:#C3E88D;">'gemini-3.5-pro'</span>,
+  reasonChain: <span style="color:#C3E88D;">'gemini-3.5-pro'</span>,
+  validateOutput: <span style="color:#C3E88D;">'gemini-3.5-pro'</span>,
+} as <span style="color:#C792EA;">const</span>;
+
+<span style="color:#C792EA;">type</span> TaskType = keyof <span style="color:#C792EA;">typeof</span> MODEL_ROUTING;
+
+<span style="color:#C792EA;">function</span> <span style="color:#82AAFF;">getModel</span>(task: TaskType): <span style="color:#C792EA;">string</span> {
+  <span style="color:#C792EA;">return</span> MODEL_ROUTING[task];
+}</pre>
+  <div class="absolute right-0 top-0 bottom-0 w-1/3 technical-grid opacity-10 pointer-events-none"></div>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6"><div class="bg-white hairline-border p-6">
+  <div class="flex gap-1.5 flex-wrap mb-3"><span class="font-mono text-[8px] uppercase px-2 py-0.5 bg-surface-container-low text-outline">agent-tools</span><span class="font-mono text-[8px] uppercase px-2 py-0.5 bg-surface-container-low text-outline">claude-access-control</span><span class="font-mono text-[8px] uppercase px-2 py-0.5 bg-surface-container-low text-outline">infrastructure</span></div>
+  <h4 class="text-lg font-bold mb-3">Build a read-only diagnostic tool for Claude instead of giving it SSH access</h4>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4">Instead of broad shell access, the author built a constrained 'doctor' endpoint that Claude can call to inspect homelab health — a pattern for safe, auditable AI tool design. Useful for anyone building Claude agents that interact with infrastructure.</p>
+  <div class="flex items-center gap-4 mt-4">
+            <span class="font-mono text-[9px] text-outline uppercase">VIA Dev.to</span>
+            <a href="https://dev.to/higangssh/i-still-dont-want-to-give-claude-ssh-access-so-i-built-a-doctor-for-my-homelab-2me6" class="font-mono text-[10px] text-primary font-bold">READ MORE →</a>
+          </div>
+</div></div>
+</section>
+</div>
+<footer class="bg-surface border-t border-outline-variant mt-20">
+  <div class="footer">
+    <div class="max-w-container-max mx-auto px-12 py-12 flex items-center justify-between">
+      <div>
+        <div class="text-2xl font-bold tracking-tighter">ctx/window</div>
+        <div class="font-mono text-[10px] text-outline mt-1 uppercase tracking-widest">AI DIGEST • CURATED BY AAKASH DHAR</div>
+      </div>
+      <div class="text-right">
+        <div class="font-mono text-[10px] text-outline">© 2026 CTX/WINDOW</div>
+        <div class="footer-num font-mono text-[10px] text-outline mt-1">
+          <a href="https:///5" class="hover:text-primary transition-colors">/5</a>
+        </div>
+        <div class="font-mono text-[10px] text-outline mt-1">
+          <a href="https://" class="hover:text-primary transition-colors">All editions → </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+(function() {
+  // Logo glitch on hover
+  var logo = document.getElementById('logo');
+  if (logo) {
+    var original = 'ctx/window';
+    var chars = '01#_/';
+    var glitchTimer = null;
+    logo.addEventListener('mouseenter', function() {
+      var step = 0;
+      var total = original.length * 2;
+      clearInterval(glitchTimer);
+      glitchTimer = setInterval(function() {
+        if (step >= total) {
+          logo.textContent = original;
+          clearInterval(glitchTimer);
+          return;
+        }
+        var progress = step / total;
+        var text = '';
+        for (var i = 0; i < original.length; i++) {
+          if (i / original.length < progress) {
+            text += original[i];
+          } else {
+            text += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+        logo.textContent = text;
+        step++;
+      }, 30);
+    });
+    logo.addEventListener('mouseleave', function() {
+      clearInterval(glitchTimer);
+      logo.textContent = original;
+    });
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var href = anchor.getAttribute('href');
+      if (!href) return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

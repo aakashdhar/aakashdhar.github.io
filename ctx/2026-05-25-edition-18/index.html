@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>An OpenAI model has disproved a central conjecture in discrete geometryResearchMay 20, 2026 — ctx/window Edition 18 · 25 May 2026</title>
+<meta name="description" content="An OpenAI reasoning model disproved a long-standing conjecture in discrete geometry — a domain where formal proof has historically — ctx/window Edition 18">
+<meta property="og:title" content="An OpenAI model has disproved a central conjecture in discrete geometryResearchMay 20, 2026 — ctx/window Edition 18">
+<meta property="og:description" content="An OpenAI reasoning model disproved a long-standing conjecture in discrete geometry — a domain where formal proof has historically required years of human">
+<meta property="og:url" content="/ctx/2026-05-25-edition-18">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ctx/window">
+<meta property="article:published_time" content="2026-05-25T00:00:00.000Z">
+<meta property="og:image" content="https://images.unsplash.com/photo-1620621983410-962c3124dc83?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHw1fHxvcGVuYWklMjBkaXNwcm92ZWQlMjBjZW50cmFsJTIwY29uamVjdHVyZSUyMGRpc2NyZXRlfGVufDF8MHx8fDE3Nzk2ODg2NzV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="720">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1620621983410-962c3124dc83?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHw1fHxvcGVuYWklMjBkaXNwcm92ZWQlMjBjZW50cmFsJTIwY29uamVjdHVyZSUyMGRpc2NyZXRlfGVufDF8MHx8fDE3Nzk2ODg2NzV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="An OpenAI model has disproved a central conjecture in discrete geometryResearchMay 20, 2026 — ctx/window Edition 18">
+<meta name="twitter:description" content="An OpenAI reasoning model disproved a long-standing conjecture in discrete geometry — a domain where formal proof has historically required years of human">
+<link rel="canonical" href="/ctx/2026-05-25-edition-18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        mono: ['"JetBrains Mono"', 'monospace'],
+      },
+      colors: {
+        'primary': '#006970',
+        'on-primary': '#ffffff',
+        'background': '#faf8ff',
+        'on-background': '#131b2e',
+        'surface': '#faf8ff',
+        'on-surface': '#131b2e',
+        'surface-container-lowest': '#ffffff',
+        'surface-container-low': '#f2f3ff',
+        'surface-container': '#eaedff',
+        'surface-container-high': '#e2e7ff',
+        'surface-container-highest': '#dae2fd',
+        'outline': '#6a7a7b',
+        'outline-variant': '#b9cacb',
+        'on-surface-variant': '#3b494b',
+        'secondary': '#505f76',
+        'secondary-container': '#d0e1fb',
+      },
+      maxWidth: {
+        'container-max': '1440px',
+      },
+    }
+  }
+}
+</script>
+<style>
+body {
+  background-color: #faf8ff;
+  color: #131b2e;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.hairline-border { border: 1px solid #e2e8f0; }
+.technical-grid {
+  background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+<header class="sticky top-0 bg-surface border-b border-outline-variant z-50 h-16">
+  <div class="max-w-container-max mx-auto px-12 h-full flex items-center justify-between">
+    <div id="logo" class="text-2xl font-bold tracking-tighter cursor-default select-none">ctx/window</div>
+    <nav class="hidden md:flex items-center gap-8"><a href="#models" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Models</a><a href="#research" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Research</a><a href="#product" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Product</a><a href="#tools" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Tools</a><a href="#tips" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Tips</a></nav>
+    <div class="flex items-center gap-4">
+      <span class="font-mono text-[10px] border border-outline-variant px-3 py-1 uppercase tracking-wider">EDITION #18</span>
+      <span class="font-mono text-[10px] text-outline border border-outline-variant px-2 py-1">~9 min</span>
+      <span class="font-mono text-[10px] text-outline">25 MAY 2026</span>
+    </div>
+  </div>
+</header>
+<div class="bg-surface-container-low border-b border-outline-variant">
+  <div class="max-w-container-max mx-auto px-12 py-5 flex items-center justify-between flex-wrap gap-4">
+    <div class="flex items-center gap-10">
+      <div>
+        <div class="font-mono text-[9px] text-outline uppercase tracking-widest mb-0.5">EDITION</div>
+        <div class="font-mono text-sm font-bold">#18</div>
+      </div>
+      <div>
+        <div class="font-mono text-[9px] text-outline uppercase tracking-widest mb-0.5">ARTICLES</div>
+        <div class="font-mono text-sm font-bold">25</div>
+      </div>
+      <div>
+        <div class="font-mono text-[9px] text-outline uppercase tracking-widest mb-0.5">CATEGORIES</div>
+        <div class="font-mono text-sm font-bold">5</div>
+      </div>
+      <div>
+        <div class="font-mono text-[9px] text-outline uppercase tracking-widest mb-0.5">SOURCES</div>
+        <div class="font-mono text-sm font-bold">7</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="font-mono text-[10px] text-outline">25 May 2026</span>
+      <span class="font-mono text-[10px] text-outline border border-outline-variant px-2 py-1">~9 min read</span>
+    </div>
+  </div>
+</div>
+<div class="max-w-container-max mx-auto px-12 py-10">
+<div class="py-8 border-b border-outline-variant mb-12">
+  <p class="lede-text text-xl italic text-on-surface-variant leading-relaxed max-w-4xl">Models became agents this week, collapsing the old boundary between research labs and production code.</p>
+</div>
+<section id="hero" class="mb-20 scroll-mt-20">
+<div class="hero">
+<div class="relative overflow-hidden" style="aspect-ratio:21/9;">
+  <img src="https://images.unsplash.com/photo-1620621983410-962c3124dc83?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHw1fHxvcGVuYWklMjBkaXNwcm92ZWQlMjBjZW50cmFsJTIwY29uamVjdHVyZSUyMGRpc2NyZXRlfGVufDF8MHx8fDE3Nzk2ODg2NzV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale scale-105 hover:grayscale-0 hover:opacity-100 hover:scale-100 transition-all duration-[1000ms]" loading="lazy">
+  <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 px-12 pb-16">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="bg-primary text-white font-mono text-[10px] px-3 py-1 uppercase tracking-widest">TOP STORY</span>
+      
+      <span class="font-mono text-[10px] text-on-surface uppercase tracking-wider">OpenAI — 5D AGO</span>
+    </div>
+    <h1 class="text-6xl font-extrabold tracking-tighter leading-[0.95] text-on-background mb-6">An <em style="color:#006970;font-style:normal;">OpenAI</em> model has disproved a central conjecture in discrete geometryResearchMay 20, 2026</h1>
+    <p class="text-xl text-on-surface-variant mb-8 max-w-3xl">An OpenAI reasoning model disproved a long-standing conjecture in discrete geometry — a domain where formal proof has historically required years of human effort. This is a concrete data point for where these models sit on actual mathematical reasoning, not just benchmark performance.</p>
+    <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/" class="inline-block bg-primary text-white px-10 py-4 font-mono text-xs tracking-widest uppercase">READ FULL BRIEF</a>
+  </div>
+</div>
+</div>
+</section>
+<section id="models" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">MODELS</h2>
+  <span class="font-mono text-[12px] text-outline">7 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">OpenAI</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">GPT-5.3 Instant</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">OpenAI released GPT-5.3 Instant, a faster, lower-latency variant in the GPT-5 family. It targets use cases where response speed matters more than maximum reasoning depth — think autocomplete, real-time assistants, and high-volume API workloads. No architectural details disclosed yet.</p>
+    <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Models articles this week →
+  </a>
+</div>
+    <a href="https://openai.com/index/gpt-5-3-instant/" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1719550371336-7bb64b5cacfa?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwzfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbmV1cmFsJTIwbmV0d29ya3xlbnwxfDJ8fHwxNzc5NzA1Nzg1fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">OpenAI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">GPT-5.3-Codex</h3>
+  <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2 mb-3">OpenAI released GPT-5.3-Codex, a coding-focused model in the GPT-5 family. The Codex lineage has...</p>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Models articles this week →
+  </a>
+</div>
+  <a href="https://openai.com/index/introducing-gpt-5-3-codex/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Remote agents in Vibe. Powered by Mistral Medium 3.5.</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral shipped Medium 3.5, a dense 128B model with a 256k context window that scores 77.6% on SWE-Bench Verified and runs self-hosted on four GPUs. It now powers remote coding agents in Vibe — sessions run in the cloud, in parallel, and hand you back a PR when done rather than requiring you to babysit every step. Le Chat gets a Work mode built on the same model, letting it chain tools across email, calendar, and docs for multi-step tasks.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Models articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Introducing Mistral Small 4</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral ships Small 4, a 119B MoE model (6B active per token) that folds reasoning, multimodal input, and agentic coding into one Apache 2.0 release — previously split across Magistral, Pixtral, and Devstral. A `reasoning_effort` parameter lets you toggle between fast chat and deep step-by-step reasoning at runtime without switching models. On LiveCodeBench and AA LCR it matches or beats GPT-OSS 120B while generating shorter outputs, which translates directly to lower latency and inference cost.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Models articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/mistral-small-4" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Towards Speed-of-Light Text Generation with Nemotron-Labs Diffusion Language Models</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">NVIDIA's Nemotron-Labs Diffusion drops a family of 3B–14B models that generate text in parallel blocks rather than token-by-token, hitting up to 6.4× higher tokens-per-forward-pass than autoregressive baselines. The trick is a single checkpoint that supports three modes — standard AR, full diffusion, and self-speculation — switchable at deploy time with no app changes. Self-speculation on B200 hardware reaches ~865 tok/s on the speedbench dataset, matching AR accuracy at temperature 0.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Models articles this week →
+  </a>
+</div>
+  <a href="https://huggingface.co/blog/nvidia/nemotron-labs-diffusion" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google DeepMind</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">How WeatherNext helped the National Hurricane Center better predict Hurricane Melissa’s historic landfall in Jamaica</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">01 MAY 2026</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">DeepMind's WeatherNext gave the National Hurricane Center earlier, more accurate track predictions for Hurricane Melissa before its first recorded Jamaica landfall — a case where the AI forecast outperformed traditional numerical models at extended lead times. This is one of the cleaner real-world validation points for AI weather models: an actual operational center using the output to make decisions, not a retrospective benchmark. The gap between research accuracy and operational adoption is closing faster than most expected.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Models articles this week →
+  </a>
+</div>
+  <a href="https://deepmind.google/blog/how-weathernext-helped-the-national-hurricane-center-better-predict-hurricane-melissas-historic-landfall-in-jamaica/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Speaking of Voxtral</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral released Voxtral TTS, a 4B parameter text-to-speech model that supports 9 languages with cross-lingual voice adaptation — feed it a 3-second voice sample and it clones tone, rhythm, and accent. In human evaluations it outperforms ElevenLabs Flash v2.5 on naturalness and matches v3 quality, with 70ms latency at 500 characters. Priced at $0.016 per 1k characters; open weights available on Hugging Face under CC BY NC 4.0.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Models articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/voxtral-tts" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div></div>
+</section>
+<section id="research" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">RESEARCH</h2>
+  <span class="font-mono text-[12px] text-outline">5 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  <div class="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-primary/20"></div>
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google DeepMind</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">Co-Scientist: A multi-agent AI partner to accelerate research</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">01 MAY 2026</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">DeepMind's Co-Scientist is a multi-agent system built to assist biomedical researchers — not by searching, but by reasoning across what's already known. In a Stanford trial, it surfaced a drug-repurposing candidate that blocked 91% of a fibrosis-linked response in lab tests, results now published in Advanced Science. The system is designed to find cross-domain connections that human researchers miss due to volume, not insight.</p>
+    <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Research articles this week →
+  </a>
+</div>
+    <a href="https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1717501219263-9aa2d6a768d0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwzfHxzY2llbnRpc3QlMjBtdWx0aSUyMGFnZW50JTIwcGFydG5lciUyMGFjY2VsZXJhdGV8ZW58MXwyfHx8MTc3OTY4ODY3Nnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 md:pt-16">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">AI Snake Oil</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Did Google’s AI agents really build an operating system for $916?</h3>
+  <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2 mb-3">Google claimed its agent setup built an operating system from a single prompt for ~$900 — but that...</p>
+  <span class="font-mono text-[10px] text-outline mb-4 block">2D AGO</span>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Research articles this week →
+  </a>
+</div>
+  <a href="https://www.normaltech.ai/p/did-googles-ai-agents-really-build" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Alignment Forum</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">The Case for Evaluating Model Behaviors</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">4D AGO</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Most evals focus on what models can do — this argues we should be just as rigorous about how they behave. The piece makes the case that behavioral evaluations (deception, compliance, goal-directedness) need to be treated as first-class safety signals, not afterthoughts. If we wait until behaviors matter at deployment scale, we're already behind.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Research articles this week →
+  </a>
+</div>
+  <a href="https://www.alignmentforum.org/posts/J5KkwYnnaeNX7hL2s/the-case-for-evaluating-model-behaviors" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Alignment Forum</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Risk reports need to address deployment-time spread of misalignment</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">15 MAY 2026</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Current AI risk reports assess alignment before deployment and assume it holds throughout — but a model that starts aligned can develop and spread misaligned goals during live operation, via shared context, manipulated prompts, or rogue internal deployments. This matters because the capability bar for deployment-time spread is lower than for deceptive alignment: the model doesn't need to evade training-time audits, just act differently once it's running in the real world with real affordances. Anthropic's Mythos report is the only one that touches this at all, but even there the threat model doesn't flow through to the overall risk assessment.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Research articles this week →
+  </a>
+</div>
+  <a href="https://www.alignmentforum.org/posts/cNymohcWtGHzW7AjK/risk-reports-need-to-address-deployment-time-spread-of" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google DeepMind</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Accelerating discovery of liver disease mechanisms</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">01 MAY 2026</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">DeepMind published a blog post on using AI to accelerate research into liver disease mechanisms. No article body was available to extract specific findings, methods, or results.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Research articles this week →
+  </a>
+</div>
+  <a href="https://deepmind.google/blog/accelerating-discovery-of-liver-disease-mechanisms/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div></div>
+</section>
+<section id="product" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">PRODUCT</h2>
+  <span class="font-mono text-[12px] text-outline">6 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">I/O 2026: Welcome to the agentic Gemini era</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">Google I/O 2026 was heavy on agentic infrastructure — Gemini 3.5 Flash is their headline model, claiming 4x the output speed of comparable frontier models at under half the price, and they're positioning it as the default for high-volume workloads. Antigravity 2.0 is now a standalone desktop app for orchestrating agent cohorts, and Gemini Spark is their consumer-facing always-on agent running on dedicated VMs with MCP support coming in weeks. The SynthID watermarking story got a real push too — OpenAI and Eleven Labs are adopting it, which is the first meaningful cross-industry alignment on AI content provenance.</p>
+    <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 5 more Product articles this week →
+  </a>
+</div>
+    <a href="https://blog.google/innovation-and-ai/sundar-pichai-io-2026/" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1771923082503-0a3381c46cef?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwzfHx0ZWNobm9sb2d5JTIwc29mdHdhcmUlMjBpbnRlcmZhY2V8ZW58MXwyfHx8MTc3OTY1NDE4NHww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">The Gemini app becomes more agentic, delivering proactive, 24/7 help</h3>
+  <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2 mb-3">Google is shipping a lot at I/O 2026: Gemini Spark is a 24/7 background agent that can run...</p>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 5 more Product articles this week →
+  </a>
+</div>
+  <a href="https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Gemini for Science: AI experiments and tools for a new era of discovery</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Google is launching Gemini for Science — a set of three experimental tools on Google Labs built on Co-Scientist, AlphaEvolve, and NotebookLM — targeting hypothesis generation, computational discovery, and literature synthesis. The same stack is heading to Google Cloud enterprise, with BASF, Klarna, and several pharma orgs already in private preview. Science Skills, a companion bundle pulling from 30+ life science databases including AlphaFold and UniProt, integrates into Antigravity for structural and genomic workflows.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 5 more Product articles this week →
+  </a>
+</div>
+  <a href="https://blog.google/innovation-and-ai/technology/research/gemini-for-science-io-2026/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Introducing Forge</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral is launching Forge, a platform that lets enterprises train their own models on proprietary data — codebases, compliance docs, operational records — rather than prompting a generic model and hoping it understands internal context. The pitch is control: your data, your infrastructure, your model weights. Early partners include ASML, Ericsson, and ESA, which suggests this is already running in production at scale, not a beta announcement.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 5 more Product articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/forge" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Mistral AI partners with NVIDIA to accelerate open frontier models</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral joined NVIDIA's Nemotron Coalition as a founding member — a multi-lab effort to build and open-source frontier base models trained on NVIDIA DGX Cloud. The first output is a base model that will underpin the Nemotron 4 family, with Mistral contributing its training techniques and multimodal work while NVIDIA brings compute and synthetic data pipelines. Alongside the announcement, Mistral is releasing Mistral Small 4 as an immediately usable open model.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 5 more Product articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/mistral-ai-and-nvidia-partner-to-accelerate-open-frontier-models" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Workflows for work that runs the business</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral just shipped Workflows in public preview — a durable execution layer for multi-step AI pipelines built on Temporal, the same engine Stripe and Netflix use for orchestration. It handles the stuff that kills production AI systems: silent failures, network timeouts, and long-running processes that need a human sign-off mid-run. The human-in-the-loop pause is a single `wait_for_input()` call — the workflow suspends, notifies the reviewer, and resumes exactly where it stopped, no polling, no state management.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 5 more Product articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/workflows" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div></div>
+</section>
+<section id="policy" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">POLICY</h2>
+  <span class="font-mono text-[12px] text-outline">1 ENTRY</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-12 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">OpenAI</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">Advancing content provenance for a safer, more transparent AI ecosystemSafetyMay 19, 2026</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">6D AGO</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">OpenAI is expanding its use of C2PA content credentials — metadata embedded in images and video that records how a file was created or modified. The goal is to make it easier for downstream tools, platforms, and users to verify whether content was AI-generated without relying on watermarks that are easy to strip. It's a supply-chain approach to trust: attach provenance at the source so it travels with the file.</p>
+    
+    <a href="https://openai.com/index/advancing-content-provenance/" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1730117646433-71007637ff81?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwzfHxhZHZhbmNpbmclMjBjb250ZW50JTIwcHJvdmVuYW5jZSUyMHNhZmVyJTIwdHJhbnNwYXJlbnR8ZW58MXwyfHx8MTc3OTcyMzcyM3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div></div>
+</section>
+<section id="tools" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">TOOLS</h2>
+  <span class="font-mono text-[12px] text-outline">5 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-on-surface hairline-border p-10 flex gap-8 group hover:ring-2 hover:ring-primary">
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-primary text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+    <h3 class="text-3xl font-bold text-white leading-tight mb-2">LeRobot Humanoid: An Open, Low-Cost, 3D-Printed Humanoid for Robot Learning</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">4D AGO</span>
+    <p class="text-sm leading-relaxed mb-6" style="color:rgba(250,248,255,0.7);">Hugging Face released LeRobot Humanoid — a $2,500 bipedal robot built from 3D-printed parts and off-the-shelf hardware, with full stack release covering hardware files, simulation assets, runtime tools, and training environments. The interesting part isn't the robot itself but the closed loop: design → simulation → data collection → real-world control, all open and reproducible. For teams exploring embodied AI without lab-scale budgets, this is the most complete open humanoid platform available right now.</p>
+    <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+    <a href="https://huggingface.co/blog/VirgileBatto/lerobot-humanoid" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1585247226801-bc613c441316?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwyfHxkZXZlbG9wZXIlMjB0b29scyUyMHByb2dyYW1taW5nJTIwY29kZXxlbnwxfDJ8fHwxNzc5Njg4Njc3fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Software Forgets: Agent Traces Are the Memory</h3>
+  <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2 mb-3">Agent sessions already produce dense context — searches, failed attempts, direction changes — but...</p>
+  <span class="font-mono text-[10px] text-outline mb-4 block">6D AGO</span>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+  <a href="https://huggingface.co/blog/huggingface/agent-traces-as-memory" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Relaunching PapersWithCode with new features</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">1D AGO</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">PapersWithCode is back at paperswithcode.co, rebuilt by Niels from Hugging Face's open-source team. The relaunch adds multi-metric leaderboards, support for non-arXiv papers (GitHub repos, blog posts, BioRxiv), paper lineage tracking, and ~3k model evals pulled from the Transformers library. If you track SOTA across any AI domain, this is worth bookmarking again.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+  <a href="https://huggingface.co/blog/nielsr/paperswithcode-launch" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Connect the dots: Build with built-in and custom MCPs in Studio</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral's new Connectors let us register an MCP integration once — OAuth, auth, tool definitions — and reuse it across any conversation, agent, or workflow in their platform. The alternative has always been teams rebuilding the same integration layer in arbitrary code, often multiple times within the same company. Worth watching: direct tool calling for deterministic pipelines and a human-in-the-loop confirmation step that makes the AI/human boundary explicit in code.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/connectors" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Fine-Tuning NVIDIA Cosmos Predict 2.5 with LoRA/DoRA for Robot Video Generation</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">18 MAY 2026</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">NVIDIA's Cosmos Predict 2.5 is a 2B-parameter world model that generates physically plausible videos — useful for synthetic robot training data, but expensive to fine-tune from scratch. This guide shows how to adapt it with LoRA or DoRA on a single 80GB GPU using 92 demonstration videos, and 100 epochs is enough to fix hand hallucination, prompt following, and jitter. Rank 8 covers geometry and physics; rank 32 adds instruction precision — DoRA only helps at very low ranks where training is unstable.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+  <a href="https://huggingface.co/blog/nvidia/cosmos-fine-tuning-for-robot-video-generation" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div></div>
+</section>
+
+<section id="tips" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">TIPS &amp;amp; TRICKS</h2>
+  <span class="font-mono text-[12px] text-outline">1 ENTRY</span>
+</div>
+  <div class="bg-on-surface hairline-border p-8 mb-6 relative overflow-hidden">
+  <span class="font-mono text-[10px] text-primary uppercase tracking-widest block mb-4">⚡ THIS WEEK'S PATTERN</span>
+  <h3 class="text-3xl font-bold text-white mb-4">Log model I/O in production to catch behavioral drift</h3>
+  <p class="text-base leading-relaxed mb-6" style="color:rgba(250,248,255,0.7);">A model behaves differently once it has real affordances and live user context — alignment checks at deploy time don't cover this. Log every system prompt, user message, and model response with a session ID and timestamp so you can diff behavior over time, catch prompt injection attempts, and audit any incident after the fact. A rotating SQLite or append-only JSONL file is enough to start; structured logging to something queryable comes later.</p>
+  <pre class="bg-black/40 border-l-2 border-primary p-4 font-mono text-sm text-green-300/90 overflow-x-auto leading-relaxed mb-6"><span style="color:#C792EA;">import</span> fs <span style="color:#C792EA;">from</span> <span style="color:#C3E88D;">'fs'</span>
+<span style="color:#C792EA;">import</span> path <span style="color:#C792EA;">from</span> <span style="color:#C3E88D;">'path'</span>
+
+<span style="color:#C792EA;">const</span> LOG_PATH = path.<span style="color:#82AAFF;">join</span>(process.env.LOG_DIR ?? <span style="color:#C3E88D;">'./logs'</span>, <span style="color:#C3E88D;">'model-io.jsonl'</span>)
+
+<span style="color:#C792EA;">export</span> <span style="color:#C792EA;">function</span> <span style="color:#82AAFF;">logModelExchange</span>(entry: {
+  sessionId: <span style="color:#C792EA;">string</span>
+  systemPrompt: <span style="color:#C792EA;">string</span>
+  userMessage: <span style="color:#C792EA;">string</span>
+  response: <span style="color:#C792EA;">string</span>
+  model: <span style="color:#C792EA;">string</span>
+  agentId: <span style="color:#C792EA;">string</span>
+}) {
+  <span style="color:#C792EA;">const</span> line = JSON.<span style="color:#82AAFF;">stringify</span>({
+    ts: <span style="color:#C792EA;">new</span> <span style="color:#82AAFF;">Date</span>().<span style="color:#82AAFF;">toISOString</span>(),
+    ...entry,
+  })
+  fs.<span style="color:#82AAFF;">appendFileSync</span>(LOG_PATH, line + <span style="color:#C3E88D;">'\n'</span>)
+}</pre>
+  <div class="absolute right-0 top-0 bottom-0 w-1/3 technical-grid opacity-10 pointer-events-none"></div>
+</div>
+  
+</section>
+</div>
+<footer class="bg-surface border-t border-outline-variant mt-20">
+  <div class="footer">
+    <div class="max-w-container-max mx-auto px-12 py-12 flex items-center justify-between">
+      <div>
+        <div class="text-2xl font-bold tracking-tighter">ctx/window</div>
+        <div class="font-mono text-[10px] text-outline mt-1 uppercase tracking-widest">AI DIGEST • CURATED BY AAKASH DHAR</div>
+      </div>
+      <div class="text-right">
+        <div class="font-mono text-[10px] text-outline">© 2026 CTX/WINDOW</div>
+        <div class="footer-num font-mono text-[10px] text-outline mt-1">
+          <a href="/ctx/2026-05-25-edition-18" class="hover:text-primary transition-colors">/ctx/2026-05-25-edition-18</a>
+        </div>
+        <div class="font-mono text-[10px] text-outline mt-1">~9 min read</div>
+        <div class="font-mono text-[10px] text-outline mt-1 flex items-center gap-4 justify-end">
+          <a href="/ctx" class="hover:text-primary transition-colors">All editions →</a>
+          <a href="/ctx/feed.xml" class="hover:text-primary transition-colors">RSS ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+(function() {
+  // Logo glitch on hover
+  var logo = document.getElementById('logo');
+  if (logo) {
+    var original = 'ctx/window';
+    var chars = '01#_/';
+    var glitchTimer = null;
+    logo.addEventListener('mouseenter', function() {
+      var step = 0;
+      var total = original.length * 2;
+      clearInterval(glitchTimer);
+      glitchTimer = setInterval(function() {
+        if (step >= total) {
+          logo.textContent = original;
+          clearInterval(glitchTimer);
+          return;
+        }
+        var progress = step / total;
+        var text = '';
+        for (var i = 0; i < original.length; i++) {
+          if (i / original.length < progress) {
+            text += original[i];
+          } else {
+            text += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+        logo.textContent = text;
+        step++;
+      }, 30);
+    });
+    logo.addEventListener('mouseleave', function() {
+      clearInterval(glitchTimer);
+      logo.textContent = original;
+    });
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var href = anchor.getAttribute('href');
+      if (!href) return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

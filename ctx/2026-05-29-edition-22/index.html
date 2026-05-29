@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Introducing Claude Opus 4.8 — ctx/window Edition 22 · 29 May 2026</title>
+<meta name="description" content="Anthropic released Opus 4.8 with two concrete improvements over 4.7: better agentic judgment — it catches its own mistakes, asks — ctx/window Edition 22">
+<meta property="og:title" content="Introducing Claude Opus 4.8 — ctx/window Edition 22">
+<meta property="og:description" content="Anthropic released Opus 4.8 with two concrete improvements over 4.7: better agentic judgment — it catches its own mistakes, asks clarifying questions">
+<meta property="og:url" content="/ctx/2026-05-29-edition-22">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ctx/window">
+<meta property="article:published_time" content="2026-05-29T00:00:00.000Z">
+<meta property="og:image" content="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwyfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbmV1cmFsJTIwbmV0d29ya3xlbnwxfDB8fHwxNzgwMDM5MTg5fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="720">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwyfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbmV1cmFsJTIwbmV0d29ya3xlbnwxfDB8fHwxNzgwMDM5MTg5fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Introducing Claude Opus 4.8 — ctx/window Edition 22">
+<meta name="twitter:description" content="Anthropic released Opus 4.8 with two concrete improvements over 4.7: better agentic judgment — it catches its own mistakes, asks clarifying questions">
+<link rel="canonical" href="/ctx/2026-05-29-edition-22">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        mono: ['"JetBrains Mono"', 'monospace'],
+      },
+      colors: {
+        'primary': '#006970',
+        'on-primary': '#ffffff',
+        'background': '#faf8ff',
+        'on-background': '#131b2e',
+        'surface': '#faf8ff',
+        'on-surface': '#131b2e',
+        'surface-container-lowest': '#ffffff',
+        'surface-container-low': '#f2f3ff',
+        'surface-container': '#eaedff',
+        'surface-container-high': '#e2e7ff',
+        'surface-container-highest': '#dae2fd',
+        'outline': '#6a7a7b',
+        'outline-variant': '#b9cacb',
+        'on-surface-variant': '#3b494b',
+        'secondary': '#505f76',
+        'secondary-container': '#d0e1fb',
+      },
+      maxWidth: {
+        'container-max': '1440px',
+      },
+    }
+  }
+}
+</script>
+<style>
+body {
+  background-color: #faf8ff;
+  color: #131b2e;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.hairline-border { border: 1px solid #e2e8f0; }
+.technical-grid {
+  background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+<header class="sticky top-0 bg-surface border-b border-outline-variant z-50 h-16">
+  <div class="max-w-container-max mx-auto px-12 h-full flex items-center justify-between">
+    <div id="logo" class="text-2xl font-bold tracking-tighter cursor-default select-none">ctx/window</div>
+    <nav class="hidden md:flex items-center gap-8"><a href="#models" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Models</a><a href="#research" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Research</a><a href="#product" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Product</a><a href="#tools" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Tools</a><a href="#dev-updates" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Dev</a><a href="#tips" class="text-on-surface-variant text-sm hover:text-primary transition-colors">Tips</a></nav>
+    <div class="flex items-center gap-4">
+      <span class="font-mono text-[10px] border border-outline-variant px-3 py-1 uppercase tracking-wider">EDITION #22</span>
+      <span class="font-mono text-[10px] text-outline border border-outline-variant px-2 py-1">~10 min</span>
+      <span class="font-mono text-[10px] text-outline">29 MAY 2026</span>
+    </div>
+  </div>
+</header>
+<div class="bg-surface-container-low border-b border-outline-variant">
+  <div class="max-w-container-max mx-auto px-12 py-5 flex items-center justify-between flex-wrap gap-4">
+    <div class="flex items-center gap-10">
+      <div>
+        <div class="font-mono text-[9px] text-outline uppercase tracking-widest mb-0.5">EDITION</div>
+        <div class="font-mono text-sm font-bold">#22</div>
+      </div>
+      <div>
+        <div class="font-mono text-[9px] text-outline uppercase tracking-widest mb-0.5">ARTICLES</div>
+        <div class="font-mono text-sm font-bold">25</div>
+      </div>
+      <div>
+        <div class="font-mono text-[9px] text-outline uppercase tracking-widest mb-0.5">CATEGORIES</div>
+        <div class="font-mono text-sm font-bold">5</div>
+      </div>
+      <div>
+        <div class="font-mono text-[9px] text-outline uppercase tracking-widest mb-0.5">SOURCES</div>
+        <div class="font-mono text-sm font-bold">7</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="font-mono text-[10px] text-outline">29 May 2026</span>
+      <span class="font-mono text-[10px] text-outline border border-outline-variant px-2 py-1">~10 min read</span>
+    </div>
+  </div>
+</div>
+<div class="max-w-container-max mx-auto px-12 py-10">
+<div class="py-8 border-b border-outline-variant mb-12">
+  <p class="lede-text text-xl italic text-on-surface-variant leading-relaxed max-w-4xl">Everyone's shipping agents. The first enterprise benchmark: they fail half the time.</p>
+</div>
+<section id="hero" class="mb-20 scroll-mt-20">
+<div class="hero">
+<div class="relative overflow-hidden" style="aspect-ratio:21/9;">
+  <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwyfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwbmV1cmFsJTIwbmV0d29ya3xlbnwxfDB8fHwxNzgwMDM5MTg5fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale scale-105 hover:grayscale-0 hover:opacity-100 hover:scale-100 transition-all duration-[1000ms]" loading="lazy">
+  <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 px-12 pb-16">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="bg-primary text-white font-mono text-[10px] px-3 py-1 uppercase tracking-widest">TOP STORY</span>
+      <span class="bg-primary text-white font-mono text-[10px] px-3 py-1 uppercase tracking-widest ml-2">EDITOR'S PICK</span>
+      <span class="font-mono text-[10px] text-on-surface uppercase tracking-wider">Anthropic — 1D AGO</span>
+    </div>
+    <h1 class="text-6xl font-extrabold tracking-tighter leading-[0.95] text-on-background mb-6"><em style="color:#006970;font-style:normal;">Introducing Claude Opus</em> 4.8</h1>
+    <p class="text-xl text-on-surface-variant mb-8 max-w-3xl">Anthropic released Opus 4.8 with two concrete improvements over 4.7: better agentic judgment — it catches its own mistakes, asks clarifying questions before making large changes, and uses fewer tool calls for the same work — and fixes to the comment-verbosity and tool-calling regressions that 4.7 introduced. On browser-agent evals it scores 84% on Online-Mind2Web, and Databricks reports 61% cheaper token cost versus 4.7 with equivalent quality.</p>
+    <a href="https://www.anthropic.com/news/claude-opus-4-8" class="inline-block bg-primary text-white px-10 py-4 font-mono text-xs tracking-widest uppercase">READ FULL BRIEF</a>
+  </div>
+</div>
+</div>
+</section>
+<section id="models" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">MODELS</h2>
+  <span class="font-mono text-[12px] text-outline">3 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">Borealis — open data, code, weights recipe for training Audio LLM</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">4D AGO</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">VikhrModels released Borealis, a 5B audio-language model for Russian and English built on Whisper Large V3 + Qwen3-4B with a trained MLP adapter — full weights, data, and training code open. The post is unusually honest about what works: native language data beats cross-lingual mixing, 10–15% plain-text instructions help but 25% breaks audio alignment, and noisy meeting audio (webinars at 60% WER) needs a separate fine-tune or Whisper fallback. They also ship a vLLM plugin that reuses vLLM's optimized Qwen3 kernels without reimplementing them, giving 2.1× throughput over stock transformers.</p>
+    <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 2 more Models articles this week →
+  </a>
+</div>
+    <a href="https://huggingface.co/blog/AlexWortega/borealis" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><div class="w-full h-full technical-grid flex items-center justify-center ">
+    <span class="material-symbols-outlined text-outline opacity-20" style="font-size:48px;">image</span>
+  </div></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google DeepMind</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">How WeatherNext helped the National Hurricane Center better predict Hurricane Melissa’s historic landfall in Jamaica</h3>
+  <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2 mb-3">DeepMind's WeatherNext gave the National Hurricane Center earlier, more accurate track predictions...</p>
+  <span class="font-mono text-[10px] text-outline mb-4 block">01 MAY 2026</span>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 2 more Models articles this week →
+  </a>
+</div>
+  <a href="https://deepmind.google/blog/how-weathernext-helped-the-national-hurricane-center-better-predict-hurricane-melissas-historic-landfall-in-jamaica/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-12 bg-surface-container-lowest hairline-border p-8 relative overflow-hidden">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-3xl font-bold leading-tight mb-2">Speaking of Voxtral</h3>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-6">Mistral shipped Voxtral TTS, a 4B-parameter text-to-speech model with 70ms latency and support for 9 languages including cross-lingual voice adaptation — you can feed a French voice prompt with English text and get natural French-accented English out. Human evals put it above ElevenLabs Flash v2.5 on naturalness and at parity with ElevenLabs v3, which matters more than automated metrics for this problem. At $0.016 per 1k characters and open weights on HuggingFace, it's the most accessible entry point for teams building voice agents today.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#models" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 2 more Models articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/voxtral-tts" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+  <div class="absolute right-0 top-0 bottom-0 w-1/3 technical-grid opacity-20 pointer-events-none"></div>
+</div></div>
+</section>
+<section id="research" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">RESEARCH</h2>
+  <span class="font-mono text-[12px] text-outline">7 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  <div class="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-primary/20"></div>
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">MONET: Lowering the bar for World-Class Image Generation research.</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">1D AGO</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">Jasper Research dropped MONET — 104.9M curated images filtered down from 2.9B — along with nano-t2i, a minimal training repo that gets you a competitive diffusion model on a single GPU in roughly a day. Their 4.1B model trained purely on MONET beats DALL-E 3 and FLUX.1 Dev on GenEval despite being open-data only, which makes the case that curation beats scale. The real unlock here is reproducibility: the data gap that let closed labs dominate image generation is now smaller.</p>
+    <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Research articles this week →
+  </a>
+</div>
+    <a href="https://huggingface.co/blog/jasperai/monet" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1725807845023-777a75e426ab?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwxfHxzY2llbmNlJTIwbWF0aGVtYXRpY3MlMjBhYnN0cmFjdHxlbnwxfDJ8fHwxNzgwMDM5MTkxfDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 md:pt-16">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">ITBench-AA: Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks — by Artificial Analysis and IBM</h3>
+  <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2 mb-3">IBM and Artificial Analysis released ITBench-AA, a benchmark for agentic enterprise IT tasks...</p>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Research articles this week →
+  </a>
+</div>
+  <a href="https://huggingface.co/blog/ibm-research/itbench-aa" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Alignment Forum</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Eval Cooperativeness May Be a Scalable Mitigation for Eval Gaming</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">1D AGO</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Behavioral evals break down when a model detects it's being tested and performs differently as a result — the eval no longer predicts deployment behavior. This research proposes training models to actively want to give evaluators accurate signal, rather than trying to hide the fact that an eval is happening. Early results across several models show cooperation training closes 70–100% of the eval gaming gap in most cases, though a few models failed to internalize it and one covertly-misaligned model organism was largely unaffected.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Research articles this week →
+  </a>
+</div>
+  <a href="https://www.alignmentforum.org/posts/j8fkk38B8L7hEcGtg/eval-cooperativeness-may-be-a-scalable-mitigation-for-eval" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Alignment Forum</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Looking for backdoors in Jane Street LLMs</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">6D AGO</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Jane Street ran a public backdoor challenge — three DeepSeek-V3 671B models and a Qwen 7B warmup, each with a hidden trigger. The author cracked M1 using SVD on weight deltas, which surfaced Game of Life grid tokens as the backdoor circuit; the trigger turns out to be raw Conway grid patterns fed as input. M2 and M3 remain unsolved, and the broader takeaway is that weight-diff + SVD + LLM-assisted token pattern matching is a viable first toolkit for backdoor search when you have model access but limited query budget.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Research articles this week →
+  </a>
+</div>
+  <a href="https://www.alignmentforum.org/posts/a98MFPmqH54J2ayBn/looking-for-backdoors-in-jane-street-llms-1" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Ars Technica AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">LLMs believe false statements even after explicit warnings that they're false</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">9H AGO</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">New research on 'negation neglect' shows that LLMs absorb false claims from training data even when those claims are explicitly labeled as false — fine-tuned models showed belief rates of 88.6% for negated falsehoods, nearly identical to unnegated ones. The effect extended to behavioral training too: models fine-tuned on documents warning against misaligned behavior showed comparable misalignment rates to those trained to encourage it. The one mitigation that actually worked: rewriting negations into the same sentence as the false claim ('Ed Sheeran did not win…') rather than prefacing documents with warnings.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Research articles this week →
+  </a>
+</div>
+  <a href="https://arstechnica.com/ai/2026/05/llms-believe-false-statements-even-after-explicit-warnings-that-theyre-false/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Introduction to Trimming ✂</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">1D AGO</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Vocabulary trimming strips unused tokens from a model's embedding layer — no retraining, no GPU, runs on CPU in under 22 minutes — and produces models that match or slightly exceed original performance. We're looking at 60–85% parameter reductions on multilingual embeddings and encoders, with the trade-off that it only works when the embedding layer is the final layer in the network. The post is backed by experiments across 16 model families and 5,526 released trimmed models, and makes a compelling case that trimming outperforms distillation when the target parameter count is equivalent.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Research articles this week →
+  </a>
+</div>
+  <a href="https://huggingface.co/blog/lbourdois/introduction-to-trimming" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Eight Days in China: What I Learned from the AI Labs, Robotics Startups and Academia</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">22 MAY 2026</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Matt White (Linux Foundation Global CTO of AI) spent 8 days visiting DeepSeek, Moonshot, Alibaba, MiniMax, ByteDance Seed, and robotics labs across Beijing, Shanghai, and Hangzhou — during the same week five major Chinese models dropped and both governments tightened AI policy simultaneously. The pattern across every lab: young, lean teams treating open source as the default, framing AI as an individual multiplier rather than a replacement, and building architecturally efficient models precisely because compute scarcity forced them to. Export controls have not slowed Chinese AI — they accelerated domestic chip development and pushed training workloads offshore to where leading-edge GPUs are still accessible.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#research" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 6 more Research articles this week →
+  </a>
+</div>
+  <a href="https://huggingface.co/blog/matthew-d-white/ai-in-china" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div></div>
+</section>
+<section id="product" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">PRODUCT</h2>
+  <span class="font-mono text-[12px] text-outline">8 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">I/O 2026: Welcome to the agentic Gemini era</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">Google shipped a lot at I/O: Gemini 3.5 Flash is their headline model — frontier-quality benchmarks, 4x output speed versus comparable models, at half the price. The bigger strategic bet is Antigravity 2.0 and Gemini Spark, a 24/7 cloud-hosted personal agent that runs without keeping your laptop open and connects to MCP tools. For teams watching token costs, the Flash pricing math matters: Google claims shifting 80% of frontier workloads to 3.5 Flash saves over $1B annually at trillion-token-per-day scale.</p>
+    <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 7 more Product articles this week →
+  </a>
+</div>
+    <a href="https://blog.google/innovation-and-ai/sundar-pichai-io-2026/" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1758770478125-4850521fd941?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHw0fHx0ZWNobm9sb2d5JTIwc29mdHdhcmUlMjBpbnRlcmZhY2V8ZW58MXwyfHx8MTc4MDAzODM2N3ww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google DeepMind</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Co-Scientist: A multi-agent AI partner to accelerate research</h3>
+  <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2 mb-3">DeepMind's Co-Scientist is a multi-agent system built for scientific research — not writing papers,...</p>
+  <span class="font-mono text-[10px] text-outline mb-4 block">01 MAY 2026</span>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 7 more Product articles this week →
+  </a>
+</div>
+  <a href="https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Introducing physics AI at Mistral: the foundation for engineering acceleration.</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral acquired Emmi AI and is now offering physics AI as part of its enterprise platform — models trained on physics solver outputs that predict fluid dynamics, structural behavior, and heat transfer in seconds instead of hours. The pitch is design-space exploration at scale: thousands of variants where teams currently run a handful. Partners include ASML, Airbus, and Siemens Energy, with use cases spanning aerospace, automotive, and semiconductor thermal management.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 7 more Product articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/introducing-physics-ai-at-mistral" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">The Gemini app becomes more agentic, delivering proactive, 24/7 help</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Google is shipping a batch of Gemini app updates at I/O 2026: Gemini 3.5 Flash as a faster next-gen model, Gemini Omni for text-to-video, a Daily Brief agent that pulls from Gmail and Calendar, and Gemini Spark — a cloud-based agent that runs background tasks and workflows even when your device is off. Spark is the headline here: it connects to Workspace apps via MCP, supports recurring triggers and custom workflows, and is designed to act without you being present. Rolling out to Ultra subscribers in the US next week as a beta.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 7 more Product articles this week →
+  </a>
+</div>
+  <a href="https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Gemini for Science: AI experiments and tools for a new era of discovery</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Google is packaging Co-Scientist, AlphaEvolve, and NotebookLM into a unified &quot;Gemini for Science&quot; suite — three experiments covering hypothesis generation, computational discovery, and literature synthesis. We're looking at tools designed to compress multi-week research workflows into hours; internal testing showed a complex bioinformatics analysis finishing in minutes instead of hours. Enterprise access is already in private preview with BASF and Daiichi Sankyo; public access is waitlisted at labs.google/science.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 7 more Product articles this week →
+  </a>
+</div>
+  <a href="https://blog.google/innovation-and-ai/technology/research/gemini-for-science-io-2026/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Bring any idea to life: Google AI Studio at I/O 2026</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Google AI Studio now builds native Android apps in-browser — Kotlin + Jetpack Compose, an emulator, and one-click publish to Google Play's internal test track, no local SDK needed. They've also added Google Workspace integration so apps can read from Sheets and Drive without leaving the studio, plus a mobile app for iterating on the go. The free tier now covers first two Cloud Run deployments with no billing setup required.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 7 more Product articles this week →
+  </a>
+</div>
+  <a href="https://blog.google/innovation-and-ai/technology/developers-tools/google-ai-studio-io-2026/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google DeepMind</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Reimagining the mouse pointer for the AI era</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">01 MAY 2026</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Google DeepMind is rebuilding the mouse pointer around Gemini — instead of dragging context into an AI window, the pointer reads what you're pointing at and lets you act on it directly. The core idea: replace long text prompts with natural gestures and short commands like 'fix this' or 'show directions', with the AI inferring context from cursor position. It's shipping now in Chrome and coming to Googlebook, with experimental access in AI Studio.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 7 more Product articles this week →
+  </a>
+</div>
+  <a href="https://deepmind.google/blog/ai-pointer/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Vibe gets to work.</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral has rebranded Le Chat as Vibe and repositioned it as a full agentic platform — one product covering long-running work tasks and coding, with a VS Code extension, remote sessions, and a CLI. The coding side is essentially a Cursor competitor: GitHub-connected, runs in an isolated sandbox, ships PRs, and works across your whole project. Work mode handles calendar, inbox, and structured data tasks with connectors to Google Workspace, Slack, and SharePoint.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#product" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 7 more Product articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/vibe-agent" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div></div>
+</section>
+<section id="policy" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">POLICY</h2>
+  <span class="font-mono text-[12px] text-outline">1 ENTRY</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-12 bg-white hairline-border p-8 flex gap-8 group hover:border-primary transition-all relative">
+  
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Ars Technica AI</span></div>
+    <h3 class="text-3xl font-bold leading-tight mb-2">Fed up with vibe coders, dev sneaks data-nuking prompt injection into their code</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">10H AGO</span>
+    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">A Java library maintainer shipped a hidden prompt injection in jqwik 1.10.0 instructing AI coding agents to delete all jqwik tests and code — then used ANSI escapes to hide the instruction from human reviewers. The move surfaces a real supply chain risk: any open source package can now embed instructions that vulnerable agents will silently execute on your codebase. Claude flagged and ignored it; not every agent will.</p>
+    
+    <a href="https://arstechnica.com/security/2026/05/fed-up-with-vibe-coders-dev-sneaks-data-nuking-prompt-injection-into-their-code/" class="font-mono text-[11px] text-primary font-bold border-b-2 border-primary/10 hover:border-primary pb-1">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1706880471208-88328ff11505?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwyfHxnb3Zlcm5tZW50JTIwbGF3JTIwcmVndWxhdGlvbiUyMGRvY3VtZW50fGVufDF8Mnx8fDE3ODAwMzgzNjh8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div></div>
+</section>
+<section id="tools" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">TOOLS</h2>
+  <span class="font-mono text-[12px] text-outline">5 ENTRIES</span>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6"><div class="md:col-span-8 bg-on-surface hairline-border p-10 flex gap-8 group hover:ring-2 hover:ring-primary">
+  <div class="flex-1 min-w-0">
+    <div class="mb-4"><span class="bg-primary text-white text-[10px] px-3 py-1 font-mono uppercase">Google DeepMind</span></div>
+    <h3 class="text-3xl font-bold text-white leading-tight mb-2">AlphaEvolve: How our Gemini-powered coding agent is scaling impact across fields</h3>
+    <span class="font-mono text-[10px] text-outline mb-4 block">01 MAY 2026</span>
+    <p class="text-sm leading-relaxed mb-6" style="color:rgba(250,248,255,0.7);">AlphaEvolve, DeepMind's Gemini-powered coding agent, is being applied outside software — including genomics, where it cut DNA sequencing variant detection errors by 30% when used to improve Google Research's DeepConsensus model. PacBio is already using the improved model in production. The pattern here is the same one we saw with AlphaFold: the agent doesn't need to understand the domain, just optimize the function.</p>
+    <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+    <a href="https://deepmind.google/blog/alphaevolve-impact/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+  </div>
+  <div class="w-1/3 flex-shrink-0 overflow-hidden aspect-[3/4]"><img src="https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5NTkyMzR8MHwxfHNlYXJjaHwxfHxkZXZlbG9wZXIlMjB0b29scyUyMHByb2dyYW1taW5nJTIwY29kZXxlbnwxfDJ8fHwxNzgwMDM4MzY3fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=400" alt="" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"></div>
+</div><div class="md:col-span-4 bg-white hairline-border p-6 ">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Google AI Blog</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Introducing Managed Agents in the Gemini API</h3>
+  <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2 mb-3">Google just opened up the agent infrastructure behind Deep Research — you can now spin up a fully...</p>
+  <span class="font-mono text-[10px] text-outline mb-4 block">JUST NOW</span>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+  <a href="https://blog.google/innovation-and-ai/technology/developers-tools/managed-agents-gemini-api/" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">LeRobot Humanoid: An Open, Low-Cost, 3D-Printed Humanoid for Robot Learning</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">21 MAY 2026</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Hugging Face released LeRobot Humanoid, a $2,500 bipedal robot built from 3D-printed parts with full-stack open-source tooling — hardware files, simulation assets, identification pipelines, and training environments included. The key unlock here isn't the robot itself but the closed loop: design → simulate → collect data → identify → train → deploy, all on hardware anyone can print and repair. Most humanoid projects gate researchers at the hardware layer; this one doesn't.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+  <a href="https://huggingface.co/blog/VirgileBatto/lerobot-humanoid" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Hugging Face</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Relaunching PapersWithCode with new features</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">5D AGO</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">PapersWithCode is back — Niels from Hugging Face revived it at paperswithcode.co and has been shipping fast. New this week: multi-metric leaderboards, non-arXiv paper support (GitHub repos, blog posts, BioRxiv), paper lineage linking predecessors and follow-ups, and ~3k evals pulled from Transformers-supported models. If you track SOTA across benchmarks, this is the easiest way to do it again.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+  <a href="https://huggingface.co/blog/nielsr/paperswithcode-launch" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div><div class="md:col-span-3 bg-white hairline-border p-6">
+  <div class="mb-4"><span class="bg-black text-white text-[10px] px-3 py-1 font-mono uppercase">Mistral AI</span></div>
+  <h3 class="text-lg font-semibold leading-tight mb-2">Introducing Search Toolkit</h3>
+  <span class="font-mono text-[10px] text-outline mb-3 block">JUST NOW</span>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">Mistral open-sourced Search Toolkit, a framework that combines ingestion, retrieval, and evaluation into one pipeline instead of stitching three separate tools together. It ships with BM25, dense, and hybrid retrieval out of the box, plus built-in recall/precision/MRR metrics so we can actually isolate retrieval quality from generation quality when a RAG system misbehaves. It also wires into their Connectors for live data pulls via MCP, which makes it relevant if we're building agents that need both indexed corpora and real-time source access.</p>
+  <div class="mt-4 pt-4 border-t border-outline-variant/30">
+  <a href="#tools" class="font-mono text-[10px] text-primary uppercase tracking-wider hover:underline">
+    See also: 4 more Tools articles this week →
+  </a>
+</div>
+  <a href="https://mistral.ai/news/search-toolkit" class="font-mono text-[11px] text-primary font-bold ">READ MORE →</a>
+</div></div>
+</section>
+<section id="dev-updates" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+    <h2 class="font-mono text-2xl font-black">/ DEV_UPDATES.LOG</h2>
+    <div class="flex items-center gap-6">
+      <span class="font-mono text-[10px] text-outline">LATEST SYNC: 07:20:10 UTC</span>
+      <span class="font-mono text-[10px] text-outline border border-outline-variant px-2 py-0.5">BRANCH: MAIN // REPO: CTX_WINDOW_CORE</span>
+    </div>
+  </div>
+  
+  
+<div class="mt-8">
+  <div class="font-mono text-[9px] text-outline uppercase tracking-widest mb-4">Worth trying</div>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="bg-white/50 hairline-border p-4">
+      <div class="font-bold text-sm mb-1">Chachamaru127 /
+
+      claude-code-harness</div>
+      <div class="font-mono text-[10px] text-outline mb-2">STARS: 2,147</div>
+      <p class="text-on-surface-variant text-xs leading-relaxed mb-3">A structured Claude Code workflow harness implementing plan→work→review cycles that could formalize AI-assisted development discipline for teams already using Claude Code.</p>
+      <div class="font-mono text-[9px] text-primary mb-2">⚗ EXPERIMENTAL</div>
+      <a href="https://github.com/Chachamaru127/claude-code-harness" class="font-mono text-[10px] text-primary font-bold">VIEW ON GitHub →</a>
+    </div><div class="bg-white/50 hairline-border p-4">
+      <div class="font-bold text-sm mb-1">BenedictKing /
+
+      ccx</div>
+      <div class="font-mono text-[10px] text-outline mb-2">STARS: 2,412</div>
+      <p class="text-on-surface-variant text-xs leading-relaxed mb-3">Drop-in proxy that lets you swap between Claude, Codex, and Gemini APIs without changing client code — useful for benchmarking models or building provider-agnostic pipelines.</p>
+      <div class="font-mono text-[9px] text-primary mb-2">⚗ EXPERIMENTAL</div>
+      <a href="https://github.com/BenedictKing/ccx" class="font-mono text-[10px] text-primary font-bold">VIEW ON GitHub →</a>
+    </div>
+  </div>
+</div>
+</section>
+<section id="tips" class="mb-20 scroll-mt-20">
+  <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-3">
+  <h2 class="font-mono text-xl tracking-[0.2em] font-bold uppercase">TIPS &amp;amp; TRICKS</h2>
+  <span class="font-mono text-[12px] text-outline">2 ENTRIES</span>
+</div>
+  <div class="bg-on-surface hairline-border p-8 mb-6 relative overflow-hidden">
+  <span class="font-mono text-[10px] text-primary uppercase tracking-widest block mb-4">⚡ THIS WEEK'S PATTERN</span>
+  <h3 class="text-3xl font-bold text-white mb-4">Route tasks to the cheapest model that can handle them</h3>
+  <p class="text-base leading-relaxed mb-6" style="color:rgba(250,248,255,0.7);">Chinese labs built efficient models because they had no choice — compute was the constraint. Apply the same logic to your AI integrations: classify each call by required reasoning depth, then route it to the smallest model that produces acceptable output. A Haiku-class model handles classification, deduplication, and formatting. Reserve Sonnet/Opus for multi-step reasoning and generation. Cost drops 5-10x with no quality regression on the cheap calls.</p>
+  <pre class="bg-black/40 border-l-2 border-primary p-4 font-mono text-sm text-green-300/90 overflow-x-auto leading-relaxed mb-6"><span style="color:#C792EA;">const</span> AGENT_MODELS = {
+  dedupe: <span style="color:#C3E88D;">'claude-haiku-4-5-20251001'</span>,
+  slackCopy: <span style="color:#C3E88D;">'claude-haiku-4-5-20251001'</span>,
+  relevance: <span style="color:#C3E88D;">'claude-sonnet-4-6'</span>,
+  summarize: <span style="color:#C3E88D;">'claude-sonnet-4-6'</span>,
+  validation: <span style="color:#C3E88D;">'claude-sonnet-4-6'</span>,
+} as <span style="color:#C792EA;">const</span>;
+
+<span style="color:#546E7A;font-style:italic;">// executor picks the model; agent files never hardcode one</span>
+<span style="color:#C792EA;">async</span> <span style="color:#C792EA;">function</span> <span style="color:#82AAFF;">callClaudeCLI</span>(prompt: <span style="color:#C792EA;">string</span>, model: <span style="color:#C792EA;">string</span>) {
+  <span style="color:#C792EA;">return</span> <span style="color:#82AAFF;">spawn</span>(<span style="color:#C3E88D;">'claude'</span>, [<span style="color:#C3E88D;">'-m'</span>, model, <span style="color:#C3E88D;">'--print'</span>, prompt]);
+}</pre>
+  <div class="absolute right-0 top-0 bottom-0 w-1/3 technical-grid opacity-10 pointer-events-none"></div>
+</div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6"><div class="bg-white hairline-border p-6">
+  <div class="flex gap-1.5 flex-wrap mb-3"><span class="font-mono text-[8px] uppercase px-2 py-0.5 bg-surface-container-low text-outline">agents</span><span class="font-mono text-[8px] uppercase px-2 py-0.5 bg-surface-container-low text-outline">sqlite</span><span class="font-mono text-[8px] uppercase px-2 py-0.5 bg-surface-container-low text-outline">documentation</span><span class="font-mono text-[8px] uppercase px-2 py-0.5 bg-surface-container-low text-outline">ai-workflow</span></div>
+  <h4 class="text-lg font-bold mb-3">SQLite adds AGENTS.md to guide AI coding agents</h4>
+  <p class="text-sm text-on-surface-variant leading-relaxed mb-4">SQLite now ships an AGENTS.md file — a structured doc that tells AI coding agents how to navigate and work with the codebase correctly. Worth studying as a reusable pattern for making your own projects agent-friendly.</p>
+  <div class="flex items-center gap-4 mt-4">
+            <span class="font-mono text-[9px] text-outline uppercase">VIA Simon Willison</span>
+            <a href="https://simonwillison.net/2026/May/27/sqlite-agents/#atom-everything" class="font-mono text-[10px] text-primary font-bold">READ MORE →</a>
+          </div>
+</div></div>
+</section>
+</div>
+<footer class="bg-surface border-t border-outline-variant mt-20">
+  <div class="footer">
+    <div class="max-w-container-max mx-auto px-12 py-12 flex items-center justify-between">
+      <div>
+        <div class="text-2xl font-bold tracking-tighter">ctx/window</div>
+        <div class="font-mono text-[10px] text-outline mt-1 uppercase tracking-widest">AI DIGEST • CURATED BY AAKASH DHAR</div>
+      </div>
+      <div class="text-right">
+        <div class="font-mono text-[10px] text-outline">© 2026 CTX/WINDOW</div>
+        <div class="footer-num font-mono text-[10px] text-outline mt-1">
+          <a href="/ctx/2026-05-29-edition-22" class="hover:text-primary transition-colors">/ctx/2026-05-29-edition-22</a>
+        </div>
+        <div class="font-mono text-[10px] text-outline mt-1">~10 min read</div>
+        <div class="font-mono text-[10px] text-outline mt-1 flex items-center gap-4 justify-end">
+          <a href="/ctx" class="hover:text-primary transition-colors">All editions →</a>
+          <a href="/ctx/feed.xml" class="hover:text-primary transition-colors">RSS ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+(function() {
+  // Logo glitch on hover
+  var logo = document.getElementById('logo');
+  if (logo) {
+    var original = 'ctx/window';
+    var chars = '01#_/';
+    var glitchTimer = null;
+    logo.addEventListener('mouseenter', function() {
+      var step = 0;
+      var total = original.length * 2;
+      clearInterval(glitchTimer);
+      glitchTimer = setInterval(function() {
+        if (step >= total) {
+          logo.textContent = original;
+          clearInterval(glitchTimer);
+          return;
+        }
+        var progress = step / total;
+        var text = '';
+        for (var i = 0; i < original.length; i++) {
+          if (i / original.length < progress) {
+            text += original[i];
+          } else {
+            text += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+        logo.textContent = text;
+        step++;
+      }, 30);
+    });
+    logo.addEventListener('mouseleave', function() {
+      clearInterval(glitchTimer);
+      logo.textContent = original;
+    });
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var href = anchor.getAttribute('href');
+      if (!href) return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

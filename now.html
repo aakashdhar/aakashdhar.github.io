@@ -1,132 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Now — Aakash Dhar</title>
-    <meta name="description" content="What Aakash Dhar is focused on right now — BetaCraft, Agentic AI, and life in Pune.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C2704E%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
-    <link rel="stylesheet" href="now.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Now — Aakash Dhar</title>
+<meta name="description" content="What Aakash Dhar is focused on right now — BetaCraft, Agentic AI, and life in Pune.">
+<script>/* restore saved theme before first paint (no flash) */
+try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C97F06%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+<style>
+/* ============ THEME TOKENS (mirrors index.html) ============ */
+:root{
+  --bg:#F6F3EB;
+  --bg-2:#FFFDF7;
+  --bg-3:#EFEAE0;
+  --ink:#181510;
+  --muted:#6B6557;
+  --muted-2:#A39C8A;
+  --amber:#C97F06;
+  --amber-bright:#E89B0F;
+  --amber-dim:rgba(201,127,6,.10);
+  --mint:#0E8C7A;
+  --hairline:rgba(24,21,16,.12);
+  --hairline-2:rgba(24,21,16,.22);
+  --ghost:rgba(24,21,16,.07);
+  --glow:rgba(232,155,15,.10);
+  --shadow:0 18px 50px -24px rgba(24,21,16,.18);
+  --card-shadow:0 -28px 70px -24px rgba(24,21,16,.35);
+}
+[data-theme="dark"]{
+  --bg:#0B0A08;
+  --bg-2:#14120E;
+  --bg-3:#1A1814;
+  --ink:#EFEAE0;
+  --muted:#8C877C;
+  --muted-2:#55514A;
+  --amber:#FFB224;
+  --amber-bright:#FFCB66;
+  --amber-dim:rgba(255,178,36,.13);
+  --mint:#7BE8D8;
+  --hairline:rgba(239,234,224,.1);
+  --hairline-2:rgba(239,234,224,.2);
+  --ghost:rgba(239,234,224,.08);
+  --glow:rgba(255,178,36,.12);
+  --shadow:0 18px 50px -24px rgba(0,0,0,.6);
+  --card-shadow:0 -28px 70px -20px rgba(0,0,0,.7);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"Bricolage Grotesque",system-ui,sans-serif;
+  font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  transition:background .45s ease,color .45s ease;
+}
+::selection{background:var(--amber-bright);color:#181510}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
+.mono{font-family:"JetBrains Mono",monospace}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* ============ TOPBAR ============ */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,3.5vw,44px);
+  pointer-events:none;
+}
+.topbar>*{pointer-events:auto}
+.brand{font-family:"JetBrains Mono",monospace;font-size:13.5px;letter-spacing:.14em;font-weight:600;text-decoration:none}
+.brand b{color:var(--amber)}
+.top-r{display:flex;align-items:center;gap:14px}
+.counter{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;color:var(--muted)}
+.counter b{color:var(--ink);font-weight:600}
+.back-link{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;
+  padding:10px 20px;background:var(--bg-2);transition:color .25s,border-color .25s,transform .2s;
+}
+.back-link:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-2px)}
+.back-link .arr{display:inline-block;margin-right:8px;transition:transform .25s}
+.back-link:hover .arr{transform:translateX(-3px)}
+.theme-btn{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--hairline-2);
+  background:var(--bg-2);color:var(--ink);font-size:16px;line-height:1;
+  display:grid;place-items:center;cursor:pointer;transition:border-color .25s,transform .25s,background .45s;
+}
+.theme-btn:hover{border-color:var(--amber);transform:rotate(15deg)}
+.theme-btn .sun{display:block}
+.theme-btn .moon{display:none}
+[data-theme="dark"] .theme-btn .sun{display:none}
+[data-theme="dark"] .theme-btn .moon{display:block}
+@media(max-width:640px){.back-link span.txt{display:none}.back-link{padding:10px 16px}.counter{display:none}}
+
+/* scroll hint — same drip as homepage */
+.hint{
+  position:fixed;left:50%;bottom:clamp(20px,3vw,34px);transform:translateX(-50%);z-index:500;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);
+  display:flex;align-items:center;gap:12px;transition:opacity .5s;
+}
+.hint::after{content:"";width:1.5px;height:26px;background:linear-gradient(var(--amber),transparent);animation:drip 1.8s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(.2);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(.2);transform-origin:top;opacity:0}}
+.hint.gone{opacity:0;pointer-events:none}
+
+/* ============ CHAPTER STACK (CSS sticky version of the homepage pin) ============ */
+.chapter{
+  position:sticky;top:0;
+  min-height:100svh;
+  background:var(--bg);
+  transition:background .45s ease;
+  padding:104px clamp(22px,6vw,90px) 90px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.chapter:not(:first-child){
+  border-radius:26px 26px 0 0;
+  box-shadow:var(--card-shadow);
+  border-top:1px solid var(--hairline);
+}
+/* alternate paper tones so each card reads as a new sheet */
+.chapter:nth-child(even){background:var(--bg-2)}
+.ch-in{width:100%;max-width:1080px;margin:0 auto}
+
+/* chapter header pattern — same as homepage */
+.ch-head{position:relative;margin-bottom:clamp(22px,3.5vh,40px)}
+.ghost-num{
+  position:absolute;top:-.42em;left:-.05em;z-index:0;font-weight:800;line-height:1;
+  font-size:clamp(120px,18vw,240px);letter-spacing:-.04em;color:transparent;
+  -webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;
+}
+.eyebrow{position:relative;z-index:1;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:14px}
+h1,h2{position:relative;z-index:1;font-weight:800;letter-spacing:-.028em;line-height:.96;font-variation-settings:"opsz" 96}
+h1{font-size:clamp(64px,12vw,150px)}
+h2{font-size:clamp(44px,7.5vw,96px)}
+h1 .serif,h2 .serif{color:var(--amber);font-weight:400}
+
+.lede{position:relative;z-index:1;color:var(--muted);font-weight:300;font-size:clamp(17px,2vw,21px);max-width:620px}
+.lede strong{color:var(--ink);font-weight:600}
+.kicker{position:relative;z-index:1;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.kicker b{color:var(--ink);font-weight:600}
+
+/* reveals */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.chapter.in .rv{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+
+/* ===== cover specifics ===== */
+.cover{justify-content:flex-end;padding-bottom:120px;overflow:hidden}
+.cover-glow{position:absolute;inset:0;pointer-events:none}
+.cover-glow::before{
+  content:"";position:absolute;width:120vmax;height:120vmax;left:50%;top:-30%;transform:translateX(-50%);
+  background:radial-gradient(closest-side,var(--glow),transparent 68%);
+}
+.pill{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hairline-2);border-radius:999px;padding:7px 15px;color:var(--muted);display:inline-block}
+.pill.hot{border-color:var(--amber);color:var(--amber)}
+.pill.hot i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-right:8px;animation:blink 2.2s infinite;font-style:normal;vertical-align:1px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.cover-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px;position:relative;z-index:1}
+.cover .gapline{position:relative;z-index:1;margin-top:22px;font-size:clamp(20px,2.8vw,32px);color:var(--amber)}
+
+/* ===== chips (ch 01) ===== */
+.chips-label{position:relative;z-index:1;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted-2);margin:30px 0 12px}
+.chips{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:9px}
+.chip{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--hairline-2);border-radius:999px;padding:8px 17px;color:var(--muted);background:var(--bg-2);
+}
+.chapter:nth-child(even) .chip{background:var(--bg)}
+.chip.hot{border-color:var(--amber);color:var(--amber);background:var(--amber-dim)}
+
+/* ===== progress (ch 03) — ledger rule ===== */
+.progress{position:relative;z-index:1;margin-top:36px;max-width:560px}
+.progress-label{display:flex;justify-content:space-between;align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-2);margin-bottom:12px}
+.progress-label b{color:var(--amber);font-weight:600;font-size:15px}
+.progress-track{height:2px;background:var(--hairline)}
+.progress-fill{position:relative;height:4px;top:-1px;width:0;background:var(--amber);transition:width 1.3s cubic-bezier(.16,1,.3,1) .35s}
+.progress-fill::after{content:"";position:absolute;right:-5px;top:-3px;width:10px;height:10px;border-radius:50%;background:var(--amber)}
+.chapter.in .progress-fill{width:75%}
+
+/* ===== reading note (ch 04) ===== */
+.reading{position:relative;z-index:1;margin-top:34px;padding-left:24px;border-left:2px solid var(--amber);max-width:560px}
+.reading-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted-2);margin-bottom:8px}
+.reading-title{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(22px,2.6vw,30px);line-height:1.25}
+.reading-author{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;color:var(--muted);margin-top:8px}
+
+/* ===== footer chapter ===== */
+.fin{min-height:64svh;justify-content:flex-end;padding-bottom:46px}
+.fin-big{position:relative;z-index:1;font-weight:800;font-size:clamp(34px,6vw,76px);letter-spacing:-.03em;line-height:1.05}
+.fin-big .serif{color:var(--amber);font-weight:400}
+.fin-back{display:inline-block;margin-top:28px;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber);padding-bottom:4px;transition:letter-spacing .25s;width:fit-content;position:relative;z-index:1}
+.fin-back:hover{letter-spacing:.26em}
+.footer-bar{
+  margin-top:clamp(40px,7vh,70px);padding-top:22px;border-top:1px solid var(--hairline);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--muted-2);
+  position:relative;z-index:1;
+}
+.footer-bar a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber)}
+</style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="topnav">
-    <a href="index.html" class="topnav-logo">A<i>.</i>Dhar</a>
-    <a href="index.html" class="topnav-back"><i class="ph-bold ph-arrow-left"></i> Back Home</a>
-</nav>
+<div class="topbar">
+  <a class="brand" href="index.html">A<b>*</b>DHAR</a>
+  <div class="top-r">
+    <span class="counter"><b id="cNow">01</b> / <span id="cAll">06</span></span>
+    <a class="back-link" href="index.html"><span class="arr">←</span><span class="txt">Back Home</span></a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+      <span class="sun">☀</span><span class="moon">☾</span>
+    </button>
+  </div>
+</div>
 
-<!-- Hero -->
-<section class="now-hero">
-    <div class="page-wrap" style="position: relative;">
-        <div class="now-hero-watermark">Now</div>
-        <div class="now-hero-inner">
-            <div class="now-badge h-in h1"><div class="dot"></div> Updated: Jan 2026</div>
-            <h1 class="now-title h-in h2">Now<em>.</em></h1>
-            <p class="now-subtitle h-in h3">Focused on BetaCraft, Agentic AI, and life in Pune.</p>
-        </div>
+<div class="hint" id="hint">Scroll</div>
+
+<main id="stack">
+
+<!-- ===== COVER ===== -->
+<section class="chapter cover in" data-n="01">
+  <div class="cover-glow" aria-hidden="true"></div>
+  <div class="ch-in">
+    <div class="cover-meta rv">
+      <span class="pill hot"><i></i>Updated: Jan 2026</span>
+      <span class="pill">/now</span>
     </div>
+    <h1 class="rv rv-d1">Now<span class="serif">.</span></h1>
+    <div class="gapline serif rv rv-d2">Focused on BetaCraft, Agentic AI, and life in Pune.</div>
+  </div>
 </section>
 
-<!-- Content -->
-<section>
-    <div class="page-wrap">
-        <div class="divider rv"></div>
-
-        <div class="now-grid">
-
-            <!-- BetaCraft — wide + prominent -->
-            <div class="now-card accent-terra tall rv d1">
-                <div class="card-num">01</div>
-                <div class="card-icon-row">
-                    <div class="card-icon terra"><i class="ph-fill ph-briefcase"></i></div>
-                    <div>
-                        <div class="card-label">Current Role</div>
-                    </div>
-                </div>
-                <h3>BetaCraft</h3>
-                <p style="margin-bottom: 0.3rem;"><strong>Technical Project Manager</strong></p>
-                <p>Leading engineering teams to ship scalable products. Deep in the weeds of integrating LLMs into legacy workflows — building the bridge between traditional development and AI-augmented delivery.</p>
-
-                <div style="margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--sand);">
-                    <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone); margin-bottom: 0.6rem;">Focus Areas</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
-                        <span style="font-size:0.7rem; padding:0.25rem 0.6rem; border-radius:100px; border:1px solid rgba(194,112,78,0.2); color:var(--terra); background:var(--terra-glow); font-weight:600;">Sprint Planning</span>
-                        <span style="font-size:0.7rem; padding:0.25rem 0.6rem; border-radius:100px; border:1px solid var(--sand); color:var(--bark); background:var(--cream-warm);">Client Comms</span>
-                        <span style="font-size:0.7rem; padding:0.25rem 0.6rem; border-radius:100px; border:1px solid var(--sand); color:var(--bark); background:var(--cream-warm);">AI Integration</span>
-                        <span style="font-size:0.7rem; padding:0.25rem 0.6rem; border-radius:100px; border:1px solid var(--sand); color:var(--bark); background:var(--cream-warm);">Team Leadership</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Location -->
-            <div class="now-card accent-olive rv d2">
-                <div class="card-num">02</div>
-                <div class="card-icon-row">
-                    <div class="card-icon olive"><i class="ph-fill ph-map-pin"></i></div>
-                    <div><div class="card-label">Based In</div></div>
-                </div>
-                <h3>Pune, India</h3>
-                <p>Exploring places around Pune, taking the road less travelled on my <strong>Royal Enfield Himalayan 411</strong> and chasing the perfect Misal.</p>
-            </div>
-
-            <!-- Building -->
-            <div class="now-card accent-laravel rv d3">
-                <div class="card-num">03</div>
-                <div class="card-icon-row">
-                    <div class="card-icon red"><i class="ph-fill ph-code"></i></div>
-                    <div><div class="card-label">Side Project</div></div>
-                </div>
-                <h3>Building</h3>
-                <p>Using <strong>Antigravity</strong> to build a personal TPM helper project called <strong>Agile Buddy</strong> — helps me create tickets, estimates and roadmaps faster.</p>
-                <div class="progress-track">
-                    <div class="progress-fill"></div>
-                </div>
-                <div class="progress-label">
-                    <span>Progress</span>
-                    <span>75%</span>
-                </div>
-            </div>
-
-            <!-- Offline Mode — wide -->
-            <div class="now-card accent-slate wide rv d4">
-                <div class="card-num" style="font-size: 4rem;">04</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
-                    <div>
-                        <div class="dual-icons">
-                            <div class="card-icon slate"><i class="ph-fill ph-camera"></i></div>
-                            <div class="separator"></div>
-                            <div class="card-icon slate"><i class="ph-fill ph-motorcycle"></i></div>
-                        </div>
-                        <h3>Offline Mode</h3>
-                        <p>Riding out for landscape photography. Capturing the Western Ghats on two wheels — where the road bends and the light is just right.</p>
-                    </div>
-                    <div style="background: var(--cream-warm); border: 1px solid var(--sand); border-radius: 10px; padding: 1.2rem;">
-                        <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone); margin-bottom: 0.6rem;">Currently Reading</div>
-                        <div class="reading-pill">
-                            <i class="ph-fill ph-book-open"></i>
-                            The Complete Adventures of Feluda
-                        </div>
-                        <p style="font-size: 0.75rem; color: var(--stone); margin-top: 0.5rem;">— Satyajit Ray</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+<!-- ===== 01 · CURRENT ROLE ===== -->
+<section class="chapter" data-n="02">
+  <div class="ch-in">
+    <div class="ch-head">
+      <div class="ghost-num" aria-hidden="true">01</div>
+      <span class="eyebrow rv">Current Role</span>
+      <h2 class="rv rv-d1">Beta<span class="serif">Craft</span></h2>
     </div>
+    <div class="kicker rv rv-d1"><b>Technical Project Manager</b></div>
+    <p class="lede rv rv-d2">Leading engineering teams to ship scalable products. Deep in the weeds of integrating LLMs into legacy workflows — building the bridge between traditional development and AI-augmented delivery.</p>
+    <div class="chips-label rv rv-d2">Focus Areas</div>
+    <div class="chips rv rv-d3">
+      <span class="chip hot">Sprint Planning</span>
+      <span class="chip">Client Comms</span>
+      <span class="chip">AI Integration</span>
+      <span class="chip">Team Leadership</span>
+    </div>
+  </div>
 </section>
 
-<!-- Footer -->
-<footer class="now-footer">
-    <div class="page-wrap">
-        <p>This is a <a href="https://nownownow.com/about" target="_blank">/now page</a> — inspired by Derek Sivers. <br>© 2026 Aakash Dhar.</p>
+<!-- ===== 02 · BASED IN ===== -->
+<section class="chapter" data-n="03">
+  <div class="ch-in">
+    <div class="ch-head">
+      <div class="ghost-num" aria-hidden="true">02</div>
+      <span class="eyebrow rv">Based In</span>
+      <h2 class="rv rv-d1">Pune, <span class="serif">India</span></h2>
     </div>
-</footer>
+    <p class="lede rv rv-d2">Exploring places around Pune, taking the road less travelled on my <strong>Royal Enfield Himalayan 411</strong> and chasing the perfect Misal.</p>
+  </div>
+</section>
 
-<script src="script.js"></script>
+<!-- ===== 03 · SIDE PROJECT ===== -->
+<section class="chapter" data-n="04">
+  <div class="ch-in">
+    <div class="ch-head">
+      <div class="ghost-num" aria-hidden="true">03</div>
+      <span class="eyebrow rv">Side Project</span>
+      <h2 class="rv rv-d1">Build<span class="serif">ing</span></h2>
+    </div>
+    <p class="lede rv rv-d2">Using <strong>Antigravity</strong> to build a personal TPM helper project called <strong>Agile Buddy</strong> — helps me create tickets, estimates and roadmaps faster.</p>
+    <div class="progress rv rv-d3">
+      <div class="progress-label"><span>Progress</span><b>75%</b></div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 · OFFLINE MODE ===== -->
+<section class="chapter" data-n="05">
+  <div class="ch-in">
+    <div class="ch-head">
+      <div class="ghost-num" aria-hidden="true">04</div>
+      <span class="eyebrow rv">Offline Mode</span>
+      <h2 class="rv rv-d1">Offline <span class="serif">Mode</span></h2>
+    </div>
+    <p class="lede rv rv-d2">Riding out for landscape photography. Capturing the Western Ghats on two wheels — where the road bends and the light is just right.</p>
+    <div class="reading rv rv-d3">
+      <div class="reading-label">Currently Reading</div>
+      <div class="reading-title">The Complete Adventures of Feluda</div>
+      <div class="reading-author">— Satyajit Ray</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FIN ===== -->
+<section class="chapter fin" data-n="06">
+  <div class="ch-in">
+    <div class="fin-big rv">That's <span class="serif">now</span>.</div>
+    <a class="fin-back rv rv-d1" href="index.html">← Back Home</a>
+    <div class="footer-bar">
+      <span>This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">/now page</a> — inspired by Derek Sivers.</span>
+      <span>© 2026 Aakash Dhar.</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* theme toggle — same key as index.html */
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const r = document.documentElement;
+  r.dataset.theme = r.dataset.theme === 'dark' ? '' : 'dark';
+  try { localStorage.setItem('theme', r.dataset.theme || 'light'); } catch(e) {}
+});
+
+/* chapter tracking: counter + reveals + hint */
+const chapters = [...document.querySelectorAll('.chapter')];
+document.getElementById('cAll').textContent = String(chapters.length).padStart(2,'0');
+const cNow = document.getElementById('cNow');
+const hint = document.getElementById('hint');
+
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      cNow.textContent = e.target.dataset.n;
+      if (e.target.dataset.n !== '01') hint.classList.add('gone');
+    }
+  });
+}, { threshold: 0.45 });
+chapters.forEach(c => io.observe(c));
+</script>
 </body>
 </html>

@@ -1,918 +1,696 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>How I Automated My Entire PM Workflow With 7 AI Skills | Aakash Dhar</title>
-    <meta name="title" content="How I Automated My Entire PM Workflow With 7 AI Skills | Aakash Dhar">
-    <meta name="description"
-        content="How I built 7 AI-powered skills that handle everything from call transcripts to client contracts — so I can focus on actually managing projects.">
-    <meta name="keywords"
-        content="PM Automation, AI Project Management, Claude Skills, Transcript Digester, SOW Generator, Estimate Generator, Agentic AI, BetaCraft, Technical PM">
-    <meta name="author" content="Aakash Dhar">
+<title>You Oversee. Claude Operates: Inside pm-*, My 23-Skill AI Project Management System | Aakash Dhar</title>
+<meta name="title" content="You Oversee. Claude Operates: Inside pm-*, My 23-Skill AI Project Management System | Aakash Dhar">
+<meta name="description" content="How the pm-* framework turns Claude into a PM operations layer — 23 skills covering the full lifecycle from SOW to dashboard, transcript to decision log, with roughly 20 minutes of weekly human overhead.">
+<meta name="keywords" content="pm skills, AI project management, Claude Code, PM automation, agentic PM, SOW automation, meeting minutes AI, project dashboard, TPM tools">
+<meta name="author" content="Aakash Dhar">
 
-    <link rel="canonical" href="https://aakashdhar.me/blog/how-i-automated-pm-workflow-7-ai-skills.html">
+<link rel="canonical" href="https://aakashdhar.me/blog/pm-skills-ai-project-management.html">
 
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://aakashdhar.me/blog/how-i-automated-pm-workflow-7-ai-skills.html">
-    <meta property="og:title" content="How I Automated My Entire PM Workflow With 7 AI Skills">
-    <meta property="og:description"
-        content="From call transcripts to signed contracts — 7 skills that cover the entire client-facing PM lifecycle.">
-    <meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aakashdhar.me/blog/pm-skills-ai-project-management.html">
+<meta property="og:title" content="You Oversee. Claude Operates: Inside pm-*, My 23-Skill AI Project Management System">
+<meta property="og:description" content="23 skills that run the full PM lifecycle. You make the calls; Claude does the operations.">
+<meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
 
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://aakashdhar.me/blog/how-i-automated-pm-workflow-7-ai-skills.html">
-    <meta property="twitter:title" content="How I Automated My Entire PM Workflow With 7 AI Skills">
-    <meta property="twitter:description"
-        content="From call transcripts to signed contracts — 7 skills that cover the entire client-facing PM lifecycle.">
-    <meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://aakashdhar.me/blog/pm-skills-ai-project-management.html">
+<meta property="twitter:title" content="You Oversee. Claude Operates: Inside pm-*, My 23-Skill AI Project Management System">
+<meta property="twitter:description" content="23 skills that run the full PM lifecycle. You make the calls; Claude does the operations.">
+<meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "How I Automated My Entire PM Workflow With 7 AI Skills",
-      "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "Aakash Dhar",
-        "url": "https://www.linkedin.com/in/aakashdhar"
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": "Aakash Dhar",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://aakashdhar.me/logo.png"
-        }
-      },
-      "datePublished": "2026-03-29",
-      "description": "How I built 7 AI-powered skills that handle everything from call transcripts to client contracts — so I can focus on actually managing projects.",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://aakashdhar.me/blog/how-i-automated-pm-workflow-7-ai-skills.html"
-      }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "You Oversee. Claude Operates: Inside pm-*, My 23-Skill AI Project Management System",
+  "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Aakash Dhar",
+    "url": "https://www.linkedin.com/in/aakashdhar"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Aakash Dhar",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://aakashdhar.me/logo.png"
     }
-    </script>
+  },
+  "datePublished": "2026-06-11",
+  "description": "How the pm-* framework turns Claude into a PM operations layer — 23 skills covering the full lifecycle from SOW to dashboard, transcript to decision log, with roughly 20 minutes of weekly human overhead.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aakashdhar.me/blog/pm-skills-ai-project-management.html"
+  }
+}
+</script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
+<script>/* restore saved theme before first paint (no flash) — do not edit */
+try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C97F06%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+<style>
+/* ════════ DESIGN SYSTEM — DO NOT EDIT ════════
+   Theme tokens mirror aakashdhar.me/index.html  */
+:root{
+  --bg:#F6F3EB;
+  --bg-2:#FFFDF7;
+  --bg-3:#EFEAE0;
+  --ink:#181510;
+  --muted:#6B6557;
+  --muted-2:#A39C8A;
+  --amber:#C97F06;
+  --amber-bright:#E89B0F;
+  --amber-dim:rgba(201,127,6,.10);
+  --mint:#0E8C7A;
+  --hairline:rgba(24,21,16,.12);
+  --hairline-2:rgba(24,21,16,.22);
+  --ghost:rgba(24,21,16,.07);
+  --glow:rgba(232,155,15,.10);
+  --shadow:0 18px 50px -24px rgba(24,21,16,.18);
+  --card-shadow:0 -28px 70px -24px rgba(24,21,16,.35);
+}
+[data-theme="dark"]{
+  --bg:#0B0A08;
+  --bg-2:#14120E;
+  --bg-3:#1A1814;
+  --ink:#EFEAE0;
+  --muted:#8C877C;
+  --muted-2:#55514A;
+  --amber:#FFB224;
+  --amber-bright:#FFCB66;
+  --amber-dim:rgba(255,178,36,.13);
+  --mint:#7BE8D8;
+  --hairline:rgba(239,234,224,.1);
+  --hairline-2:rgba(239,234,224,.2);
+  --ghost:rgba(239,234,224,.08);
+  --glow:rgba(255,178,36,.12);
+  --shadow:0 18px 50px -24px rgba(0,0,0,.6);
+  --card-shadow:0 -28px 70px -20px rgba(0,0,0,.7);
+}
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"Bricolage Grotesque",system-ui,sans-serif;
+  font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  transition:background .45s ease,color .45s ease;
+}
+::selection{background:var(--amber-bright);color:#181510}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
 
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C2704E%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+/* read progress */
+.readbar{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:600}
+.readbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--amber-bright))}
 
-    <link rel="stylesheet" href="../styles.css">
+/* topbar */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,3.5vw,44px);pointer-events:none;
+}
+.topbar>*{pointer-events:auto}
+.brand{font-family:"JetBrains Mono",monospace;font-size:13.5px;letter-spacing:.14em;font-weight:600;text-decoration:none}
+.brand b{color:var(--amber)}
+.top-r{display:flex;align-items:center;gap:14px}
+.back-link{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;
+  padding:10px 20px;background:var(--bg-2);transition:color .25s,border-color .25s,transform .2s;
+}
+.back-link:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-2px)}
+.theme-btn{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--hairline-2);
+  background:var(--bg-2);color:var(--ink);font-size:16px;line-height:1;
+  display:grid;place-items:center;cursor:pointer;transition:border-color .25s,transform .25s,background .45s;
+}
+.theme-btn:hover{border-color:var(--amber);transform:rotate(15deg)}
+.theme-btn .sun{display:block}
+.theme-btn .moon{display:none}
+[data-theme="dark"] .theme-btn .sun{display:none}
+[data-theme="dark"] .theme-btn .moon{display:block}
+@media(max-width:640px){.back-link{display:none}}
 
-    <style>
-        /* ── Blog Header ── */
-        .blog-header {
-            background: var(--dk);
-            padding: clamp(5.5rem, 10vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
-            position: relative;
-            overflow: clip;
-            transition: background 0.5s;
-        }
+/* reveals */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
 
-        .blog-header::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 520px;
-            height: 520px;
-            background: radial-gradient(circle, var(--dk-orb), transparent 70%);
-            pointer-events: none;
-        }
+/* cover */
+.cover{
+  position:relative;min-height:100svh;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:110px clamp(22px,6vw,90px) 0;
+}
+.cover-glow{position:absolute;inset:0;pointer-events:none}
+.cover-glow::before{
+  content:"";position:absolute;width:120vmax;height:120vmax;left:50%;top:-30%;transform:translateX(-50%);
+  background:radial-gradient(closest-side,var(--glow),transparent 68%);
+}
+.cover-meta{position:relative;z-index:1;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.pill{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hairline-2);border-radius:999px;padding:7px 15px;color:var(--muted)}
+.pill.hot{border-color:var(--amber);color:var(--amber);background:var(--amber-dim)}
+.cover-date{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
+.ghost-word-cover{
+  position:absolute;top:14vh;left:clamp(14px,4vw,70px);z-index:0;font-weight:800;line-height:1;
+  font-size:clamp(110px,17vw,230px);letter-spacing:-.04em;color:transparent;
+  -webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;white-space:nowrap;
+}
+.cover h1{
+  position:relative;z-index:1;font-weight:800;
+  font-size:clamp(40px,7.6vw,108px);line-height:.96;letter-spacing:-.034em;
+  font-variation-settings:"opsz" 96;max-width:1180px;text-wrap:balance;
+}
+.cover h1 em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;color:var(--amber);letter-spacing:-.01em}
+.cover-foot{
+  position:relative;z-index:1;margin-top:clamp(30px,5vh,54px);
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;
+  padding-bottom:30px;
+}
+.cover-sub{max-width:520px;color:var(--muted);font-weight:300;font-size:clamp(16px,1.8vw,19px)}
+.cover-byline{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);text-align:right}
+.cover-byline b{color:var(--ink);font-weight:600;display:block;margin-bottom:4px}
+@media(max-width:760px){.cover-foot{grid-template-columns:1fr}.cover-byline{text-align:left}}
 
-        .blog-eyebrow {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.75rem;
-        }
+/* contents strip on the cover's bottom edge */
+.toc-strip{
+  position:relative;z-index:1;
+  margin:0 calc(-1 * clamp(22px,6vw,90px));
+  border-top:1px solid var(--hairline);
+  display:flex;overflow-x:auto;scrollbar-width:none;
+}
+.toc-strip::-webkit-scrollbar{display:none}
+.toc-strip a{
+  flex:1 0 auto;min-width:170px;
+  padding:16px clamp(18px,2.4vw,30px) 22px;
+  border-right:1px solid var(--hairline);
+  text-decoration:none;transition:background .3s;
+}
+.toc-strip a:hover{background:var(--amber-dim)}
+.toc-strip .n{display:block;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.26em;color:var(--amber);margin-bottom:5px}
+.toc-strip .t{display:block;font-weight:600;font-size:13.5px;letter-spacing:-.01em;line-height:1.3;color:var(--muted)}
+.toc-strip a:hover .t{color:var(--ink)}
 
-        .blog-cat {
-            display: inline-flex;
-            align-items: center;
-            font-size: 0.66rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 0.28rem 0.8rem;
-            border-radius: 100px;
-            background: var(--terra-glow);
-            border: 1px solid rgba(212, 137, 107, 0.3);
-            color: var(--terra-l);
-        }
+/* spread */
+.spread{
+  position:relative;
+  background:var(--bg-2);transition:background .45s;
+  border-radius:26px 26px 0 0;
+  box-shadow:var(--card-shadow);
+  border-top:1px solid var(--hairline);
+  padding:clamp(56px,9vh,96px) clamp(22px,6vw,90px) clamp(70px,10vh,120px);
+}
+.spread-grid{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:220px minmax(0,1fr);
+  gap:clamp(36px,5vw,90px);align-items:start;
+}
+@media(max-width:920px){.spread-grid{grid-template-columns:1fr}}
 
-        .blog-date {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.68rem;
-            color: var(--dk-t3);
-            letter-spacing: 0.05em;
-        }
+/* rail — sticky section index */
+.rail{position:sticky;top:110px}
+.rail-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:18px}
+.rail a{
+  display:flex;align-items:baseline;gap:12px;
+  padding:9px 0;text-decoration:none;color:var(--muted-2);
+  border-bottom:1px solid var(--hairline);
+  transition:color .25s;
+}
+.rail a:last-of-type{border-bottom:none}
+.rail .n{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;flex:0 0 auto;transition:color .25s}
+.rail .t{font-size:13px;font-weight:600;letter-spacing:-.005em;line-height:1.35}
+.rail a:hover{color:var(--muted)}
+.rail a.on{color:var(--ink)}
+.rail a.on .n{color:var(--amber)}
+.rail-rule{height:2px;background:var(--hairline);margin-top:20px;position:relative}
+.rail-rule i{position:absolute;left:0;top:-1px;height:4px;width:0;background:var(--amber);transition:width .3s}
+@media(max-width:920px){.rail{display:none}}
 
-        .blog-title {
-            font-family: 'Amiri', serif;
-            font-size: clamp(2.4rem, 5vw, 3.8rem);
-            color: var(--dk-t);
-            line-height: 1.25;
-            letter-spacing: -0.02em;
-            padding-bottom: 0.2em;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-        }
+/* prose — column spans the grid track; reading text capped at 680px */
+.prose{min-width:0}
+.prose>p,.prose ul,.prose h3,.prose .sec,.prose pre,.prose .table-wrap{max-width:680px}
+.prose>p{font-size:17px;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:24px}
+.prose strong{color:var(--ink);font-weight:650}
+.prose>p em,.prose li em{font-family:"Instrument Serif",serif;font-style:italic;font-size:1.06em;color:var(--ink)}
 
-        .blog-title em {
-            font-style: italic;
-            color: var(--terra-l);
-        }
+/* in-prose links — amber underline */
+.prose p a,.prose li a{
+  color:var(--amber);text-decoration:underline;
+  text-decoration-thickness:1px;text-underline-offset:3px;
+  transition:color .2s;
+}
+.prose p a:hover,.prose li a:hover{color:var(--amber-bright)}
 
-        .blog-sub {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: var(--dk-t2);
-            max-width: 580px;
-        }
+/* drop cap on the opening paragraph (class="lead") */
+.prose p.lead::first-letter{
+  font-family:"Instrument Serif",serif;font-style:italic;
+  font-size:4.3em;line-height:.78;color:var(--amber);
+  float:left;padding:.08em .12em 0 0;
+}
 
-        /* ── Article Body ── */
-        .blog-body {
-            padding: clamp(3rem, 6vw, 5rem) 0;
-        }
+/* section heads */
+.sec{
+  display:flex;align-items:baseline;gap:18px;
+  margin:clamp(54px,8vh,76px) 0 24px;
+  padding-top:26px;border-top:1px solid var(--hairline-2);
+  scroll-margin-top:100px;
+}
+.prose .sec:first-child{margin-top:0;padding-top:0;border-top:none}
+.sec .n{
+  font-family:"JetBrains Mono",monospace;font-weight:600;
+  font-size:13px;letter-spacing:.14em;color:var(--amber);flex:0 0 auto;
+}
+.prose h2{
+  font-weight:800;font-size:clamp(25px,3.2vw,35px);
+  line-height:1.1;letter-spacing:-.02em;font-variation-settings:"opsz" 96;
+}
+.prose h3{
+  font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--amber);font-weight:600;margin:38px 0 6px;
+}
 
-        .prose {
-            max-width: 720px;
-            margin: 0 auto;
-        }
+/* lists — ruled ledger rows */
+.prose ul{list-style:none;margin:6px 0 30px}
+.prose ul li{
+  position:relative;padding:14px 0 14px 26px;
+  font-size:16px;line-height:1.75;color:var(--muted);font-weight:300;
+  border-bottom:1px solid var(--hairline);
+}
+.prose ul li:last-child{border-bottom:none}
+.prose ul li::before{content:"—";position:absolute;left:0;top:14px;color:var(--amber);font-weight:700}
 
-        .prose p {
-            font-size: 1rem;
-            line-height: 1.9;
-            color: var(--t2);
-            margin-bottom: 1.5rem;
-        }
+/* inline code */
+.prose code{
+  font-family:"JetBrains Mono",monospace;font-size:.82em;
+  color:var(--amber);background:var(--amber-dim);
+  padding:.14em .45em;border-radius:6px;border:1px solid var(--hairline);
+}
 
-        .prose h2 {
-            font-family: 'Amiri', serif;
-            font-size: clamp(1.65rem, 3vw, 2.1rem);
-            color: var(--t1);
-            font-weight: 700;
-            margin-top: 3.5rem;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-            line-height: 1.3;
-            padding-bottom: 0.15em;
-        }
+/* code blocks */
+.prose pre{
+  background:var(--bg-3);border:1px solid var(--hairline);
+  border-radius:14px;padding:22px 24px;overflow-x:auto;
+  margin:6px 0 30px;transition:background .45s;
+}
+.prose pre code{
+  background:none;border:none;padding:0;
+  color:var(--ink);font-size:13.5px;line-height:1.75;
+}
 
-        .prose h2::after {
-            content: '';
-            display: block;
-            width: 36px;
-            height: 2px;
-            background: var(--terra);
-            margin-top: 0.5rem;
-        }
+/* comparison tables — mono headers, hairline rules */
+.prose .table-wrap{
+  overflow-x:auto;margin:6px 0 30px;
+  border:1px solid var(--hairline);border-radius:14px;
+}
+.prose table{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--bg-2)}
+.prose thead th{
+  text-align:left;padding:14px 18px;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);
+  border-bottom:1px solid var(--hairline-2);white-space:nowrap;
+}
+.prose thead th:first-child{color:var(--amber)}
+.prose tbody tr{border-bottom:1px solid var(--hairline)}
+.prose tbody tr:last-child{border-bottom:none}
+.prose tbody tr:hover{background:var(--amber-dim)}
+.prose td{padding:14px 18px;vertical-align:top;color:var(--muted);font-weight:300;line-height:1.7}
+.prose td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
 
-        .prose ul {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 1.75rem;
-        }
+/* breakout pull-quotes — span the full prose column (right of the rail) */
+.pull{margin:clamp(48px,7vh,70px) 0;width:100%}
+.pull blockquote{
+  border-top:2px solid var(--amber);border-bottom:1px solid var(--hairline);
+  padding:clamp(26px,4vh,40px) 0 clamp(24px,3.6vh,36px);
+}
+.pull blockquote p{
+  font-family:"Instrument Serif",serif;font-style:italic;
+  font-size:clamp(24px,3.6vw,42px);line-height:1.3;color:var(--ink);
+  max-width:980px;text-wrap:balance;margin-bottom:14px;
+}
+.pull blockquote p:last-child{margin-bottom:0}
+.pull blockquote p strong{
+  font-family:"JetBrains Mono",monospace;font-style:normal;font-weight:600;
+  font-size:clamp(11px,1.1vw,13px);letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
+  display:inline-block;margin-right:6px;
+}
+.pull blockquote p.note{font-size:clamp(15px,1.7vw,18px);font-family:"Bricolage Grotesque",sans-serif;font-style:normal;font-weight:300;color:var(--muted)}
+.pull .mark{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:14px;display:block}
 
-        .prose ul li {
-            position: relative;
-            padding-left: 1.4rem;
-            margin-bottom: 0.65rem;
-            font-size: 1rem;
-            line-height: 1.85;
-            color: var(--t2);
-        }
-
-        .prose ul li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--terra);
-            font-weight: 700;
-        }
-
-        .prose strong {
-            color: var(--t1);
-            font-weight: 700;
-        }
-
-        .prose em {
-            font-style: italic;
-        }
-
-        .prose a {
-            color: var(--terra-l);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            transition: color 0.2s;
-        }
-
-        .prose a:hover {
-            color: var(--terra);
-        }
-
-        .prose code {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.82em;
-            color: var(--terra-l);
-            background: var(--bg2);
-            padding: 0.12em 0.4em;
-            border-radius: 4px;
-            border: 1px solid var(--bd);
-        }
-
-        .prose blockquote {
-            border-left: 3px solid var(--terra);
-            padding: 1.4rem 1.75rem;
-            margin: 2.5rem 0;
-            background: var(--bg2);
-            border-radius: 0 8px 8px 0;
-        }
-
-        .prose blockquote p {
-            font-family: 'Amiri', serif;
-            font-size: 1.12rem;
-            font-style: italic;
-            color: var(--t1);
-            margin-bottom: 0.75rem;
-            line-height: 1.75;
-        }
-
-        .prose blockquote p:last-child {
-            margin-bottom: 0;
-        }
-
-        .prose blockquote strong {
-            color: var(--terra);
-            font-style: normal;
-        }
-
-        /* ── Skill divider — reused from spec-before-code post ── */
-        .skill-divider {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 3rem 0 1.25rem;
-        }
-
-        .skill-num {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: var(--t3);
-            letter-spacing: 0.1em;
-            flex-shrink: 0;
-        }
-
-        .skill-name {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.82rem;
-            font-weight: 500;
-            color: var(--terra-l);
-            background: var(--bg2);
-            padding: 0.2em 0.6em;
-            border-radius: 4px;
-            border: 1px solid var(--bd);
-            flex-shrink: 0;
-        }
-
-        .skill-tag {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--t3);
-            letter-spacing: 0.03em;
-        }
-
-        .skill-line {
-            flex: 1;
-            height: 1px;
-            background: var(--bd);
-        }
-
-        /* ── Pipeline flow list ── */
-        .pipeline {
-            list-style: none;
-            padding: 0;
-            margin: 2rem 0 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .pipeline li {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-            padding: 0.85rem 1.2rem;
-            background: var(--bg2);
-            border: 1px solid var(--bd);
-            border-bottom: none;
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: var(--t2);
-        }
-
-        .pipeline li:first-child {
-            border-radius: 8px 8px 0 0;
-        }
-
-        .pipeline li:last-child {
-            border-bottom: 1px solid var(--bd);
-            border-radius: 0 0 8px 8px;
-        }
-
-        .pipeline li:only-child {
-            border-radius: 8px;
-        }
-
-        .pipeline-arrow {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--terra);
-            font-weight: 700;
-            flex-shrink: 0;
-            padding-top: 0.1rem;
-        }
-
-        .pipeline code {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8em;
-            color: var(--terra-l);
-            background: var(--bg);
-            padding: 0.1em 0.35em;
-            border-radius: 3px;
-            border: 1px solid var(--bd);
-        }
-
-        /* ── Before / After callout ── */
-        .before-after {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 2rem 0 2.5rem;
-        }
-
-        .ba-card {
-            padding: 1.25rem 1.4rem;
-            border-radius: 8px;
-            border: 1px solid var(--bd);
-        }
-
-        .ba-card.before {
-            background: var(--bg2);
-        }
-
-        .ba-card.after {
-            background: var(--dk);
-            border-color: rgba(212, 137, 107, 0.2);
-        }
-
-        .ba-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
-        }
-
-        .ba-card.before .ba-label {
-            color: var(--t3);
-        }
-
-        .ba-card.after .ba-label {
-            color: var(--terra-l);
-        }
-
-        .ba-card ul {
-            margin-bottom: 0;
-        }
-
-        .ba-card.before li {
-            color: var(--t2);
-            font-size: 0.88rem;
-        }
-
-        .ba-card.after li {
-            color: var(--dk-t2);
-            font-size: 0.88rem;
-        }
-
-        .ba-card.before li::before {
-            color: var(--t3);
-        }
-
-        .ba-card.after li::before {
-            color: var(--terra-l);
-        }
-
-        @media(max-width:600px) {
-            .before-after {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ── Blog Footer ── */
-        .blog-footer {
-            background: var(--dk);
-            padding: clamp(3rem, 6vw, 5rem) 0;
-            text-align: center;
-            border-top: 1px solid var(--dk-bd);
-            transition: background 0.5s;
-        }
-
-        .blog-footer h3 {
-            font-family: 'Amiri', serif;
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            color: var(--dk-t);
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.15em;
-            line-height: 1.3;
-        }
-
-        .blog-footer p {
-            color: var(--dk-t2);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .blog-footer-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-        }
-
-        .blog-footer-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--dk-t2);
-            transition: color 0.3s;
-            padding: 0.6rem 1.2rem;
-            border: 1px solid var(--dk-bd2);
-            border-radius: 8px;
-        }
-
-        .blog-footer-links a:hover {
-            color: var(--terra-l);
-            border-color: rgba(212, 137, 107, 0.35);
-        }
-
-        .blog-footer-copy {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.08em;
-            color: var(--dk-t3);
-        }
-    </style>
+/* outro */
+.outro{
+  position:relative;overflow:hidden;
+  background:var(--bg);transition:background .45s;
+  border-radius:26px 26px 0 0;box-shadow:var(--card-shadow);border-top:1px solid var(--hairline);
+  padding:clamp(64px,11vh,110px) clamp(22px,6vw,90px) 46px;
+}
+.outro-in{max-width:1180px;margin:0 auto;position:relative}
+.ghost-word{
+  position:absolute;top:-.62em;left:-.04em;z-index:0;font-weight:800;line-height:1;
+  font-size:clamp(100px,15vw,200px);letter-spacing:-.04em;color:transparent;
+  -webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;
+}
+.outro h3{
+  position:relative;z-index:1;font-weight:800;
+  font-size:clamp(36px,5.8vw,72px);letter-spacing:-.027em;line-height:1;
+  font-variation-settings:"opsz" 96;
+}
+.outro h3 .serif{color:var(--amber);font-weight:400}
+.outro-sub{position:relative;z-index:1;margin-top:16px;color:var(--muted);font-weight:300;max-width:480px}
+.socials{position:relative;z-index:1;display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.socials a{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;
+  padding:11px 22px;transition:color .25s,border-color .25s,transform .2s;background:var(--bg-2);
+}
+.socials a:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-3px)}
+.footer-bar{
+  position:relative;z-index:1;
+  margin-top:clamp(40px,7vh,70px);padding-top:22px;border-top:1px solid var(--hairline);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--muted-2);
+}
+</style>
 </head>
-
 <body>
 
-    <!-- NAV -->
-    <nav class="nav" id="nav">
-        <a href="../index.html" class="nav-logo">A<em>.</em>Dhar</a>
-        <div class="nr">
-            <div class="nl">
-                <a href="../index.html#insights">Writing</a>
-                <a href="../index.html" class="ncta"><i class="ph ph-arrow-left"></i> Portfolio</a>
-            </div>
-            <button class="thm" id="thm" aria-label="Toggle theme">
-                <i class="ph-fill ph-sun s"></i>
-                <i class="ph-fill ph-moon m"></i>
-            </button>
-            <button class="ham" id="ham"><i class="ph ph-list"></i></button>
-        </div>
-    </nav>
+<!-- READ PROGRESS — do not edit -->
+<div class="readbar" aria-hidden="true"><i id="rb"></i></div>
 
-    <div class="mob" id="mob">
-        <button class="mob-x" id="mobx"><i class="ph ph-x"></i></button>
-        <a href="../index.html" class="ml">Portfolio</a>
-        <a href="../index.html#insights" class="ml">Writing</a>
-        <a href="../index.html#contact" class="ml" style="color:var(--terra);">Contact</a>
+<!-- TOPBAR — do not edit -->
+<div class="topbar">
+  <a class="brand" href="../index.html">A<b>*</b>DHAR</a>
+  <div class="top-r">
+    <a class="back-link" href="../index.html#insights">Writing</a>
+    <a class="back-link" href="../index.html">← Portfolio</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+      <span class="sun">☀</span><span class="moon">☾</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== COVER ===== -->
+<header class="cover">
+  <div class="cover-glow" aria-hidden="true"></div>
+  <div class="ghost-word-cover" aria-hidden="true">PM-*</div>
+  <div class="cover-meta rv">
+    <span class="pill hot">Project Mgmt</span>
+    <span class="cover-date">June 11, 2026</span>
+  </div>
+  <h1 class="rv rv-d1"><em>You Oversee. Claude Operates</em>: Inside pm-*, My 23-Skill AI PM System</h1>
+  <div class="cover-foot rv rv-d2">
+    <p class="cover-sub">After the vibe-* framework taught Claude how we build software, pm-* taught it how we run projects — SOW to dashboard, transcript to decision log, with about twenty minutes of my time a week.</p>
+    <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
+  </div>
+  <nav class="toc-strip rv rv-d3" aria-label="Contents">
+    <a href="#s1"><span class="n">01</span><span class="t">The Invisible Half of PM</span></a>
+    <a href="#s2"><span class="n">02</span><span class="t">You Oversee, Claude Operates</span></a>
+    <a href="#s3"><span class="n">03</span><span class="t">What 23 Skills Cover</span></a>
+    <a href="#s4"><span class="n">04</span><span class="t">The Knowledge Graph</span></a>
+    <a href="#s5"><span class="n">05</span><span class="t">Twenty Minutes a Week</span></a>
+    <a href="#s6"><span class="n">06</span><span class="t">The Bigger Pattern</span></a>
+  </nav>
+</header>
+
+<!-- ===== SPREAD ===== -->
+<main class="spread">
+  <div class="spread-grid">
+
+    <aside class="rail" aria-label="Sections">
+      <div class="rail-label">In this article</div>
+      <a href="#s1" data-s="s1"><span class="n">01</span><span class="t">The Invisible Half of PM</span></a>
+      <a href="#s2" data-s="s2"><span class="n">02</span><span class="t">You Oversee, Claude Operates</span></a>
+      <a href="#s3" data-s="s3"><span class="n">03</span><span class="t">What 23 Skills Cover</span></a>
+      <a href="#s4" data-s="s4"><span class="n">04</span><span class="t">The Knowledge Graph</span></a>
+      <a href="#s5" data-s="s5"><span class="n">05</span><span class="t">Twenty Minutes a Week</span></a>
+      <a href="#s6" data-s="s6"><span class="n">06</span><span class="t">The Bigger Pattern</span></a>
+      <div class="rail-rule"><i id="railFill"></i></div>
+    </aside>
+
+    <article class="prose">
+
+      <div class="sec rv" id="s1">
+        <span class="n">01</span>
+        <h2>The Invisible Half of Project Management</h2>
+      </div>
+      <p class="lead rv">
+        Ask anyone what a project manager does and they'll describe the visible ten percent: running standups,
+        talking to clients, unblocking the team. What they won't describe is the iceberg underneath — turning a
+        ninety-minute call into minutes nobody disputes, reconciling what was promised in the SOW against what's
+        actually in the sprint, chasing status for a report, updating the risk register, drafting the email that
+        explains a slip without burning trust. None of it is strategy. All of it is mandatory. And across multiple
+        concurrent client projects, it quietly eats the hours that strategy was supposed to get.
+      </p>
+      <p class="rv">
+        I run several client projects in parallel at BetaCraft, and that administrative layer was my bottleneck.
+        I'd already solved a version of this problem for development with the
+        <a href="https://aakashdhar.me/vibe-skill/">vibe-* framework</a> — structured Claude Code skills with
+        durable, written-down context. The obvious question followed: if a spec-driven harness could make an AI a
+        reliable <em>engineer</em>, could the same approach make it a reliable <em>PM operator</em>? That question
+        became <strong>pm-*</strong>: 23 skills that handle the full PM lifecycle, published at
+        <a href="https://aakashdhar.me/pm-skills/">aakashdhar.me/pm-skills</a>.
+      </p>
+
+      <div class="sec rv" id="s2">
+        <span class="n">02</span>
+        <h2>The Operating Principle: You Oversee, Claude Operates</h2>
+      </div>
+      <p class="rv">
+        The framework rests on one division of labour, and it is strict. Claude does the <strong>operations</strong>:
+        reading transcripts, drafting documents, cross-checking scope, compiling dashboards, scanning for risk
+        signals. I do the <strong>judgement</strong>: decisions, approvals, and anything that leaves the building.
+        In practice my side of the system collapses to four things — feed it the inputs (transcripts, SOWs,
+        updates), review what it produces, make the calls it surfaces, and hit send. Everything else is Claude's
+        job.
+      </p>
+      <p class="rv">
+        Two rules keep this safe in real client work. First, <strong>strict factual grounding</strong>: documents
+        like meeting minutes are built only from what is actually in the source material — no inferred decisions,
+        no "probably meant." If it wasn't said, it isn't minuted. Second, <strong>nothing client-facing ships
+        without a human</strong>: every email, every formal document, every dashboard goes out under my review and
+        my name. The agent drafts; I fire. That single checkpoint is what makes the rest of the autonomy
+        acceptable.
+      </p>
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Pull Quote · 02</span>
+          <p>Claude does the operations. I do the judgement. The line between those two is the whole design.</p>
+        </blockquote>
+      </div>
+
+      <div class="sec rv" id="s3">
+        <span class="n">03</span>
+        <h2>What 23 Skills Actually Cover</h2>
+      </div>
+      <p class="rv">
+        Like vibe-*, each skill is a structured workflow with a natural-language trigger, and they compose across
+        the whole lifecycle of a client engagement — from the moment a project lands to the day a phase closes
+        out. Rather than walk through all 23, here's the shape of the territory:
+      </p>
+
+      <div class="table-wrap rv">
+        <table>
+          <thead>
+            <tr>
+              <th>Lifecycle Stage</th>
+              <th>Claude Operates</th>
+              <th>You Oversee</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Intake &amp; Scope</td>
+              <td>Project intake, SOW drafting and alignment checks — flagging where the plan and the contract have quietly diverged.</td>
+              <td>Approve scope; resolve flagged conflicts.</td>
+            </tr>
+            <tr>
+              <td>Meetings</td>
+              <td>Transcript → formal Minutes of Meeting with strict factual grounding; action items and owners extracted, never invented.</td>
+              <td>Skim, correct, distribute.</td>
+            </tr>
+            <tr>
+              <td>Delivery Tracking</td>
+              <td>Sprint status compilation, decision log upkeep, and a live project dashboard published as a static site the client can open.</td>
+              <td>Glance at the dashboard; act on exceptions.</td>
+            </tr>
+            <tr>
+              <td>Risk</td>
+              <td>Risk scanning across project artifacts — surfacing slippage signals, scope creep, and dependency trouble before they become escalations.</td>
+              <td>Judge severity; decide the response.</td>
+            </tr>
+            <tr>
+              <td>Communication</td>
+              <td>Client email drafting in the project's established tone, grounded in the actual project record.</td>
+              <td>Edit and send. Always.</td>
+            </tr>
+            <tr>
+              <td>Closeout</td>
+              <td>Phase closeout packs — what shipped, what's deferred, what was decided and why, ready for sign-off.</td>
+              <td>Sign off; archive.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="rv">One Workspace Per Project</h3>
+      <p class="rv">
+        Structurally, pm-* runs as a polyrepo workspace: every client project gets its own folder of durable
+        records — the SOW, the decision log, minutes, risks, status — and every skill reads from and writes to
+        that record. It's the same "spec before code" principle from vibe-*, translated: <em>record before
+        action</em>. The agent never operates from memory of a chat; it operates from the project's files.
+      </p>
+
+      <div class="sec rv" id="s4">
+        <span class="n">04</span>
+        <h2>The Knowledge Graph: Connecting the Record</h2>
+      </div>
+      <p class="rv">
+        Project documents are only half the battle; the other half is the connections between them. A decision in
+        March explains a scope change in May. A risk flagged in one meeting resurfaces in another under a different
+        name. pm-* adds a knowledge layer on top of the document store — compiled from the project record itself —
+        so that when Claude drafts a status update or scans for risk, it isn't just reading the latest file, it's
+        traversing the project's history: which decisions touched this feature, what the client was told, what
+        changed since.
+      </p>
+      <p class="rv">
+        The honest engineering note: this layer earns its keep on long-running, document-heavy projects and is
+        deliberately optional on small ones. Maintaining a graph nobody queries is its own kind of overhead, and
+        the framework is opinionated about not paying costs that don't buy anything — a lesson learned the
+        practical way, by building it, measuring it, and keeping it only where it pays.
+      </p>
+
+      <div class="sec rv" id="s5">
+        <span class="n">05</span>
+        <h2>Twenty Minutes a Week</h2>
+      </div>
+      <p class="rv">
+        The number that sells the system internally is the weekly overhead: roughly <strong>twenty minutes</strong>
+        of my attention per project for the entire administrative layer — reviewing generated minutes, approving
+        the dashboard refresh, editing a drafted email or two. The work still happens; it just stopped happening
+        <em>through me</em>. What that bought back is exactly what the iceberg was sinking: time for the
+        judgement-heavy work — client relationships, sequencing calls, the trade-off conversations no agent should
+        be making.
+      </p>
+      <p class="rv">
+        The side effects mattered as much as the headline. Minutes went out the same day as the meeting instead of
+        "by Friday." The decision log went from a thing I reconstructed under pressure to a thing that simply
+        exists. And because the whole record lives in files, any colleague — or any fresh Claude session — can
+        pick up a project cold. The system was packaged for BetaCraft-wide use for precisely that reason: it
+        isn't <em>my</em> memory, it's the project's.
+      </p>
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Pull Quote · 05</span>
+          <p>The admin work still happens. It just stopped happening through me.</p>
+          <p class="note"><strong>The Trade</strong> ~20 minutes of review per week buys back the hours that judgement-heavy work was losing.</p>
+        </blockquote>
+      </div>
+
+      <div class="sec rv" id="s6">
+        <span class="n">06</span>
+        <h2>The Bigger Pattern</h2>
+      </div>
+      <p class="rv">
+        vibe-* and pm-* are the same idea pointed at two different jobs: give the agent durable written context,
+        encode the workflows as triggerable skills instead of folklore, put a review gate before anything
+        irreversible, and let the documents do the remembering. Code delivery and project delivery turn out to
+        respond to the identical treatment — which suggests the pattern isn't about software or PM at all. Any
+        role with a repeatable operational layer and a judgement layer can be split the same way. The craft is in
+        drawing the line honestly, and then defending it.
+      </p>
+      <p class="rv">
+        The full system — skills, structure, workflow, and a live demo dashboard — is documented at
+        <a href="https://aakashdhar.me/pm-skills/">aakashdhar.me/pm-skills</a>.
+      </p>
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Takeaway</span>
+          <p>Don't ask what AI can do for your role. Split your role into operations and judgement — then hand over exactly one of them.</p>
+        </blockquote>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- OUTRO — do not edit -->
+<footer class="outro">
+  <div class="outro-in">
+    <div class="ghost-word" aria-hidden="true">Fin</div>
+    <h3 class="rv">Enjoyed this <span class="serif">read?</span></h3>
+    <p class="outro-sub rv rv-d1">Connect on LinkedIn or head back to the portfolio for more.</p>
+    <div class="socials rv rv-d2">
+      <a href="https://www.linkedin.com/in/aakashdhar" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a href="../index.html#insights">More Writing</a>
+      <a href="../index.html">← Back to Portfolio</a>
     </div>
-
-    <!-- BLOG HEADER -->
-    <header class="blog-header">
-        <div class="wrap">
-            <div class="blog-eyebrow">
-                <span class="blog-cat">Agentic AI</span>
-                <span class="blog-date">March 29, 2026</span>
-            </div>
-            <h1 class="blog-title">How I <em>Automated My Entire PM Workflow</em> With 7 AI Skills</h1>
-            <p class="blog-sub">Transcripts, estimates, SOWs, and more — so I can focus on actually managing projects.
-            </p>
-        </div>
-    </header>
-
-    <!-- ARTICLE -->
-    <div class="blog-body">
-        <article class="wrap">
-            <div class="prose">
-
-                <h2>The Reality of Being a Technical PM</h2>
-                <p>
-                    Nobody tells you this when you become a technical project manager, but a huge chunk of the job isn't
-                    project management at all.
-                </p>
-                <p>
-                    It's writing the same types of emails over and over. It's converting a 45-minute client call into
-                    structured notes, action items, and a follow-up email — every single time. It's building an
-                    estimation
-                    sheet from scratch because the last one was a different format. It's generating a Statement of Work
-                    that looks identical to the last one except for the project name and the numbers.
-                </p>
-                <p>
-                    These tasks aren't hard. They're just relentless. And every hour spent doing them is an hour not
-                    spent
-                    talking to clients, unblocking developers, or thinking about what actually needs to happen next.
-                </p>
-                <p>
-                    I got tired of it. So I built a fix.
-                </p>
-
-                <h2>What Is a PM Skill?</h2>
-                <p>
-                    Same concept as the <a href="spec-before-code-9-skill-framework-ai-development.html">vibe-*
-                        development skills</a>
-                    — a named, step-by-step workflow that loads into Claude's context and replaces improvisation with a
-                    repeatable, auditable process.
-                </p>
-                <p>
-                    The difference is the domain. These skills aren't for building software. They're for managing the
-                    humans, the communications, and the paperwork that surround the software.
-                </p>
-                <p>
-                    Seven skills. Each one handles a specific PM workflow. Together they cover the entire client-facing
-                    lifecycle — from the moment a call recording arrives to the moment a contract is signed.
-                </p>
-
-                <h2>The Seven Skills</h2>
-
-                <!-- 01 transcript-digester -->
-                <div class="skill-divider">
-                    <span class="skill-num">01</span>
-                    <span class="skill-name">transcript-digester</span>
-                    <span class="skill-tag">Turn a 45-minute call into structured intelligence</span>
-                    <span class="skill-line"></span>
-                </div>
-                <p>
-                    Every client call and internal standup produces a transcript. <code>transcript-digester</code>
-                    converts
-                    that raw text into structured, trackable project intelligence — automatically.
-                </p>
-                <p>
-                    Two trigger modes. <strong>Automated:</strong> Fathom detects a call has ended and fires the
-                    transcript
-                    directly into the skill. <strong>Manual:</strong> drop a <code>.txt</code> file into the session and
-                    it
-                    processes on demand.
-                </p>
-                <p>
-                    Two meeting types handled differently. <code>[CLIENT-X]</code> calls extract scope signals,
-                    commitments
-                    made, open questions, client sentiment, red flags, and action items — then update
-                    <code>client-brief.md</code> and <code>comms-log.md</code>. <code>[STANDUP-X]</code> calls extract
-                    blockers, what was built, what's next, and team health — then update <code>project-status.md</code>.
-                </p>
-                <p>
-                    Everything is dated, attributed, and saved to the correct project folder. Nothing lives only in the
-                    chat window. Nothing gets lost because someone forgot to write it down.
-                </p>
-                <blockquote>
-                    <p><strong>Before:</strong> manually re-reading a 45-minute transcript, writing notes into four
-                        different documents, hoping you caught everything important.</p>
-                    <p><strong>After:</strong> drop the file, review the structured output, done in three minutes.</p>
-                </blockquote>
-
-                <!-- 02 email-thread-analyzer -->
-                <div class="skill-divider">
-                    <span class="skill-num">02</span>
-                    <span class="skill-name">email-thread-analyzer</span>
-                    <span class="skill-tag">Extract intelligence from every client email</span>
-                    <span class="skill-line"></span>
-                </div>
-                <p>
-                    Client emails aren't just messages. They're data. They contain scope signals, unanswered questions,
-                    sentiment shifts, and commitments — often buried in the middle of a casual paragraph.
-                </p>
-                <p>
-                    <code>email-thread-analyzer</code> reads every new client email and extracts six categories of
-                    intelligence: client sentiment, unanswered questions from previous threads, new scope signals,
-                    commitments made, red flags, and action items.
-                </p>
-                <p>
-                    It updates <code>comms-log.md</code> with every finding — dated and attributed. If a response is
-                    needed, it automatically triggers <code>client-email-drafter</code>. The PM reviews everything
-                    before
-                    anything is sent.
-                </p>
-                <p>
-                    Two trigger modes. <strong>Automated</strong> via Gmail MCP when a new email arrives from a known
-                    client domain. <strong>Manual</strong> when the PM pastes an email thread and says "analyze this."
-                </p>
-                <p>
-                    The key insight: client emails should be analyzed in the context of the full project history — not
-                    just
-                    the latest message. What did they ask three emails ago that never got answered? What commitment did
-                    you
-                    make in the last call that this email is referencing? The skill reads <code>comms-log.md</code> and
-                    <code>client-brief.md</code> before analyzing anything.
-                </p>
-
-                <!-- 03 estimate-generator -->
-                <div class="skill-divider">
-                    <span class="skill-num">03</span>
-                    <span class="skill-name">estimate-generator</span>
-                    <span class="skill-tag">Generate a structured XLSX estimate from a call transcript</span>
-                    <span class="skill-line"></span>
-                </div>
-                <p>
-                    The most time-consuming deliverable after a client call. Every project needs one. Every estimate
-                    needs
-                    to be consistent in format, accurate in structure, and immediately shareable with the dev team.
-                </p>
-                <p>
-                    <code>estimate-generator</code> takes a call transcript — or a feature list, or a
-                    <code>client-brief.md</code> — and produces a structured XLSX file with backend hours, frontend
-                    hours,
-                    QA (auto-calculated at 30% of dev), and PM (auto-calculated at 15% of dev). Totals across all
-                    features. No cost figures, no money — hours only.
-                </p>
-                <ul>
-                    <li><strong>Mode A — New projects:</strong> greenfield builds where nothing exists yet, features
-                        scoped from scratch.</li>
-                    <li><strong>Mode B — Existing projects:</strong> adding to a live codebase, adjusted hours based on
-                        existing complexity.</li>
-                </ul>
-                <p>
-                    <strong>AI-adjusted hours.</strong> It doesn't just transcribe what was discussed — it applies
-                    intelligent reductions based on task type. Standard CRUD with existing patterns gets reduced. Pure
-                    UI
-                    with no logic gets reduced. Tests for already-covered logic get reduced. Novel integration work does
-                    not get reduced.
-                </p>
-                <p>
-                    Fixed ratios that never change: QA = (Backend + Frontend) × 0.30. PM = (Backend + Frontend) × 0.15.
-                    This consistency matters when a client asks why one project's QA allocation looks different from
-                    another's.
-                </p>
-
-                <!-- 04 sow-generator -->
-                <div class="skill-divider">
-                    <span class="skill-num">04</span>
-                    <span class="skill-name">sow-generator</span>
-                    <span class="skill-tag">Client-ready Statement of Work, ready for signature</span>
-                    <span class="skill-line"></span>
-                </div>
-                <p>
-                    The confirmation estimate is approved. Now you need a contract. <code>sow-generator</code> takes the
-                    confirmed XLSX and produces a professionally formatted <code>.docx</code> — BetaCraft's exact SOW
-                    format — ready for client signature.
-                </p>
-                <p>
-                    Auto-calculates development hours, fees, milestones, and payment splits. Standard payment split is
-                    50% / 25% / 25% with PM override available. Development hours always combine backend and frontend —
-                    the client never sees the split.
-                </p>
-                <p>
-                    The output isn't a template with blanks. It's a complete document. Client name, effective date, MSA
-                    reference, scope description, milestone definitions, payment schedule, terms — all populated from
-                    the
-                    confirmation estimate and project context.
-                </p>
-                <p>
-                    No more spending an hour reformatting last month's SOW for the new project. Drop the estimate,
-                    review
-                    the output, send to the client.
-                </p>
-
-                <!-- 05 ticket-generator -->
-                <div class="skill-divider">
-                    <span class="skill-num">05</span>
-                    <span class="skill-name">ticket-generator</span>
-                    <span class="skill-tag">Convert an estimate into Jira-ready tickets</span>
-                    <span class="skill-line"></span>
-                </div>
-                <p>
-                    The estimate is confirmed by the dev team. Now someone has to turn it into Jira tickets. This is the
-                    task that gets done badly when it's done manually — vague acceptance criteria, no file paths, no
-                    codebase context, tickets that mean nothing to the developer who picks them up.
-                </p>
-                <p>
-                    <code>ticket-generator</code> reads the confirmed XLSX and produces a single <code>.md</code> file —
-                    copy-paste ready for Jira. Feature rows become Epics. Task rows become Stories under their Epic. RnD
-                    rows become Spikes with research briefs. Pending design rows become Placeholders that are blocked
-                    until
-                    design is ready.
-                </p>
-                <p>
-                    The codebase-aware part is what makes it different. It reads <code>vibe/CODEBASE.md</code> and
-                    <code>vibe/ARCHITECTURE.md</code> before writing a single ticket. Every Story includes the exact
-                    file
-                    paths that need to be touched, the existing patterns to follow, and acceptance criteria grounded in
-                    the actual codebase — not invented from the scope description alone.
-                </p>
-                <p>
-                    A developer picking up a ticket generated this way knows exactly where to start, what convention to
-                    follow, and how to verify they're done.
-                </p>
-
-                <!-- 06 client-email-drafter -->
-                <div class="skill-divider">
-                    <span class="skill-num">06</span>
-                    <span class="skill-name">client-email-drafter</span>
-                    <span class="skill-tag">Context-first drafting — never a quick reply</span>
-                    <span class="skill-line"></span>
-                </div>
-                <p>
-                    <code>email-thread-analyzer</code> extracts the intelligence. <code>client-email-drafter</code> uses
-                    it to write the response. These two skills work together as a single pipeline.
-                </p>
-                <p>
-                    <code>client-email-drafter</code> is context-first. Before writing a single word, it reads four
-                    documents: <code>comms-log.md</code> (full email history and analysis), <code>client-brief.md</code>
-                    (what the client wants to build and existing commitments), <code>scope.md</code> (what's in scope,
-                    what isn't), and the analyzed thread from the analyzer.
-                </p>
-                <p>
-                    The result is a draft that sounds like a PM who has been working on this project for months —
-                    because
-                    it has access to everything a PM working on the project for months would know. It references
-                    previous
-                    commitments. It addresses unanswered questions from earlier threads. It matches the tone of the
-                    existing relationship.
-                </p>
-                <blockquote>
-                    <p>The PM always reviews before sending. Never sent automatically. The skill is a <strong>first
-                            draft, not an autopilot.</strong></p>
-                    <p>One rule it enforces: never draft an email without the full context loaded. No quick replies
-                        based only on the incoming message. Every draft is grounded in the full project history.</p>
-                </blockquote>
-
-                <!-- 07 project-status-dashboard -->
-                <div class="skill-divider">
-                    <span class="skill-num">07</span>
-                    <span class="skill-name">project-status-dashboard</span>
-                    <span class="skill-tag">Weekly health across all active projects</span>
-                    <span class="skill-line"></span>
-                </div>
-                <p>
-                    Every Monday at 9 AM — or on demand — the dashboard skill reads across every active project and
-                    generates a single standalone HTML file: the weekly project health report.
-                </p>
-                <p>
-                    One file. Opens in any browser. Shareable with stakeholders or printable for a meeting.
-                </p>
-                <ul>
-                    <li><strong>Per project:</strong> overall health status, week-over-week comparison, active blockers,
-                        client sentiment trend, hours consumed vs estimated, upcoming milestones.</li>
-                    <li><strong>Across all projects:</strong> portfolio-level view — which projects are healthy, which
-                        need attention, which are at risk.</li>
-                </ul>
-                <p>
-                    Data sources are all automatic. <code>project-status.md</code>, <code>session-notes/</code>,
-                    <code>comms-log.md</code>, confirmed estimates, standup history. The PM doesn't assemble anything —
-                    the skill reads everything and renders the dashboard.
-                </p>
-                <p>
-                    The design follows BetaCraft's studio aesthetic — warm off-white palette, editorial typography,
-                    clean
-                    information hierarchy. It looks like something you'd want to share in a client meeting, not a
-                    spreadsheet you scraped together on a Monday morning.
-                </p>
-
-                <h2>How They Connect</h2>
-                <p>
-                    The skills aren't seven isolated tools. They're a pipeline. Each step updates the shared context
-                    files; every subsequent step reads them. Nothing is re-entered. Nothing is lost.
-                </p>
-
-                <ul class="pipeline">
-                    <li><span class="pipeline-arrow">→</span> Client call ends — <code>transcript-digester</code>
-                        processes the recording, updates <code>client-brief.md</code> and <code>comms-log.md</code>,
-                        extracts action items.</li>
-                    <li><span class="pipeline-arrow">→</span> Client email arrives — <code>email-thread-analyzer</code>
-                        extracts intelligence, updates <code>comms-log.md</code>, flags if a response is needed.</li>
-                    <li><span class="pipeline-arrow">→</span> Response needed — <code>client-email-drafter</code> reads
-                        full project context, drafts the reply, waits for PM review.</li>
-                    <li><span class="pipeline-arrow">→</span> New features scoped — <code>estimate-generator</code>
-                        reads the transcript and produces the XLSX.</li>
-                    <li><span class="pipeline-arrow">→</span> Estimate confirmed — <code>sow-generator</code> produces
-                        the SOW for signature.</li>
-                    <li><span class="pipeline-arrow">→</span> SOW signed, dev starts — <code>ticket-generator</code>
-                        converts the estimate into codebase-aware Jira tickets.</li>
-                    <li><span class="pipeline-arrow">→</span> Every Monday — <code>project-status-dashboard</code>
-                        renders the weekly health report across all active projects.</li>
-                </ul>
-
-                <h2>What Actually Changed</h2>
-
-                <div class="before-after">
-                    <div class="ba-card before">
-                        <div class="ba-label">Before</div>
-                        <ul>
-                            <li>45 min call → 45 min of note-taking</li>
-                            <li>30 min writing the follow-up email</li>
-                            <li>1 hour building the estimate from scratch</li>
-                            <li>1 hour reformatting last month's SOW</li>
-                            <li>30 min writing Jira tickets too vague to use</li>
-                        </ul>
-                    </div>
-                    <div class="ba-card after">
-                        <div class="ba-label">After</div>
-                        <ul>
-                            <li>Call ends → structured output in 3 minutes</li>
-                            <li>Email drafted from full context in 10 min</li>
-                            <li>Estimate generated from the same transcript</li>
-                            <li>SOW generated from the estimate</li>
-                            <li>Tickets generated from the SOW — with file paths</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <p>
-                    The paperwork doesn't disappear. But it stops being the job.
-                </p>
-                <p>
-                    The job becomes what it was always supposed to be: understanding what the client needs, keeping the
-                    team unblocked, and making sure the right things get built in the right order.
-                </p>
-                <blockquote>
-                    <p><strong>The paperwork doesn't disappear — it just stops being your problem.</strong></p>
-                </blockquote>
-
-            </div>
-        </article>
+    <div class="footer-bar">
+      <span>© 2026 Aakash Dhar. Built with Code &amp; Coffee.</span>
+      <span>aakashdhar.me</span>
     </div>
+  </div>
+</footer>
 
-    <!-- FOOTER -->
-    <footer class="blog-footer">
-        <div class="wrap">
-            <h3>Enjoyed this read?</h3>
-            <p>Connect on LinkedIn or head back to the portfolio for more.</p>
-            <div class="blog-footer-links">
-                <a href="https://www.linkedin.com/in/aakashdhar" target="_blank">
-                    <i class="ph-fill ph-linkedin-logo"></i> Connect on LinkedIn
-                </a>
-                <a href="../index.html#insights">
-                    <i class="ph ph-newspaper"></i> More Writing
-                </a>
-                <a href="../index.html">
-                    <i class="ph ph-arrow-left"></i> Back to Portfolio
-                </a>
-            </div>
-            <p class="blog-footer-copy">© 2026 Aakash Dhar. Built with Code &amp; Coffee.</p>
-        </div>
-    </footer>
+<!-- SCRIPTS — do not edit -->
+<script>
+/* theme toggle — same localStorage key as index.html */
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const r = document.documentElement;
+  r.dataset.theme = r.dataset.theme === 'dark' ? '' : 'dark';
+  try { localStorage.setItem('theme', r.dataset.theme || 'light'); } catch(e) {}
+});
 
-    <script>
-        const thm = document.getElementById('thm');
-        const html = document.documentElement;
-        if (localStorage.theme === 'dark') {
-            html.classList.add('dark');
-        } else {
-            html.classList.remove('dark');
-        }
-        thm.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-        });
+/* gentle reveals */
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-        const ham = document.getElementById('ham');
-        const mob = document.getElementById('mob');
-        const mobx = document.getElementById('mobx');
-        ham.addEventListener('click', () => mob.classList.add('open'));
-        mobx.addEventListener('click', () => mob.classList.remove('open'));
-        mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+/* rail tracking — highlights the section in view (works for any
+   number of sections; driven by .sec ids + rail data-s attributes) */
+const railLinks = [...document.querySelectorAll('.rail a')];
+const secs = [...document.querySelectorAll('.sec')];
+const secIO = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      railLinks.forEach(a => a.classList.toggle('on', a.dataset.s === e.target.id));
+    }
+  });
+}, { rootMargin: '-20% 0px -65% 0px' });
+secs.forEach(s => secIO.observe(s));
 
-        const nav = document.getElementById('nav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 20);
-        }, { passive: true });
-    </script>
+/* read progress: top bar + rail rule */
+const rb = document.getElementById('rb');
+const railFill = document.getElementById('railFill');
+const onScroll = () => {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+  rb.style.width = p + '%';
+  if (railFill) railFill.style.width = p + '%';
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
 
 </body>
-
 </html>

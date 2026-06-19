@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sapey — Case Study · Aakash Dhar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F6F3EB; --cream-dark: #EFEAE0;
+    --amber: #C97F06; --amber-light: #FEF3E2; --amber-mid: rgba(201,127,6,0.15);
+    --ink: #181510; --ink-mid: #3D3D3D; --ink-light: #6B6557; --ink-faint: #9A9A9A;
+    --border: rgba(24,21,16,0.10); --border-mid: rgba(24,21,16,0.16);
+    --green: #1A7A40; --green-light: #EBF7EF; --green-mid: rgba(26,122,64,0.18);
+    --blue: #1D4ED8; --blue-light: #EFF6FF; --blue-mid: rgba(29,78,216,0.15);
+    --red: #B91C1C; --red-light: #FEF2F2;
+    --purple: #6D28D9; --purple-light: #F5F3FF; --purple-mid: rgba(109,40,217,0.15);
+    --display: 'Bricolage Grotesque', sans-serif;
+    --serif: 'Instrument Serif', serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--ink); font-family: var(--display); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 52px; background: rgba(246,243,235,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .topbar-brand { font-family: var(--mono); font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .14em; }
+  .topbar-brand b { color: var(--amber); }
+  .topbar-nav { display: flex; gap: 24px; align-items: center; }
+  .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
+  .topbar-nav a:hover { color: var(--amber); }
+  .topbar-nav .back { color: var(--amber); font-weight: 500; }
+
+  .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
+
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+  .etag { background: var(--amber-light); border: 1px solid var(--amber-mid); border-radius: 3px; padding: 2px 7px; font-size: 10px; }
+
+  .hero { padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+  .hero-title { font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600; line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px; }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
+  .hero-meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 16px 24px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .mi { display: flex; flex-direction: column; gap: 3px; }
+  .ml { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
+  .mv { font-size: 13px; color: var(--ink-mid); font-weight: 500; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; margin-bottom: 56px; }
+  .sc { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
+  .sc:last-child { border-right: none; }
+  .sn { font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
+  .sn .u { font-size: 14px; color: var(--amber); font-weight: 400; }
+  .sd { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
+
+  section { margin-bottom: 52px; scroll-margin-top: 72px; }
+  .snum { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 6px; letter-spacing: 0.05em; }
+  h2 { font-family: var(--display); font-size: 21px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 14px; }
+  p { color: var(--ink-light); margin-bottom: 14px; line-height: 1.75; }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: var(--ink); font-weight: 500; }
+  code { font-family: var(--mono); font-size: 12px; background: var(--cream-dark); padding: 2px 6px; border-radius: 3px; color: var(--amber); border: 1px solid var(--border-mid); }
+
+  .rule { height: 1px; background: var(--border); margin: 44px 0; }
+
+  .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 20px 0; }
+  .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
+  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .callout-red { border-left-color: var(--red); background: var(--red-light); }
+  .callout-red .cl { color: var(--red); }
+  .callout-green { border-left-color: var(--green); background: var(--green-light); }
+  .callout-green .cl { color: var(--green); }
+  .callout-blue { border-left-color: var(--blue); background: var(--blue-light); }
+  .callout-blue .cl { color: var(--blue); }
+
+  /* PARTY MAP */
+  .party-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 20px 0; }
+  .party-card { border-radius: 7px; padding: 16px; border: 1px solid; }
+  .pc-client { background: var(--amber-light); border-color: var(--amber-mid); }
+  .pc-frs { background: var(--blue-light); border-color: var(--blue-mid); }
+  .pc-nolte { background: var(--purple-light); border-color: var(--purple-mid); }
+  .pc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 8px; }
+  .pc-client .pc-label { color: var(--amber); }
+  .pc-frs .pc-label { color: var(--blue); }
+  .pc-nolte .pc-label { color: var(--purple); }
+  .party-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .party-card p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* DISCREPANCY TABLE */
+  .disc-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 12px; border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; }
+  .disc-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 10px 14px; background: var(--cream-dark); border-bottom: 1px solid var(--border-mid); }
+  .disc-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--ink-mid); vertical-align: top; line-height: 1.5; }
+  .disc-table tr:last-child td { border-bottom: none; }
+  .disc-table tr td:first-child { font-family: var(--mono); font-size: 11px; white-space: nowrap; color: var(--ink-faint); }
+  .sev { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 3px; }
+  .sev-critical { color: var(--red); background: var(--red-light); border: 1px solid rgba(185,28,28,0.2); }
+  .sev-high { color: var(--amber); background: var(--amber-light); border: 1px solid var(--amber-mid); }
+  .sev-medium { color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
+  .sev-low { color: var(--ink-faint); background: var(--cream-dark); border: 1px solid var(--border-mid); }
+
+  /* API RESULT */
+  .api-block { background: var(--cream-dark); border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; margin: 20px 0; }
+  .api-header { padding: 10px 16px; background: var(--ink); display: flex; align-items: center; gap: 10px; }
+  .api-method { font-family: var(--mono); font-size: 10px; color: var(--amber); background: rgba(201,127,6,0.2); border: 1px solid rgba(201,127,6,0.3); border-radius: 3px; padding: 2px 7px; }
+  .api-url { font-family: var(--mono); font-size: 11px; color: #8892A4; }
+  .api-body { padding: 16px; font-family: var(--mono); font-size: 11px; line-height: 1.9; color: var(--ink-light); overflow-x: auto; }
+  .api-body .k { color: var(--blue); }
+  .api-body .v { color: var(--green); }
+  .api-body .c { color: var(--ink-faint); }
+  .api-body .a { color: var(--amber); }
+
+  /* OUTCOME LIST */
+  .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .outcome-row:last-child { border-bottom: none; }
+  .oc { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
+  .ot h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .ot p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .gc { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
+  .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
+  .gc h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .gc p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
+
+  /* TAG ROW */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+  .tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
+
+  .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .fb { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
+  .fb b { color: var(--amber); font-weight: 500; }
+  .fl { font-size: 12px; color: var(--ink-faint); }
+  .fl a { color: var(--amber); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .page-wrap { padding: 80px 20px 80px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .party-grid { grid-template-columns: 1fr; }
+    .topbar { padding: 0 20px; }
+    .hero-title { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="topbar-brand" href="https://aakashdhar.me"><b>~/</b>aakash</a>
+  <div class="topbar-nav">
+    <a href="https://aakashdhar.me/#pm-work">PM Work</a>
+    <a href="https://aakashdhar.me" class="back">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="hero">
+    <p class="eyebrow">
+      <span class="etag">Case Study</span>
+      Sapey / Nolte.io · Free Range Studios · 2026
+    </p>
+    <h1 class="hero-title">Three parties.<br>One disputed delivery.<br>The only way through<br>was <em>evidence.</em></h1>
+    <p class="hero-sub">A California regulatory compliance platform with three organisations that could not agree on what had been built. No neutral ground. No shared truth. I stepped in, ran the API tests myself, surfaced six SOW discrepancies, and rebuilt the factual record from scratch - so the project could move forward on evidence, not claims.</p>
+
+    <div class="hero-meta">
+      <div class="mi"><span class="ml">Project</span><span class="mv">Sapey — Phase 2.1 / 2.2</span></div>
+      <div class="mi"><span class="ml">Client</span><span class="mv">Roddy Radnia</span></div>
+      <div class="mi"><span class="ml">My org</span><span class="mv">BetaCraft / Free Range Studios</span></div>
+      <div class="mi"><span class="ml">My role</span><span class="mv">PM — stepped in for Mayuresh</span></div>
+      <div class="mi"><span class="ml">Third party</span><span class="mv">Nolte.io (UI + integration)</span></div>
+      <div class="mi"><span class="ml">Domain</span><span class="mv">California Title 22 RCFE compliance</span></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="sc">
+      <div class="sn">3</div>
+      <div class="sd">Organisations with conflicting accounts of what had been delivered</div>
+    </div>
+    <div class="sc">
+      <div class="sn">6</div>
+      <div class="sd">SOW discrepancies identified — one rated Critical</div>
+    </div>
+    <div class="sc">
+      <div class="sn">3</div>
+      <div class="sd">Title 22 outcome states verified live in production API</div>
+    </div>
+    <div class="sc">
+      <div class="sn">0</div>
+      <div class="sd">Claims accepted without verification. Everything tested or documented.</div>
+    </div>
+  </div>
+
+  <!-- 01 CONTEXT -->
+  <section id="context">
+    <p class="snum">01 / Context</p>
+    <h2>What Sapey is and why it matters.</h2>
+    <p>Sapey is a <strong>Safe Execution Control Plane</strong> - a regulatory compliance system that processes clinical events from residential care facilities against California Title 22 RCFE rules. When a care event occurs, the system evaluates it against policy and returns one of three possible decisions: <strong>Allow, Deny, or Defer.</strong> These are not product features. They are regulatory determinations that affect real patient care decisions in licensed facilities.</p>
+    <p>The system has two technical layers built by two different organisations. <strong>Free Range Studios</strong> (my organisation, BetaCraft/sorigin.com) built the backend policy engine - the Safe Execution Control Plane itself - using Neo4j and Gemini, with a production API that processes Title 22 events. <strong>Nolte.io</strong> built the UI and the integration layer that connects the frontend to the backend. <strong>Roddy Radnia</strong> is the client, holding both teams to account for the overall system.</p>
+
+    <div class="party-grid">
+      <div class="party-card pc-client">
+        <p class="pc-label">Client</p>
+        <h4>Roddy Radnia</h4>
+        <p>Product owner. Holding both technical parties accountable. Deadline: end-of-May demo with all three Title 22 outcomes verified.</p>
+      </div>
+      <div class="party-card pc-frs">
+        <p class="pc-label">Free Range Studios (my org)</p>
+        <h4>Backend / Policy Engine</h4>
+        <p>Mayuresh Soni (lead, travelling), Chetan Dhandal (engineer), Aakash Dhar (PM, stepped in). Built the production API processing Title 22 events.</p>
+      </div>
+      <div class="party-card pc-nolte">
+        <p class="pc-label">Nolte.io (third party)</p>
+        <h4>UI + Integration Layer</h4>
+        <p>Yanna Lopes, Hector Sanchez. Built the verification console and integration layer connecting frontend to the Free Range API.</p>
+      </div>
+    </div>
+
+    <div class="tag-row">
+      <span class="tag">California Title 22 RCFE</span>
+      <span class="tag">Neo4j</span>
+      <span class="tag">Gemini AI</span>
+      <span class="tag">REST API</span>
+      <span class="tag">Swagger UI</span>
+      <span class="tag">Policy engine</span>
+      <span class="tag">Regulatory compliance</span>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 02 THE PROBLEM -->
+  <section id="problem">
+    <p class="snum">02 / The situation I stepped into</p>
+    <h2>Two teams. One disputed delivery. No shared ground truth.</h2>
+    <p>I stepped in as PM during Mayuresh's travel absence. What I found was a project that had technically been running but had accumulated a credibility problem between the two technical teams - and that problem had reached the client.</p>
+    <p><strong>Nolte.io's position:</strong> Free Range had not delivered on Title 22 outcomes. The integration work was blocked because the backend was not ready. The SOW for Phase 2.2 was premature.</p>
+    <p><strong>Free Range's position:</strong> All three Title 22 outcome states had been demonstrated to Hector from nolte.io in an April 23 demo. The work was done. The claim that it was not was factually incorrect.</p>
+    <p>Both teams were presenting their positions to Roddy. Roddy was waiting for a resolution. A Thursday call was scheduled. I had roughly 48 hours.</p>
+
+    <div class="callout callout-red">
+      <p class="cl">The real risk</p>
+      <p>This was not a technical dispute. It was a trust breakdown between two organisations, with a client in the middle who was about to make contract and payment decisions based on whoever presented their case most convincingly. The only way to resolve it correctly was to bypass both parties' claims entirely and go directly to the evidence.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 03 THE API TESTS -->
+  <section id="api">
+    <p class="snum">03 / The first move: test it myself</p>
+    <h2>Do not relay claims. Verify them.</h2>
+    <p>The fastest way to resolve whether Free Range had delivered on Title 22 outcomes was not to read the meeting notes or ask either team. It was to go directly into the production API and test all three outcome states myself.</p>
+    <p>I accessed the Free Range production endpoint via Swagger UI at the live CloudFront URL, using the API key and the correct payload structure. The endpoint was <code>POST /api/v3/events/rio</code>. The key technical details that had to be right: <code>rio_version: "1.0"</code> (not "3.0", which returns a 422), <code>canonical_concept_ids</code> nested inside <code>interpretation</code> not at the root, and <code>evidence_fields</code> inside <code>event</code>.</p>
+    <p>I ran all three fixtures. Every one returned a verified decision in production.</p>
+
+    <div class="api-block">
+      <div class="api-header">
+        <span class="api-method">POST</span>
+        <span class="api-url">/api/v3/events/rio — Title 22 verification results</span>
+      </div>
+      <div class="api-body">
+<span class="c">// Event 699 — ALLOW state</span>
+<span class="k">decision_id:</span> <span class="v">"d88c3600-8982-4296-876b-9ea2cf21a4a1"</span>
+<span class="k">outcome:</span>      <span class="a">ALLOW</span>   <span class="c">// ✓ verified in production</span>
+
+<span class="c">// Event 701 — DENY state</span>
+<span class="k">decision_id:</span> <span class="v">"5754bf49-f5d4-4de4-ae4d-224c9aef2356"</span>
+<span class="k">outcome:</span>      <span class="a">DENY</span>    <span class="c">// ✓ verified in production</span>
+
+<span class="c">// Event 703 — DEFER state</span>
+<span class="k">decision_id:</span> <span class="v">"fbf803a8-920a-43da-8422-469b20f453f5"</span>
+<span class="k">outcome:</span>      <span class="a">DEFER</span>   <span class="c">// ✓ verified in production</span>
+
+<span class="c">// Two discrepancies between fixture doc and live API also found:</span>
+<span class="c">// 1. Five evidence fields missing from fixture document</span>
+<span class="c">// 2. tasks_created count: 3 in API vs 2 in documentation</span>
+      </div>
+    </div>
+
+    <p>All three Title 22 outcome states were live and working in production. Nolte's claim that Free Range had not delivered on Title 22 outcomes was factually incorrect - as confirmed by the April 23 transcript where Hector had been present for the demo, and now confirmed again by live production evidence.</p>
+    <p>I also caught two real discrepancies between the fixture documentation and the live API - five evidence fields missing from the document, and a <code>tasks_created</code> count of 3 versus the documented 2. These were genuine gaps that needed fixing. The point was not that Free Range was perfect - it was that the specific claim of non-delivery was wrong, and now there was evidence to prove it.</p>
+
+    <div class="callout callout-green">
+      <p class="cl">Why this mattered</p>
+      <p>Going into the API myself meant the evidence was mine - not relayed from Free Range, not interpreted by nolte.io. Decision IDs, timestamps, payload structures, discrepancies included. That is the kind of evidence that holds up in a three-party dispute. Nobody could question whose version of events it was.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 04 SOW ANALYSIS -->
+  <section id="sow">
+    <p class="snum">04 / The second move: read the SOW properly</p>
+    <h2>Six discrepancies. One critical. All documented before the call.</h2>
+    <p>While the API tests settled the delivery dispute, a second problem was developing in parallel: the Phase 2.2 SOW that had been circulated was not fit to sign. I ran a full discrepancy analysis against the meeting record and found six issues.</p>
+
+    <table class="disc-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Discrepancy</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>D-01</td>
+          <td><strong>AdmissibilityGate check count:</strong> Executive summary says 4 of 5 checks delivered; project definition paragraph says 5 of 5. Same audit, same document, two different numbers. If 5 of 5 are done, SAP-327 (listed as billable Phase 2.2 work) is already delivered and should not be in scope.</td>
+          <td><span class="sev sev-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>D-02</td>
+          <td><strong>Nolte not consulted on Phase 2.2 scope:</strong> The SOW was written without input from nolte.io despite active integration interdependency. Nolte cannot sign off on what they were not part of scoping.</td>
+          <td><span class="sev sev-high">High</span></td>
+        </tr>
+        <tr>
+          <td>D-03</td>
+          <td><strong>Nolte reconciliation marked out of scope:</strong> The SOW explicitly excludes nolte integration work despite the Phase 2.2 demo requiring both systems to work together. This is not a deferral - it is a gap that makes the demo impossible as scoped.</td>
+          <td><span class="sev sev-high">High</span></td>
+        </tr>
+        <tr>
+          <td>D-04</td>
+          <td><strong>9-week timeline incompatible with end-of-May demo:</strong> The SOW proposes a 9-week delivery window. The demo deadline confirmed by Roddy on the May 18 call is end of May. These two dates cannot both be true.</td>
+          <td><span class="sev sev-critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td>D-05</td>
+          <td><strong>Domain expert hire not addressed:</strong> Raised in previous calls as a dependency. The SOW neither includes it nor formally defers it.</td>
+          <td><span class="sev sev-low">Low</span></td>
+        </tr>
+        <tr>
+          <td>D-06</td>
+          <td><strong>Three-fixture demo requirement not covered:</strong> The most pressing near-term deliverable - three Title 22 fixtures for the end-of-May demo - has no home anywhere in the SOW. It jumps straight to the broader expansion without addressing the immediate deadline.</td>
+          <td><span class="sev sev-high">High</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p class="cl">The critical one</p>
+      <p>D-04 was the item that had to be on the table before Thursday. A SOW proposing a 9-week delivery window when Roddy had confirmed an end-of-May demo deadline was not a minor alignment issue - it was a document that could not be signed without creating a contractual commitment that was already impossible to meet.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 05 THE CLIENT EMAIL -->
+  <section id="email">
+    <p class="snum">05 / The communication layer</p>
+    <h2>Evidence first. Civil always. Never defensive.</h2>
+    <p>With the API evidence and the SOW analysis in hand, I had to decide how to communicate it. The temptation in a three-party dispute where your own organisation is being accused of non-delivery is to be defensive - to lead with the evidence that proves the other party wrong and let the facts do the work.</p>
+    <p>That is the wrong move. It turns a project governance problem into a blame conversation, and the client ends up managing two teams arguing rather than getting a resolution.</p>
+    <p>The email I drafted to Roddy and Yanna took a different approach: <strong>acknowledge the gap that existed, present the evidence of what was working, flag the documentation discrepancies honestly including Free Range's own, and frame the next steps as a joint effort to establish shared ground truth before the Thursday call.</strong> The April 23 transcript - where Hector had been present for the Title 22 demo - was included as an Otter recording link. Not as a weapon. As context.</p>
+
+    <div class="two-col">
+      <div class="gc">
+        <p class="gc-label">What the email did not do</p>
+        <h4>Did not throw nolte.io under the bus</h4>
+        <p>The claim that Free Range had not delivered was incorrect. The email corrected the record without characterising nolte's position as bad faith.</p>
+      </div>
+      <div class="gc">
+        <p class="gc-label">What the email did do</p>
+        <h4>Presented verifiable evidence</h4>
+        <p>Production decision IDs, the April 23 transcript reference, the documentation gaps found during testing - all cited specifically, all verifiable independently by anyone on the thread.</p>
+      </div>
+    </div>
+
+    <p>The MoM documents I produced from the May 18 and subsequent calls followed the same discipline: strict grounding in transcript content, no inference, no embellishment, a Client Sentiment section added at Roddy's implicit request to make his engagement visible to both teams. Every action item named, owne, and dated. Every unresolved item explicitly flagged.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 06 OUTCOMES -->
+  <section id="outcomes">
+    <p class="snum">06 / Outcomes</p>
+    <h2>What the evidence-first approach produced.</h2>
+
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>All three Title 22 outcome states verified in production</h4>
+        <p>Allow, Deny, Defer - all confirmed with production decision IDs. The claim of non-delivery was corrected with direct evidence, not counter-claims.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Six SOW discrepancies documented before Thursday call</h4>
+        <p>All six surfaced, severity-rated, and communicated before anyone signed anything. The critical timeline conflict was the most important - it prevented a contractually impossible commitment from being made.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Shared factual record established across all three parties</h4>
+        <p>MoM documents grounded strictly in transcript content gave all three parties a single authoritative record of what had been said, decided, and committed to. No more competing versions of history.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Two real documentation gaps caught and flagged</h4>
+        <p>The five missing evidence fields and the tasks_created count discrepancy were genuine issues in Free Range's own documentation. Flagging them proactively - rather than hiding them - was the right call. It built credibility rather than undermining it.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Project continued - Thomas audit in scope for Phase 2.2</h4>
+        <p>With the delivery dispute resolved and the SOW issues surfaced, the project moved forward. An independent audit by a reviewer named Thomas was included in the Phase 2.2 scope as a trust-building measure between all parties.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 07 REFLECTION -->
+  <section id="reflection">
+    <p class="snum">07 / Reflection</p>
+    <h2>What evidence-based stakeholder management actually looks like.</h2>
+    <p>The hardest part of this engagement was not finding the evidence - it was the discipline to go looking for it before communicating anything. The instinct when your own organisation is being accused of non-delivery is to respond immediately, to assert, to defend. That instinct, if followed, turns a project governance problem into a reputation argument. Nobody wins those.</p>
+    <p>Going into the API myself was the move that changed everything. Not because it proved Free Range right in some triumphant way - we had our own documentation gaps that I surfaced in the same breath - but because it replaced two competing narratives with a single set of facts that everyone could verify independently. Decision IDs do not lie. Timestamps do not have a perspective.</p>
+    <p>The SOW analysis mattered for the same reason. The critical discrepancy was the 9-week timeline against an end-of-May deadline. That was not a Free Range problem or a nolte problem - it was a document problem that would have created a contractual commitment nobody could meet. Surfacing it before the Thursday call, rather than letting Roddy sign something unworkable, was the most valuable thing I did on this engagement.</p>
+    <p><strong>The engineering background was the enabler here.</strong> A PM without the technical depth to read a Swagger spec, construct a valid nested API payload, understand what a 422 validation error means, and interpret the response fields would have had to relay the question to Chetan - who was a party to the dispute - and wait for an answer that might or might not be impartial. Going in directly meant the evidence was unimpeachable. That is what technical PM actually means in practice.</p>
+  </section>
+
+  <div class="cs-footer">
+    <div class="fb"><b>~/</b>aakash · Aakash Dhar · Technical Project Manager</div>
+    <div class="fl">
+      <a href="mailto:hello@aakashdhar.me">hello@aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://aakashdhar.me">aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/aakashdhar">LinkedIn</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

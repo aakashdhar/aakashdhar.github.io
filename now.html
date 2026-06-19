@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Now — Aakash Dhar</title>
-<meta name="description" content="What Aakash Dhar is focused on right now — BetaCraft, Agentic AI, and life in Pune.">
+<meta name="description" content="What Aakash Dhar is focused on right now — AI governance, BetaCraft, a move to the Netherlands, and life in Pune.">
 <script>/* restore saved theme before first paint (no flash) */
 try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,40 +12,21 @@ try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.t
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C97F06%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
 <style>
-/* ============ THEME TOKENS (mirrors index.html) ============ */
 :root{
-  --bg:#F6F3EB;
-  --bg-2:#FFFDF7;
-  --bg-3:#EFEAE0;
-  --ink:#181510;
-  --muted:#6B6557;
-  --muted-2:#A39C8A;
-  --amber:#C97F06;
-  --amber-bright:#E89B0F;
-  --amber-dim:rgba(201,127,6,.10);
-  --mint:#0E8C7A;
-  --hairline:rgba(24,21,16,.12);
-  --hairline-2:rgba(24,21,16,.22);
-  --ghost:rgba(24,21,16,.07);
-  --glow:rgba(232,155,15,.10);
+  --bg:#F6F3EB;--bg-2:#FFFDF7;--bg-3:#EFEAE0;
+  --ink:#181510;--muted:#6B6557;--muted-2:#A39C8A;
+  --amber:#C97F06;--amber-bright:#E89B0F;--amber-dim:rgba(201,127,6,.10);
+  --mint:#0E8C7A;--hairline:rgba(24,21,16,.12);--hairline-2:rgba(24,21,16,.22);
+  --ghost:rgba(24,21,16,.07);--glow:rgba(232,155,15,.10);
   --shadow:0 18px 50px -24px rgba(24,21,16,.18);
   --card-shadow:0 -28px 70px -24px rgba(24,21,16,.35);
 }
 [data-theme="dark"]{
-  --bg:#0B0A08;
-  --bg-2:#14120E;
-  --bg-3:#1A1814;
-  --ink:#EFEAE0;
-  --muted:#8C877C;
-  --muted-2:#55514A;
-  --amber:#FFB224;
-  --amber-bright:#FFCB66;
-  --amber-dim:rgba(255,178,36,.13);
-  --mint:#7BE8D8;
-  --hairline:rgba(239,234,224,.1);
-  --hairline-2:rgba(239,234,224,.2);
-  --ghost:rgba(239,234,224,.08);
-  --glow:rgba(255,178,36,.12);
+  --bg:#0B0A08;--bg-2:#14120E;--bg-3:#1A1814;
+  --ink:#EFEAE0;--muted:#8C877C;--muted-2:#55514A;
+  --amber:#FFB224;--amber-bright:#FFCB66;--amber-dim:rgba(255,178,36,.13);
+  --mint:#7BE8D8;--hairline:rgba(239,234,224,.1);--hairline-2:rgba(239,234,224,.2);
+  --ghost:rgba(239,234,224,.08);--glow:rgba(255,178,36,.12);
   --shadow:0 18px 50px -24px rgba(0,0,0,.6);
   --card-shadow:0 -28px 70px -20px rgba(0,0,0,.7);
 }
@@ -63,16 +44,13 @@ a{color:inherit}
 a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
 .mono{font-family:"JetBrains Mono",monospace}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
-/* ============ TOPBAR ============ */
+/* TOPBAR */
 .topbar{
   position:fixed;top:0;left:0;right:0;z-index:500;
   display:flex;align-items:center;justify-content:space-between;
-  padding:18px clamp(20px,3.5vw,44px);
-  pointer-events:none;
+  padding:18px clamp(20px,3.5vw,44px);pointer-events:none;
 }
 .topbar>*{pointer-events:auto}
 .brand{font-family:"JetBrains Mono",monospace;font-size:13.5px;letter-spacing:.14em;font-weight:600;text-decoration:none}
@@ -94,13 +72,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
   display:grid;place-items:center;cursor:pointer;transition:border-color .25s,transform .25s,background .45s;
 }
 .theme-btn:hover{border-color:var(--amber);transform:rotate(15deg)}
-.theme-btn .sun{display:block}
-.theme-btn .moon{display:none}
-[data-theme="dark"] .theme-btn .sun{display:none}
-[data-theme="dark"] .theme-btn .moon{display:block}
+.theme-btn .sun{display:block}.theme-btn .moon{display:none}
+[data-theme="dark"] .theme-btn .sun{display:none}[data-theme="dark"] .theme-btn .moon{display:block}
 @media(max-width:640px){.back-link span.txt{display:none}.back-link{padding:10px 16px}.counter{display:none}}
 
-/* scroll hint — same drip as homepage */
+/* SCROLL HINT */
 .hint{
   position:fixed;left:50%;bottom:clamp(20px,3vw,34px);transform:translateX(-50%);z-index:500;
   font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);
@@ -110,55 +86,40 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
 @keyframes drip{0%{transform:scaleY(.2);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(.2);transform-origin:top;opacity:0}}
 .hint.gone{opacity:0;pointer-events:none}
 
-/* ============ CHAPTER STACK (CSS sticky version of the homepage pin) ============ */
+/* CHAPTER STACK */
 .chapter{
-  position:sticky;top:0;
-  min-height:100svh;
-  background:var(--bg);
-  transition:background .45s ease;
+  position:sticky;top:0;min-height:100svh;
+  background:var(--bg);transition:background .45s ease;
   padding:104px clamp(22px,6vw,90px) 90px;
   display:flex;flex-direction:column;justify-content:center;
 }
-.chapter:not(:first-child){
-  border-radius:26px 26px 0 0;
-  box-shadow:var(--card-shadow);
-  border-top:1px solid var(--hairline);
-}
-/* alternate paper tones so each card reads as a new sheet */
+.chapter:not(:first-child){border-radius:26px 26px 0 0;box-shadow:var(--card-shadow);border-top:1px solid var(--hairline);}
 .chapter:nth-child(even){background:var(--bg-2)}
 .ch-in{width:100%;max-width:1080px;margin:0 auto}
 
-/* chapter header pattern — same as homepage */
+/* CHAPTER HEADER */
 .ch-head{position:relative;margin-bottom:clamp(22px,3.5vh,40px)}
-.ghost-num{
-  position:absolute;top:-.42em;left:-.05em;z-index:0;font-weight:800;line-height:1;
-  font-size:clamp(120px,18vw,240px);letter-spacing:-.04em;color:transparent;
-  -webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;
-}
+.ghost-num{position:absolute;top:-.42em;left:-.05em;z-index:0;font-weight:800;line-height:1;font-size:clamp(120px,18vw,240px);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;}
 .eyebrow{position:relative;z-index:1;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:14px}
 h1,h2{position:relative;z-index:1;font-weight:800;letter-spacing:-.028em;line-height:.96;font-variation-settings:"opsz" 96}
 h1{font-size:clamp(64px,12vw,150px)}
 h2{font-size:clamp(44px,7.5vw,96px)}
 h1 .serif,h2 .serif{color:var(--amber);font-weight:400}
-
 .lede{position:relative;z-index:1;color:var(--muted);font-weight:300;font-size:clamp(17px,2vw,21px);max-width:620px}
 .lede strong{color:var(--ink);font-weight:600}
 .kicker{position:relative;z-index:1;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
 .kicker b{color:var(--ink);font-weight:600}
 
-/* reveals */
+/* REVEALS */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .chapter.in .rv{opacity:1;transform:none}
 .rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
 
-/* ===== cover specifics ===== */
+/* COVER */
 .cover{justify-content:flex-end;padding-bottom:120px;overflow:hidden}
 .cover-glow{position:absolute;inset:0;pointer-events:none}
-.cover-glow::before{
-  content:"";position:absolute;width:120vmax;height:120vmax;left:50%;top:-30%;transform:translateX(-50%);
-  background:radial-gradient(closest-side,var(--glow),transparent 68%);
-}
+.cover-glow::before{content:"";position:absolute;width:120vmax;height:120vmax;left:50%;top:-30%;transform:translateX(-50%);background:radial-gradient(closest-side,var(--glow),transparent 68%);}
 .pill{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hairline-2);border-radius:999px;padding:7px 15px;color:var(--muted);display:inline-block}
 .pill.hot{border-color:var(--amber);color:var(--amber)}
 .pill.hot i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-right:8px;animation:blink 2.2s infinite;font-style:normal;vertical-align:1px}
@@ -166,43 +127,38 @@ h1 .serif,h2 .serif{color:var(--amber);font-weight:400}
 .cover-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px;position:relative;z-index:1}
 .cover .gapline{position:relative;z-index:1;margin-top:22px;font-size:clamp(20px,2.8vw,32px);color:var(--amber)}
 
-/* ===== chips (ch 01) ===== */
+/* CHIPS */
 .chips-label{position:relative;z-index:1;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted-2);margin:30px 0 12px}
 .chips{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:9px}
-.chip{
-  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  border:1px solid var(--hairline-2);border-radius:999px;padding:8px 17px;color:var(--muted);background:var(--bg-2);
-}
+.chip{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--hairline-2);border-radius:999px;padding:8px 17px;color:var(--muted);background:var(--bg-2);}
 .chapter:nth-child(even) .chip{background:var(--bg)}
 .chip.hot{border-color:var(--amber);color:var(--amber);background:var(--amber-dim)}
 
-/* ===== progress (ch 03) — ledger rule ===== */
+/* PROGRESS BAR */
 .progress{position:relative;z-index:1;margin-top:36px;max-width:560px}
 .progress-label{display:flex;justify-content:space-between;align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-2);margin-bottom:12px}
 .progress-label b{color:var(--amber);font-weight:600;font-size:15px}
 .progress-track{height:2px;background:var(--hairline)}
 .progress-fill{position:relative;height:4px;top:-1px;width:0;background:var(--amber);transition:width 1.3s cubic-bezier(.16,1,.3,1) .35s}
 .progress-fill::after{content:"";position:absolute;right:-5px;top:-3px;width:10px;height:10px;border-radius:50%;background:var(--amber)}
-.chapter.in .progress-fill{width:75%}
 
-/* ===== reading note (ch 04) ===== */
+/* READING NOTE */
 .reading{position:relative;z-index:1;margin-top:34px;padding-left:24px;border-left:2px solid var(--amber);max-width:560px}
 .reading-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted-2);margin-bottom:8px}
 .reading-title{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(22px,2.6vw,30px);line-height:1.25}
 .reading-author{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;color:var(--muted);margin-top:8px}
 
-/* ===== footer chapter ===== */
+/* NEXT CHAPTER tag */
+.next-tag{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;margin-top:32px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:999px;padding:10px 20px;background:var(--amber-dim);}
+.next-tag i{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:blink 2.2s infinite;font-style:normal;}
+
+/* FIN */
 .fin{min-height:64svh;justify-content:flex-end;padding-bottom:46px}
 .fin-big{position:relative;z-index:1;font-weight:800;font-size:clamp(34px,6vw,76px);letter-spacing:-.03em;line-height:1.05}
 .fin-big .serif{color:var(--amber);font-weight:400}
 .fin-back{display:inline-block;margin-top:28px;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber);padding-bottom:4px;transition:letter-spacing .25s;width:fit-content;position:relative;z-index:1}
 .fin-back:hover{letter-spacing:.26em}
-.footer-bar{
-  margin-top:clamp(40px,7vh,70px);padding-top:22px;border-top:1px solid var(--hairline);
-  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
-  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--muted-2);
-  position:relative;z-index:1;
-}
+.footer-bar{margin-top:clamp(40px,7vh,70px);padding-top:22px;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--muted-2);position:relative;z-index:1;}
 .footer-bar a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber)}
 </style>
 </head>
@@ -211,7 +167,7 @@ h1 .serif,h2 .serif{color:var(--amber);font-weight:400}
 <div class="topbar">
   <a class="brand" href="index.html"><b>~/</b>aakash</a>
   <div class="top-r">
-    <span class="counter"><b id="cNow">01</b> / <span id="cAll">06</span></span>
+    <span class="counter"><b id="cNow">01</b> / <span id="cAll">07</span></span>
     <a class="back-link" href="index.html"><span class="arr">←</span><span class="txt">Back Home</span></a>
     <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
       <span class="sun">☀</span><span class="moon">☾</span>
@@ -223,20 +179,20 @@ h1 .serif,h2 .serif{color:var(--amber);font-weight:400}
 
 <main id="stack">
 
-<!-- ===== COVER ===== -->
+<!-- COVER -->
 <section class="chapter cover in" data-n="01">
   <div class="cover-glow" aria-hidden="true"></div>
   <div class="ch-in">
     <div class="cover-meta rv">
-      <span class="pill hot"><i></i>Updated: Jan 2026</span>
+      <span class="pill hot"><i></i>Updated: Jun 2026</span>
       <span class="pill">/now</span>
     </div>
     <h1 class="rv rv-d1">Now<span class="serif">.</span></h1>
-    <div class="gapline serif rv rv-d2">Focused on BetaCraft, Agentic AI, and life in Pune.</div>
+    <div class="gapline serif rv rv-d2">Shipping AI systems. Building toward governance. Planning a move.</div>
   </div>
 </section>
 
-<!-- ===== 01 · CURRENT ROLE ===== -->
+<!-- 01 CURRENT ROLE -->
 <section class="chapter" data-n="02">
   <div class="ch-in">
     <div class="ch-head">
@@ -245,64 +201,96 @@ h1 .serif,h2 .serif{color:var(--amber);font-weight:400}
       <h2 class="rv rv-d1">Beta<span class="serif">Craft</span></h2>
     </div>
     <div class="kicker rv rv-d1"><b>Technical Project Manager</b></div>
-    <p class="lede rv rv-d2">Leading engineering teams to ship scalable products. Deep in the weeds of integrating LLMs into legacy workflows — building the bridge between traditional development and AI-augmented delivery.</p>
+    <p class="lede rv rv-d2">Running delivery across four live client engagements — Brieflex, Sapey, WePop, and Link Broadband. Built BetaCraft's full AI-native PM workflow from scratch: 21 PM skills and 13 vibe-* dev skills, all running in production. The gap between what the client says and what the engineer hears is where I work.</p>
     <div class="chips-label rv rv-d2">Focus Areas</div>
     <div class="chips rv rv-d3">
-      <span class="chip hot">Sprint Planning</span>
+      <span class="chip hot">Agentic AI Delivery</span>
+      <span class="chip hot">AI Governance</span>
+      <span class="chip">Sprint Planning</span>
       <span class="chip">Client Comms</span>
-      <span class="chip">AI Integration</span>
-      <span class="chip">Team Leadership</span>
+      <span class="chip">Multi-party Coordination</span>
     </div>
   </div>
 </section>
 
-<!-- ===== 02 · BASED IN ===== -->
+<!-- 02 WHAT IS NEXT -->
 <section class="chapter" data-n="03">
   <div class="ch-in">
     <div class="ch-head">
       <div class="ghost-num" aria-hidden="true">02</div>
-      <span class="eyebrow rv">Based In</span>
-      <h2 class="rv rv-d1">Pune, <span class="serif">India</span></h2>
+      <span class="eyebrow rv">What's Next</span>
+      <h2 class="rv rv-d1">The Nether<span class="serif">lands.</span></h2>
     </div>
-    <p class="lede rv rv-d2">Exploring places around Pune, taking the road less travelled on my <strong>Royal Enfield Himalayan 411</strong> and chasing the perfect Misal.</p>
+    <p class="lede rv rv-d2">Planning a move to the Netherlands to work in the Dutch tech market as a Technical PM. Actively building the case — six case studies shipped, EU AI governance credentials in progress, and a portfolio rebuilt to speak to the Dutch hiring context. The August 2026 EU AI Act enforcement deadline is the right moment to arrive.</p>
+    <div class="chips-label rv rv-d2">In Progress</div>
+    <div class="chips rv rv-d3">
+      <span class="chip hot">Kennismigrant visa prep</span>
+      <span class="chip">BSI ISO 42001</span>
+      <span class="chip">AIGP certification path</span>
+      <span class="chip">Portfolio for NL market</span>
+    </div>
   </div>
 </section>
 
-<!-- ===== 03 · SIDE PROJECT ===== -->
+<!-- 03 AI GOVERNANCE -->
 <section class="chapter" data-n="04">
   <div class="ch-in">
     <div class="ch-head">
       <div class="ghost-num" aria-hidden="true">03</div>
-      <span class="eyebrow rv">Side Project</span>
-      <h2 class="rv rv-d1">Build<span class="serif">ing</span></h2>
+      <span class="eyebrow rv">Learning</span>
+      <h2 class="rv rv-d1">AI Gover<span class="serif">nance.</span></h2>
     </div>
-    <p class="lede rv rv-d2">Using <strong>Antigravity</strong> to build a personal TPM helper project called <strong>Agile Buddy</strong> — helps me create tickets, estimates and roadmaps faster.</p>
+    <p class="lede rv rv-d2">Going deep on EU AI governance — not as a career pivot away from PM, but as the layer that makes a Technical PM genuinely valuable in the EU market. The EU AI Act enforcement deadline is live. Dutch companies need people who understand what it means at the project level, not just the legal one.</p>
     <div class="progress rv rv-d3">
-      <div class="progress-label"><span>Progress</span><b>75%</b></div>
-      <div class="progress-track"><div class="progress-fill"></div></div>
+      <div class="progress-label"><span>BSI ISO 42001 Specialisation</span><b>Active</b></div>
+      <div class="progress-track"><div class="progress-fill" style="width:0" data-target="45"></div></div>
+    </div>
+    <div class="progress rv rv-d3" style="margin-top:20px">
+      <div class="progress-label"><span>IAPP AIGP Training</span><b>Queued</b></div>
+      <div class="progress-track"><div class="progress-fill" style="width:0" data-target="10"></div></div>
     </div>
   </div>
 </section>
 
-<!-- ===== 04 · OFFLINE MODE ===== -->
+<!-- 04 SIDE PROJECT -->
 <section class="chapter" data-n="05">
   <div class="ch-in">
     <div class="ch-head">
       <div class="ghost-num" aria-hidden="true">04</div>
-      <span class="eyebrow rv">Offline Mode</span>
-      <h2 class="rv rv-d1">Offline <span class="serif">Mode</span></h2>
+      <span class="eyebrow rv">Side Project</span>
+      <h2 class="rv rv-d1">Prompt<span class="serif">ly.</span></h2>
     </div>
-    <p class="lede rv rv-d2">Riding out for landscape photography. Capturing the Western Ghats on two wheels — where the road bends and the light is just right.</p>
-    <div class="reading rv rv-d3">
-      <div class="reading-label">Currently Reading</div>
-      <div class="reading-title">The Complete Adventures of Feluda</div>
-      <div class="reading-author">— Satyajit Ray</div>
+    <p class="lede rv rv-d2">A macOS app that converts voice into structured AI prompts. Eight specialist modes, iterated to <strong>v2.4.1</strong>. Built because the thing I needed did not exist — which turns out to be the most honest brief you can have. Shipping as unsigned DMG with signed builds next.</p>
+    <div class="chips-label rv rv-d2">Also shipping</div>
+    <div class="chips rv rv-d3">
+      <span class="chip">ctx/window — local AI newsletter generator</span>
+      <span class="chip">PackRide — motorcycling community app</span>
+    </div>
+    <div class="next-tag rv rv-d3">
+      <i></i> Active build — Claude Code + vibe-* framework
     </div>
   </div>
 </section>
 
-<!-- ===== FIN ===== -->
-<section class="chapter fin" data-n="06">
+<!-- 05 OFFLINE MODE -->
+<section class="chapter" data-n="06">
+  <div class="ch-in">
+    <div class="ch-head">
+      <div class="ghost-num" aria-hidden="true">05</div>
+      <span class="eyebrow rv">Offline Mode</span>
+      <h2 class="rv rv-d1">Offline <span class="serif">Mode.</span></h2>
+    </div>
+    <p class="lede rv rv-d2">Riding out on the <strong>Royal Enfield Himalayan 411</strong> for landscape photography. Capturing the Western Ghats on two wheels — where the road bends and the light is just right. Chasing the perfect Misal in between.</p>
+    <div class="reading rv rv-d3">
+      <div class="reading-label">Currently Reading</div>
+      <div class="reading-title">The Mysterious Affair at Styles</div>
+      <div class="reading-author">— Agatha Christie</div>
+    </div>
+  </div>
+</section>
+
+<!-- FIN -->
+<section class="chapter fin" data-n="07">
   <div class="ch-in">
     <div class="fin-big rv">That's <span class="serif">now</span>.</div>
     <a class="fin-back rv rv-d1" href="index.html">← Back Home</a>
@@ -316,14 +304,12 @@ h1 .serif,h2 .serif{color:var(--amber);font-weight:400}
 </main>
 
 <script>
-/* theme toggle — same key as index.html */
 document.getElementById('themeBtn').addEventListener('click', () => {
   const r = document.documentElement;
   r.dataset.theme = r.dataset.theme === 'dark' ? '' : 'dark';
   try { localStorage.setItem('theme', r.dataset.theme || 'light'); } catch(e) {}
 });
 
-/* chapter tracking: counter + reveals + hint */
 const chapters = [...document.querySelectorAll('.chapter')];
 document.getElementById('cAll').textContent = String(chapters.length).padStart(2,'0');
 const cNow = document.getElementById('cNow');
@@ -335,6 +321,11 @@ const io = new IntersectionObserver((es) => {
       e.target.classList.add('in');
       cNow.textContent = e.target.dataset.n;
       if (e.target.dataset.n !== '01') hint.classList.add('gone');
+
+      /* animate progress bars when chapter comes into view */
+      e.target.querySelectorAll('.progress-fill[data-target]').forEach(bar => {
+        bar.style.width = bar.dataset.target + '%';
+      });
     }
   });
 }, { threshold: 0.45 });

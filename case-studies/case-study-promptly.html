@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promptly — Case Study · Aakash Dhar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F6F3EB; --cream-dark: #EFEAE0;
+    --amber: #C97F06; --amber-light: #FEF3E2; --amber-mid: rgba(201,127,6,0.15);
+    --ink: #181510; --ink-mid: #3D3D3D; --ink-light: #6B6557; --ink-faint: #9A9A9A;
+    --border: rgba(24,21,16,0.10); --border-mid: rgba(24,21,16,0.16);
+    --green: #1A7A40; --green-light: #EBF7EF; --green-mid: rgba(26,122,64,0.18);
+    --blue: #1D4ED8; --blue-light: #EFF6FF; --blue-mid: rgba(29,78,216,0.15);
+    --purple: #6D28D9; --purple-light: #F5F3FF; --purple-mid: rgba(109,40,217,0.15);
+    --display: 'Bricolage Grotesque', sans-serif;
+    --serif: 'Instrument Serif', serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--ink); font-family: var(--display); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  /* TOPBAR */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 52px; background: rgba(246,243,235,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .topbar-brand { font-family: var(--mono); font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .14em; }
+  .topbar-brand b { color: var(--amber); }
+  .topbar-nav { display: flex; gap: 24px; align-items: center; }
+  .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
+  .topbar-nav a:hover { color: var(--amber); }
+  .topbar-nav .back { color: var(--amber); font-weight: 500; }
+
+  /* PAGE */
+  .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
+
+  /* EYEBROW */
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+  .etag { background: var(--amber-light); border: 1px solid var(--amber-mid); border-radius: 3px; padding: 2px 7px; font-size: 10px; }
+
+  /* HERO */
+  .hero { padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+  .hero-title { font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600; line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px; }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
+  .hero-meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 16px 24px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .mi { display: flex; flex-direction: column; gap: 3px; }
+  .ml { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
+  .mv { font-size: 13px; color: var(--ink-mid); font-weight: 500; }
+
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; margin-bottom: 56px; }
+  .sc { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
+  .sc:last-child { border-right: none; }
+  .sn { font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
+  .sn .u { font-size: 14px; color: var(--amber); font-weight: 400; }
+  .sd { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
+
+  /* SECTIONS */
+  section { margin-bottom: 52px; scroll-margin-top: 72px; }
+  .snum { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 6px; letter-spacing: 0.05em; }
+  h2 { font-family: var(--display); font-size: 21px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 14px; }
+  p { color: var(--ink-light); margin-bottom: 14px; line-height: 1.75; }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: var(--ink); font-weight: 500; }
+
+  .rule { height: 1px; background: var(--border); margin: 44px 0; }
+
+  /* CALLOUTS */
+  .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 20px 0; }
+  .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
+  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .callout-purple { border-left-color: var(--purple); background: var(--purple-light); }
+  .callout-purple .cl { color: var(--purple); }
+  .callout-green { border-left-color: var(--green); background: var(--green-light); }
+  .callout-green .cl { color: var(--green); }
+
+  /* MODE GRID */
+  .mode-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
+  .mode-card { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 14px 12px; text-align: center; }
+  .mode-icon { font-size: 18px; margin-bottom: 6px; display: block; }
+  .mode-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: 3px; }
+  .mode-desc { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
+
+  /* VERSION TABLE */
+  .version-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 12px; border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; }
+  .version-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 10px 14px; background: var(--cream-dark); border-bottom: 1px solid var(--border-mid); }
+  .version-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--ink-mid); vertical-align: top; }
+  .version-table tr:last-child td { border-bottom: none; }
+  .version-table tr td:first-child { font-family: var(--mono); color: var(--amber); font-size: 11px; white-space: nowrap; }
+  .tag-badge { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-left: 6px; }
+  .tag-feature { color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
+  .tag-fix { color: var(--green); background: var(--green-light); border: 1px solid var(--green-mid); }
+  .tag-design { color: var(--purple); background: var(--purple-light); border: 1px solid var(--purple-mid); }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .gc { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
+  .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
+  .gc h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .gc p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
+
+  /* POSITIONING MAP */
+  .pos-map { border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; background: #fff; margin: 20px 0; }
+  .pos-header { padding: 12px 18px; background: var(--cream-dark); border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.06em; text-transform: uppercase; }
+  .pos-body { padding: 20px; overflow-x: auto; }
+
+  /* OUTCOME LIST */
+  .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .outcome-row:last-child { border-bottom: none; }
+  .oc { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
+  .ot h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .ot p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* TAG ROW */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+  .tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
+
+  /* FOOTER */
+  .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .fb { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
+  .fb b { color: var(--amber); font-weight: 500; }
+  .fl { font-size: 12px; color: var(--ink-faint); }
+  .fl a { color: var(--amber); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .page-wrap { padding: 80px 20px 80px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .mode-grid { grid-template-columns: repeat(2, 1fr); }
+    .topbar { padding: 0 20px; }
+    .hero-title { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="topbar-brand" href="https://aakashdhar.me"><b>~/</b>aakash</a>
+  <div class="topbar-nav">
+    <a href="https://aakashdhar.me/#pm-work">PM Work</a>
+    <a href="https://aakashdhar.me" class="back">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">
+      <span class="etag">Case Study</span>
+      Personal Product · BetaCraft · 2025-2026
+    </p>
+    <h1 class="hero-title">Promptly - when the<br>PM is also <em>the user.</em></h1>
+    <p class="hero-sub">A macOS app that converts voice into structured AI prompts. Built by me, for me, because the thing I needed did not exist. What happens when there is no client brief, no scope negotiation, and every bad product decision ships directly into your own daily workflow.</p>
+
+    <div class="hero-meta">
+      <div class="mi"><span class="ml">Type</span><span class="mv">Personal product · macOS</span></div>
+      <div class="mi"><span class="ml">Role</span><span class="mv">Sole designer, PM and builder</span></div>
+      <div class="mi"><span class="ml">Current version</span><span class="mv">v2.4.1</span></div>
+      <div class="mi"><span class="ml">Stack</span><span class="mv">Electron · Node.js · macOS APIs</span></div>
+      <div class="mi"><span class="ml">Modes</span><span class="mv">8 specialist modes</span></div>
+      <div class="mi"><span class="ml">Status</span><span class="mv" style="color:var(--green)">✓ Shipping</span></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="sc">
+      <div class="sn">8</div>
+      <div class="sd">Specialist prompt modes in the current carousel</div>
+    </div>
+    <div class="sc">
+      <div class="sn">v2.4<span class="u">.1</span></div>
+      <div class="sd">Current version — shipped through multiple iteration cycles</div>
+    </div>
+    <div class="sc">
+      <div class="sn">0</div>
+      <div class="sd">Client briefs, SOWs, or stakeholder sign-offs. Just the problem and the build.</div>
+    </div>
+    <div class="sc">
+      <div class="sn">1<span class="u"> gap</span></div>
+      <div class="sd">In the market - voice-to-structured-prompt, not dictation, not assistant</div>
+    </div>
+  </div>
+
+  <!-- 01 THE PROBLEM -->
+  <section id="problem">
+    <p class="snum">01 / The problem</p>
+    <h2>The friction nobody talks about.</h2>
+    <p>The part of working with AI that nobody writes about is the repetition. Not the quality of outputs - that gets better every month. The repetition of setting up context. Every session, every prompt, the same setup: who you are, what you are building, what kind of output you need, what format it should take. If you use AI heavily across different types of work - writing, code, design briefs, email - you spend a surprising amount of time just getting the model oriented before you get anything useful back.</p>
+    <p>I built Promptly because I wanted to speak naturally and get a structured, context-aware prompt out the other end - ready to paste into Claude, ready to use, without the setup tax. Not transcription. Not a general AI assistant. Something in between: <strong>voice input, structured prompt output, calibrated to the type of work I was actually doing in that moment.</strong></p>
+
+    <div class="two-col">
+      <div class="gc">
+        <p class="gc-label">The existing options</p>
+        <h4>Pure dictation tools</h4>
+        <p>Willow, Wispr Flow, Voicy - type with your voice, anywhere. No prompt engineering, no structure. Fast transcription but no AI layer.</p>
+      </div>
+      <div class="gc">
+        <p class="gc-label">The existing options</p>
+        <h4>Context-aware assistants</h4>
+        <p>Superwhisper, Aqua Voice - understand your active app and context. Powerful but solve a different problem: output goes directly into the app, not into a reusable prompt.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-purple">
+      <p class="cl">The gap Promptly fills</p>
+      <p>Voice-to-structured-prompt. You speak naturally. Promptly transforms that into a well-formed, context-calibrated prompt you can use anywhere - Claude, ChatGPT, Gemini, a system prompt, a brief. The output is not text. It is a prompt.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 02 THE BUILD -->
+  <section id="build">
+    <p class="snum">02 / What I built</p>
+    <h2>Eight modes. One trigger. No setup tax.</h2>
+    <p>The core interaction is simple: press the trigger, speak, get a structured prompt. The sophistication is in the mode system - eight specialist modes that calibrate the output to the type of work, so the prompt you get for a code task looks fundamentally different from the one you get for an email or an image generation brief.</p>
+
+    <div class="mode-grid">
+      <div class="mode-card">
+        <span class="mode-icon">🖼</span>
+        <span class="mode-name">Image</span>
+        <span class="mode-desc">Structured image generation brief with style, composition, and technical parameters</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">✉</span>
+        <span class="mode-name">Email</span>
+        <span class="mode-desc">Professional email prompt with tone, audience, and intent pre-structured</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">⚙</span>
+        <span class="mode-name">Workflow</span>
+        <span class="mode-desc">Step-by-step automation or process prompt with clear input/output definition</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">🎬</span>
+        <span class="mode-name">Video</span>
+        <span class="mode-desc">Multi-model video generation brief: Veo, Sora, Runway, Kling, Pika</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">💻</span>
+        <span class="mode-name">Code</span>
+        <span class="mode-desc">Technical spec prompt with context, constraints, and expected output format</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">⚖</span>
+        <span class="mode-name">Balanced</span>
+        <span class="mode-desc">General-purpose, well-formed prompt for tasks that do not fit a specialist mode</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">🎨</span>
+        <span class="mode-name">Design</span>
+        <span class="mode-desc">Design brief prompt with visual direction, constraints, and deliverable format</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">✨</span>
+        <span class="mode-name">Polish</span>
+        <span class="mode-desc">Refinement prompt - takes existing output and structures a targeted improvement request</span>
+      </div>
+    </div>
+
+    <div class="tag-row">
+      <span class="tag">Electron</span>
+      <span class="tag">Node.js</span>
+      <span class="tag">macOS APIs</span>
+      <span class="tag">Whisper transcription</span>
+      <span class="tag">DM Sans · DM Mono</span>
+      <span class="tag">Claude API</span>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 03 PM WITHOUT A CLIENT -->
+  <section id="pm-lens">
+    <p class="snum">03 / The PM without a client</p>
+    <h2>What changes when you cannot blame the brief.</h2>
+    <p>Building a product for yourself is a different discipline from managing a client project - and a more honest one. In client work, a bad scope decision can be traced back to a brief, a call, a misunderstood requirement. When you are the PM and the user, every bad decision lands in your own workflow. <strong>There is no brief to blame. No client to negotiate scope with. No sprint review where you can say "the requirements changed."</strong></p>
+    <p>That accountability changes how you make product decisions. On Promptly, I caught myself trying to scope features I thought users would want rather than features I actually needed. The mode selector helper text, for example - I specced it three times before shipping something that actually reduced friction instead of adding it. The prompt eval scorecard came from a genuine frustration with not being able to tell whether Promptly was improving my prompts or just reformatting them. Both features exist because I felt the problem, not because I assumed it.</p>
+
+    <div class="callout">
+      <p class="cl">The PM discipline this forces</p>
+      <p>When the PM is also the user, feature decisions cannot be deferred to "let us validate with users later." You are the user. The validation is immediate and personal. Every shipped feature either reduces your daily friction or it does not - and you know within 48 hours which one it is.</p>
+    </div>
+
+    <p>This also changed how I ran the build. I used the vibe-* framework on Promptly exactly as I use it on client projects - brainstorm, architect, spec, build, review gate before merge. The discipline was the same even though the stakes felt different. The vibe-review gate before every merge caught three regressions during the v2 iteration cycle that I would have shipped if I had been moving fast without the structure. The process works because it is not person-dependent - it is system-dependent.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 04 VERSION HISTORY -->
+  <section id="versions">
+    <p class="snum">04 / Iteration history</p>
+    <h2>What actually changed across versions.</h2>
+    <p>Promptly has gone through multiple release cycles since the initial build. The version history is a record of real usage friction - each change exists because something was not working in daily use, not because it was on a roadmap.</p>
+
+    <table class="version-table">
+      <thead>
+        <tr>
+          <th>Version</th>
+          <th>What changed and why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>v1.0</td>
+          <td>Initial build. Basic voice capture, single prompt mode, Claude API integration. Proved the core loop worked.</td>
+        </tr>
+        <tr>
+          <td>v1.x</td>
+          <td>Mode system introduced. <span class="tag-badge tag-feature">Feature</span> Eight specialist modes replacing the single general-purpose mode. Carousel UI on the landing page.</td>
+        </tr>
+        <tr>
+          <td>v2.0</td>
+          <td>image-builder-v2 <span class="tag-badge tag-feature">Feature</span> — 48 presets, category tabs, variations panel. video-builder-v2 <span class="tag-badge tag-feature">Feature</span> — multi-model support: Veo 3.1, Sora, Runway Gen-4, Kling 2.0, Pika 2.2. Major landing page redesign: 50/50 split hero, bento grid Specialist Modes section.</td>
+        </tr>
+        <tr>
+          <td>v2.1</td>
+          <td>Prompt eval scorecard <span class="tag-badge tag-feature">Feature</span> — before/after comparison between raw transcript and Promptly-generated prompt, so users can see what the AI layer is actually doing. Multi-language transcription support added.</td>
+        </tr>
+        <tr>
+          <td>v2.3</td>
+          <td>Mode selector helper text <span class="tag-badge tag-design">Design</span> — third iteration before something that reduced friction rather than added it shipped. nvm PATH inheritance fix <span class="tag-badge tag-fix">Fix</span> in Electron child processes - P0 bug causing transcription to fail on launch for users with nvm-managed Node installations.</td>
+        </tr>
+        <tr>
+          <td>v2.4.1</td>
+          <td>Settings gear button <span class="tag-badge tag-fix">Fix</span> — was not rendering in certain viewport sizes. ffmpeg path configuration <span class="tag-badge tag-fix">Fix</span> — now user-configurable rather than hardcoded. Splash screen manual override <span class="tag-badge tag-fix">Fix</span> for the not-responding state. Current shipping version as unsigned DMG.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 05 WHAT IT TAUGHT -->
+  <section id="lessons">
+    <p class="snum">05 / What building this taught me</p>
+    <h2>The things client work does not teach you.</h2>
+    <p>Client projects have a natural buffer between the PM and the consequence of product decisions. Sprints absorb bad calls. Scope negotiations create flexibility. The client relationship creates a feedback loop that is, by design, somewhat forgiving. Building a product you use yourself removes that buffer entirely.</p>
+
+    <div class="two-col">
+      <div class="gc">
+        <p class="gc-label">Lesson from client work</p>
+        <h4>Scope is negotiable</h4>
+        <p>In client delivery, scope can always be revisited, deferred, or reframed. The SOW is a contract, but it is also a living document.</p>
+      </div>
+      <div class="gc">
+        <p class="gc-label">Lesson from Promptly</p>
+        <h4>Scope is a daily experience</h4>
+        <p>When you use the product every day, a deferred feature is a daily friction point. There is no reframing - it either works or it does not, every time you open the app.</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="gc">
+        <p class="gc-label">Lesson from client work</p>
+        <h4>Validation comes from the client</h4>
+        <p>Feature decisions are validated through stakeholder sign-off, user testing, or sprint review feedback.</p>
+      </div>
+      <div class="gc">
+        <p class="gc-label">Lesson from Promptly</p>
+        <h4>Validation is immediate</h4>
+        <p>You know within 48 hours whether a feature reduced friction or added it. The feedback loop is honest in a way that client feedback rarely is.</p>
+      </div>
+    </div>
+
+    <p>The eval scorecard feature is the clearest example of this. I had been using Promptly for weeks and could not answer a basic question: was it actually improving my prompts, or was it just making them longer? I needed evidence, not intuition. The scorecard came from that genuine frustration - a before/after comparison that shows what the AI transformation layer is actually doing to the raw transcript. That feature would never have appeared in a client brief because no client would have thought to ask for it. It exists because I was both the PM and the user and I needed to know.</p>
+
+    <div class="callout callout-green">
+      <p class="cl">The transfer back to client work</p>
+      <p>Building Promptly made me a better client-facing PM. The habit of asking "does this feature reduce friction or add it - and how quickly will I know?" is now in every sprint review I run. The answer is always faster and more honest than a stakeholder sign-off.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 06 OUTCOMES -->
+  <section id="outcomes">
+    <p class="snum">06 / Where it is now</p>
+    <h2>What shipped and what is next.</h2>
+
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>v2.4.1 shipping as unsigned DMG</h4>
+        <p>Full feature set live: 8 modes, image-builder-v2, video-builder-v2, eval scorecard, multi-language transcription. Signed builds blocked by a codesign issue on the uninstall script - in progress.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Landing page live at aakashdhar.me/promptly</h4>
+        <p>50/50 split hero with live mode carousel, bento grid specialist modes section, animated waveforms per mode. Self-hosted on GitHub Pages.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>vibe-* framework validated on personal product</h4>
+        <p>The same skill chain used on client projects - brainstorm, architect, spec, review gate before merge - caught three regressions during the v2 cycle. The process is system-dependent, not person-dependent. It works on Promptly exactly as it works on Brieflex.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">→</div>
+      <div class="ot">
+        <h4>Active app detection - next major feature</h4>
+        <p>Detect the frontmost macOS app on trigger and auto-switch mode: VS Code to Code, Mail to Email, Figma to Design. Zero manual mode switching. Uses NSWorkspace.shared.frontmostApplication via Electron shell.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">→</div>
+      <div class="ot">
+        <h4>Signed DMG distribution</h4>
+        <p>Apple notarisation pending resolution of the codesign issue on uninstall.sh. Required before any wider distribution.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 07 REFLECTION -->
+  <section id="reflection">
+    <p class="snum">07 / Reflection</p>
+    <h2>Why this case study belongs in a PM portfolio.</h2>
+    <p>Most PM portfolios show client delivery - projects where the brief came from someone else, the team was assigned, and success was measured against an external definition. That is the core of the job and it should be in the portfolio.</p>
+    <p>But Promptly shows something those projects cannot: what happens when the PM makes every product decision without a net. No brief to interpret. No client to validate with. No sprint review to surface problems. Just the product, the daily usage, and the honest feedback loop of using something you built every day.</p>
+    <p>The discipline that produces is not different from client PM work - it is the same vibe-* framework, the same spec-before-build, the same review gate before merge. What is different is the accountability. And that accountability, I think, makes you a better PM on client work too. Because you stop asking "what does the client want?" and start asking "what actually reduces friction?" - and you get very good at telling the difference.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="cs-footer">
+    <div class="fb"><b>~/</b>aakash · Aakash Dhar · Technical Project Manager</div>
+    <div class="fl">
+      <a href="mailto:hello@aakashdhar.me">hello@aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://aakashdhar.me">aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://aakashdhar.me/promptly">promptly ↗</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

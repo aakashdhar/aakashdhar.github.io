@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How AI Agents Actually Fail in Production | Aakash Dhar</title>
+<meta name="title" content="How AI Agents Actually Fail in Production | Aakash Dhar">
+<meta name="description" content="Everyone writes about what makes AI agents work. Nobody writes about what makes them fail. After building agentic delivery systems in production, here are the real failure modes - and what I actually did about them.">
+<meta name="keywords" content="AI agents failure modes, agentic AI production, LLM agent failures, AI agent debugging, context window degradation, agent boundary failure, Claude Code agentic workflow, AI delivery systems">
+<meta name="author" content="Aakash Dhar">
+<link rel="canonical" href="https://aakashdhar.me/blog/ai-agent-failure-modes.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aakashdhar.me/blog/ai-agent-failure-modes.html">
+<meta property="og:title" content="How AI Agents Actually Fail in Production">
+<meta property="og:description" content="Everyone writes about what makes AI agents work. Nobody writes about what makes them fail. Real failure modes from building agentic delivery systems in production.">
+<meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://aakashdhar.me/blog/ai-agent-failure-modes.html">
+<meta property="twitter:title" content="How AI Agents Actually Fail in Production">
+<meta property="twitter:description" content="Everyone writes about what makes AI agents work. Nobody writes about what makes them fail. Real failure modes from building agentic delivery systems in production.">
+<meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How AI Agents Actually Fail in Production",
+  "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
+  "author": {"@type": "Person", "name": "Aakash Dhar", "url": "https://www.linkedin.com/in/aakashdhar"},
+  "publisher": {"@type": "Person", "name": "Aakash Dhar"},
+  "datePublished": "2026-06-19",
+  "description": "Everyone writes about what makes AI agents work. Nobody writes about what makes them fail. Real failure modes from building agentic delivery systems in production.",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://aakashdhar.me/blog/ai-agent-failure-modes.html"}
+}
+</script>
+<script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C97F06%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+<style>
+:root{--bg:#F6F3EB;--bg-2:#FFFDF7;--bg-3:#EFEAE0;--ink:#181510;--muted:#6B6557;--muted-2:#A39C8A;--amber:#C97F06;--amber-bright:#E89B0F;--amber-dim:rgba(201,127,6,.10);--mint:#0E8C7A;--hairline:rgba(24,21,16,.12);--hairline-2:rgba(24,21,16,.22);--ghost:rgba(24,21,16,.07);--glow:rgba(232,155,15,.10);--shadow:0 18px 50px -24px rgba(24,21,16,.18);--card-shadow:0 -28px 70px -24px rgba(24,21,16,.35);}
+[data-theme="dark"]{--bg:#0B0A08;--bg-2:#14120E;--bg-3:#1A1814;--ink:#EFEAE0;--muted:#8C877C;--muted-2:#55514A;--amber:#FFB224;--amber-bright:#FFCB66;--amber-dim:rgba(255,178,36,.13);--mint:#7BE8D8;--hairline:rgba(239,234,224,.1);--hairline-2:rgba(239,234,224,.2);--ghost:rgba(239,234,224,.08);--glow:rgba(255,178,36,.12);--shadow:0 18px 50px -24px rgba(0,0,0,.6);--card-shadow:0 -28px 70px -20px rgba(0,0,0,.7);}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .45s ease,color .45s ease;}
+::selection{background:var(--amber-bright);color:#181510}a{color:inherit}
+.serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.readbar{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:600}.readbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--amber-bright))}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,3.5vw,44px);pointer-events:none;}
+.topbar>*{pointer-events:auto}
+.brand{font-family:"JetBrains Mono",monospace;font-size:13.5px;letter-spacing:.14em;font-weight:600;text-decoration:none}.brand b{color:var(--amber)}
+.top-r{display:flex;align-items:center;gap:14px}
+.back-link{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;padding:10px 20px;background:var(--bg-2);transition:color .25s,border-color .25s,transform .2s;}
+.back-link:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-2px)}
+.theme-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--hairline-2);background:var(--bg-2);color:var(--ink);font-size:16px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:border-color .25s,transform .25s,background .45s;}
+.theme-btn:hover{border-color:var(--amber);transform:rotate(15deg)}.theme-btn .sun{display:block}.theme-btn .moon{display:none}
+[data-theme="dark"] .theme-btn .sun{display:none}[data-theme="dark"] .theme-btn .moon{display:block}
+@media(max-width:640px){.back-link{display:none}}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+.cover{position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:110px clamp(22px,6vw,90px) 0;}
+.cover-glow{position:absolute;inset:0;pointer-events:none}
+.cover-glow::before{content:"";position:absolute;width:120vmax;height:120vmax;left:50%;top:-30%;transform:translateX(-50%);background:radial-gradient(closest-side,var(--glow),transparent 68%);}
+.cover-meta{position:relative;z-index:1;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.pill{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hairline-2);border-radius:999px;padding:7px 15px;color:var(--muted)}
+.pill.hot{border-color:var(--amber);color:var(--amber);background:var(--amber-dim)}
+.cover-date{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
+.ghost-word-cover{position:absolute;top:14vh;left:clamp(14px,4vw,70px);z-index:0;font-weight:800;line-height:1;font-size:clamp(110px,17vw,230px);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;white-space:nowrap;}
+.cover h1{position:relative;z-index:1;font-weight:800;font-size:clamp(40px,7.6vw,108px);line-height:.96;letter-spacing:-.034em;font-variation-settings:"opsz" 96;max-width:1180px;text-wrap:balance;}
+.cover h1 em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;color:var(--amber);letter-spacing:-.01em}
+.cover-foot{position:relative;z-index:1;margin-top:clamp(30px,5vh,54px);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;padding-bottom:30px;}
+.cover-sub{max-width:520px;color:var(--muted);font-weight:300;font-size:clamp(16px,1.8vw,19px)}
+.cover-byline{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);text-align:right}
+.cover-byline b{color:var(--ink);font-weight:600;display:block;margin-bottom:4px}
+@media(max-width:760px){.cover-foot{grid-template-columns:1fr}.cover-byline{text-align:left}}
+.toc-strip{position:relative;z-index:1;margin:0 calc(-1 * clamp(22px,6vw,90px));border-top:1px solid var(--hairline);display:flex;overflow-x:auto;scrollbar-width:none;}
+.toc-strip::-webkit-scrollbar{display:none}
+.toc-strip a{flex:1 0 auto;min-width:170px;padding:16px clamp(18px,2.4vw,30px) 22px;border-right:1px solid var(--hairline);text-decoration:none;transition:background .3s;}
+.toc-strip a:hover{background:var(--amber-dim)}
+.toc-strip .n{display:block;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.26em;color:var(--amber);margin-bottom:5px}
+.toc-strip .t{display:block;font-weight:600;font-size:13.5px;letter-spacing:-.01em;line-height:1.3;color:var(--muted)}
+.toc-strip a:hover .t{color:var(--ink)}
+.spread{position:relative;background:var(--bg-2);transition:background .45s;border-radius:26px 26px 0 0;box-shadow:var(--card-shadow);border-top:1px solid var(--hairline);padding:clamp(56px,9vh,96px) clamp(22px,6vw,90px) clamp(70px,10vh,120px);}
+.spread-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(36px,5vw,90px);align-items:start;}
+@media(max-width:920px){.spread-grid{grid-template-columns:1fr}}
+.rail{position:sticky;top:110px}.rail-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:18px}
+.rail a{display:flex;align-items:baseline;gap:12px;padding:9px 0;text-decoration:none;color:var(--muted-2);border-bottom:1px solid var(--hairline);transition:color .25s;}
+.rail a:last-of-type{border-bottom:none}.rail .n{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;flex:0 0 auto;transition:color .25s}
+.rail .t{font-size:13px;font-weight:600;letter-spacing:-.005em;line-height:1.35}
+.rail a:hover{color:var(--muted)}.rail a.on{color:var(--ink)}.rail a.on .n{color:var(--amber)}
+.rail-rule{height:2px;background:var(--hairline);margin-top:20px;position:relative}.rail-rule i{position:absolute;left:0;top:-1px;height:4px;width:0;background:var(--amber);transition:width .3s}
+@media(max-width:920px){.rail{display:none}}
+.prose{min-width:0}.prose>p,.prose ul,.prose h3,.prose .sec,.prose pre,.prose .table-wrap{max-width:680px}
+.prose>p{font-size:17px;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:24px}
+.prose strong{color:var(--ink);font-weight:650}
+.prose>p em,.prose li em{font-family:"Instrument Serif",serif;font-style:italic;font-size:1.06em;color:var(--ink)}
+.prose p a,.prose li a{color:var(--amber);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:color .2s;}
+.prose p.lead::first-letter{font-family:"Instrument Serif",serif;font-style:italic;font-size:4.3em;line-height:.78;color:var(--amber);float:left;padding:.08em .12em 0 0;}
+.sec{display:flex;align-items:baseline;gap:18px;margin:clamp(54px,8vh,76px) 0 24px;padding-top:26px;border-top:1px solid var(--hairline-2);scroll-margin-top:100px;}
+.prose .sec:first-child{margin-top:0;padding-top:0;border-top:none}
+.sec .n{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:13px;letter-spacing:.14em;color:var(--amber);flex:0 0 auto}
+.prose h2{font-weight:800;font-size:clamp(25px,3.2vw,35px);line-height:1.1;letter-spacing:-.02em;font-variation-settings:"opsz" 96;}
+.prose h3{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);font-weight:600;margin:38px 0 6px;}
+.prose ul{list-style:none;margin:6px 0 30px}
+.prose ul li{position:relative;padding:14px 0 14px 26px;font-size:16px;line-height:1.75;color:var(--muted);font-weight:300;border-bottom:1px solid var(--hairline);}
+.prose ul li:last-child{border-bottom:none}.prose ul li::before{content:"—";position:absolute;left:0;top:14px;color:var(--amber);font-weight:700}
+.prose code{font-family:"JetBrains Mono",monospace;font-size:.82em;color:var(--amber);background:var(--amber-dim);padding:.14em .45em;border-radius:6px;border:1px solid var(--hairline);}
+.prose pre{background:var(--bg-3);border:1px solid var(--hairline);border-radius:14px;padding:22px 24px;overflow-x:auto;margin:6px 0 30px;transition:background .45s;}
+.prose pre code{background:none;border:none;padding:0;color:var(--ink);font-size:13.5px;line-height:1.75;}
+.pull{margin:clamp(48px,7vh,70px) 0;width:100%}
+.pull blockquote{border-top:2px solid var(--amber);border-bottom:1px solid var(--hairline);padding:clamp(26px,4vh,40px) 0 clamp(24px,3.6vh,36px);}
+.pull blockquote p{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(24px,3.6vw,42px);line-height:1.3;color:var(--ink);max-width:980px;text-wrap:balance;margin-bottom:14px;}
+.pull blockquote p:last-child{margin-bottom:0}
+.pull blockquote p strong{font-family:"JetBrains Mono",monospace;font-style:normal;font-weight:600;font-size:clamp(11px,1.1vw,13px);letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:inline-block;margin-right:6px;}
+.pull blockquote p.note{font-size:clamp(15px,1.7vw,18px);font-family:"Bricolage Grotesque",sans-serif;font-style:normal;font-weight:300;color:var(--muted)}
+.pull .mark{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:14px;display:block}
+.outro{position:relative;overflow:hidden;background:var(--bg);transition:background .45s;border-radius:26px 26px 0 0;box-shadow:var(--card-shadow);border-top:1px solid var(--hairline);padding:clamp(64px,11vh,110px) clamp(22px,6vw,90px) 46px;}
+.outro-in{max-width:1180px;margin:0 auto;position:relative}
+.ghost-word{position:absolute;top:-.62em;left:-.04em;z-index:0;font-weight:800;line-height:1;font-size:clamp(100px,15vw,200px);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;}
+.outro h3{position:relative;z-index:1;font-weight:800;font-size:clamp(36px,5.8vw,72px);letter-spacing:-.027em;line-height:1;font-variation-settings:"opsz" 96;}
+.outro h3 .serif{color:var(--amber);font-weight:400}.outro-sub{position:relative;z-index:1;margin-top:16px;color:var(--muted);font-weight:300;max-width:480px}
+.socials{position:relative;z-index:1;display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.socials a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;padding:11px 22px;transition:color .25s,border-color .25s,transform .2s;background:var(--bg-2);}
+.socials a:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-3px)}
+.footer-bar{position:relative;z-index:1;margin-top:clamp(40px,7vh,70px);padding-top:22px;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--muted-2);}
+</style>
+</head>
+<body>
+<div class="readbar" aria-hidden="true"><i id="rb"></i></div>
+<div class="topbar">
+  <a class="brand" href="../index.html"><b>~/</b>aakash</a>
+  <div class="top-r">
+    <a class="back-link" href="../index.html#insights">Writing</a>
+    <a class="back-link" href="../index.html">← Portfolio</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><span class="sun">☀</span><span class="moon">☾</span></button>
+  </div>
+</div>
+
+<header class="cover">
+  <div class="cover-glow" aria-hidden="true"></div>
+  <div class="ghost-word-cover" aria-hidden="true">Failure</div>
+  <div class="cover-meta rv">
+    <span class="pill hot">Agentic AI</span>
+    <span class="cover-date">June 19, 2026</span>
+  </div>
+  <h1 class="rv rv-d1">How AI Agents <em>Actually Fail</em> in Production</h1>
+  <div class="cover-foot rv rv-d2">
+    <p class="cover-sub">Everyone writes about what makes agents work. Nobody writes about what makes them fail. After building agentic delivery systems that run live client projects, here are the real failure modes - not the theoretical ones - and what I did about each one.</p>
+    <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
+  </div>
+  <nav class="toc-strip rv rv-d3" aria-label="Contents">
+    <a href="#s1"><span class="n">01</span><span class="t">The Optimism Problem</span></a>
+    <a href="#s2"><span class="n">02</span><span class="t">Boundary Failures</span></a>
+    <a href="#s3"><span class="n">03</span><span class="t">Context Degradation</span></a>
+    <a href="#s4"><span class="n">04</span><span class="t">The Proposal Trap</span></a>
+    <a href="#s5"><span class="n">05</span><span class="t">Missing Human Gates</span></a>
+    <a href="#s6"><span class="n">06</span><span class="t">What Actually Works</span></a>
+  </nav>
+</header>
+
+<main class="spread">
+  <div class="spread-grid">
+    <aside class="rail" aria-label="Sections">
+      <div class="rail-label">In this article</div>
+      <a href="#s1" data-s="s1"><span class="n">01</span><span class="t">The Optimism Problem</span></a>
+      <a href="#s2" data-s="s2"><span class="n">02</span><span class="t">Boundary Failures</span></a>
+      <a href="#s3" data-s="s3"><span class="n">03</span><span class="t">Context Degradation</span></a>
+      <a href="#s4" data-s="s4"><span class="n">04</span><span class="t">The Proposal Trap</span></a>
+      <a href="#s5" data-s="s5"><span class="n">05</span><span class="t">Missing Human Gates</span></a>
+      <a href="#s6" data-s="s6"><span class="n">06</span><span class="t">What Actually Works</span></a>
+      <div class="rail-rule"><i id="railFill"></i></div>
+    </aside>
+
+    <article class="prose">
+
+      <div class="sec rv" id="s1">
+        <span class="n">01</span>
+        <h2>The AI Agent Discourse Has an Optimism Problem</h2>
+      </div>
+
+      <p class="lead rv">Almost everything written about AI agents is written before they hit production. The demos work. The benchmarks are impressive. The architecture diagrams are clean. Then someone actually runs the thing across a live client project, and the gap between what the agent was supposed to do and what it actually does starts to become visible in specific, repeatable, sometimes expensive ways.</p>
+
+      <p class="rv">I have been building agentic systems in production for the past year - a 28-skill AI-native delivery pipeline that runs across multiple live client engagements, a 13-skill dev workflow system used on every BetaCraft project, a macOS voice-to-prompt app that processes input through eight specialist modes. None of these failed in the ways the theoretical risk lists predicted. They failed in different ways. More interesting ways. The kind of ways you only see when something is actually running.</p>
+
+      <p class="rv">This is the sequel to my earlier piece on the agentic harness - the scaffolding that makes agents useful. If the harness is what makes agents work, this is the catalogue of what breaks them when the harness is wrong, incomplete, or absent. Written from production, not from a demo.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Pull Quote · 01</span>
+          <p>AI agents do not fail the way the risk lists predict. They fail in smaller, more specific, more repeatable ways. The kind you only see after the third time the same thing breaks.</p>
+        </blockquote>
+      </div>
+
+      <div class="sec rv" id="s2">
+        <span class="n">02</span>
+        <h2>Failure Mode One: Agents Fail at Boundaries, Not at Tasks</h2>
+      </div>
+
+      <p class="rv">The most reliable observation I have from running agents in production: <strong>a well-configured agent almost never fails at its core task. It fails at the edges of its domain.</strong> Give a code agent a clear spec and it will write the code. Give it a spec that requires it to make a product decision and it will make a product decision - confidently, often wrongly, and without flagging that it has left its lane.</p>
+
+      <p class="rv">On early versions of the PM-Dev Closed Loop system, I had a single agent trying to handle both PM-layer and dev-layer work. The failure was not that it could not write code or could not draft a client email. It was that when a task landed in the grey zone between the two domains - "translate this client requirement into a technical spec" - the agent would make assumptions about what the client wanted without the context to validate them, or make assumptions about what was technically feasible without the codebase context to support them. Confident, plausible, wrong.</p>
+
+      <p class="rv">The solution was the bridge pattern: a hard boundary between the PM agent (BAM) and the dev agent (TPM), with a shared folder as the only interface. BAM writes <code>REQUIREMENT-NNN.md</code>. TPM reads it and builds. Neither agent can reach into the other's domain. The boundary is structural, not instructional - it is not "please stay in your lane," it is "this is the only lane that exists."</p>
+
+      <p class="rv">The lesson generalised. Every agentic system I have built since has defined explicit domain boundaries first, before writing a single prompt. The domain boundary is an architectural decision, not a configuration setting. If you leave it implicit, the agent will find its own boundary - usually at the worst possible moment.</p>
+
+      <h3 class="rv">Signs you have a boundary problem</h3>
+      <ul class="rv">
+        <li><strong>The agent is "helpful" in the wrong direction:</strong> It answers questions you did not ask, often substituting assumptions for missing context. Helpfulness without constraint is a boundary failure.</li>
+        <li><strong>Outputs are plausible but unverifiable:</strong> The agent produces work that looks right but cannot be checked against a source of truth because it has drifted outside the domain where sources of truth exist.</li>
+        <li><strong>The same task produces different results in different sessions:</strong> No consistency means no grounding. The agent is reconstructing its context from scratch each time because the domain boundary was never made explicit.</li>
+      </ul>
+
+      <div class="sec rv" id="s3">
+        <span class="n">03</span>
+        <h2>Failure Mode Two: Context Degradation Across Long Sessions</h2>
+      </div>
+
+      <p class="rv">Context windows are large now. Larger than anyone expected three years ago. But large is not infinite, and the way context degrades as a session extends is not gradual and even - it is sudden and uneven. The agent stops referencing earlier decisions. It starts repeating work it has already done. It loses track of constraints that were established at the start of the session but are now buried under thousands of tokens of subsequent output.</p>
+
+      <p class="rv">On the vibe-* framework, this was the failure that drove the decision to produce structured document files at the end of every phase rather than relying on conversational context. <code>FEATURE_SPEC.md</code>, <code>FEATURE_PLAN.md</code>, <code>FEATURE_TASKS.md</code> - these are not just organisational artefacts. They are context anchors. When a new session starts, the agent reads these files before doing anything else. It is not resuming a conversation. It is resuming a state.</p>
+
+      <p class="rv">The pattern that works: <strong>treat every session boundary as a context reset and design for it deliberately.</strong> If information needs to survive a session boundary, it needs to be written to a file. If a decision needs to be available in the next session, it needs to be logged. The agent's conversational memory is ephemeral. The file system is not.</p>
+
+      <p class="rv">The deeper issue is that context degradation is invisible until it causes a problem. The agent does not announce "I have forgotten the constraints from two hours ago." It just starts behaving as if they were never set. The only defence is a structured state management approach that does not rely on the agent remembering things across time.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Pull Quote · 03</span>
+          <p>The agent does not announce when it has forgotten a constraint. It just starts behaving as if the constraint was never set. Design for context reset, not context persistence.</p>
+        </blockquote>
+      </div>
+
+      <div class="sec rv" id="s4">
+        <span class="n">04</span>
+        <h2>Failure Mode Three: The Proposal Layer Antipattern</h2>
+      </div>
+
+      <p class="rv">This one took me a while to identify because it is subtle. When you first build an agentic system, there is a temptation to add a proposal layer - a step where the agent drafts what it plans to do before it does it, and you approve or reject the draft. This feels responsible. It feels like the right way to keep a human in the loop.</p>
+
+      <p class="rv">In practice, for most tasks, it creates a friction trap. The agent produces a proposal. You read it, approve it, and the agent does exactly what it said it would do. You have added a round-trip to every action without adding any real decision point. Worse, the proposal step trains you to skim - because most proposals are approved - which means the one proposal that has a real problem in it gets the same shallow attention as all the ones that do not.</p>
+
+      <p class="rv">I removed the proposal layer from the vibe-* system early on after watching it slow down sessions without catching errors that the review gate at the end would have caught anyway. The replacement architecture was direct writes with session logging - the agent acts, logs what it did, and the human reviews the log. The review gate (vibe-review) is the accountability mechanism, not the proposal step.</p>
+
+      <p class="rv">The distinction matters: <strong>a review gate is a structural checkpoint where a human makes a real decision about whether work meets the bar. A proposal layer is a bureaucratic step where a human approves a plan that the agent would have executed anyway.</strong> The first adds accountability. The second adds friction while simulating accountability.</p>
+
+      <div class="sec rv" id="s5">
+        <span class="n">05</span>
+        <h2>Failure Mode Four: Human Gates in the Wrong Places</h2>
+      </div>
+
+      <p class="rv">Related to the proposal problem, but different: the question of where human oversight should sit in an agentic pipeline is not obvious, and getting it wrong in either direction is expensive. Too many gates and the agent is just an autocomplete tool that requires approval for everything. Too few and consequential decisions get made without a human in the path.</p>
+
+      <p class="rv">The principle that helped me calibrate this: <strong>human gates should sit at decision points, not at execution points.</strong> A decision point is a moment where the output of the next step depends on a value judgement that the agent cannot make reliably from context alone - whether a feature is in or out of scope, whether a client communication should be firm or accommodating, whether a bug fix should address the symptom or the root cause. An execution point is where the agent is doing something it is good at - writing code to a spec, producing a document from a template, generating test cases from a feature description.</p>
+
+      <p class="rv">In the PM-Dev Closed Loop, the human gates are at <code>propose-decision</code> (before a requirement enters the bridge) and <code>vibe-review</code> (before code merges). Both are decision points - "is this what we want to build?" and "does this meet the bar?" Everything between them is execution, and the agents run without interruption. The sessions are faster, the agents are more effective, and the gates that matter actually get attention because there are only two of them.</p>
+
+      <div class="sec rv" id="s6">
+        <span class="n">06</span>
+        <h2>What Actually Works: The Four Principles</h2>
+      </div>
+
+      <p class="rv">After a year of running agentic systems in production, the design principles that have held up are simpler than I expected when I started.</p>
+
+      <ul class="rv">
+        <li><strong>Make domain boundaries structural, not instructional:</strong> Do not tell agents to stay in their lane. Build the lane so that stepping outside it is architecturally impossible. The bridge folder, the separation between BAM and TPM, the read-only skill files - all of these are structural boundaries, not prompt instructions.</li>
+        <li><strong>Design every session as if it starts from zero:</strong> Write state to files. Log decisions. Structure the session opening to load context explicitly rather than assuming the agent remembers. The context window is a working memory, not a database.</li>
+        <li><strong>Replace proposal layers with review gates:</strong> Let the agent act and log what it did. Review the output at a structural checkpoint, not at every step. The review gate is where accountability lives - not the approval step before execution.</li>
+        <li><strong>Put human gates at decision points, not execution points:</strong> A human in the loop is valuable at "what should we build?" and "does this meet the bar?" It is overhead at "write the code for this spec" and "generate the test cases."</li>
+      </ul>
+
+      <p class="rv">None of these are obvious before you hit the failure that teaches them. The boundary failure is invisible until the agent makes a confident product decision it had no business making. The context degradation is invisible until an agent contradicts a decision from two hours earlier. The proposal trap is invisible until you realise you have been approving every proposal without reading them carefully.</p>
+
+      <p class="rv">The optimism problem in AI agent discourse is not that people are wrong about what agents can do. It is that the failure modes are underrepresented because you only learn them by building something that actually runs. The demos never show the third hour of a long session when context has degraded and the agent is working from a corrupted understanding of the task. The architecture diagrams never show the boundary failure that happens when a task lands in the grey zone between two domains. Those are the moments that shape the design of systems that actually work.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Takeaway</span>
+          <p>Agents fail at boundaries, not at tasks. They forget across sessions. They make proposal layers feel like accountability when they are just friction. And they need human gates at decision points, not execution points.</p>
+          <p class="note"><strong>The design principle</strong> Build the lane so stepping outside it is architecturally impossible. Instructions are not enough.</p>
+        </blockquote>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<footer class="outro">
+  <div class="outro-in">
+    <div class="ghost-word" aria-hidden="true">Fin</div>
+    <h3 class="rv">Enjoyed this <span class="serif">read?</span></h3>
+    <p class="outro-sub rv rv-d1">Connect on LinkedIn or head back to the portfolio for more.</p>
+    <div class="socials rv rv-d2">
+      <a href="https://www.linkedin.com/in/aakashdhar" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a href="../index.html#insights">More Writing</a>
+      <a href="../index.html">← Back to Portfolio</a>
+    </div>
+    <div class="footer-bar">
+      <span>© 2026 Aakash Dhar. Built with Code &amp; Coffee.</span>
+      <span>aakashdhar.me</span>
+    </div>
+  </div>
+</footer>
+<script>
+document.getElementById('themeBtn').addEventListener('click',()=>{const r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'':'dark';try{localStorage.setItem('theme',r.dataset.theme||'light')}catch(e){}});
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const railLinks=[...document.querySelectorAll('.rail a')];
+const secs=[...document.querySelectorAll('.sec')];
+const secIO=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){railLinks.forEach(a=>a.classList.toggle('on',a.dataset.s===e.target.id))}})},{rootMargin:'-20% 0px -65% 0px'});
+secs.forEach(s=>secIO.observe(s));
+const rb=document.getElementById('rb');const railFill=document.getElementById('railFill');
+const onScroll=()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;const p=max>0?(h.scrollTop/max)*100:0;rb.style.width=p+'%';if(railFill)railFill.style.width=p+'%'};
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+</script>
+</body>
+</html>

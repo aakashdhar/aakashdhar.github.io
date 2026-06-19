@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Mid-Build Pickup: What the First 48 Hours Actually Look Like | Aakash Dhar</title>
+<meta name="title" content="The Mid-Build Pickup: What the First 48 Hours Actually Look Like | Aakash Dhar">
+<meta name="description" content="Inheriting a live software project with no sprint plan, no time tracking, and a client waiting for an update. Here is what a Technical PM actually does in the first 48 hours  -  and why fixing the operating system before touching the product is the only move that works.">
+<meta name="keywords" content="mid-build project takeover, technical project manager, PM handover, software project recovery, sprint planning, agency project management, mid-project PM, Brieflex, agile recovery">
+<meta name="author" content="Aakash Dhar">
+<link rel="canonical" href="https://aakashdhar.me/blog/the-mid-build-pickup.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aakashdhar.me/blog/the-mid-build-pickup.html">
+<meta property="og:title" content="The Mid-Build Pickup: What the First 48 Hours Actually Look Like">
+<meta property="og:description" content="No sprint plan. No time tracking. A client waiting. Here is what a Technical PM actually does when they inherit a live project mid-build.">
+<meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://aakashdhar.me/blog/the-mid-build-pickup.html">
+<meta property="twitter:title" content="The Mid-Build Pickup: What the First 48 Hours Actually Look Like">
+<meta property="twitter:description" content="No sprint plan. No time tracking. A client waiting. Here is what a Technical PM actually does when they inherit a live project mid-build.">
+<meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Mid-Build Pickup: What the First 48 Hours Actually Look Like",
+  "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Aakash Dhar",
+    "url": "https://www.linkedin.com/in/aakashdhar"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Aakash Dhar",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://aakashdhar.me/logo.png"
+    }
+  },
+  "datePublished": "2026-06-19",
+  "description": "Inheriting a live software project with no sprint plan, no time tracking, and a client waiting for an update. Here is what a Technical PM actually does in the first 48 hours  -  and why fixing the operating system before touching the product is the only move that works.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aakashdhar.me/blog/the-mid-build-pickup.html"
+  }
+}
+</script>
+
+<script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C97F06%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+<style>
+:root{
+  --bg:#F6F3EB;--bg-2:#FFFDF7;--bg-3:#EFEAE0;
+  --ink:#181510;--muted:#6B6557;--muted-2:#A39C8A;
+  --amber:#C97F06;--amber-bright:#E89B0F;--amber-dim:rgba(201,127,6,.10);
+  --mint:#0E8C7A;--hairline:rgba(24,21,16,.12);--hairline-2:rgba(24,21,16,.22);
+  --ghost:rgba(24,21,16,.07);--glow:rgba(232,155,15,.10);
+  --shadow:0 18px 50px -24px rgba(24,21,16,.18);
+  --card-shadow:0 -28px 70px -24px rgba(24,21,16,.35);
+}
+[data-theme="dark"]{
+  --bg:#0B0A08;--bg-2:#14120E;--bg-3:#1A1814;
+  --ink:#EFEAE0;--muted:#8C877C;--muted-2:#55514A;
+  --amber:#FFB224;--amber-bright:#FFCB66;--amber-dim:rgba(255,178,36,.13);
+  --mint:#7BE8D8;--hairline:rgba(239,234,224,.1);--hairline-2:rgba(239,234,224,.2);
+  --ghost:rgba(239,234,224,.08);--glow:rgba(255,178,36,.12);
+  --shadow:0 18px 50px -24px rgba(0,0,0,.6);
+  --card-shadow:0 -28px 70px -20px rgba(0,0,0,.7);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .45s ease,color .45s ease;}
+::selection{background:var(--amber-bright);color:#181510}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.readbar{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:600}
+.readbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--amber-bright))}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,3.5vw,44px);pointer-events:none;}
+.topbar>*{pointer-events:auto}
+.brand{font-family:"JetBrains Mono",monospace;font-size:13.5px;letter-spacing:.14em;font-weight:600;text-decoration:none}
+.brand b{color:var(--amber)}
+.top-r{display:flex;align-items:center;gap:14px}
+.back-link{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;padding:10px 20px;background:var(--bg-2);transition:color .25s,border-color .25s,transform .2s;}
+.back-link:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-2px)}
+.theme-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--hairline-2);background:var(--bg-2);color:var(--ink);font-size:16px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:border-color .25s,transform .25s,background .45s;}
+.theme-btn:hover{border-color:var(--amber);transform:rotate(15deg)}
+.theme-btn .sun{display:block}.theme-btn .moon{display:none}
+[data-theme="dark"] .theme-btn .sun{display:none}[data-theme="dark"] .theme-btn .moon{display:block}
+@media(max-width:640px){.back-link{display:none}}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+.cover{position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:110px clamp(22px,6vw,90px) 0;}
+.cover-glow{position:absolute;inset:0;pointer-events:none}
+.cover-glow::before{content:"";position:absolute;width:120vmax;height:120vmax;left:50%;top:-30%;transform:translateX(-50%);background:radial-gradient(closest-side,var(--glow),transparent 68%);}
+.cover-meta{position:relative;z-index:1;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.pill{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hairline-2);border-radius:999px;padding:7px 15px;color:var(--muted)}
+.pill.hot{border-color:var(--amber);color:var(--amber);background:var(--amber-dim)}
+.cover-date{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
+.ghost-word-cover{position:absolute;top:14vh;left:clamp(14px,4vw,70px);z-index:0;font-weight:800;line-height:1;font-size:clamp(110px,17vw,230px);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;white-space:nowrap;}
+.cover h1{position:relative;z-index:1;font-weight:800;font-size:clamp(40px,7.6vw,108px);line-height:.96;letter-spacing:-.034em;font-variation-settings:"opsz" 96;max-width:1180px;text-wrap:balance;}
+.cover h1 em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;color:var(--amber);letter-spacing:-.01em}
+.cover-foot{position:relative;z-index:1;margin-top:clamp(30px,5vh,54px);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;padding-bottom:30px;}
+.cover-sub{max-width:520px;color:var(--muted);font-weight:300;font-size:clamp(16px,1.8vw,19px)}
+.cover-byline{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);text-align:right}
+.cover-byline b{color:var(--ink);font-weight:600;display:block;margin-bottom:4px}
+@media(max-width:760px){.cover-foot{grid-template-columns:1fr}.cover-byline{text-align:left}}
+.toc-strip{position:relative;z-index:1;margin:0 calc(-1 * clamp(22px,6vw,90px));border-top:1px solid var(--hairline);display:flex;overflow-x:auto;scrollbar-width:none;}
+.toc-strip::-webkit-scrollbar{display:none}
+.toc-strip a{flex:1 0 auto;min-width:170px;padding:16px clamp(18px,2.4vw,30px) 22px;border-right:1px solid var(--hairline);text-decoration:none;transition:background .3s;}
+.toc-strip a:hover{background:var(--amber-dim)}
+.toc-strip .n{display:block;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.26em;color:var(--amber);margin-bottom:5px}
+.toc-strip .t{display:block;font-weight:600;font-size:13.5px;letter-spacing:-.01em;line-height:1.3;color:var(--muted)}
+.toc-strip a:hover .t{color:var(--ink)}
+.spread{position:relative;background:var(--bg-2);transition:background .45s;border-radius:26px 26px 0 0;box-shadow:var(--card-shadow);border-top:1px solid var(--hairline);padding:clamp(56px,9vh,96px) clamp(22px,6vw,90px) clamp(70px,10vh,120px);}
+.spread-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(36px,5vw,90px);align-items:start;}
+@media(max-width:920px){.spread-grid{grid-template-columns:1fr}}
+.rail{position:sticky;top:110px}
+.rail-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:18px}
+.rail a{display:flex;align-items:baseline;gap:12px;padding:9px 0;text-decoration:none;color:var(--muted-2);border-bottom:1px solid var(--hairline);transition:color .25s;}
+.rail a:last-of-type{border-bottom:none}
+.rail .n{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;flex:0 0 auto;transition:color .25s}
+.rail .t{font-size:13px;font-weight:600;letter-spacing:-.005em;line-height:1.35}
+.rail a:hover{color:var(--muted)}.rail a.on{color:var(--ink)}.rail a.on .n{color:var(--amber)}
+.rail-rule{height:2px;background:var(--hairline);margin-top:20px;position:relative}
+.rail-rule i{position:absolute;left:0;top:-1px;height:4px;width:0;background:var(--amber);transition:width .3s}
+@media(max-width:920px){.rail{display:none}}
+.prose{min-width:0}
+.prose>p,.prose ul,.prose h3,.prose .sec,.prose pre,.prose .table-wrap{max-width:680px}
+.prose>p{font-size:17px;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:24px}
+.prose strong{color:var(--ink);font-weight:650}
+.prose>p em,.prose li em{font-family:"Instrument Serif",serif;font-style:italic;font-size:1.06em;color:var(--ink)}
+.prose p a,.prose li a{color:var(--amber);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:color .2s;}
+.prose p a:hover,.prose li a:hover{color:var(--amber-bright)}
+.prose p.lead::first-letter{font-family:"Instrument Serif",serif;font-style:italic;font-size:4.3em;line-height:.78;color:var(--amber);float:left;padding:.08em .12em 0 0;}
+.sec{display:flex;align-items:baseline;gap:18px;margin:clamp(54px,8vh,76px) 0 24px;padding-top:26px;border-top:1px solid var(--hairline-2);scroll-margin-top:100px;}
+.prose .sec:first-child{margin-top:0;padding-top:0;border-top:none}
+.sec .n{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:13px;letter-spacing:.14em;color:var(--amber);flex:0 0 auto}
+.prose h2{font-weight:800;font-size:clamp(25px,3.2vw,35px);line-height:1.1;letter-spacing:-.02em;font-variation-settings:"opsz" 96;}
+.prose h3{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);font-weight:600;margin:38px 0 6px;}
+.prose ul{list-style:none;margin:6px 0 30px}
+.prose ul li{position:relative;padding:14px 0 14px 26px;font-size:16px;line-height:1.75;color:var(--muted);font-weight:300;border-bottom:1px solid var(--hairline);}
+.prose ul li:last-child{border-bottom:none}
+.prose ul li::before{content:"—";position:absolute;left:0;top:14px;color:var(--amber);font-weight:700}
+.prose code{font-family:"JetBrains Mono",monospace;font-size:.82em;color:var(--amber);background:var(--amber-dim);padding:.14em .45em;border-radius:6px;border:1px solid var(--hairline);}
+.prose pre{background:var(--bg-3);border:1px solid var(--hairline);border-radius:14px;padding:22px 24px;overflow-x:auto;margin:6px 0 30px;transition:background .45s;}
+.prose pre code{background:none;border:none;padding:0;color:var(--ink);font-size:13.5px;line-height:1.75;}
+.prose .table-wrap{overflow-x:auto;margin:6px 0 30px;border:1px solid var(--hairline);border-radius:14px;}
+.prose table{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--bg-2)}
+.prose thead th{text-align:left;padding:14px 18px;font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);border-bottom:1px solid var(--hairline-2);white-space:nowrap;}
+.prose thead th:first-child{color:var(--amber)}
+.prose tbody tr{border-bottom:1px solid var(--hairline)}.prose tbody tr:last-child{border-bottom:none}
+.prose tbody tr:hover{background:var(--amber-dim)}
+.prose td{padding:14px 18px;vertical-align:top;color:var(--muted);font-weight:300;line-height:1.7}
+.prose td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.pull{margin:clamp(48px,7vh,70px) 0;width:100%}
+.pull blockquote{border-top:2px solid var(--amber);border-bottom:1px solid var(--hairline);padding:clamp(26px,4vh,40px) 0 clamp(24px,3.6vh,36px);}
+.pull blockquote p{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(24px,3.6vw,42px);line-height:1.3;color:var(--ink);max-width:980px;text-wrap:balance;margin-bottom:14px;}
+.pull blockquote p:last-child{margin-bottom:0}
+.pull blockquote p strong{font-family:"JetBrains Mono",monospace;font-style:normal;font-weight:600;font-size:clamp(11px,1.1vw,13px);letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:inline-block;margin-right:6px;}
+.pull blockquote p.note{font-size:clamp(15px,1.7vw,18px);font-family:"Bricolage Grotesque",sans-serif;font-style:normal;font-weight:300;color:var(--muted)}
+.pull .mark{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:14px;display:block}
+.outro{position:relative;overflow:hidden;background:var(--bg);transition:background .45s;border-radius:26px 26px 0 0;box-shadow:var(--card-shadow);border-top:1px solid var(--hairline);padding:clamp(64px,11vh,110px) clamp(22px,6vw,90px) 46px;}
+.outro-in{max-width:1180px;margin:0 auto;position:relative}
+.ghost-word{position:absolute;top:-.62em;left:-.04em;z-index:0;font-weight:800;line-height:1;font-size:clamp(100px,15vw,200px);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;}
+.outro h3{position:relative;z-index:1;font-weight:800;font-size:clamp(36px,5.8vw,72px);letter-spacing:-.027em;line-height:1;font-variation-settings:"opsz" 96;}
+.outro h3 .serif{color:var(--amber);font-weight:400}
+.outro-sub{position:relative;z-index:1;margin-top:16px;color:var(--muted);font-weight:300;max-width:480px}
+.socials{position:relative;z-index:1;display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.socials a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;padding:11px 22px;transition:color .25s,border-color .25s,transform .2s;background:var(--bg-2);}
+.socials a:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-3px)}
+.footer-bar{position:relative;z-index:1;margin-top:clamp(40px,7vh,70px);padding-top:22px;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--muted-2);}
+</style>
+</head>
+<body>
+
+<div class="readbar" aria-hidden="true"><i id="rb"></i></div>
+
+<div class="topbar">
+  <a class="brand" href="../index.html"><b>~/</b>aakash</a>
+  <div class="top-r">
+    <a class="back-link" href="../index.html#insights">Writing</a>
+    <a class="back-link" href="../index.html">← Portfolio</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+      <span class="sun">☀</span><span class="moon">☾</span>
+    </button>
+  </div>
+</div>
+
+<header class="cover">
+  <div class="cover-glow" aria-hidden="true"></div>
+  <div class="ghost-word-cover" aria-hidden="true">Pickup</div>
+  <div class="cover-meta rv">
+    <span class="pill hot">Project Mgmt</span>
+    <span class="cover-date">June 19, 2026</span>
+  </div>
+  <h1 class="rv rv-d1">The <em>Mid-Build Pickup</em>  -  What the First 48 Hours Actually Look Like</h1>
+  <div class="cover-foot rv rv-d2">
+    <p class="cover-sub">Every agency inherits a live project eventually. No sprint plan, no time tracking, a client already waiting for an update. Here is what a Technical PM actually does when that call lands  -  and why the product is the last thing you touch.</p>
+    <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
+  </div>
+  <nav class="toc-strip rv rv-d3" aria-label="Contents">
+    <a href="#s1"><span class="n">01</span><span class="t">The Call You Get</span></a>
+    <a href="#s2"><span class="n">02</span><span class="t">Audit Before Anything</span></a>
+    <a href="#s3"><span class="n">03</span><span class="t">Fix the OS First</span></a>
+    <a href="#s4"><span class="n">04</span><span class="t">The Client Conversation</span></a>
+    <a href="#s5"><span class="n">05</span><span class="t">What Changes After</span></a>
+    <a href="#s6"><span class="n">06</span><span class="t">The Lesson</span></a>
+  </nav>
+</header>
+
+<main class="spread">
+  <div class="spread-grid">
+
+    <aside class="rail" aria-label="Sections">
+      <div class="rail-label">In this article</div>
+      <a href="#s1" data-s="s1"><span class="n">01</span><span class="t">The Call You Get</span></a>
+      <a href="#s2" data-s="s2"><span class="n">02</span><span class="t">Audit Before Anything</span></a>
+      <a href="#s3" data-s="s3"><span class="n">03</span><span class="t">Fix the OS First</span></a>
+      <a href="#s4" data-s="s4"><span class="n">04</span><span class="t">The Client Conversation</span></a>
+      <a href="#s5" data-s="s5"><span class="n">05</span><span class="t">What Changes After</span></a>
+      <a href="#s6" data-s="s6"><span class="n">06</span><span class="t">The Lesson</span></a>
+      <div class="rail-rule"><i id="railFill"></i></div>
+    </aside>
+
+    <article class="prose">
+
+      <div class="sec rv" id="s1">
+        <span class="n">01</span>
+        <h2>The Call You Get</h2>
+      </div>
+
+      <p class="lead rv">Somewhere in every agency's history, there is a version of the same phone call. A project is live. Work is happening. But the PM is gone  -  left the company, moved to a different role, went silent  -  and someone has to step in immediately because the client has a call on Thursday.</p>
+
+      <p class="rv">That was the situation when I picked up Brieflex  -  an AI-powered California Bar Exam training platform built for law students preparing for one of the hardest professional exams in the United States. The product was real, the team was working, and the client, Elvis, had been patient. But behind the scenes there was no sprint plan, no time tracking, no SOW covering the work already in progress, and no structured way to tell the client what had been done, what was left, and when it would ship.</p>
+
+      <p class="rv">The instinct in that moment is to dive straight into the product  -  find out what is built, start making decisions, demonstrate momentum. That instinct is wrong. The product is not the problem. The operating system around the product is the problem. And if you fix momentum before you fix the operating system, you just move faster in the wrong direction.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Pull Quote · 01</span>
+          <p>The product is not the problem. The operating system around the product is the problem.</p>
+          <p class="note">Fix momentum before you fix the operating system and you just move faster in the wrong direction.</p>
+        </blockquote>
+      </div>
+
+      <div class="sec rv" id="s2">
+        <span class="n">02</span>
+        <h2>The First Move: Audit Everything Before Touching Anything</h2>
+      </div>
+
+      <p class="rv">The first 48 hours of a mid-build pickup are almost entirely about reading  -  not doing. Before you send a single message to the client, before you run a single standup, before you touch the backlog, you need to understand what is actually true about the project. Not what people think is true. What is <em>actually</em> true.</p>
+
+      <p class="rv">On Brieflex, that meant going through the existing SOWs line by line, mapping every feature against what was actually built versus what had been claimed, and calculating roughly how many hours had been spent across the two contracts. The number that came back was around 36 hours  -  spent without a time tracker, without documented proof, across work that was real but unverifiable if a client ever asked. That is a significant exposure for an agency.</p>
+
+      <h3 class="rv">What a good audit covers</h3>
+      <ul class="rv">
+        <li><strong>Scope reality check:</strong> Read every SOW and map each feature to its actual build state. Built, in progress, not started, or not applicable  -  four states only. No ambiguity.</li>
+        <li><strong>Hours audit:</strong> Find every hour spent and understand whether it is documented. If it is not, flag it before you do anything else. Undocumented hours are a liability, not a minor detail.</li>
+        <li><strong>Decision log:</strong> What decisions have been made verbally that were never written down? These are the scope landmines. A developer who remembers a call differently from a client is a dispute waiting to happen.</li>
+        <li><strong>Dependency map:</strong> What does the client own? What does a third party own? What are you waiting on? On Brieflex this included Stripe, Mailchimp integration, and a sign-up flow that was unscoped  -  meaning no estimate existed for it yet.</li>
+        <li><strong>Team health:</strong> Who is on this project? What are they working on right now? Do they know what they are supposed to be working on?</li>
+      </ul>
+
+      <p class="rv">The audit is not pleasant. It will surface things that should have been caught earlier. That is the point. You cannot fix what you have not named.</p>
+
+      <div class="sec rv" id="s3">
+        <span class="n">03</span>
+        <h2>Fix the Operating System First</h2>
+      </div>
+
+      <p class="rv">Once the audit is done, the temptation shifts. Now you know what is broken  -  so the next instinct is to fix everything at once. Resist that too. A mid-build pickup requires a specific prioritisation: <strong>fix the operating system before you fix the product.</strong> The operating system is sprint cadence, time tracking, meeting structure, decision documentation, and scope contracts. The product is the code.</p>
+
+      <p class="rv">On Brieflex, I ran five moves in the first two weeks. In order:</p>
+
+      <ul class="rv">
+        <li><strong>Hubstaff activated immediately:</strong> Every hour from the moment I stepped in was tracked. This was non-negotiable. An agency that cannot produce a time report on demand is an agency that will eventually lose a client dispute it should have won.</li>
+        <li><strong>Scope reprioritised with the client:</strong> I ran a priority alignment session with Elvis before I built any sprint plan. The order that came out  -  Custom Tutor Room first, then Stripe, then sign-up, with Mailchimp and analytics deferred  -  gave the team a clear, conflict-free delivery queue for the first time. Engineers should never have to guess what to build next.</li>
+        <li><strong>Sprint plan produced and committed:</strong> Four sprints, hard dates, defined scope per sprint. The sign-up feature was explicitly flagged as unscoped with a deadline for Elvis to provide requirements  -  because a sprint plan with a dependency that has not been sized is not a plan, it is a wish.</li>
+        <li><strong>Two SOWs produced:</strong> One covering the remaining scope already agreed, one covering the new scope. Both priced, both with payment schedules. No more uncovered work in flight.</li>
+        <li><strong>Meeting structure locked:</strong> Elvis had actually asked for structured agendas on a previous call  -  completed tickets, in progress, what is coming. I committed to that format from the next meeting and delivered it. It sounds basic. It had not been happening.</li>
+      </ul>
+
+      <p class="rv">None of this touched the product. All of it changed the project.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Pull Quote · 03</span>
+          <p>Engineers should never have to guess what to build next. That is the operating system failing, not the team.</p>
+        </blockquote>
+      </div>
+
+      <div class="sec rv" id="s4">
+        <span class="n">04</span>
+        <h2>The Client Conversation You Have to Get Right</h2>
+      </div>
+
+      <p class="rv">Here is the part that is genuinely hard: the client has usually been through something uncomfortable before you arrived. Maybe deliveries were late. Maybe updates were inconsistent. Maybe they have been generous with patience that was close to running out. The first client conversation after a pickup has to do two things simultaneously  -  acknowledge the gap without throwing the previous team under the bus, and demonstrate immediately that things have changed.</p>
+
+      <p class="rv">The way to do that is not through words. It is through structure. Show up to the first call with a written agenda. Send a post-meeting summary the same day. Have a sprint plan ready to walk through. Every one of those things signals, without saying it out loud, that there is now a process in place and they can trust it.</p>
+
+      <p class="rv">On Brieflex, I also had to handle a stakeholder triangle  -  Elvis on product decisions, Dan as an investor stakeholder on commercial decisions, and the BetaCraft team on delivery. Dan had to sign off on certain scope items before we could commit hours. I made that dependency explicit, in writing, with a named deadline. Not "we should probably align on Mailchimp"  -  but "Mailchimp is blocked on Dan's written confirmation, required by April 14, or it moves to a later SOW." Vague dependencies become scope disputes. Named dependencies become calendar items.</p>
+
+      <div class="sec rv" id="s5">
+        <span class="n">05</span>
+        <h2>What Changes After the First Two Weeks</h2>
+      </div>
+
+      <p class="rv">Two weeks in, the project looks different  -  not because the product has changed, but because the team has a structure to work inside. There is a sprint cadence. Decisions are logged. Hours are tracked. The client knows what to expect and when to expect it. The developers know what they are building and in what order.</p>
+
+      <p class="rv">What also changes is how you manage the product itself. With the operating system stable, you can start to actually look at what was built and make informed judgements about it. On Brieflex, this meant reading Vasanta's backend design for the Tutor Room and being able to tell Elvis it was solid  -  not because I was translating from the developer, but because I could read it. It meant understanding why the Drill Room question pre-loading performs differently for IRAC versus rule statement question types, and asking the right diagnostic question rather than accepting "it is just slower" as an answer.</p>
+
+      <p class="rv">That is the part of the job that requires the engineering background. You can run a great mid-build pickup without it  -  the audit, the sprint plan, the SOWs, the meeting structure, all of that is process. But the ability to read the architecture, challenge an estimate, or catch a technical decision that will cause problems later  -  that requires having been on the other side of the table.</p>
+
+      <div class="sec rv" id="s6">
+        <span class="n">06</span>
+        <h2>The Lesson That Does Not Change</h2>
+      </div>
+
+      <p class="rv">Every mid-build pickup I have done has taught me the same thing in a different way. The project is not broken. The <em>operating system</em> around the project is broken. The code is there. The team is there. The client relationship is usually still salvageable. What is missing is structure  -  and structure is exactly what a Technical PM is there to provide.</p>
+
+      <p class="rv">The temptation to demonstrate competence by touching the product immediately is a trap. The client does not feel better because you changed a ticket status. They feel better because the next meeting has an agenda, the update arrives on time, and the sprint plan answers the question they have been trying to ask for three weeks: <em>when is this actually going to ship?</em></p>
+
+      <p class="rv">Answer that question with a plan that holds, and the rest follows.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Takeaway</span>
+          <p>The client does not feel better because you changed a ticket status. They feel better because the next meeting has an agenda and the sprint plan answers the question they have been trying to ask for weeks.</p>
+          <p class="note"><strong>The Rule</strong> Fix the operating system before you fix the product. Every time.</p>
+        </blockquote>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<footer class="outro">
+  <div class="outro-in">
+    <div class="ghost-word" aria-hidden="true">Fin</div>
+    <h3 class="rv">Enjoyed this <span class="serif">read?</span></h3>
+    <p class="outro-sub rv rv-d1">Connect on LinkedIn or head back to the portfolio for more.</p>
+    <div class="socials rv rv-d2">
+      <a href="https://www.linkedin.com/in/aakashdhar" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a href="../index.html#insights">More Writing</a>
+      <a href="../index.html">← Back to Portfolio</a>
+    </div>
+    <div class="footer-bar">
+      <span>© 2026 Aakash Dhar. Built with Code &amp; Coffee.</span>
+      <span>aakashdhar.me</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const r = document.documentElement;
+  r.dataset.theme = r.dataset.theme === 'dark' ? '' : 'dark';
+  try { localStorage.setItem('theme', r.dataset.theme || 'light'); } catch(e) {}
+});
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+const railLinks = [...document.querySelectorAll('.rail a')];
+const secs = [...document.querySelectorAll('.sec')];
+const secIO = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    if (e.isIntersecting) { railLinks.forEach(a => a.classList.toggle('on', a.dataset.s === e.target.id)); }
+  });
+}, { rootMargin: '-20% 0px -65% 0px' });
+secs.forEach(s => secIO.observe(s));
+const rb = document.getElementById('rb');
+const railFill = document.getElementById('railFill');
+const onScroll = () => {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+  rb.style.width = p + '%';
+  if (railFill) railFill.style.width = p + '%';
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>

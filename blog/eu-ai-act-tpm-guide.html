@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The EU AI Act Is Not a Legal Problem. It Is a PM Problem. | Aakash Dhar</title>
+<meta name="title" content="The EU AI Act Is Not a Legal Problem. It Is a PM Problem. | Aakash Dhar">
+<meta name="description" content="Every legal explainer of the EU AI Act is written for lawyers. Nobody is writing it for the Technical PM who has to make compliance actually happen inside a software project. This is that article  -  with real questions to ask at kickoff, real risks to track, and lessons from a live project where I caught a data residency gap mid-sprint.">
+<meta name="keywords" content="EU AI Act, Technical Project Manager, AI compliance, AI governance, AI Act TPM, high risk AI, data residency, ISO 42001, AI project management, GDPR AI, Netherlands AI governance">
+<meta name="author" content="Aakash Dhar">
+<link rel="canonical" href="https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html">
+<meta property="og:title" content="The EU AI Act Is Not a Legal Problem. It Is a PM Problem.">
+<meta property="og:description" content="There are hundreds of legal explainers of the EU AI Act. There are almost none written for the Technical PM who has to make compliance actually happen inside a sprint.">
+<meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html">
+<meta property="twitter:title" content="The EU AI Act Is Not a Legal Problem. It Is a PM Problem.">
+<meta property="twitter:description" content="There are hundreds of legal explainers of the EU AI Act. There are almost none written for the Technical PM who has to make compliance actually happen inside a sprint.">
+<meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The EU AI Act Is Not a Legal Problem. It Is a PM Problem.",
+  "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Aakash Dhar",
+    "url": "https://www.linkedin.com/in/aakashdhar"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Aakash Dhar",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://aakashdhar.me/logo.png"
+    }
+  },
+  "datePublished": "2026-06-19",
+  "description": "Every legal explainer of the EU AI Act is written for lawyers. Nobody is writing it for the Technical PM who has to make compliance actually happen inside a software project.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html"
+  }
+}
+</script>
+
+<script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C97F06%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+<style>
+:root{
+  --bg:#F6F3EB;--bg-2:#FFFDF7;--bg-3:#EFEAE0;
+  --ink:#181510;--muted:#6B6557;--muted-2:#A39C8A;
+  --amber:#C97F06;--amber-bright:#E89B0F;--amber-dim:rgba(201,127,6,.10);
+  --mint:#0E8C7A;--hairline:rgba(24,21,16,.12);--hairline-2:rgba(24,21,16,.22);
+  --ghost:rgba(24,21,16,.07);--glow:rgba(232,155,15,.10);
+  --shadow:0 18px 50px -24px rgba(24,21,16,.18);
+  --card-shadow:0 -28px 70px -24px rgba(24,21,16,.35);
+}
+[data-theme="dark"]{
+  --bg:#0B0A08;--bg-2:#14120E;--bg-3:#1A1814;
+  --ink:#EFEAE0;--muted:#8C877C;--muted-2:#55514A;
+  --amber:#FFB224;--amber-bright:#FFCB66;--amber-dim:rgba(255,178,36,.13);
+  --mint:#7BE8D8;--hairline:rgba(239,234,224,.1);--hairline-2:rgba(239,234,224,.2);
+  --ghost:rgba(239,234,224,.08);--glow:rgba(255,178,36,.12);
+  --shadow:0 18px 50px -24px rgba(0,0,0,.6);
+  --card-shadow:0 -28px 70px -20px rgba(0,0,0,.7);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .45s ease,color .45s ease;}
+::selection{background:var(--amber-bright);color:#181510}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.readbar{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:600}
+.readbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--amber-bright))}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,3.5vw,44px);pointer-events:none;}
+.topbar>*{pointer-events:auto}
+.brand{font-family:"JetBrains Mono",monospace;font-size:13.5px;letter-spacing:.14em;font-weight:600;text-decoration:none}
+.brand b{color:var(--amber)}
+.top-r{display:flex;align-items:center;gap:14px}
+.back-link{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;padding:10px 20px;background:var(--bg-2);transition:color .25s,border-color .25s,transform .2s;}
+.back-link:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-2px)}
+.theme-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--hairline-2);background:var(--bg-2);color:var(--ink);font-size:16px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:border-color .25s,transform .25s,background .45s;}
+.theme-btn:hover{border-color:var(--amber);transform:rotate(15deg)}
+.theme-btn .sun{display:block}.theme-btn .moon{display:none}
+[data-theme="dark"] .theme-btn .sun{display:none}[data-theme="dark"] .theme-btn .moon{display:block}
+@media(max-width:640px){.back-link{display:none}}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+.cover{position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:110px clamp(22px,6vw,90px) 0;}
+.cover-glow{position:absolute;inset:0;pointer-events:none}
+.cover-glow::before{content:"";position:absolute;width:120vmax;height:120vmax;left:50%;top:-30%;transform:translateX(-50%);background:radial-gradient(closest-side,var(--glow),transparent 68%);}
+.cover-meta{position:relative;z-index:1;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.pill{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hairline-2);border-radius:999px;padding:7px 15px;color:var(--muted)}
+.pill.hot{border-color:var(--amber);color:var(--amber);background:var(--amber-dim)}
+.cover-date{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
+.ghost-word-cover{position:absolute;top:14vh;left:clamp(14px,4vw,70px);z-index:0;font-weight:800;line-height:1;font-size:clamp(110px,17vw,230px);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;white-space:nowrap;}
+.cover h1{position:relative;z-index:1;font-weight:800;font-size:clamp(40px,7.6vw,108px);line-height:.96;letter-spacing:-.034em;font-variation-settings:"opsz" 96;max-width:1180px;text-wrap:balance;}
+.cover h1 em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;color:var(--amber);letter-spacing:-.01em}
+.cover-foot{position:relative;z-index:1;margin-top:clamp(30px,5vh,54px);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;padding-bottom:30px;}
+.cover-sub{max-width:520px;color:var(--muted);font-weight:300;font-size:clamp(16px,1.8vw,19px)}
+.cover-byline{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);text-align:right}
+.cover-byline b{color:var(--ink);font-weight:600;display:block;margin-bottom:4px}
+@media(max-width:760px){.cover-foot{grid-template-columns:1fr}.cover-byline{text-align:left}}
+.toc-strip{position:relative;z-index:1;margin:0 calc(-1 * clamp(22px,6vw,90px));border-top:1px solid var(--hairline);display:flex;overflow-x:auto;scrollbar-width:none;}
+.toc-strip::-webkit-scrollbar{display:none}
+.toc-strip a{flex:1 0 auto;min-width:170px;padding:16px clamp(18px,2.4vw,30px) 22px;border-right:1px solid var(--hairline);text-decoration:none;transition:background .3s;}
+.toc-strip a:hover{background:var(--amber-dim)}
+.toc-strip .n{display:block;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.26em;color:var(--amber);margin-bottom:5px}
+.toc-strip .t{display:block;font-weight:600;font-size:13.5px;letter-spacing:-.01em;line-height:1.3;color:var(--muted)}
+.toc-strip a:hover .t{color:var(--ink)}
+.spread{position:relative;background:var(--bg-2);transition:background .45s;border-radius:26px 26px 0 0;box-shadow:var(--card-shadow);border-top:1px solid var(--hairline);padding:clamp(56px,9vh,96px) clamp(22px,6vw,90px) clamp(70px,10vh,120px);}
+.spread-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(36px,5vw,90px);align-items:start;}
+@media(max-width:920px){.spread-grid{grid-template-columns:1fr}}
+.rail{position:sticky;top:110px}
+.rail-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:18px}
+.rail a{display:flex;align-items:baseline;gap:12px;padding:9px 0;text-decoration:none;color:var(--muted-2);border-bottom:1px solid var(--hairline);transition:color .25s;}
+.rail a:last-of-type{border-bottom:none}
+.rail .n{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;flex:0 0 auto;transition:color .25s}
+.rail .t{font-size:13px;font-weight:600;letter-spacing:-.005em;line-height:1.35}
+.rail a:hover{color:var(--muted)}.rail a.on{color:var(--ink)}.rail a.on .n{color:var(--amber)}
+.rail-rule{height:2px;background:var(--hairline);margin-top:20px;position:relative}
+.rail-rule i{position:absolute;left:0;top:-1px;height:4px;width:0;background:var(--amber);transition:width .3s}
+@media(max-width:920px){.rail{display:none}}
+.prose{min-width:0}
+.prose>p,.prose ul,.prose h3,.prose .sec,.prose pre,.prose .table-wrap{max-width:680px}
+.prose>p{font-size:17px;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:24px}
+.prose strong{color:var(--ink);font-weight:650}
+.prose>p em,.prose li em{font-family:"Instrument Serif",serif;font-style:italic;font-size:1.06em;color:var(--ink)}
+.prose p a,.prose li a{color:var(--amber);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:color .2s;}
+.prose p a:hover,.prose li a:hover{color:var(--amber-bright)}
+.prose p.lead::first-letter{font-family:"Instrument Serif",serif;font-style:italic;font-size:4.3em;line-height:.78;color:var(--amber);float:left;padding:.08em .12em 0 0;}
+.sec{display:flex;align-items:baseline;gap:18px;margin:clamp(54px,8vh,76px) 0 24px;padding-top:26px;border-top:1px solid var(--hairline-2);scroll-margin-top:100px;}
+.prose .sec:first-child{margin-top:0;padding-top:0;border-top:none}
+.sec .n{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:13px;letter-spacing:.14em;color:var(--amber);flex:0 0 auto}
+.prose h2{font-weight:800;font-size:clamp(25px,3.2vw,35px);line-height:1.1;letter-spacing:-.02em;font-variation-settings:"opsz" 96;}
+.prose h3{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);font-weight:600;margin:38px 0 6px;}
+.prose ul{list-style:none;margin:6px 0 30px}
+.prose ul li{position:relative;padding:14px 0 14px 26px;font-size:16px;line-height:1.75;color:var(--muted);font-weight:300;border-bottom:1px solid var(--hairline);}
+.prose ul li:last-child{border-bottom:none}
+.prose ul li::before{content:"—";position:absolute;left:0;top:14px;color:var(--amber);font-weight:700}
+.prose code{font-family:"JetBrains Mono",monospace;font-size:.82em;color:var(--amber);background:var(--amber-dim);padding:.14em .45em;border-radius:6px;border:1px solid var(--hairline);}
+.prose .table-wrap{overflow-x:auto;margin:6px 0 30px;border:1px solid var(--hairline);border-radius:14px;}
+.prose table{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--bg-2)}
+.prose thead th{text-align:left;padding:14px 18px;font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);border-bottom:1px solid var(--hairline-2);white-space:nowrap;}
+.prose thead th:first-child{color:var(--amber)}
+.prose tbody tr{border-bottom:1px solid var(--hairline)}.prose tbody tr:last-child{border-bottom:none}
+.prose tbody tr:hover{background:var(--amber-dim)}
+.prose td{padding:14px 18px;vertical-align:top;color:var(--muted);font-weight:300;line-height:1.7}
+.prose td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.pull{margin:clamp(48px,7vh,70px) 0;width:100%}
+.pull blockquote{border-top:2px solid var(--amber);border-bottom:1px solid var(--hairline);padding:clamp(26px,4vh,40px) 0 clamp(24px,3.6vh,36px);}
+.pull blockquote p{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(24px,3.6vw,42px);line-height:1.3;color:var(--ink);max-width:980px;text-wrap:balance;margin-bottom:14px;}
+.pull blockquote p:last-child{margin-bottom:0}
+.pull blockquote p strong{font-family:"JetBrains Mono",monospace;font-style:normal;font-weight:600;font-size:clamp(11px,1.1vw,13px);letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:inline-block;margin-right:6px;}
+.pull blockquote p.note{font-size:clamp(15px,1.7vw,18px);font-family:"Bricolage Grotesque",sans-serif;font-style:normal;font-weight:300;color:var(--muted)}
+.pull .mark{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:14px;display:block}
+.outro{position:relative;overflow:hidden;background:var(--bg);transition:background .45s;border-radius:26px 26px 0 0;box-shadow:var(--card-shadow);border-top:1px solid var(--hairline);padding:clamp(64px,11vh,110px) clamp(22px,6vw,90px) 46px;}
+.outro-in{max-width:1180px;margin:0 auto;position:relative}
+.ghost-word{position:absolute;top:-.62em;left:-.04em;z-index:0;font-weight:800;line-height:1;font-size:clamp(100px,15vw,200px);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;}
+.outro h3{position:relative;z-index:1;font-weight:800;font-size:clamp(36px,5.8vw,72px);letter-spacing:-.027em;line-height:1;font-variation-settings:"opsz" 96;}
+.outro h3 .serif{color:var(--amber);font-weight:400}
+.outro-sub{position:relative;z-index:1;margin-top:16px;color:var(--muted);font-weight:300;max-width:480px}
+.socials{position:relative;z-index:1;display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.socials a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;padding:11px 22px;transition:color .25s,border-color .25s,transform .2s;background:var(--bg-2);}
+.socials a:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-3px)}
+.footer-bar{position:relative;z-index:1;margin-top:clamp(40px,7vh,70px);padding-top:22px;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--muted-2);}
+</style>
+</head>
+<body>
+
+<div class="readbar" aria-hidden="true"><i id="rb"></i></div>
+
+<div class="topbar">
+  <a class="brand" href="../index.html"><b>~/</b>aakash</a>
+  <div class="top-r">
+    <a class="back-link" href="../index.html#insights">Writing</a>
+    <a class="back-link" href="../index.html">← Portfolio</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+      <span class="sun">☀</span><span class="moon">☾</span>
+    </button>
+  </div>
+</div>
+
+<header class="cover">
+  <div class="cover-glow" aria-hidden="true"></div>
+  <div class="ghost-word-cover" aria-hidden="true">Compliance</div>
+  <div class="cover-meta rv">
+    <span class="pill hot">AI Governance</span>
+    <span class="cover-date">June 19, 2026</span>
+  </div>
+  <h1 class="rv rv-d1">The EU AI Act Is Not a <em>Legal Problem.</em> It Is a PM Problem.</h1>
+  <div class="cover-foot rv rv-d2">
+    <p class="cover-sub">There are hundreds of legal explainers of the EU AI Act. Almost none are written for the Technical PM who has to make compliance actually happen inside a sprint. This is that article  -  with real questions, real risks, and a lesson from a live project where compliance caught me mid-build.</p>
+    <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
+  </div>
+  <nav class="toc-strip rv rv-d3" aria-label="Contents">
+    <a href="#s1"><span class="n">01</span><span class="t">The Wrong Reader</span></a>
+    <a href="#s2"><span class="n">02</span><span class="t">What the Act Says</span></a>
+    <a href="#s3"><span class="n">03</span><span class="t">The PM Questions</span></a>
+    <a href="#s4"><span class="n">04</span><span class="t">Caught Mid-Sprint</span></a>
+    <a href="#s5"><span class="n">05</span><span class="t">What to Do Now</span></a>
+    <a href="#s6"><span class="n">06</span><span class="t">The Shift</span></a>
+  </nav>
+</header>
+
+<main class="spread">
+  <div class="spread-grid">
+
+    <aside class="rail" aria-label="Sections">
+      <div class="rail-label">In this article</div>
+      <a href="#s1" data-s="s1"><span class="n">01</span><span class="t">The Wrong Reader</span></a>
+      <a href="#s2" data-s="s2"><span class="n">02</span><span class="t">What the Act Says</span></a>
+      <a href="#s3" data-s="s3"><span class="n">03</span><span class="t">The PM Questions</span></a>
+      <a href="#s4" data-s="s4"><span class="n">04</span><span class="t">Caught Mid-Sprint</span></a>
+      <a href="#s5" data-s="s5"><span class="n">05</span><span class="t">What to Do Now</span></a>
+      <a href="#s6" data-s="s6"><span class="n">06</span><span class="t">The Shift</span></a>
+      <div class="rail-rule"><i id="railFill"></i></div>
+    </aside>
+
+    <article class="prose">
+
+      <div class="sec rv" id="s1">
+        <span class="n">01</span>
+        <h2>Every Explainer Is Written for the Wrong Person</h2>
+      </div>
+
+      <p class="lead rv">Search for "EU AI Act explained" and you will find hundreds of articles. Risk tiers, Annex III, Article 17, conformity assessments, the provider versus deployer distinction. All of it accurate. Almost none of it useful to the person who actually has to make compliance happen  -  the Technical Project Manager sitting between the client brief and the engineering team, with a sprint starting Monday.</p>
+
+      <p class="rv">The legal team sets the framework. The compliance officer tracks the register. The engineers build to spec. But the PM is the one who has to translate "this system uses AI to make decisions about people" into a kickoff checklist, a sprint task, a dependency on a third-party vendor, and an honest conversation with a client about what that means for the timeline.</p>
+
+      <p class="rv">That translation gap is where compliance breaks down in practice. Not because anyone was negligent  -  but because nobody built the PM layer into the governance framework. This article is an attempt to build it. It is written from the point of view of someone who has shipped AI systems in production, caught a compliance gap mid-sprint on a live project, and is now learning the regulatory landscape seriously. Not a lawyer. A TPM.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Pull Quote · 01</span>
+          <p>The PM is the one who has to translate "this system uses AI to make decisions about people" into a sprint task and an honest conversation with the client about the timeline.</p>
+        </blockquote>
+      </div>
+
+      <div class="sec rv" id="s2">
+        <span class="n">02</span>
+        <h2>What the EU AI Act Actually Says  -  Without the Legalese</h2>
+      </div>
+
+      <p class="rv">The EU AI Act is a regulation that came into force in August 2024. It follows a phased timeline  -  some provisions already apply, with the most significant obligations for <strong>high-risk AI systems</strong> coming into full effect on 2 August 2026. A further extension under the Digital Omnibus proposal may shift some deadlines, but treating any extension as certain is a planning mistake. The deadline is now. Prepare for it accordingly.</p>
+
+      <p class="rv">The Act works through a <strong>risk classification model</strong>. Most AI systems  -  spell checkers, recommendation engines, spam filters  -  are low or minimal risk and face no significant obligations. The ones that matter to a TPM are the systems at the top of the pyramid.</p>
+
+      <h3 class="rv">The four risk tiers</h3>
+      <ul class="rv">
+        <li><strong>Unacceptable risk  -  banned outright:</strong> Social scoring systems, real-time biometric surveillance in public spaces, AI that exploits psychological vulnerabilities. These have been prohibited since February 2025. If a client brief describes anything resembling these, the conversation ends there.</li>
+        <li><strong>High risk  -  full compliance obligations:</strong> AI systems used in recruitment and hiring decisions, credit scoring, healthcare diagnostics, education and training assessments, law enforcement, border control, and access to essential services. If your project touches any of these domains, you are in high-risk territory and the full stack of obligations applies.</li>
+        <li><strong>Limited risk  -  transparency requirements only:</strong> Chatbots, AI-generated content, emotion recognition tools. Users must be informed they are interacting with an AI. Relatively straightforward to implement.</li>
+        <li><strong>Minimal risk  -  no specific obligations:</strong> Spam filters, AI in video games, content recommendation systems. Build and ship as normal.</li>
+      </ul>
+
+      <p class="rv">The extraterritorial reach matters: the Act applies to any organisation placing an AI system on the EU market or deploying it to EU users, regardless of where the organisation is based. Building a hiring tool in India for a Dutch client? You are in scope.</p>
+
+      <div class="sec rv" id="s3">
+        <span class="n">03</span>
+        <h2>The Questions a TPM Has to Ask at Kickoff</h2>
+      </div>
+
+      <p class="rv">Most compliance failures in software projects are not caused by ignorance of the law. They are caused by nobody asking the right questions at the start. By the time a legal review flags a problem, the architecture is already built, the sprint is three weeks in, and the remediation cost has multiplied by a factor of five.</p>
+
+      <p class="rv">Here is the set of questions I now ask at the start of any AI project  -  before scope is locked, before estimates are written, before a single ticket is created. These are not legal questions. They are PM questions that prevent legal problems.</p>
+
+      <h3 class="rv">Classification questions</h3>
+      <ul class="rv">
+        <li><strong>What decisions does this system make or influence?</strong> Not what it does technically  -  what it decides. Recommending a job candidate is a decision. Flagging a loan application is a decision. Generating marketing copy is not a decision in the same sense.</li>
+        <li><strong>Who does it affect, and how?</strong> If the AI output directly affects a person's access to something  -  employment, credit, education, healthcare  -  you are likely in high-risk territory.</li>
+        <li><strong>Is any EU user going to interact with or be affected by this system?</strong> If yes, the Act applies regardless of where the system is built or hosted.</li>
+        <li><strong>Are we the provider, the deployer, or both?</strong> Providers build the AI system; deployers use it. Different roles carry different obligations. An agency building a custom AI tool for a client is typically the provider. A client deploying a third-party AI in their HR process is the deployer. Both have obligations.</li>
+      </ul>
+
+      <h3 class="rv">Technical questions that unlock compliance</h3>
+      <ul class="rv">
+        <li><strong>Where does the data live?</strong> Data residency obligations under the Act interact with GDPR and sector-specific rules. Get this on paper before infrastructure decisions are made, not after.</li>
+        <li><strong>How is the system's behaviour logged?</strong> High-risk systems require automatic logging of operations to enable traceability. If the architecture does not support logging from the start, retrofitting it is expensive.</li>
+        <li><strong>Can a human override the system's output?</strong> Article 14 of the Act is a design requirement, not a policy one. High-risk systems must enable <em>effective human oversight</em>  -  meaning the architecture has to support it, not just the documentation.</li>
+        <li><strong>What happens when the system is wrong?</strong> Accuracy, robustness, and fallback behaviour are compliance requirements, not just product quality considerations. The answer needs to be in the spec before build begins.</li>
+      </ul>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Pull Quote · 03</span>
+          <p>Most compliance failures are not caused by ignorance of the law. They are caused by nobody asking the right questions at the start of the project.</p>
+          <p class="note"><strong>The Cost</strong> Architecture built first, compliance reviewed after  -  remediation typically costs five times what prevention would have.</p>
+        </blockquote>
+      </div>
+
+      <div class="sec rv" id="s4">
+        <span class="n">04</span>
+        <h2>The Time I Caught a Compliance Gap Mid-Sprint</h2>
+      </div>
+
+      <p class="rv">Theory is one thing. Here is what it looked like in practice. While working on TokoSmart  -  an Android research application commissioned by the World Bank Group to study digital financial literacy among small shop operators in Indonesia  -  I was reviewing the architecture during Week 2 of a fixed four-week build. I was reading a one-pager on the infrastructure setup when I noticed the Azure deployment region: <strong>West Europe (Amsterdam).</strong></p>
+
+      <p class="rv">The World Bank Group Data Protection Annex that governed the project required data to reside in the US, Canada, or the UK. Not the EU. We were mid-sprint, 14 days from a non-negotiable institutional deadline, and the infrastructure was running in the wrong region.</p>
+
+      <p class="rv">This was not a data residency gap I had been briefed on. It was one I found because I read the architecture document and knew what the governance framework required. A PM without the technical background would have relied on the team to surface it  -  and the team was heads-down in build mode, not scanning for contractual compliance.</p>
+
+      <p class="rv">The decision that followed was a governance decision, not a technical one: do not surface this in the next client call without a remediation plan in place. Raising an unresolved compliance gap in a live institutional stakeholder session with no solution creates panic with no upside. I logged it as a formal risk, scoped the migration to Azure UK South, confirmed the path was viable, and communicated it through the right channel with a resolution attached. We fixed it without losing a day on the project.</p>
+
+      <p class="rv">That is what EU AI Act compliance looks like from the PM seat. Not legal review after launch. Not a checkbox at the end of the sprint. <em>Reading the architecture document in Week 2 and knowing what to look for.</em></p>
+
+      <div class="sec rv" id="s5">
+        <span class="n">05</span>
+        <h2>What a TPM Should Actually Do About This Now</h2>
+      </div>
+
+      <p class="rv">You do not need to become a compliance lawyer. You need to become someone who cannot be surprised by compliance questions  -  which is a different thing. Here is a practical starting point.</p>
+
+      <h3 class="rv">Add to your project kickoff checklist</h3>
+      <ul class="rv">
+        <li><strong>AI risk classification:</strong> Ask the question explicitly. Document the answer. If it is high-risk, escalate before scope is locked. If it is minimal risk, document that too  -  you want a paper trail either way.</li>
+        <li><strong>Data residency confirmation:</strong> Where does data live? Where does it need to live? Get the answer from the client in writing before infrastructure decisions are made. The TokoSmart gap happened because this question was assumed rather than confirmed.</li>
+        <li><strong>Logging and traceability:</strong> Is the architecture spec'ing for audit-ready logs from the start? If not, flag it as a build requirement, not a nice-to-have. High-risk systems need this in their architecture, not bolted on after.</li>
+        <li><strong>Human oversight design:</strong> How does a human intervene when the AI gets it wrong? This is an architectural decision. Make sure it is in the design spec, not just the product roadmap.</li>
+        <li><strong>Provider versus deployer clarity:</strong> Is BetaCraft (or your agency) the provider, the deployer, or both? This determines which obligations fall to you and which fall to the client. Get it in the SOW.</li>
+      </ul>
+
+      <h3 class="rv">The compliance table that replaces a thousand words</h3>
+      <div class="table-wrap rv">
+        <table>
+          <thead>
+            <tr>
+              <th>Project Type</th>
+              <th>Risk Tier</th>
+              <th>PM Action at Kickoff</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AI hiring / recruitment tool</td>
+              <td>High risk</td>
+              <td>Full compliance review before scope lock. Logging, human oversight, and conformity assessment in spec.</td>
+            </tr>
+            <tr>
+              <td>AI credit / loan scoring</td>
+              <td>High risk</td>
+              <td>Same as above. Data governance in SOW. Provider/deployer roles explicit.</td>
+            </tr>
+            <tr>
+              <td>AI customer support chatbot</td>
+              <td>Limited risk</td>
+              <td>Transparency disclosure to users required. Simple to implement  -  add to acceptance criteria.</td>
+            </tr>
+            <tr>
+              <td>AI content generation tool</td>
+              <td>Minimal risk</td>
+              <td>Confirm classification in writing. No additional obligations. Document and move on.</td>
+            </tr>
+            <tr>
+              <td>AI in healthcare / diagnostics</td>
+              <td>High risk</td>
+              <td>Legal review mandatory before any build begins. This is not a sprint-level decision.</td>
+            </tr>
+            <tr>
+              <td>Research / analytics AI (non-decision)</td>
+              <td>Minimal / limited</td>
+              <td>Confirm scope  -  if output influences individual decisions, reclassify. If not, low overhead.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec rv" id="s6">
+        <span class="n">06</span>
+        <h2>The Shift That Is Already Happening</h2>
+      </div>
+
+      <p class="rv">The EU AI Act is, as one Coursera enterprise report put it, a potential <em>GDPR moment</em> for artificial intelligence. That is not hyperbole. GDPR took a domain that lived entirely in legal and compliance and made it a product concern, an engineering concern, a PM concern. It created new roles, new checklists, new lines in SOWs, and new conversations at kickoff. The AI Act will do the same  -  faster, because companies are not starting from zero this time.</p>
+
+      <p class="rv">The TPMs who understand this early have an advantage that compounds. Not because they can replace the legal team  -  they cannot  -  but because they can stop legal problems from becoming sprint problems. They ask the right questions at kickoff. They read the architecture document. They put data residency in the SOW and human oversight in the spec. They know what "high-risk" means before the client does.</p>
+
+      <p class="rv">That is the job. Not compliance officer. Not legal counsel. Technical Project Manager  -  sitting in the gap between what the regulation requires and what the team is building, making sure those two things stay aligned from Week 1 onwards.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Takeaway</span>
+          <p>The TPMs who understand AI governance early have an advantage that compounds. Not because they replace the legal team  -  but because they stop legal problems from becoming sprint problems.</p>
+          <p class="note"><strong>The Ask</strong> Add five questions to your kickoff checklist. That is where EU AI Act compliance begins for a TPM.</p>
+        </blockquote>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<footer class="outro">
+  <div class="outro-in">
+    <div class="ghost-word" aria-hidden="true">Fin</div>
+    <h3 class="rv">Enjoyed this <span class="serif">read?</span></h3>
+    <p class="outro-sub rv rv-d1">Connect on LinkedIn or head back to the portfolio for more.</p>
+    <div class="socials rv rv-d2">
+      <a href="https://www.linkedin.com/in/aakashdhar" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a href="../index.html#insights">More Writing</a>
+      <a href="../index.html">← Back to Portfolio</a>
+    </div>
+    <div class="footer-bar">
+      <span>© 2026 Aakash Dhar. Built with Code &amp; Coffee.</span>
+      <span>aakashdhar.me</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const r = document.documentElement;
+  r.dataset.theme = r.dataset.theme === 'dark' ? '' : 'dark';
+  try { localStorage.setItem('theme', r.dataset.theme || 'light'); } catch(e) {}
+});
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+const railLinks = [...document.querySelectorAll('.rail a')];
+const secs = [...document.querySelectorAll('.sec')];
+const secIO = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    if (e.isIntersecting) { railLinks.forEach(a => a.classList.toggle('on', a.dataset.s === e.target.id)); }
+  });
+}, { rootMargin: '-20% 0px -65% 0px' });
+secs.forEach(s => secIO.observe(s));
+const rb = document.getElementById('rb');
+const railFill = document.getElementById('railFill');
+const onScroll = () => {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+  rb.style.width = p + '%';
+  if (railFill) railFill.style.width = p + '%';
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>

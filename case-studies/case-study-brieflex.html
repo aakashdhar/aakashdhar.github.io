@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brieflex — Case Study · Aakash Dhar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:        #F5F2EC;
+    --cream-dark:   #EDE9E0;
+    --amber:        #C9620A;
+    --amber-light:  #FDF0E6;
+    --amber-mid:    rgba(201,98,10,0.18);
+    --ink:          #1A1A1A;
+    --ink-mid:      #3D3D3D;
+    --ink-light:    #6B6B6B;
+    --ink-faint:    #9A9A9A;
+    --border:       rgba(26,26,26,0.10);
+    --border-mid:   rgba(26,26,26,0.16);
+    --green:        #1A7A40;
+    --green-light:  #EBF7EF;
+    --green-mid:    rgba(26,122,64,0.18);
+    --red:          #B91C1C;
+    --red-light:    #FEF2F2;
+    --blue:         #1D4ED8;
+    --blue-light:   #EFF6FF;
+    --blue-mid:     rgba(29,78,216,0.15);
+    --display:      'Bricolage Grotesque', sans-serif;
+    --serif:        'Instrument Serif', serif;
+    --mono:         'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── TOPBAR ─── */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+    background: rgba(245,242,236,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-brand { font-family: var(--mono); font-size: 14px; color: var(--ink); text-decoration: none; font-weight: 400; }
+  .topbar-brand strong { color: var(--amber); font-weight: 700; }
+  .topbar-nav { display: flex; gap: 24px; align-items: center; }
+  .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
+  .topbar-nav a:hover { color: var(--amber); }
+  .topbar-nav .back { color: var(--amber); font-weight: 500; }
+
+  /* ─── PAGE ─── */
+  .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
+
+  /* ─── EYEBROW ─── */
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .etag {
+    background: var(--amber-light); border: 1px solid var(--amber-mid);
+    border-radius: 3px; padding: 2px 7px; font-size: 10px;
+  }
+
+  /* ─── HERO ─── */
+  .hero { padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+  .hero-title {
+    font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600;
+    line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px;
+  }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
+  .hero-meta {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 16px 24px; padding-top: 28px; border-top: 1px solid var(--border);
+  }
+  .mi { display: flex; flex-direction: column; gap: 3px; }
+  .ml { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
+  .mv { font-size: 13px; color: var(--ink-mid); font-weight: 500; }
+
+  /* ─── STAT STRIP ─── */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; margin-bottom: 56px;
+  }
+  .sc { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
+  .sc:last-child { border-right: none; }
+  .sn { font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
+  .sn .u { font-size: 14px; color: var(--amber); font-weight: 400; }
+  .sd { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
+
+  /* ─── SECTIONS ─── */
+  section { margin-bottom: 52px; scroll-margin-top: 72px; }
+  .snum { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 6px; letter-spacing: 0.05em; }
+  h2 { font-family: var(--display); font-size: 21px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 14px; }
+  p { color: var(--ink-light); margin-bottom: 14px; line-height: 1.75; }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: var(--ink); font-weight: 500; }
+
+  /* ─── RULE ─── */
+  .rule { height: 1px; background: var(--border); margin: 44px 0; }
+
+  /* ─── CALLOUT ─── */
+  .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 20px 0; }
+  .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
+  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .callout-red { border-left-color: var(--red); background: var(--red-light); }
+  .callout-red .cl { color: var(--red); }
+  .callout-green { border-left-color: var(--green); background: var(--green-light); }
+  .callout-green .cl { color: var(--green); }
+  .callout-blue { border-left-color: var(--blue); background: var(--blue-light); }
+  .callout-blue .cl { color: var(--blue); }
+
+  /* ─── BEFORE / AFTER ─── */
+  .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 22px 0; }
+  .ba-card { border-radius: 7px; padding: 18px; border: 1px solid; }
+  .ba-before { background: var(--red-light); border-color: rgba(185,28,28,0.2); }
+  .ba-after  { background: var(--green-light); border-color: var(--green-mid); }
+  .ba-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .ba-before .ba-label { color: var(--red); }
+  .ba-after  .ba-label { color: var(--green); }
+  .ba-item { display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start; }
+  .ba-item:last-child { margin-bottom: 0; }
+  .ba-icon { font-size: 11px; margin-top: 1px; flex-shrink: 0; }
+  .ba-text { font-size: 12px; color: var(--ink-mid); line-height: 1.5; }
+
+  /* ─── TWO-COL GRID ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .gc { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
+  .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
+  .gc h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .gc p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
+
+  /* ─── SPRINT TABLE ─── */
+  .sprint-wrap { border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; margin: 24px 0; }
+  .sprint-head {
+    display: grid; grid-template-columns: 90px 120px 1fr 100px;
+    background: var(--cream-dark); border-bottom: 1px solid var(--border-mid);
+    padding: 10px 16px;
+  }
+  .sprint-head span { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
+  .sprint-row { display: grid; grid-template-columns: 90px 120px 1fr 100px; padding: 14px 16px; border-bottom: 1px solid var(--border); background: #fff; align-items: center; }
+  .sprint-row:last-child { border-bottom: none; }
+  .sr-num { font-family: var(--mono); font-size: 11px; color: var(--amber); font-weight: 500; }
+  .sr-dates { font-size: 12px; color: var(--ink-faint); font-family: var(--mono); }
+  .sr-scope { font-size: 12px; color: var(--ink-mid); }
+  .sr-scope span { display: inline-block; background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-mid); border-radius: 3px; font-family: var(--mono); font-size: 10px; padding: 1px 6px; margin: 1px 3px 1px 0; }
+  .sr-status { font-family: var(--mono); font-size: 10px; }
+  .status-done { color: var(--green); }
+  .status-buffer { color: var(--ink-faint); }
+
+  /* ─── PROCESS STEPS ─── */
+  .steps { margin: 22px 0; }
+  .step { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--amber-light); border: 1px solid var(--amber-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px; color: var(--amber); font-weight: 500;
+    margin-top: 2px;
+  }
+  .step-body h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .step-body p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
+
+  /* ─── OUTCOME LIST ─── */
+  .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .outcome-row:last-child { border-bottom: none; }
+  .oc { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
+  .ot h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .ot p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* ─── TAG ROW ─── */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+  .tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
+
+  /* ─── FOOTER ─── */
+  .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .fb { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
+  .fb strong { color: var(--amber); font-weight: 700; }
+  .fl { font-size: 12px; color: var(--ink-faint); }
+  .fl a { color: var(--amber); text-decoration: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .page-wrap { padding: 80px 20px 80px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .before-after { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .sprint-head, .sprint-row { grid-template-columns: 70px 1fr; }
+    .sprint-head span:nth-child(3), .sprint-row .sr-scope,
+    .sprint-head span:nth-child(4), .sprint-row .sr-status { display: none; }
+    .topbar { padding: 0 20px; }
+    .hero-title { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="topbar-brand" href="https://aakashdhar.me"><strong>~/</strong>aakash</a>
+  <div class="topbar-nav">
+    <a href="https://aakashdhar.me/#pm-work">PM Work</a>
+    <a href="https://aakashdhar.me" class="back">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">
+      <span class="etag">Case Study</span>
+      Brieflex · Programination LLC · 2025–2026
+    </p>
+    <h1 class="hero-title">Picked up <em>mid-build.</em><br>Brought structure<br>to the chaos.</h1>
+    <p class="hero-sub">Brieflex was an AI-powered California Bar Exam training platform with active development, a live client, and no sprint structure. No time tracking. No meeting format. No SOW for the work in flight. I stepped in, audited the project, reset the delivery process, and drove it toward commercial launch.</p>
+
+    <div class="hero-meta">
+      <div class="mi"><span class="ml">Client</span><span class="mv">Elvis Ge · Programination LLC</span></div>
+      <div class="mi"><span class="ml">My role</span><span class="mv">Technical PM — mid-build pickup</span></div>
+      <div class="mi"><span class="ml">Team</span><span class="mv">2 devs · 1 QA · 1 designer</span></div>
+      <div class="mi"><span class="ml">Platform</span><span class="mv">Web · Mobile · AI (Gemini + GPT)</span></div>
+      <div class="mi"><span class="ml">Product</span><span class="mv">CA Bar Exam AI prep platform</span></div>
+      <div class="mi"><span class="ml">Status</span><span class="mv" style="color:var(--amber)">→ Driving to launch</span></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="sc">
+      <div class="sn">~36<span class="u">hr</span></div>
+      <div class="sd">Spent before I joined — no time tracking in place</div>
+    </div>
+    <div class="sc">
+      <div class="sn">0</div>
+      <div class="sd">Formal sprint plan when I picked it up</div>
+    </div>
+    <div class="sc">
+      <div class="sn">4</div>
+      <div class="sd">Structured sprints mapped and committed in week one</div>
+    </div>
+    <div class="sc">
+      <div class="sn">2</div>
+      <div class="sd">SOW documents produced and signed to cover the remaining scope</div>
+    </div>
+  </div>
+
+  <!-- 01 CONTEXT -->
+  <section id="context">
+    <p class="snum">01 / What Brieflex is</p>
+    <h2>A serious product in a high-stakes category.</h2>
+    <p>Brieflex is an <strong>AI-powered California Bar Exam training platform</strong> — built for law students preparing for one of the hardest professional exams in the US. The core premise: adaptive AI practice that mirrors how the actual exam works, not just flashcard memorisation.</p>
+    <p>The product includes a <strong>Drill Room</strong> (adaptive question sessions across IRAC, hypothetical, and rule statement types), a <strong>Custom Tutor Mode</strong> (personalised AI coaching), <strong>Flashcards</strong> with spaced repetition, a <strong>Custom Rules</strong> engine (lawyers can upload their own rules for AI-generated questions), and <strong>Progress Analytics</strong> for paid users.</p>
+    <p>The stakes are real: the California Bar Exam is in late July. Students need a minimum of 6–8 weeks of prep time with a stable product. Every week of delayed delivery is a week fewer students can use it before exam day.</p>
+
+    <div class="tag-row">
+      <span class="tag">React (web)</span>
+      <span class="tag">React Native (mobile)</span>
+      <span class="tag">Gemini AI</span>
+      <span class="tag">OpenAI</span>
+      <span class="tag">Stripe</span>
+      <span class="tag">Mailchimp</span>
+      <span class="tag">Node.js backend</span>
+      <span class="tag">Jira</span>
+      <span class="tag">Hubstaff</span>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 02 THE STATE I FOUND -->
+  <section id="state">
+    <p class="snum">02 / What I found</p>
+    <h2>Active work. No operating system behind it.</h2>
+    <p>The project was not stalled — development was happening. But it was happening without the structure that keeps a multi-person, multi-stream build coherent. When I did the initial audit, here is what the situation looked like:</p>
+
+    <div class="before-after">
+      <div class="ba-card ba-before">
+        <p class="ba-label">State on pickup</p>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--red)">✕</span><span class="ba-text">No sprint plan — work was ad hoc, no visibility on what was in flight vs done</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--red)">✕</span><span class="ba-text">No time tracking — ~36 hours spent across two SOWs with no documented proof</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--red)">✕</span><span class="ba-text">No meeting structure — Elvis had to explicitly ask for a pre-prepared agenda</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--red)">✕</span><span class="ba-text">Scope not re-prioritised since original SOW — delivery order not aligned to what mattered now</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--red)">✕</span><span class="ba-text">No SOW covering work in progress — BetaCraft exposed on uncovered hours</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--red)">✕</span><span class="ba-text">Key decisions verbal — no decision log, no written rationale</span></div>
+      </div>
+      <div class="ba-card ba-after">
+        <p class="ba-label">After first two weeks</p>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--green)">✓</span><span class="ba-text">4-sprint plan committed — dates, scope, and owners for every workstream</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--green)">✓</span><span class="ba-text">Hubstaff time tracking activated from day one</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--green)">✓</span><span class="ba-text">Structured meeting format locked — agenda format accepted by Elvis</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--green)">✓</span><span class="ba-text">Scope re-prioritised with Elvis — confirmed order: Tutor Room → Stripe → Signup → Analytics</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--green)">✓</span><span class="ba-text">Two fresh SOWs produced — covering remaining and new scope with signed hour budgets</span></div>
+        <div class="ba-item"><span class="ba-icon" style="color:var(--green)">✓</span><span class="ba-text">Key decisions logged with rationale — Jira tickets created per stream</span></div>
+      </div>
+    </div>
+
+    <div class="callout callout-red">
+      <p class="cl">The real risk</p>
+      <p>BetaCraft had stayed within SOW hours but had no documented proof. If Elvis or Dan had asked for a time report, there was nothing to show. Hubstaff and structured SOWs fixed this — immediately.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 03 HOW I STABILISED IT -->
+  <section id="process">
+    <p class="snum">03 / How I stabilised it</p>
+    <h2>Five moves in the first two weeks.</h2>
+    <p>Mid-build pickups require a specific kind of triage: understand what exists before touching anything, then fix the operating layer without disrupting active development. Here is the sequence I ran.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Full project audit — scope, hours, and state</h4>
+          <p>Read the existing SOWs, mapped what was built vs what was claimed, identified what was complete (Gemini integration, AI response reporting, drill room animations, UI fixes), what was in progress, and what was unstarted. Flash Cards were confirmed complete and removed from active scope. Admin Portal reduced to a one-day QA task only.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Scope reprioritisation with the client</h4>
+          <p>Ran a priority alignment session with Elvis. Confirmed new order: Custom Tutor Room first (highest client urgency), then Stripe pricing integration, then sign-up flow, with Mailchimp and analytics deferred to a second SOW. Mailchimp specifically held — required Dan's written buy-in before committing hours. This gave the team a clear, conflict-free delivery queue for the first time.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Sprint plan produced and committed</h4>
+          <p>Built a four-sprint plan anchored to 29 April start, using AI-adjusted estimates at 45–50% compression for two developers running 40 hours per week in parallel. Signup scope was flagged as unscoped with a hard deadline of 2 May to size it before Sprint 2 started. Sign-up could not be estimated until Elvis clarified requirements — I made that dependency explicit rather than carrying it as ambiguity.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Two SOWs produced to cover remaining and new scope</h4>
+          <p>SOW 1 covered Custom Tutor Room, Pricing (Stripe), and Sign-up Flow — 75–86 hours at $65/hour, 50/25/25 payment split. SOW 2 covered Mailchimp, Analytics, and a 16-hour UI polish buffer — 99 hours, $6,444.75. Both produced in a single session using the existing SOW format as the base, modified line by line to match the new scope.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Meeting structure formalised and accepted by Elvis</h4>
+          <p>Elvis had explicitly asked on a prior call for structured agendas: completed tickets, in-progress, to-do — reviewed together. I committed to this format from the next meeting and delivered it. The shift from ad hoc check-ins to structured sprint reviews gave the client visibility and gave the team a clear rhythm to work toward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 04 SPRINT STRUCTURE -->
+  <section id="sprints">
+    <p class="snum">04 / Sprint structure</p>
+    <h2>What the delivery plan looked like.</h2>
+    <p>With the bar exam in late July, I worked backwards: students need 6–8 weeks of stable practice. That meant a commercial launch no later than end of May. Four sprints, hard-gated, no scope bleed.</p>
+
+    <div class="sprint-wrap">
+      <div class="sprint-head">
+        <span>Sprint</span>
+        <span>Dates</span>
+        <span>Scope</span>
+        <span>Status</span>
+      </div>
+      <div class="sprint-row">
+        <div class="sr-num">S1</div>
+        <div class="sr-dates">Apr 29 – May 2</div>
+        <div class="sr-scope"><span>Custom Tutor Room</span></div>
+        <div class="sr-status status-done">✓ Done</div>
+      </div>
+      <div class="sprint-row">
+        <div class="sr-num">S2</div>
+        <div class="sr-dates">May 5 – May 16</div>
+        <div class="sr-scope"><span>Stripe / Pricing</span> <span>Mailchimp</span> <span>Sign-up</span></div>
+        <div class="sr-status status-done">✓ Done</div>
+      </div>
+      <div class="sprint-row">
+        <div class="sr-num">S3</div>
+        <div class="sr-dates">May 19 – May 23</div>
+        <div class="sr-scope"><span>Analytics</span></div>
+        <div class="sr-status status-done">✓ Done</div>
+      </div>
+      <div class="sprint-row">
+        <div class="sr-num">S4</div>
+        <div class="sr-dates">May 26 – May 30</div>
+        <div class="sr-scope"><span>Buffer</span> <span>UAT</span></div>
+        <div class="sr-status status-buffer">Planned</div>
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <p class="cl">Why this structure mattered</p>
+      <p>Sprint 2 intentionally ran two weeks — Stripe, Mailchimp, and sign-up in parallel across two dedicated developers. Signup was held as unscoped until the 2 May hard deadline: if Elvis hadn't provided requirements by then, it would have moved to Sprint 3 rather than blocking Sprint 2. I made that dependency contractual, not conversational.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 05 KEY DECISIONS -->
+  <section id="decisions">
+    <p class="snum">05 / Product decisions logged</p>
+    <h2>The calls that needed a PM, not just a developer.</h2>
+    <p>Part of stabilising a mid-build project is surfacing the product decisions that are being deferred or left ambiguous. Several calls had been made verbally with no record. I logged them formally and got written confirmation from Elvis on each.</p>
+
+    <div class="two-col">
+      <div class="gc">
+        <p class="gc-label">Logged decision</p>
+        <h4>Flashcard mode selection is pre-session</h4>
+        <p>Switching modes mid-drill conflicts with the question pre-loading architecture. Elvis confirmed: mode is selected on the setup screen, not once inside a session. Saved a potential backend retrofit.</p>
+      </div>
+      <div class="gc">
+        <p class="gc-label">Logged decision</p>
+        <h4>Voice mode (ElevenLabs) is V2 — deferred</h4>
+        <p>Full voice-to-voice requires ElevenLabs integration. Mac users use system dictation as a stopgap. Logged to prevent it being raised again as in-scope mid-sprint.</p>
+      </div>
+      <div class="gc">
+        <p class="gc-label">Logged decision</p>
+        <h4>Mailchimp requires Dan's written approval</h4>
+        <p>Dan (investor stakeholder) needed to be convinced via written rationale before Mailchimp hours were committed. Elvis confirmed. This blocked the team from starting work that could have been reversed.</p>
+      </div>
+      <div class="gc">
+        <p class="gc-label">Logged decision</p>
+        <h4>Bulk upload: prototype first, guardrails second</h4>
+        <p>Elvis wanted PDF/docx upload for custom rules. Team proposed CSV. Decision: build a prototype with a file size limit and AI pre-check filter, measure token usage, then decide on format guardrails. Prevented a premature architecture lock.</p>
+      </div>
+    </div>
+
+    <p>Logging these formally meant that when scope was challenged later — by Dan, by Elvis, or by the team — the answer was in the decision log, not in someone's memory of a call three weeks ago.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 06 ONGOING MANAGEMENT -->
+  <section id="ongoing">
+    <p class="snum">06 / Ongoing delivery management</p>
+    <h2>What running this project looks like now.</h2>
+    <p>Brieflex is the most complex of BetaCraft's current engagements in terms of product depth — multiple AI integrations, a monetisation layer, mobile and web surfaces in parallel, and a stakeholder triangle that includes Elvis (product decisions), Dan (commercial decisions), and the BetaCraft team.</p>
+
+    <div class="callout">
+      <p class="cl">The drill room performance problem</p>
+      <p>Elvis flagged that the initial question load felt slower after a performance update. The team's diagnosis: pre-loading is partial (~15 seconds, generating 2 questions in background). IRAC and Hypo types legitimately take longer due to AI generation complexity — rule statement types should be faster. I documented the distinction and assigned investigation specifically to rule statement performance, rather than accepting "it's just the AI" as an answer.</p>
+    </div>
+
+    <p>Each sprint review now runs with a prepared agenda: completed tickets first, in-progress with blockers called out, upcoming scope. Elvis gets a written post-meeting summary the same day. Nothing is left to memory or to the next call to re-establish.</p>
+    <p>The two-developer parallel stream required careful dependency management — Vasanta on backend and Deepak on frontend needed clear interface contracts before either started. I scoped those contracts before sprints began so neither stream was blocked waiting for the other.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 07 OUTCOMES -->
+  <section id="outcomes">
+    <p class="snum">07 / Outcomes</p>
+    <h2>What changed from day one.</h2>
+
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Sprint cadence established from zero — team has been running clean sprints since</h4>
+        <p>No sprint existed before. Within the first week, four sprints were planned, scoped, and committed with dates and owners.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Hours now fully tracked and defensible</h4>
+        <p>Hubstaff activated immediately. Every hour since pickup is logged. BetaCraft can produce a time report on demand — something that wasn't possible before I joined.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Two SOWs produced covering all remaining and new scope</h4>
+        <p>SOW 1 ($65/hr, 75–86hrs) and SOW 2 ($6,444.75, 99hrs) signed. No more uncovered work in flight.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Client relationship reset on structured terms</h4>
+        <p>Elvis had asked for structure — structured agendas, sprint schedules, written post-call summaries. That is now the default, not the exception.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Scope disputes now resolved by the decision log, not memory</h4>
+        <p>Four key product decisions formally logged with Elvis's written confirmation. When Dan or Elvis revisit these, the answer is already there.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Platform driving toward May launch — on track for bar exam season</h4>
+        <p>Flashcards complete and shipped. Custom Tutor Room, Stripe, Analytics in flight. UAT and buffer sprint planned. The July exam date is reachable.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 08 REFLECTION -->
+  <section id="reflection">
+    <p class="snum">08 / Reflection</p>
+    <h2>What a mid-build pickup actually requires.</h2>
+    <p>Joining a project mid-build is a different discipline from starting one from scratch. The temptation is to immediately start fixing the product. The actual job is to <strong>fix the operating system first</strong> — because a team building fast on a broken operating system just creates better-executed chaos.</p>
+    <p>The first week on Brieflex was almost entirely about audit and reset: read everything, understand what's real vs. what was planned, surface the undocumented decisions, get the client into a structure they can trust. The sprint plan came after the audit. The SOWs came after the priority alignment. Nothing was rushed because the order mattered.</p>
+    <p>The engineering background helped here in a specific way: I could read Vasanta's backend design plan and tell Elvis it was solid without asking the team to explain it. I could understand why the drill room pre-loading has different performance characteristics for IRAC vs. rule statement questions — and ask the right diagnostic question rather than accepting "it's slower" as an answer. Those aren't PM skills. They're what happens when you spend 8.5 years on the other side of the table before you become the PM.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="cs-footer">
+    <div class="fb"><strong>~/</strong>aakash · Aakash Dhar · Technical Project Manager</div>
+    <div class="fl">
+      <a href="mailto:hello@aakashdhar.me">hello@aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://aakashdhar.me">aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/aakashdhar">LinkedIn</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

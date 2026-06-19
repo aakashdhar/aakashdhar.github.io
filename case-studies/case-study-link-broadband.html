@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Link Broadband — Case Study · Aakash Dhar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:       #F5F2EC;
+    --cream-dark:  #EDE9E0;
+    --amber:       #C9620A;
+    --amber-light: #FDF0E6;
+    --amber-mid:   rgba(201,98,10,0.18);
+    --ink:         #1A1A1A;
+    --ink-mid:     #3D3D3D;
+    --ink-light:   #6B6B6B;
+    --ink-faint:   #9A9A9A;
+    --border:      rgba(26,26,26,0.10);
+    --border-mid:  rgba(26,26,26,0.16);
+    --green:       #1A7A40;
+    --green-light: #EBF7EF;
+    --green-mid:   rgba(26,122,64,0.18);
+    --blue:        #1D4ED8;
+    --blue-light:  #EFF6FF;
+    --blue-mid:    rgba(29,78,216,0.15);
+    --purple:      #6D28D9;
+    --purple-light: #F5F3FF;
+    --purple-mid:  rgba(109,40,217,0.15);
+    --red:         #B91C1C;
+    --red-light:   #FEF2F2;
+    --display:     'Bricolage Grotesque', sans-serif;
+    --serif:       'Instrument Serif', serif;
+    --mono:        'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+    background: rgba(245,242,236,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-brand { font-family: var(--mono); font-size: 14px; color: var(--ink); text-decoration: none; font-weight: 400; }
+  .topbar-brand strong { color: var(--amber); font-weight: 700; }
+  .topbar-nav { display: flex; gap: 24px; align-items: center; }
+  .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
+  .topbar-nav a:hover { color: var(--amber); }
+  .topbar-nav .back { color: var(--amber); font-weight: 500; }
+
+  /* ── PAGE ── */
+  .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .etag { background: var(--amber-light); border: 1px solid var(--amber-mid); border-radius: 3px; padding: 2px 7px; font-size: 10px; }
+
+  /* ── HERO ── */
+  .hero { padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+  .hero-title {
+    font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600;
+    line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px;
+  }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
+  .hero-meta {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 16px 24px; padding-top: 28px; border-top: 1px solid var(--border);
+  }
+  .mi { display: flex; flex-direction: column; gap: 3px; }
+  .ml { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
+  .mv { font-size: 13px; color: var(--ink-mid); font-weight: 500; }
+
+  /* ── STATS ── */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; margin-bottom: 56px; }
+  .sc { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
+  .sc:last-child { border-right: none; }
+  .sn { font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
+  .sn .u { font-size: 14px; color: var(--amber); font-weight: 400; }
+  .sd { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
+
+  /* ── SECTIONS ── */
+  section { margin-bottom: 52px; scroll-margin-top: 72px; }
+  .snum { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 6px; letter-spacing: 0.05em; }
+  h2 { font-family: var(--display); font-size: 21px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 14px; }
+  p { color: var(--ink-light); margin-bottom: 14px; line-height: 1.75; }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: var(--ink); font-weight: 500; }
+  code { font-family: var(--mono); font-size: 12px; background: var(--cream-dark); padding: 2px 6px; border-radius: 3px; color: var(--amber); border: 1px solid var(--border-mid); }
+
+  .rule { height: 1px; background: var(--border); margin: 44px 0; }
+
+  /* ── CALLOUTS ── */
+  .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 20px 0; }
+  .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
+  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .callout-red { border-left-color: var(--red); background: var(--red-light); }
+  .callout-red .cl { color: var(--red); }
+  .callout-green { border-left-color: var(--green); background: var(--green-light); }
+  .callout-green .cl { color: var(--green); }
+  .callout-purple { border-left-color: var(--purple); background: var(--purple-light); }
+  .callout-purple .cl { color: var(--purple); }
+
+  /* ── SYSTEM MAP ── */
+  .sys-wrap { border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; background: #fff; margin: 24px 0; }
+  .sys-header { padding: 12px 18px; background: var(--cream-dark); border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .sys-legend { display: flex; gap: 14px; }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--ink-faint); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+  .sys-body { padding: 24px 20px; overflow-x: auto; }
+
+  /* ── OWNERSHIP TABLE ── */
+  .own-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+  .own-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 8px 12px; background: var(--cream-dark); border-bottom: 1px solid var(--border-mid); }
+  .own-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--ink-mid); vertical-align: top; }
+  .own-table tr:last-child td { border-bottom: none; }
+  .own-table tr td:first-child { color: var(--ink); font-weight: 500; }
+  .badge { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 3px; }
+  .badge-betacraft { color: var(--amber); background: var(--amber-light); border: 1px solid var(--amber-mid); }
+  .badge-gaiia { color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
+  .badge-epc { color: var(--purple); background: var(--purple-light); border: 1px solid var(--purple-mid); }
+
+  /* ── HubSpot WORKFLOW TABLE ── */
+  .wf-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 12px; }
+  .wf-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 8px 10px; background: var(--cream-dark); border-bottom: 1px solid var(--border-mid); }
+  .wf-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--ink-mid); vertical-align: top; }
+  .wf-table tr:last-child td { border-bottom: none; }
+  .wf-id { font-family: var(--mono); color: var(--amber); font-size: 11px; }
+
+  /* ── TWO-COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .gc { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
+  .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
+  .gc h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .gc p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
+
+  /* ── CODE BLOCK ── */
+  .code-block { background: var(--cream-dark); border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px 18px; margin: 18px 0; font-family: var(--mono); font-size: 12px; color: var(--ink-light); overflow-x: auto; line-height: 1.9; }
+  .code-block .c-a { color: var(--amber); }
+  .code-block .c-b { color: var(--blue); }
+  .code-block .c-g { color: var(--green); }
+  .code-block .c-d { color: var(--ink-faint); }
+  .code-block .c-r { color: var(--red); }
+
+  /* ── GATE ROW ── */
+  .gate-list { margin: 18px 0; }
+  .gate-row { display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+  .gate-row:last-child { border-bottom: none; }
+  .gate-badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .gb-hard { color: var(--red); background: var(--red-light); border: 1px solid rgba(185,28,28,0.2); }
+  .gb-dep { color: var(--purple); background: var(--purple-light); border: 1px solid var(--purple-mid); }
+  .gate-text h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .gate-text p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* ── OUTCOME LIST ── */
+  .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .outcome-row:last-child { border-bottom: none; }
+  .oc { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
+  .ot h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .ot p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* ── TAGS ── */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+  .tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
+
+  /* ── FOOTER ── */
+  .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .fb { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
+  .fb strong { color: var(--amber); font-weight: 700; }
+  .fl { font-size: 12px; color: var(--ink-faint); }
+  .fl a { color: var(--amber); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .page-wrap { padding: 80px 20px 80px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .topbar { padding: 0 20px; }
+    .hero-title { font-size: 30px; }
+    .sys-header { flex-direction: column; align-items: flex-start; }
+    .own-table, .wf-table { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="topbar-brand" href="https://aakashdhar.me"><strong>~/</strong>aakash</a>
+  <div class="topbar-nav">
+    <a href="https://aakashdhar.me/#pm-work">PM Work</a>
+    <a href="https://aakashdhar.me" class="back">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">
+      <span class="etag">Case Study</span>
+      Link Broadband · Stefanov Capital · 2026
+    </p>
+    <h1 class="hero-title">Three systems.<br>One <em>integration contract.</em><br>A deadline none of them could move.</h1>
+    <p class="hero-sub">Link Broadband needed a marketing website, a HubSpot lifecycle automation layer, and a seamless handoff into a third-party checkout platform — all built, integrated, and launched in four weeks. The work wasn't just building pages. It was defining exactly what each system owned, what it didn't, and where they had to connect precisely.</p>
+
+    <div class="hero-meta">
+      <div class="mi"><span class="ml">Client</span><span class="mv">Stefanov Capital (Emily, Jeffrey, Landon)</span></div>
+      <div class="mi"><span class="ml">My role</span><span class="mv">Technical PM · PM on all client comms</span></div>
+      <div class="mi"><span class="ml">Delivery window</span><span class="mv">4 weeks — Apr 7–30, 2026</span></div>
+      <div class="mi"><span class="ml">Team</span><span class="mv">Dev · Designer · QA</span></div>
+      <div class="mi"><span class="ml">External parties</span><span class="mv">Gaiia · EPC · Mapbox</span></div>
+      <div class="mi"><span class="ml">Status</span><span class="mv" style="color:var(--green)">✓ Launched</span></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="sc">
+      <div class="sn">3</div>
+      <div class="sd">Independent systems to coordinate — Astro, Gaiia, HubSpot</div>
+    </div>
+    <div class="sc">
+      <div class="sn">7</div>
+      <div class="sd">HubSpot lifecycle workflows designed and built by BetaCraft</div>
+    </div>
+    <div class="sc">
+      <div class="sn">4<span class="u">wk</span></div>
+      <div class="sd">Fixed client deadline with a hard design gate at week 2</div>
+    </div>
+    <div class="sc">
+      <div class="sn">90<span class="u">+</span></div>
+      <div class="sd">Lighthouse score target — technical SEO shipped to spec</div>
+    </div>
+  </div>
+
+  <!-- 01 CONTEXT -->
+  <section id="context">
+    <p class="snum">01 / Context</p>
+    <h2>What Link Broadband needed to launch.</h2>
+    <p>Link Broadband is a fibre broadband provider rolling out neighbourhood by neighbourhood across Colorado. Before customers could sign up, they needed to know the service was coming to their street — and when. Before the rollout could scale, Link needed a system to capture interest, nurture prospects through construction, and convert them to subscribers the moment their area went live.</p>
+    <p>BetaCraft was engaged to build three things that had to work together as a single system: a <strong>marketing website</strong> built in Astro, a <strong>HubSpot lifecycle automation layer</strong> covering seven customer journey stages, and a <strong>precision handoff to Gaiia</strong> — Link's third-party checkout and provisioning platform — so customers could check availability and sign up without ever leaving a familiar-feeling experience.</p>
+    <p>None of these three systems talked to each other natively. Defining the integration contracts between them — what each owned, what each expected to receive, and where the boundaries sat — was as much of the project as the build itself.</p>
+
+    <div class="tag-row">
+      <span class="tag">Astro</span>
+      <span class="tag">Vercel</span>
+      <span class="tag">GitHub</span>
+      <span class="tag">HubSpot</span>
+      <span class="tag">Gaiia (checkout)</span>
+      <span class="tag">Mapbox</span>
+      <span class="tag">GA4</span>
+      <span class="tag">UTM tracking</span>
+      <span class="tag">Technical SEO</span>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 02 THE SYSTEM MAP -->
+  <section id="system">
+    <p class="snum">02 / The system</p>
+    <h2>Four parties. One customer journey.</h2>
+    <p>The full customer journey ran through four distinct parties — BetaCraft (the website), Gaiia (checkout and provisioning), EPC (the construction company sending build-stage signals), and HubSpot (lifecycle automation). Understanding where each party's responsibility began and ended wasn't assumed — it was explicitly mapped and agreed before a line of code was written.</p>
+
+    <div class="sys-wrap">
+      <div class="sys-header">
+        <span>System responsibility map — full customer journey</span>
+        <div class="sys-legend">
+          <div class="leg"><div class="leg-dot" style="background:#C9620A"></div>BetaCraft</div>
+          <div class="leg"><div class="leg-dot" style="background:#1D4ED8"></div>Gaiia</div>
+          <div class="leg"><div class="leg-dot" style="background:#6D28D9"></div>EPC</div>
+          <div class="leg"><div class="leg-dot" style="background:#1A7A40"></div>HubSpot</div>
+        </div>
+      </div>
+      <div class="sys-body">
+        <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" width="100%" style="min-width:520px;display:block">
+
+          <!-- Customer -->
+          <rect x="270" y="10" width="140" height="34" rx="5" fill="#EDE9E0" stroke="#D6D0C4" stroke-width="1"/>
+          <text x="340" y="32" text-anchor="middle" fill="#3D3D3D" font-family="Bricolage Grotesque,sans-serif" font-size="12" font-weight="600">Customer</text>
+
+          <!-- Arrow down to website -->
+          <line x1="340" y1="44" x2="340" y2="62" stroke="#E0DCD4" stroke-width="1.5"/>
+          <polygon points="335,58 345,58 340,64" fill="#E0DCD4"/>
+
+          <!-- Marketing Website (BetaCraft) -->
+          <rect x="190" y="64" width="300" height="44" rx="5" fill="#FDF0E6" stroke="rgba(201,98,10,0.3)" stroke-width="1"/>
+          <text x="340" y="82" text-anchor="middle" fill="#C9620A" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500">BETACRAFT BUILDS</text>
+          <text x="340" y="98" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="11">Marketing site · Neighbourhood pages · SEO · Admin panel</text>
+
+          <!-- Arrow: website to Gaiia (right) -->
+          <line x1="490" y1="86" x2="560" y2="86" stroke="#1D4ED8" stroke-width="1.5"/>
+          <polygon points="556,81 566,86 556,91" fill="#1D4ED8"/>
+
+          <!-- Gaiia block (right) -->
+          <rect x="566" y="64" width="108" height="104" rx="5" fill="#EFF6FF" stroke="rgba(29,78,216,0.25)" stroke-width="1"/>
+          <text x="620" y="84" text-anchor="middle" fill="#1D4ED8" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500">GAIIA OWNS</text>
+          <text x="620" y="100" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="10">Availability check</text>
+          <text x="620" y="114" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="10">Plan selection</text>
+          <text x="620" y="128" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="10">Payment</text>
+          <text x="620" y="142" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="10">Install scheduling</text>
+          <text x="620" y="156" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="10">Order comms</text>
+
+          <!-- Gaiia to HubSpot arrow -->
+          <line x1="566" y1="130" x2="494" y2="170" stroke="#1A7A40" stroke-width="1.5"/>
+          <polygon points="498,163 492,172 500,169" fill="#1A7A40"/>
+
+          <!-- The integration seam label -->
+          <rect x="196" y="118" width="168" height="26" rx="4" fill="#FEF2F2" stroke="rgba(185,28,28,0.25)" stroke-width="1"/>
+          <text x="280" y="135" text-anchor="middle" fill="#B91C1C" font-family="JetBrains Mono,monospace" font-size="9">⚡ Integration seam — Mapbox prefill</text>
+
+          <!-- Arrow down: website to HubSpot -->
+          <line x1="340" y1="108" x2="340" y2="168" stroke="#1A7A40" stroke-width="1.5"/>
+          <polygon points="335,164 345,164 340,170" fill="#1A7A40"/>
+
+          <!-- HubSpot block -->
+          <rect x="190" y="170" width="300" height="44" rx="5" fill="#EBF7EF" stroke="rgba(26,122,64,0.25)" stroke-width="1"/>
+          <text x="340" y="188" text-anchor="middle" fill="#1A7A40" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500">HUBSPOT — 7 WORKFLOWS (BETACRAFT)</text>
+          <text x="340" y="204" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="11">Pre-reg · Construction updates · Stall detection · Service available · Re-engagement</text>
+
+          <!-- EPC block (left) -->
+          <rect x="6" y="170" width="108" height="44" rx="5" fill="#F5F3FF" stroke="rgba(109,40,217,0.25)" stroke-width="1"/>
+          <text x="60" y="188" text-anchor="middle" fill="#6D28D9" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500">EPC SIGNALS</text>
+          <text x="60" y="204" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="10">Build stage events</text>
+
+          <!-- EPC to HubSpot arrow -->
+          <line x1="114" y1="192" x2="188" y2="192" stroke="#6D28D9" stroke-width="1.5"/>
+          <polygon points="184,187 194,192 184,197" fill="#6D28D9"/>
+
+          <!-- Arrow down: HubSpot to Customer email -->
+          <line x1="340" y1="214" x2="340" y2="248" stroke="#E0DCD4" stroke-width="1.5"/>
+          <polygon points="335,244 345,244 340,250" fill="#E0DCD4"/>
+
+          <!-- Customer email output -->
+          <rect x="230" y="250" width="220" height="34" rx="5" fill="#EDE9E0" stroke="#D6D0C4" stroke-width="1"/>
+          <text x="340" y="272" text-anchor="middle" fill="#3D3D3D" font-family="Bricolage Grotesque,sans-serif" font-size="11">Customer email / SMS nurture</text>
+
+          <!-- Gaiia to Customer return -->
+          <path d="M 620 168 L 620 284 L 452 284" stroke="#1D4ED8" stroke-width="1" fill="none" stroke-dasharray="4,3"/>
+          <polygon points="456,279 446,284 456,289" fill="#1D4ED8"/>
+          <text x="580" y="298" text-anchor="middle" fill="#9A9A9A" font-family="Bricolage Grotesque,sans-serif" font-size="9">Order confirmation (Gaiia owns)</text>
+
+          <!-- Scope boundary label -->
+          <rect x="6" y="306" width="668" height="26" rx="4" fill="#EDE9E0"/>
+          <text x="340" y="323" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="10">Gaiia → HubSpot API connection is Gaiia's responsibility — BetaCraft defined the contract, not the pipe</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 03 SCOPE CONTRACTS -->
+  <section id="scope">
+    <p class="snum">03 / Scope contracts</p>
+    <h2>What BetaCraft built. What Gaiia owned. Non-negotiable.</h2>
+    <p>The single most important PM decision on this project was drawing the ownership line between BetaCraft and Gaiia clearly, in writing, before the build started. Without it, scope creep from the Gaiia side — "can you also handle the availability check?" — would have added weeks to a four-week engagement.</p>
+
+    <table class="own-table">
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Owner</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Marketing website (all pages)</td>
+          <td><span class="badge badge-betacraft">BetaCraft</span></td>
+          <td>Homepage, neighbourhood pages, pricing, support, legal shell</td>
+        </tr>
+        <tr>
+          <td>Mapbox address autocomplete + Gaiia prefill redirect</td>
+          <td><span class="badge badge-betacraft">BetaCraft</span></td>
+          <td>Hero CTA: capture address → construct prefill URL → redirect. Nothing after the click.</td>
+        </tr>
+        <tr>
+          <td>HubSpot workflows (7 of 11)</td>
+          <td><span class="badge badge-betacraft">BetaCraft</span></td>
+          <td>WF-01 through WF-07, WF-11. All pre-order lifecycle stages.</td>
+        </tr>
+        <tr>
+          <td>Admin panel + status banner</td>
+          <td><span class="badge badge-betacraft">BetaCraft</span></td>
+          <td>Non-technical admin for Link team to push operational updates</td>
+        </tr>
+        <tr>
+          <td>Address availability check</td>
+          <td><span class="badge badge-gaiia">Gaiia</span></td>
+          <td>Gaiia's geo-fence logic. BetaCraft sends address, Gaiia decides.</td>
+        </tr>
+        <tr>
+          <td>Plan selection, payment, install scheduling</td>
+          <td><span class="badge badge-gaiia">Gaiia</span></td>
+          <td>Full post-click checkout experience</td>
+        </tr>
+        <tr>
+          <td>WF-05, WF-08, WF-09, WF-10 (post-order workflows)</td>
+          <td><span class="badge badge-gaiia">Gaiia</span></td>
+          <td>Order confirmed, install scheduled, install failure, welcome series</td>
+        </tr>
+        <tr>
+          <td>Gaiia → HubSpot API connection</td>
+          <td><span class="badge badge-gaiia">Gaiia</span></td>
+          <td>BetaCraft defined the property names and event structure. Gaiia built the pipe.</td>
+        </tr>
+        <tr>
+          <td>Construction stage events (WF-02 trigger)</td>
+          <td><span class="badge badge-epc">EPC</span></td>
+          <td>EPC sends build stage updates → Gaiia → HubSpot. BetaCraft needed the exact event names to configure WF-02.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-purple">
+      <p class="cl">The scope boundary that needed managing</p>
+      <p>Emily confirmed a key Gaiia detail mid-project: WF-10 (Customer Welcome) might be owned by Gaiia, not BetaCraft. I flagged this as pending Emily's written confirmation with a hard deadline of April 14 — because if BetaCraft built WF-10 and Gaiia also ran it, customers would receive duplicate welcome sequences. The boundary had to be decided before the workflow was built, not discovered after.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 04 THE GAIIA INTEGRATION -->
+  <section id="integration">
+    <p class="snum">04 / The integration seam</p>
+    <h2>The technical detail that couldn't be guessed.</h2>
+    <p>The hero section CTA — "Check Availability" — looks simple from the outside: user types their address, clicks the button, lands on the Gaiia checkout with their address pre-filled. Behind it is a precise integration contract that required reading Gaiia's technical documentation in full before writing a line of code.</p>
+    <p>Gaiia's checkout accepts a pre-filled address via a URL-encoded JSON parameter. The structure looks straightforward — but one detail caused silent failure if missed: <code>premise</code> (house number) and <code>thoroughfare</code> (street name) <strong>must be separate fields</strong>. Combining them into a single address string results in no error, no warning — just no prefill on Gaiia's side, and a confused customer re-entering their address from scratch.</p>
+
+    <div class="code-block">
+<span class="c-d">// Correct — Gaiia prefill structure</span>
+{
+  "country":      "USA",
+  "premise":      <span class="c-a">"6864"</span>,           <span class="c-d">// house number ONLY</span>
+  "thoroughfare": <span class="c-a">"Terreno Drive"</span>,   <span class="c-d">// street name ONLY</span>
+  "line2":        "",
+  "locality":     <span class="c-a">"Castle Rock"</span>,
+  "region":       <span class="c-a">"CO"</span>,
+  "postalCode":   <span class="c-a">"80104"</span>,
+  "county":       ""
+}
+
+<span class="c-d">// Silent failure — do NOT combine into one field</span>
+<span class="c-r">"premise": "6864 Terreno Drive"</span>  <span class="c-d">// prefill fails, no error thrown</span>
+    </div>
+
+    <p>I used Mapbox autocomplete in the Astro hero section — matching Gaiia's own internal address tooling — which returns structured address components that map directly to Gaiia's expected fields. The redirect constructs the encoded JSON from those components and passes it as the <code>address</code> query parameter. Worst case if something is malformed: Gaiia falls back to showing its own address form. No broken experience for the customer, but the goal was to skip that step entirely.</p>
+
+    <div class="callout">
+      <p class="cl">Why this required a technical PM</p>
+      <p>A PM without the technical background would have read "pass the address to Gaiia" and assumed the dev would figure out the format. The format wasn't in the main Gaiia docs — it was in a separate PDF Tyler shared. I read it, identified the field-splitting requirement, and specced the integration correctly before handing it to the developer. No rework required.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 05 HUBSPOT LAYER -->
+  <section id="hubspot">
+    <p class="snum">05 / HubSpot lifecycle layer</p>
+    <h2>Seven workflows. One customer journey mapped end to end.</h2>
+    <p>The HubSpot scope was the most complex part of the project to define — because it required understanding not just what BetaCraft would build, but what data would flow in from two external parties (Gaiia and EPC) and what events those parties were responsible for firing. I scoped all seven workflows before the dev team touched HubSpot.</p>
+
+    <table class="wf-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Workflow</th>
+          <th>Trigger source</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="wf-id">WF-01</td>
+          <td>Pre-Registration</td>
+          <td>Gaiia → HubSpot</td>
+          <td>Nurture prospects during construction wait</td>
+        </tr>
+        <tr>
+          <td class="wf-id">WF-02</td>
+          <td>Construction Updates</td>
+          <td>EPC → Gaiia → HubSpot</td>
+          <td>Push build-stage updates to pre-registered contacts</td>
+        </tr>
+        <tr>
+          <td class="wf-id">WF-03</td>
+          <td>Stall Detection</td>
+          <td>Gaiia → HubSpot</td>
+          <td>Flag contacts with no lifecycle progression</td>
+        </tr>
+        <tr>
+          <td class="wf-id">WF-04</td>
+          <td>Service Available</td>
+          <td>Gaiia → HubSpot</td>
+          <td>Alert pre-registered contacts when their area goes live</td>
+        </tr>
+        <tr>
+          <td class="wf-id">WF-06</td>
+          <td>High-Intent Escalation</td>
+          <td>Gaiia → HubSpot</td>
+          <td>Surface high-intent contacts for direct follow-up</td>
+        </tr>
+        <tr>
+          <td class="wf-id">WF-07</td>
+          <td>Re-engagement</td>
+          <td>HubSpot (time-based)</td>
+          <td>Win back contacts who dropped off without converting</td>
+        </tr>
+        <tr>
+          <td class="wf-id">WF-11</td>
+          <td>Backlog Suppression</td>
+          <td>EPC → Gaiia → HubSpot</td>
+          <td>Suppress oversubscribed areas to manage demand</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>WF-02 and WF-11 depended on EPC sending build-stage events through Gaiia. Before those workflows could be configured in HubSpot, I needed the exact event names and property values EPC would use — because HubSpot's trigger logic is string-matched. I raised this as a blocking dependency early and got it resolved before the dev team reached the HubSpot build phase.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 06 DEPENDENCY MANAGEMENT -->
+  <section id="dependencies">
+    <p class="snum">06 / Dependency management</p>
+    <h2>The gates that could have broken the launch.</h2>
+    <p>A four-week delivery with three independent external parties meant dependency management wasn't optional — it was the primary risk surface. I mapped every external dependency at kickoff and tracked each one as a blocking item.</p>
+
+    <div class="gate-list">
+      <div class="gate-row">
+        <span class="gate-badge gb-hard">Hard gate</span>
+        <div class="gate-text">
+          <h4>Design sign-off by April 14 — or the April 30 launch moves</h4>
+          <p>Week 2 started with design review. If Emily and Jeffrey didn't approve by April 14, the dev phase couldn't begin and the launch date would slip by exactly the number of days the review ran over. I made this a named gate in the kickoff document, not a footnote.</p>
+        </div>
+      </div>
+      <div class="gate-row">
+        <span class="gate-badge gb-dep">Dependency</span>
+        <div class="gate-text">
+          <h4>Gaiia → HubSpot API connection is Gaiia's pipe, not BetaCraft's</h4>
+          <p>BetaCraft configured HubSpot to receive events from Gaiia. But the connection itself — Gaiia firing events to HubSpot — was Gaiia's responsibility. I confirmed the point of contact at Gaiia (Tyler) early and made clear that full HubSpot workflow testing was blocked until that connection was live.</p>
+        </div>
+      </div>
+      <div class="gate-row">
+        <span class="gate-badge gb-dep">Dependency</span>
+        <div class="gate-text">
+          <h4>EPC event names needed before WF-02 and WF-11 could be built</h4>
+          <p>HubSpot triggers match on exact string values. The construction-stage event names EPC would send through the chain had to be confirmed before those workflows could be configured — otherwise we'd build against guessed property names and have to rework the triggers post-launch.</p>
+        </div>
+      </div>
+      <div class="gate-row">
+        <span class="gate-badge gb-dep">Dependency</span>
+        <div class="gate-text">
+          <h4>Gaiia signup base URL and product slugs — needed before hero CTA could be built</h4>
+          <p>Every "Check Availability" button on every page pointed to Gaiia's white-label checkout URL. That URL was specific to the Link Broadband Gaiia instance. Without it confirmed by Tyler, no CTA on the site could be tested end-to-end.</p>
+        </div>
+      </div>
+      <div class="gate-row">
+        <span class="gate-badge gb-hard">Hard gate</span>
+        <div class="gate-text">
+          <h4>WF-10 ownership confirmed by Emily before build</h4>
+          <p>The Customer Welcome workflow could not be built by BetaCraft until it was confirmed Gaiia wouldn't also run one. Duplicate welcome sequences would have been the first thing a new customer experienced after signing up. I escalated this as a blocking decision with a named deadline — April 14 — not a vague "we should clarify this".</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 07 OUTCOMES -->
+  <section id="outcomes">
+    <p class="snum">07 / Outcomes</p>
+    <h2>What launched on April 30.</h2>
+
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Full marketing site launched in 4 weeks</h4>
+        <p>Homepage, neighbourhood pages with status badges, pricing overview, support, admin panel, and legal shell — all live on schedule.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Gaiia address prefill integration live with zero silent failures</h4>
+        <p>Mapbox autocomplete → structured JSON → Gaiia redirect working correctly at launch. The field-splitting requirement handled before build, not discovered after.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>7 HubSpot workflows configured and ready for Gaiia connection</h4>
+        <p>All BetaCraft-owned workflows built, tested against expected event structures, and documented. Blocked only on Gaiia's API connection — which was Gaiia's deliverable, not BetaCraft's.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Lighthouse 90+ on technical SEO</h4>
+        <p>Sitemap, robots.txt, schema markup, meta tags, and GA4 + HubSpot tracking all shipped to specification.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Scope boundary held — no Gaiia work absorbed into BetaCraft</h4>
+        <p>The explicit ownership table written at kickoff meant that when questions about the checkout or post-order experience came up mid-build, the answer was already documented. No scope creep in either direction.</p>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="oc">✓</div>
+      <div class="ot">
+        <h4>Admin panel shipped — Link team can operate without a developer</h4>
+        <p>Status banners, neighbourhood updates, and operational announcements are all self-serve. Link Broadband doesn't need to raise a ticket every time they need to update the site.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 08 REFLECTION -->
+  <section id="reflection">
+    <p class="snum">08 / Reflection</p>
+    <h2>What multi-party integration actually demands.</h2>
+    <p>The complexity on this project wasn't the code. The Astro build, the Mapbox integration, the HubSpot workflows — all of that was well within the team's capability. The complexity was the <strong>coordination surface</strong>: three external parties, each with their own systems, APIs, timelines, and assumptions about what the others were handling.</p>
+    <p>The PM job on an engagement like this is less about managing the team and more about managing the interfaces. Every integration seam is a potential gap where two parties each think the other is handling something. I made it my job to find those gaps before they became post-launch problems — mapping every handoff, naming every blocking dependency, and getting written confirmation on anything ambiguous before the build reached the point where it mattered.</p>
+    <p>The Gaiia integration is the clearest example. Reading Tyler's PDF and catching the <code>premise</code>/<code>thoroughfare</code> separation requirement wasn't a developer task — it was a PM task, because it determined the spec the developer would build against. Getting that wrong would have meant a silent failure in production that looked like a working feature until a customer noticed their address wasn't being passed correctly. The technical background meant I could read the document, understand the implication, and write the spec precisely — without a back-and-forth between Tyler, the developer, and me to decode it.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="cs-footer">
+    <div class="fb"><strong>~/</strong>aakash · Aakash Dhar · Technical Project Manager</div>
+    <div class="fl">
+      <a href="mailto:hello@aakashdhar.me">hello@aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://aakashdhar.me">aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/aakashdhar">LinkedIn</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

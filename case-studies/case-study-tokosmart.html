@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TokoSmart — Case Study · Aakash Dhar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Light palette — exact site tokens */
+    --cream:       #F5F2EC;
+    --cream-dark:  #EDE9E0;
+    --amber:       #C9620A;
+    --amber-light: #FDF0E6;
+    --amber-mid:   rgba(201,98,10,0.18);
+    --ink:         #1A1A1A;
+    --ink-mid:     #3D3D3D;
+    --ink-light:   #6B6B6B;
+    --ink-faint:   #9A9A9A;
+    --border:      rgba(26,26,26,0.10);
+    --border-mid:  rgba(26,26,26,0.16);
+    --green:       #1A7A40;
+    --green-light: #EBF7EF;
+    --red:         #B91C1C;
+    --red-light:   #FEF2F2;
+    --blue:        #1D4ED8;
+    --blue-light:  #EFF6FF;
+    --display:     'Bricolage Grotesque', sans-serif;
+    --serif:       'Instrument Serif', serif;
+    --mono:        'JetBrains Mono', monospace;
+    --body:        'Bricolage Grotesque', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── TOPBAR ─── */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+    background: rgba(245,242,236,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-brand {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink-light);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .topbar-brand strong { color: var(--amber); font-weight: 700; }
+  .topbar-nav { display: flex; gap: 24px; align-items: center; }
+  .topbar-nav a {
+    font-size: 13px;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .topbar-nav a:hover { color: var(--amber); }
+  .topbar-nav .back-link {
+    font-size: 13px;
+    color: var(--amber);
+    font-weight: 500;
+  }
+
+  /* ─── LAYOUT ─── */
+  .page-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 96px 32px 100px;
+  }
+
+  /* ─── EYEBROW ─── */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow-tag {
+    display: inline-block;
+    background: var(--amber-light);
+    border: 1px solid var(--amber-mid);
+    border-radius: 3px;
+    padding: 2px 7px;
+    font-size: 10px;
+  }
+
+  /* ─── HERO ─── */
+  .hero { padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+  .hero-title {
+    font-family: var(--display);
+    font-size: clamp(34px, 5.5vw, 54px);
+    font-weight: 600;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--ink-light);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px 24px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 3px; }
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .meta-val { font-size: 13px; color: var(--ink-mid); font-weight: 500; }
+
+  /* ─── STAT STRIP ─── */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border-mid);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 56px;
+    background: var(--cream-dark);
+  }
+  .stat-cell {
+    padding: 22px 18px;
+    border-right: 1px solid var(--border);
+    background: #fff;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .stat-num .unit { font-size: 15px; color: var(--amber); font-weight: 400; }
+  .stat-desc { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
+
+  /* ─── SECTION ─── */
+  section { margin-bottom: 52px; scroll-margin-top: 72px; }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+  h2 {
+    font-family: var(--display);
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  p { color: var(--ink-light); margin-bottom: 14px; line-height: 1.75; }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: var(--ink); font-weight: 500; }
+
+  /* ─── RULE DIVIDER ─── */
+  .rule { height: 1px; background: var(--border); margin: 44px 0; }
+
+  /* ─── TIMELINE ─── */
+  .tl-wrap {
+    border: 1px solid var(--border-mid);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    margin: 28px 0;
+  }
+  .tl-header {
+    padding: 12px 18px;
+    background: var(--cream-dark);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tl-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .tl-body { padding: 24px 20px; overflow-x: auto; }
+
+  /* ─── CALLOUT ─── */
+  .callout {
+    border-left: 3px solid var(--amber);
+    background: var(--amber-light);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 18px;
+    margin: 22px 0;
+  }
+  .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+  .callout-red { border-left-color: var(--red); background: var(--red-light); }
+  .callout-red .callout-label { color: var(--red); }
+  .callout-green { border-left-color: var(--green); background: var(--green-light); }
+  .callout-green .callout-label { color: var(--green); }
+
+  /* ─── TWO-COL GRID ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 22px 0; }
+  .grid-card {
+    background: #fff;
+    border: 1px solid var(--border-mid);
+    border-radius: 7px;
+    padding: 16px;
+  }
+  .grid-card .gc-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 7px;
+  }
+  .grid-card h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .grid-card p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
+
+  /* ─── OUTCOME LIST ─── */
+  .outcome-list { margin: 4px 0; }
+  .outcome-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .outcome-row:last-child { border-bottom: none; }
+  .outcome-check {
+    flex-shrink: 0;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--green-light);
+    border: 1px solid rgba(26,122,64,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    color: var(--green);
+    margin-top: 2px;
+  }
+  .outcome-text h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .outcome-text p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* ─── TAGS ─── */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    color: var(--blue);
+    background: var(--blue-light);
+    border: 1px solid rgba(29,78,216,0.15);
+  }
+
+  /* ─── ROLE PILLS ─── */
+  .role-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0; }
+  .role-pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 4px 9px;
+    border-radius: 3px;
+    border: 1px solid var(--border-mid);
+    color: var(--ink-light);
+  }
+  .role-pill.hl {
+    color: var(--amber);
+    background: var(--amber-light);
+    border-color: var(--amber-mid);
+  }
+
+  /* ─── FOOTER ─── */
+  .cs-footer {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-brand {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-light);
+  }
+  .footer-brand strong { color: var(--amber); font-weight: 700; }
+  .footer-links { font-size: 12px; color: var(--ink-faint); }
+  .footer-links a { color: var(--amber); text-decoration: none; }
+  .footer-links a:hover { text-decoration: underline; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .page-wrap { padding: 80px 20px 80px; }
+    .stat-strip { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .topbar { padding: 0 20px; }
+    .hero-title { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="topbar-brand" href="https://aakashdhar.me"><strong>~/</strong>aakash</a>
+  <div class="topbar-nav">
+    <a href="https://aakashdhar.me/#pm-work">PM Work</a>
+    <a href="https://aakashdhar.me" class="back-link">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">
+      <span class="eyebrow-tag">Case Study</span>
+      World Bank Group · 2025
+    </p>
+    <h1 class="hero-title">TokoSmart —<br>delivered in <em>4 weeks.</em><br>No exceptions.</h1>
+    <p class="hero-sub">A World Bank-commissioned research app for Indonesian warung owners. Fixed institutional deadline. A compliance gap discovered mid-sprint. A distribution channel blocked with 400 participants waiting. Shipped on time anyway.</p>
+
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Client</span>
+        <span class="meta-val">Xopolis / World Bank Group</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">My role</span>
+        <span class="meta-val">Sole Technical PM</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Delivery window</span>
+        <span class="meta-val">4 weeks — fixed</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Team</span>
+        <span class="meta-val">4–6 across dev and QA</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Platform</span>
+        <span class="meta-val">Android · Azure · React Native</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Status</span>
+        <span class="meta-val" style="color:var(--green)">✓ Delivered</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <div class="stat-num">4<span class="unit">wk</span></div>
+      <div class="stat-desc">Fixed institutional deadline — no extension possible</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">~400</div>
+      <div class="stat-desc">Research participants onboarded via Firebase</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">0</div>
+      <div class="stat-desc">Milestone slips across all four sprint weeks</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">3<span class="unit">+</span></div>
+      <div class="stat-desc">Compliance frameworks navigated simultaneously</div>
+    </div>
+  </div>
+
+  <!-- 01 CONTEXT -->
+  <section id="context">
+    <p class="section-num">01 / Context</p>
+    <h2>What TokoSmart was.</h2>
+    <p>TokoSmart is a <strong>research-grade Android application</strong> commissioned by the World Bank Group to study digital financial literacy among <em>warung</em> operators — Indonesia's informal small-shop economy. The app gave participants tools to manage inventory, run sales, and interact with an AI assistant, while the backend captured behavioural data for the WBG research team.</p>
+    <p>It was not a typical product build. Three organisations were involved — Xopolis as operator, Ipsos Indonesia as the in-country field and participant management partner, and the World Bank Group as data owner and research sponsor. Three compliance frameworks applied simultaneously: the WBG Data Protection Annex, Indonesian Personal Data Protection Law (UU PDP), and an IRB-approved participant consent protocol.</p>
+    <p>I was the sole Technical Project Manager — responsible for the full delivery cycle from sprint planning through to the Ipsos handover session.</p>
+
+    <div class="tag-row">
+      <span class="tag">React Native (Android)</span>
+      <span class="tag">Azure App Service</span>
+      <span class="tag">Azure Postgres</span>
+      <span class="tag">Firebase App Distribution</span>
+      <span class="tag">Twilio</span>
+      <span class="tag">ElevenLabs TTS</span>
+      <span class="tag">Realm (offline DB)</span>
+      <span class="tag">OpenAI LLM</span>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 02 ROLE -->
+  <section id="role">
+    <p class="section-num">02 / My role</p>
+    <h2>What I owned.</h2>
+    <p>I was the only PM on the project. There was no escalation path above me for day-to-day delivery. Decisions landed with me and moved forward from there.</p>
+
+    <div class="role-row">
+      <span class="role-pill hl">Sprint planning &amp; ceremonies</span>
+      <span class="role-pill hl">Stakeholder comms — Xopolis, Ipsos, WBG</span>
+      <span class="role-pill hl">Compliance risk identification</span>
+      <span class="role-pill hl">Distribution strategy pivot</span>
+      <span class="role-pill">Architecture review</span>
+      <span class="role-pill">Consent flow specification</span>
+      <span class="role-pill">Jira backlog management</span>
+      <span class="role-pill">Demo and handover scripting</span>
+      <span class="role-pill">Ipsos onboarding coordination</span>
+    </div>
+
+    <p>The team ran across time zones with the Indonesia-based Ipsos partner. I ran all Agile ceremonies — planning, standups, reviews, retros — and maintained the client relationship throughout the sprint sequence.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 03 CONSTRAINTS -->
+  <section id="constraints">
+    <p class="section-num">03 / Constraints</p>
+    <h2>What made this hard.</h2>
+    <p>The deadline was set by an institutional research protocol, not a commercial contract. It could not move. Everything else — scope, distribution method, compliance posture — had to flex around it.</p>
+
+    <div class="two-col">
+      <div class="grid-card">
+        <p class="gc-label">Constraint</p>
+        <h4>Fixed 4-week deadline</h4>
+        <p>WBG research timeline locked at the institutional level. A slip would have invalidated the baseline study window and affected funding.</p>
+      </div>
+      <div class="grid-card">
+        <p class="gc-label">Constraint</p>
+        <h4>Multi-party compliance</h4>
+        <p>WBG Data Protection Annex, Indonesian UU PDP, and IRB-approved participant consent protocol — all active simultaneously.</p>
+      </div>
+      <div class="grid-card">
+        <p class="gc-label">Constraint</p>
+        <h4>Pseudonymised participant model</h4>
+        <p>Participants were managed by Ipsos via SHELL_CHAINID keys. Zero PII could enter the Xopolis system — consent flow had to enforce this at the app level.</p>
+      </div>
+      <div class="grid-card">
+        <p class="gc-label">Constraint</p>
+        <h4>Low-connectivity field environment</h4>
+        <p>Indonesian warung locations have unreliable connectivity. App required an offline-first architecture with Realm-based local caching before any sync.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 04 TIMELINE -->
+  <section id="timeline">
+    <p class="section-num">04 / Timeline</p>
+    <h2>How we ran the 4 weeks.</h2>
+    <p>I structured delivery as four 1-week sprints with hard scope gates between them. No sprint could overrun without stealing from the next. Two critical events hit mid-sequence — both resolved inside the sprint they appeared in.</p>
+
+    <div class="tl-wrap">
+      <div class="tl-header">
+        <span class="tl-dot" style="background:#C9620A"></span>
+        <span class="tl-dot" style="background:#1D4ED8"></span>
+        <span class="tl-dot" style="background:#1A7A40"></span>
+        Sprint timeline — 4 weeks
+      </div>
+      <div class="tl-body">
+        <svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" width="100%" style="min-width:480px;display:block">
+
+          <!-- track -->
+          <line x1="60" y1="108" x2="620" y2="108" stroke="#EDE9E0" stroke-width="3"/>
+
+          <!-- W1 -->
+          <circle cx="60" cy="108" r="11" fill="#C9620A"/>
+          <text x="60" y="112" text-anchor="middle" fill="#fff" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">W1</text>
+          <rect x="8" y="124" width="104" height="72" rx="5" fill="#fff" stroke="#E0DCD4" stroke-width="1"/>
+          <text x="60" y="141" text-anchor="middle" fill="#C9620A" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">FOUNDATION</text>
+          <text x="60" y="156" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Architecture</text>
+          <text x="60" y="169" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Auth + onboarding</text>
+          <text x="60" y="182" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">SHELL_CHAINID flow</text>
+          <!-- top note W1 -->
+          <line x1="60" y1="97" x2="60" y2="62" stroke="#E0DCD4" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="10" y="36" width="100" height="26" rx="4" fill="#FDF0E6" stroke="#C9620A" stroke-width="1"/>
+          <text x="60" y="50" text-anchor="middle" fill="#C9620A" font-family="JetBrains Mono,monospace" font-size="9">Kickoff + brief</text>
+          <text x="60" y="61" text-anchor="middle" fill="#9A9A9A" font-family="Bricolage Grotesque,sans-serif" font-size="8">Ipsos intro call</text>
+
+          <!-- connector -->
+          <circle cx="180" cy="108" r="4" fill="#EDE9E0"/>
+
+          <!-- W2 -->
+          <circle cx="240" cy="108" r="11" fill="#1D4ED8"/>
+          <text x="240" y="112" text-anchor="middle" fill="#fff" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">W2</text>
+          <rect x="188" y="124" width="104" height="72" rx="5" fill="#fff" stroke="#E0DCD4" stroke-width="1"/>
+          <text x="240" y="141" text-anchor="middle" fill="#1D4ED8" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">CORE BUILD</text>
+          <text x="240" y="156" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">AI Assistant</text>
+          <text x="240" y="169" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Consent flow</text>
+          <text x="240" y="182" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">ERP modules</text>
+          <!-- top note W2: compliance gap -->
+          <line x1="240" y1="97" x2="240" y2="62" stroke="#E0DCD4" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="190" y="36" width="100" height="26" rx="4" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+          <text x="240" y="50" text-anchor="middle" fill="#B91C1C" font-family="JetBrains Mono,monospace" font-size="9">⚠ Data residency</text>
+          <text x="240" y="61" text-anchor="middle" fill="#9A9A9A" font-family="Bricolage Grotesque,sans-serif" font-size="8">Azure EU gap flagged</text>
+
+          <!-- connector -->
+          <circle cx="360" cy="108" r="4" fill="#EDE9E0"/>
+
+          <!-- W3 -->
+          <circle cx="420" cy="108" r="11" fill="#1D4ED8"/>
+          <text x="420" y="112" text-anchor="middle" fill="#fff" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">W3</text>
+          <rect x="368" y="124" width="104" height="72" rx="5" fill="#fff" stroke="#E0DCD4" stroke-width="1"/>
+          <text x="420" y="141" text-anchor="middle" fill="#1D4ED8" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">QA + PIVOT</text>
+          <text x="420" y="156" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Firebase pivot</text>
+          <text x="420" y="169" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Play Console blocked</text>
+          <text x="420" y="182" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">~400 tester invites</text>
+          <!-- top note W3 -->
+          <line x1="420" y1="97" x2="420" y2="62" stroke="#E0DCD4" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="370" y="36" width="100" height="26" rx="4" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1"/>
+          <text x="420" y="50" text-anchor="middle" fill="#1D4ED8" font-family="JetBrains Mono,monospace" font-size="9">Distribution pivot</text>
+          <text x="420" y="61" text-anchor="middle" fill="#9A9A9A" font-family="Bricolage Grotesque,sans-serif" font-size="8">Firebase replaces GPC</text>
+
+          <!-- connector -->
+          <circle cx="540" cy="108" r="4" fill="#EDE9E0"/>
+
+          <!-- W4 -->
+          <circle cx="620" cy="108" r="11" fill="#1A7A40"/>
+          <text x="620" y="112" text-anchor="middle" fill="#fff" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">W4</text>
+          <rect x="568" y="124" width="104" height="72" rx="5" fill="#fff" stroke="#E0DCD4" stroke-width="1"/>
+          <text x="620" y="141" text-anchor="middle" fill="#1A7A40" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">DELIVERED</text>
+          <text x="620" y="156" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Ipsos handover</text>
+          <text x="620" y="169" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Demo + sign-off</text>
+          <text x="620" y="182" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Stage 1 launch</text>
+          <!-- top: on time -->
+          <line x1="620" y1="97" x2="620" y2="62" stroke="#1A7A40" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="570" y="36" width="100" height="26" rx="4" fill="#EBF7EF" stroke="#1A7A40" stroke-width="1"/>
+          <text x="620" y="53" text-anchor="middle" fill="#1A7A40" font-family="JetBrains Mono,monospace" font-size="9">✓ On time</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 05 CHALLENGES -->
+  <section id="challenges">
+    <p class="section-num">05 / Key decisions</p>
+    <h2>The two decisions that mattered.</h2>
+
+    <div class="callout callout-red">
+      <p class="callout-label">Challenge 01 — Compliance gap</p>
+      <p>During architecture review in Week 2, I identified that the Azure deployment was running on <strong>West Europe (Amsterdam)</strong> infrastructure. The WBG Data Protection Annex mandated US, Canada, or UK data residency — a direct contractual violation, discovered mid-sprint with 14 days left.</p>
+    </div>
+
+    <p>This wasn't a technical decision — it was a governance call. I logged it as a formal risk, scoped the remediation path (Azure UK South migration), and made a deliberate choice: <strong>don't surface this to Ipsos on the next call without a remediation plan in place.</strong> Raising an unresolved compliance gap in a live institutional stakeholder session would create panic with no upside. The fix was identified and tracked before the next client touchpoint.</p>
+
+    <div class="callout callout-red" style="margin-top: 20px">
+      <p class="callout-label">Challenge 02 — Distribution blocker</p>
+      <p>Google Play Console closed testing hit a review wall for the research APK. With ~400 Ipsos-enrolled participants waiting for access, the Play Console path was going to break the launch window.</p>
+    </div>
+
+    <p>I pivoted to <strong>Firebase App Distribution</strong> — direct APK delivery to the Ipsos-managed tester list. This required coordinating the invite flow against the SHELL_CHAINID participant IDs held by Ipsos and aligning on a revised onboarding sequence in under 48 hours. All ~400 participants onboarded within the Stage 1 window.</p>
+
+    <div class="callout callout-green">
+      <p class="callout-label">Both resolved without a slip</p>
+      <p>Neither the data residency gap nor the distribution pivot cost a single day of delay. Both were surfaced, owned, and closed inside the sprint they appeared in.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 06 OUTCOMES -->
+  <section id="outcomes">
+    <p class="section-num">06 / Outcomes</p>
+    <h2>What shipped.</h2>
+
+    <div class="outcome-list">
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>4-week WBG deadline met — zero slips</h4>
+          <p>Every sprint gate hit on time. The institutional research window opened as planned.</p>
+        </div>
+      </div>
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>~400 participants onboarded at Stage 1 launch</h4>
+          <p>Firebase pivot executed in under 48 hours, maintaining the Ipsos participant onboarding schedule.</p>
+        </div>
+      </div>
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>Full IRB-compliant consent flow delivered</h4>
+          <p>SHELL_CHAINID entry, scroll-lock consent, agree/decline paths, 10-second countdown on decline — all built and tested to specification.</p>
+        </div>
+      </div>
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>Data residency gap identified and escalated before breach</h4>
+          <p>Azure West Europe gap flagged, UK South migration scoped, and risk communicated before any contractual exposure.</p>
+        </div>
+      </div>
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>Clean Ipsos handover with full demo script</h4>
+          <p>End-to-end demo script produced for the Ipsos Indonesia field team, covering all 13 app modules and the consent flow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 07 REFLECTION -->
+  <section id="reflection">
+    <p class="section-num">07 / Reflection</p>
+    <h2>What this actually required.</h2>
+    <p>What made this engagement different was that there was <strong>no slack in the system</strong>. In most projects, a 4-week deadline means 5 weeks with pressure. Here it meant 4 weeks — because a World Bank institutional partner was on the other end of the research protocol.</p>
+    <p>The compliance and distribution challenges weren't escalated upward. They were owned, evaluated, and resolved — because on this project, there was no upward to escalate to. That's the actual job of a Technical Project Manager: not managing a process, but <strong>making the calls the process can't make for itself.</strong></p>
+    <p>The engineering background mattered here. Identifying the Azure data residency gap required reading an architecture one-pager and knowing what a WBG Data Protection Annex requires in practice. The Firebase pivot worked because I understood what moving 400 SHELL_CHAINID-keyed participant invites through a new distribution channel actually involved — and could spec it in under a day.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="cs-footer">
+    <div class="footer-brand"><strong>~/</strong>aakash · Aakash Dhar · Technical Project Manager</div>
+    <div class="footer-links">
+      <a href="mailto:hello@aakashdhar.me">hello@aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://aakashdhar.me">aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/aakashdhar">LinkedIn</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM–Dev Closed Loop — Case Study · Aakash Dhar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:       #F5F2EC;
+    --cream-dark:  #EDE9E0;
+    --amber:       #C9620A;
+    --amber-light: #FDF0E6;
+    --amber-mid:   rgba(201,98,10,0.18);
+    --ink:         #1A1A1A;
+    --ink-mid:     #3D3D3D;
+    --ink-light:   #6B6B6B;
+    --ink-faint:   #9A9A9A;
+    --border:      rgba(26,26,26,0.10);
+    --border-mid:  rgba(26,26,26,0.16);
+    --green:       #1A7A40;
+    --green-light: #EBF7EF;
+    --green-mid:   rgba(26,122,64,0.18);
+    --blue:        #1D4ED8;
+    --blue-light:  #EFF6FF;
+    --blue-mid:    rgba(29,78,216,0.15);
+    --purple:      #6D28D9;
+    --purple-light: #F5F3FF;
+    --purple-mid:  rgba(109,40,217,0.15);
+    --display:     'Bricolage Grotesque', sans-serif;
+    --serif:       'Instrument Serif', serif;
+    --mono:        'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── TOPBAR ─── */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+    background: rgba(245,242,236,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-brand { font-family: var(--mono); font-size: 14px; color: var(--ink); text-decoration: none; font-weight: 400; }
+  .topbar-brand strong { color: var(--amber); font-weight: 700; }
+  .topbar-nav { display: flex; gap: 24px; align-items: center; }
+  .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
+  .topbar-nav a:hover { color: var(--amber); }
+  .topbar-nav .back-link { color: var(--amber); font-weight: 500; }
+
+  /* ─── LAYOUT ─── */
+  .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
+
+  /* ─── EYEBROW ─── */
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow-tag {
+    display: inline-block; background: var(--amber-light);
+    border: 1px solid var(--amber-mid); border-radius: 3px; padding: 2px 7px; font-size: 10px;
+  }
+
+  /* ─── HERO ─── */
+  .hero { padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+  .hero-title {
+    font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600;
+    line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px;
+  }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
+  .hero-meta {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px 24px; padding-top: 28px; border-top: 1px solid var(--border);
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 3px; }
+  .meta-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
+  .meta-val { font-size: 13px; color: var(--ink-mid); font-weight: 500; }
+
+  /* ─── STATS ─── */
+  .stat-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; margin-bottom: 56px;
+  }
+  .stat-cell { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-family: var(--display); font-size: 30px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
+  .stat-num .unit { font-size: 15px; color: var(--amber); font-weight: 400; }
+  .stat-desc { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
+
+  /* ─── SECTION ─── */
+  section { margin-bottom: 52px; scroll-margin-top: 72px; }
+  .section-num { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 6px; letter-spacing: 0.05em; }
+  h2 { font-family: var(--display); font-size: 21px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 14px; }
+  p { color: var(--ink-light); margin-bottom: 14px; line-height: 1.75; }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: var(--ink); font-weight: 500; }
+  code { font-family: var(--mono); font-size: 12px; background: var(--cream-dark); padding: 1px 5px; border-radius: 3px; color: var(--amber); }
+
+  /* ─── RULE ─── */
+  .rule { height: 1px; background: var(--border); margin: 44px 0; }
+
+  /* ─── CALLOUT ─── */
+  .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 22px 0; }
+  .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
+  .callout-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .callout-purple { border-left-color: var(--purple); background: var(--purple-light); }
+  .callout-purple .callout-label { color: var(--purple); }
+
+  /* ─── THREE-COL LAYER GRID ─── */
+  .layer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 22px 0; }
+  .layer-card { border-radius: 7px; padding: 16px; border: 1px solid; }
+  .lc-pm { background: var(--amber-light); border-color: var(--amber-mid); }
+  .lc-bridge { background: var(--green-light); border-color: var(--green-mid); }
+  .lc-dev { background: var(--blue-light); border-color: var(--blue-mid); }
+  .lc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 8px; }
+  .lc-pm .lc-label { color: var(--amber); }
+  .lc-bridge .lc-label { color: var(--green); }
+  .lc-dev .lc-label { color: var(--blue); }
+  .layer-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .layer-card p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* ─── TWO-COL PROBLEM GRID ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 22px 0; }
+  .grid-card { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
+  .grid-card .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
+  .grid-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .grid-card p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
+
+  /* ─── SKILL ROWS ─── */
+  .skill-list { margin: 18px 0; }
+  .skill-row { display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .sb-pm { color: var(--amber); background: var(--amber-light); border: 1px solid var(--amber-mid); }
+  .sb-dev { color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
+  .sb-tpm { color: var(--purple); background: var(--purple-light); border: 1px solid var(--purple-mid); }
+  .skill-info h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .skill-info p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* ─── LOOP DIAGRAM WRAP ─── */
+  .loop-wrap { border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; background: #fff; margin: 28px 0; }
+  .loop-header {
+    padding: 12px 18px; background: var(--cream-dark); border-bottom: 1px solid var(--border);
+    font-family: var(--mono); font-size: 10px; color: var(--ink-faint);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .loop-legend { display: flex; gap: 14px; }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--ink-faint); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+  .loop-body { padding: 24px 20px; overflow-x: auto; }
+
+  /* ─── CODE BLOCK ─── */
+  .code-block {
+    background: var(--cream-dark); border: 1px solid var(--border-mid); border-radius: 7px;
+    padding: 16px 18px; margin: 18px 0; font-family: var(--mono); font-size: 12px;
+    color: var(--ink-light); overflow-x: auto; line-height: 1.9;
+  }
+  .code-block .c-amber { color: var(--amber); }
+  .code-block .c-blue { color: var(--blue); }
+  .code-block .c-green { color: var(--green); }
+  .code-block .c-dim { color: var(--ink-faint); }
+
+  /* ─── OUTCOME LIST ─── */
+  .outcome-list { margin: 4px 0; }
+  .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .outcome-row:last-child { border-bottom: none; }
+  .outcome-check { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid rgba(26,122,64,0.25); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
+  .outcome-text h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .outcome-text p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
+
+  /* ─── FOOTER ─── */
+  .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-brand { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
+  .footer-brand strong { color: var(--amber); font-weight: 700; }
+  .footer-links { font-size: 12px; color: var(--ink-faint); }
+  .footer-links a { color: var(--amber); text-decoration: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .page-wrap { padding: 80px 20px 80px; }
+    .stat-strip { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .layer-grid { grid-template-columns: 1fr; }
+    .topbar { padding: 0 20px; }
+    .hero-title { font-size: 30px; }
+    .loop-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="topbar-brand" href="https://aakashdhar.me"><strong>~/</strong>aakash</a>
+  <div class="topbar-nav">
+    <a href="https://aakashdhar.me/#ai-systems">AI Systems</a>
+    <a href="https://aakashdhar.me" class="back-link">← Portfolio</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">
+      <span class="eyebrow-tag">Case Study</span>
+      BetaCraft Internal · 2025–2026
+    </p>
+    <h1 class="hero-title">The PM–Dev<br><em>Closed Loop</em> —<br>one pipeline,<br>zero translation loss.</h1>
+    <p class="hero-sub">I designed and built BetaCraft's end-to-end AI-native delivery system: a 28-skill pipeline where a client email enters one end and a tested, reviewed, client-ready delivery exits the other — without the PM ever seeing code, or the developer ever seeing a client message.</p>
+
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Context</span>
+        <span class="meta-val">BetaCraft · Internal system</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Built by</span>
+        <span class="meta-val">Aakash Dhar (sole designer)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Running on</span>
+        <span class="meta-val">3+ live client projects</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Stack</span>
+        <span class="meta-val">Claude Code · MCP · Markdown</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Integrations</span>
+        <span class="meta-val">Gmail MCP · Fathom MCP</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Status</span>
+        <span class="meta-val" style="color:var(--green)">✓ In production</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <div class="stat-num">28<span class="unit">+</span></div>
+      <div class="stat-desc">AI skills covering the full delivery lifecycle</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">3<span class="unit">+</span></div>
+      <div class="stat-desc">Live client projects running on the system today</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">2</div>
+      <div class="stat-desc">Orchestrator agents — BAM (PM) and TPM (dev)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">0</div>
+      <div class="stat-desc">Manual translation steps between PM and engineering</div>
+    </div>
+  </div>
+
+  <!-- 01 PROBLEM -->
+  <section id="problem">
+    <p class="section-num">01 / The problem</p>
+    <h2>Why this needed to exist.</h2>
+    <p>Most software agencies run two communication layers that don't talk to each other well: the <strong>client layer</strong> — requirements, emails, calls, approvals — and the <strong>engineering layer</strong> — specs, tickets, code, reviews. The gap between them is where projects go wrong. Scope gets lost in translation. Decisions don't get logged. Estimates don't match client expectations. PM overhead compounds with every new engagement.</p>
+    <p>At BetaCraft, running 3–5 concurrent client engagements, I was that translation layer. Manual, expensive, and a single point of failure. I built a system to replace the manual parts without losing the judgment.</p>
+
+    <div class="two-col">
+      <div class="grid-card">
+        <p class="gc-label">Pain point</p>
+        <h4>Scope drift between calls and code</h4>
+        <p>Client decisions made on a Monday call wouldn't reliably reach the engineer writing code on Wednesday. No formal decision log. No structured handoff.</p>
+      </div>
+      <div class="grid-card">
+        <p class="gc-label">Pain point</p>
+        <h4>PM overhead scaling with project count</h4>
+        <p>Every new engagement added email triage, call digestion, SOW drafting, sprint planning — all done manually, in parallel.</p>
+      </div>
+      <div class="grid-card">
+        <p class="gc-label">Pain point</p>
+        <h4>Engineers pulled into client comms</h4>
+        <p>Developers occasionally dragged into client conversations that should have stayed in the PM layer — losing build focus and creating communication risk.</p>
+      </div>
+      <div class="grid-card">
+        <p class="gc-label">Pain point</p>
+        <h4>No consistent delivery gate</h4>
+        <p>Features shipping without a structured review and sign-off process. Quality was person-dependent, not system-dependent.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 02 ARCHITECTURE -->
+  <section id="architecture">
+    <p class="section-num">02 / Architecture</p>
+    <h2>Three layers, one loop.</h2>
+    <p>The system separates concerns into three layers that communicate through a single defined interface — the bridge. No layer reaches past the bridge into the other's domain.</p>
+
+    <div class="layer-grid">
+      <div class="layer-card lc-pm">
+        <p class="lc-label">Layer 1 — PM</p>
+        <h4>BAM Orchestrator</h4>
+        <p>Business Administrative Manager. Ingests client comms, logs decisions, generates requirements, drafts client-facing updates. Never sees code.</p>
+      </div>
+      <div class="layer-card lc-bridge">
+        <p class="lc-label">Layer 2 — Bridge</p>
+        <h4>Neutral exchange</h4>
+        <p>A versioned shared folder. BAM writes REQUIREMENT-NNN.md. TPM reads it, builds, writes DELIVERY-UPDATE-NNN.md. BAM reads that back. No direct coupling.</p>
+      </div>
+      <div class="layer-card lc-dev">
+        <p class="lc-label">Layer 3 — Dev</p>
+        <h4>TPM + vibe-* Agent</h4>
+        <p>Technical PM agent translates requirements into specs the vibe-* dev skill system can execute. Dev never reads client emails.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-purple">
+      <p class="callout-label">Design principle</p>
+      <p>The bridge folder is the contract between two teams — or two agents. Today one person runs both layers. When BetaCraft grows, a dedicated PM runs BAM and a TPM runs vibe-*. The bridge protocol doesn't change.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 03 PM LAYER -->
+  <section id="pm-layer">
+    <p class="section-num">03 / PM layer — 21 skills</p>
+    <h2>What the BAM agent does.</h2>
+    <p>The PM layer is the <strong>betacraft-pm-standard</strong> — a client-agnostic operating system for the full client relationship. It runs on Claude Code with Gmail and Fathom MCP integrations for live email and call transcript ingestion.</p>
+
+    <div class="skill-list">
+      <div class="skill-row">
+        <span class="skill-badge sb-pm">ingest-email</span>
+        <div class="skill-info">
+          <h4>Email ingestion and decision extraction</h4>
+          <p>Reads a raw client email, archives it with a numbered convention, extracts decisions as proposals, flags status discrepancies against current project state.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-pm">process-transcript</span>
+        <div class="skill-info">
+          <h4>Call transcript → meeting notes + action items</h4>
+          <p>Takes a Fathom transcript, produces verbatim record and synthesised summary, extracts decisions and action items, routes conflicts to review log.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-pm">propose-decision</span>
+        <div class="skill-info">
+          <h4>Governance gate — DEC-NNN logging</h4>
+          <p>Every requirement entering the bridge must have a logged decision behind it. This gate blocks generate-brief until DEC-NNN is locked and dated.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-pm">generate-brief</span>
+        <div class="skill-info">
+          <h4>Client requirement → REQUIREMENT-NNN.md</h4>
+          <p>Translates a locked decision into a structured requirement document written for the TPM agent — the handoff point into the bridge.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-pm">draft-client-reply</span>
+        <div class="skill-info">
+          <h4>Delivery update → client email</h4>
+          <p>Reads DELIVERY-UPDATE-NNN.md from the bridge and produces a client-facing email in the right house style, grounded in what actually shipped.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-pm">status-report</span>
+        <div class="skill-info">
+          <h4>RAG status for management and clients</h4>
+          <p>Generates a RAG-coded status report: overall health, decisions since last report, open risks, next milestones. Read-only — no files modified.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 04 BRIDGE -->
+  <section id="bridge">
+    <p class="section-num">04 / The bridge</p>
+    <h2>How information moves between layers.</h2>
+    <p>The bridge is a versioned folder — <code>[client]-bridge/</code> — sitting between the PM and dev repositories. Two file types. One rule.</p>
+
+    <div class="code-block">
+<span class="c-dim"># Bridge structure</span>
+[client]-bridge/
+  ├── <span class="c-amber">REQUIREMENT-001.md</span>   <span class="c-dim"># BAM writes  →  TPM reads</span>
+  ├── <span class="c-blue">DELIVERY-UPDATE-001.md</span> <span class="c-dim"># TPM writes  →  BAM reads</span>
+  ├── <span class="c-amber">REQUIREMENT-002.md</span>
+  ├── <span class="c-blue">DELIVERY-UPDATE-002.md</span>
+  └── README.md             <span class="c-dim"># Bridge protocol and naming</span>
+
+<span class="c-dim"># The rule</span>
+<span class="c-green">BAM cannot read TPM's source code.</span>
+<span class="c-green">TPM cannot read client emails.</span>
+<span class="c-green">The bridge is the only shared surface.</span>
+    </div>
+
+    <p>A REQUIREMENT-NNN.md contains: the decision number it implements, the feature or change in plain language, acceptance criteria the vibe-* system can consume directly, compliance or dependency constraints, and a priority call. The TPM agent picks it up and never needs to ask what the client actually wants — it's already been translated.</p>
+    <p>A DELIVERY-UPDATE-NNN.md contains: what shipped, explicit out-of-scope items, known issues, and a one-paragraph client-facing summary the BAM agent can paste directly into an email. No re-interpretation in either direction.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 05 DEV LAYER -->
+  <section id="dev-layer">
+    <p class="section-num">05 / Dev layer — vibe-* system</p>
+    <h2>What the TPM + vibe-* agent does.</h2>
+    <p>The development layer is the <strong>vibe-* framework</strong> — structured AI development skills covering the complete build lifecycle. The TPM agent translates bridge documents into vibe-* inputs so developers skip brainstorming and go straight to building.</p>
+
+    <div class="skill-list">
+      <div class="skill-row">
+        <span class="skill-badge sb-tpm">tpm-translate</span>
+        <div class="skill-info">
+          <h4>REQUIREMENT-NNN → FEATURE_SPEC.md</h4>
+          <p>TPM agent reads the bridge requirement and produces the exact spec format vibe-add-feature expects — pre-filled with context, criteria, and constraints.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-dev">vibe-add-feature</span>
+        <div class="skill-info">
+          <h4>Spec-driven feature build</h4>
+          <p>Full workflow: spec → tasks → build → gate. Creates FEATURE_SPEC.md, FEATURE_PLAN.md, and FEATURE_TASKS.md before any code runs. Every feature has a defined blast radius.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-dev">vibe-review</span>
+        <div class="skill-info">
+          <h4>Mandatory quality gate</h4>
+          <p>Runs after every phase. Acts as senior engineer + architect + code quality auditor. P0 issues block the next phase. No feature ships without a passing review.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-dev">vibe-test</span>
+        <div class="skill-info">
+          <h4>Blast-radius-aware test coverage</h4>
+          <p>Traces every file a change touches, maps the full dependency graph, writes component + integration + E2E tests. Runs automatically after every feature.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-dev">vibe-fix-bug</span>
+        <div class="skill-info">
+          <h4>Structured bug resolution</h4>
+          <p>Severity triage first. Significant bugs get BUG_SPEC.md, BUG_PLAN.md, regression test before fix code. Trivial bugs get a 3-task fast path.</p>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-badge sb-tpm">tpm-handoff</span>
+        <div class="skill-info">
+          <h4>Delivery → DELIVERY-UPDATE-NNN.md</h4>
+          <p>After vibe-review passes, TPM agent writes the bridge delivery update. BAM picks it up and generates the client email. Loop closes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 06 FULL LOOP -->
+  <section id="loop">
+    <p class="section-num">06 / The full loop</p>
+    <h2>End to end.</h2>
+    <p>From the moment a client sends an email to the moment they receive a delivery confirmation, every step is handled by the system — with human judgment applied at the right checkpoints.</p>
+
+    <div class="loop-wrap">
+      <div class="loop-header">
+        <span>Full delivery loop — PM ↔ Bridge ↔ Dev</span>
+        <div class="loop-legend">
+          <div class="leg"><div class="leg-dot" style="background:#C9620A"></div>PM layer</div>
+          <div class="leg"><div class="leg-dot" style="background:#1A7A40"></div>Bridge</div>
+          <div class="leg"><div class="leg-dot" style="background:#1D4ED8"></div>Dev layer</div>
+          <div class="leg"><div class="leg-dot" style="background:#6D28D9"></div>Human gate</div>
+        </div>
+      </div>
+      <div class="loop-body">
+        <svg viewBox="0 0 660 530" xmlns="http://www.w3.org/2000/svg" width="100%" style="min-width:500px;display:block">
+
+          <!-- Column headers -->
+          <rect x="10" y="8" width="180" height="26" rx="4" fill="#FDF0E6"/>
+          <text x="100" y="25" text-anchor="middle" fill="#C9620A" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500">PM LAYER (BAM)</text>
+
+          <rect x="240" y="8" width="180" height="26" rx="4" fill="#EBF7EF"/>
+          <text x="330" y="25" text-anchor="middle" fill="#1A7A40" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500">BRIDGE</text>
+
+          <rect x="470" y="8" width="180" height="26" rx="4" fill="#EFF6FF"/>
+          <text x="560" y="25" text-anchor="middle" fill="#1D4ED8" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500">DEV LAYER (TPM)</text>
+
+          <!-- Column separators -->
+          <line x1="230" y1="42" x2="230" y2="516" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="460" y1="42" x2="460" y2="516" stroke="#EDE9E0" stroke-width="1"/>
+
+          <!-- Step 1: ingest-email -->
+          <rect x="20" y="50" width="160" height="44" rx="5" fill="#fff" stroke="rgba(201,98,10,0.35)" stroke-width="1"/>
+          <text x="100" y="68" text-anchor="middle" fill="#C9620A" font-family="JetBrains Mono,monospace" font-size="9">ingest-email</text>
+          <text x="100" y="84" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Client email → archived</text>
+          <!-- arrow down -->
+          <line x1="100" y1="94" x2="100" y2="110" stroke="#E0DCD4" stroke-width="1.5"/>
+          <polygon points="95,106 105,106 100,112" fill="#E0DCD4"/>
+
+          <!-- Step 2: propose-decision -->
+          <rect x="20" y="112" width="160" height="44" rx="5" fill="#fff" stroke="rgba(109,40,217,0.3)" stroke-width="1"/>
+          <text x="100" y="130" text-anchor="middle" fill="#6D28D9" font-family="JetBrains Mono,monospace" font-size="9">propose-decision ✋</text>
+          <text x="100" y="146" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">DEC-NNN locked — human gate</text>
+          <!-- arrow down -->
+          <line x1="100" y1="156" x2="100" y2="172" stroke="#E0DCD4" stroke-width="1.5"/>
+          <polygon points="95,168 105,168 100,174" fill="#E0DCD4"/>
+
+          <!-- Step 3: generate-brief -->
+          <rect x="20" y="174" width="160" height="44" rx="5" fill="#fff" stroke="rgba(201,98,10,0.35)" stroke-width="1"/>
+          <text x="100" y="192" text-anchor="middle" fill="#C9620A" font-family="JetBrains Mono,monospace" font-size="9">generate-brief</text>
+          <text x="100" y="208" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Requirement translated</text>
+          <!-- arrow RIGHT to bridge -->
+          <line x1="180" y1="196" x2="246" y2="196" stroke="#1A7A40" stroke-width="1.5"/>
+          <polygon points="242,191 252,196 242,201" fill="#1A7A40"/>
+
+          <!-- Bridge: REQUIREMENT -->
+          <rect x="256" y="174" width="148" height="44" rx="5" fill="#EBF7EF" stroke="rgba(26,122,64,0.3)" stroke-width="1"/>
+          <text x="330" y="192" text-anchor="middle" fill="#1A7A40" font-family="JetBrains Mono,monospace" font-size="9">REQUIREMENT-NNN.md</text>
+          <text x="330" y="208" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Spec + acceptance criteria</text>
+          <!-- arrow RIGHT to dev -->
+          <line x1="404" y1="196" x2="470" y2="196" stroke="#1D4ED8" stroke-width="1.5"/>
+          <polygon points="466,191 476,196 466,201" fill="#1D4ED8"/>
+
+          <!-- Step 4: tpm-translate -->
+          <rect x="480" y="174" width="160" height="44" rx="5" fill="#fff" stroke="rgba(29,78,216,0.3)" stroke-width="1"/>
+          <text x="560" y="192" text-anchor="middle" fill="#1D4ED8" font-family="JetBrains Mono,monospace" font-size="9">tpm-translate</text>
+          <text x="560" y="208" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">→ FEATURE_SPEC.md</text>
+          <!-- arrow down -->
+          <line x1="560" y1="218" x2="560" y2="234" stroke="#E0DCD4" stroke-width="1.5"/>
+          <polygon points="555,230 565,230 560,236" fill="#E0DCD4"/>
+
+          <!-- Step 5: vibe-add-feature -->
+          <rect x="480" y="236" width="160" height="44" rx="5" fill="#fff" stroke="rgba(29,78,216,0.3)" stroke-width="1"/>
+          <text x="560" y="254" text-anchor="middle" fill="#1D4ED8" font-family="JetBrains Mono,monospace" font-size="9">vibe-add-feature</text>
+          <text x="560" y="270" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Build executes</text>
+          <!-- arrow down -->
+          <line x1="560" y1="280" x2="560" y2="296" stroke="#E0DCD4" stroke-width="1.5"/>
+          <polygon points="555,292 565,292 560,298" fill="#E0DCD4"/>
+
+          <!-- Step 6: vibe-review -->
+          <rect x="480" y="298" width="160" height="44" rx="5" fill="#fff" stroke="rgba(109,40,217,0.3)" stroke-width="1"/>
+          <text x="560" y="316" text-anchor="middle" fill="#6D28D9" font-family="JetBrains Mono,monospace" font-size="9">vibe-review ✋</text>
+          <text x="560" y="332" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">P0 blocks — human gate</text>
+          <!-- arrow down -->
+          <line x1="560" y1="342" x2="560" y2="358" stroke="#E0DCD4" stroke-width="1.5"/>
+          <polygon points="555,354 565,354 560,360" fill="#E0DCD4"/>
+
+          <!-- Step 7: tpm-handoff -->
+          <rect x="480" y="360" width="160" height="44" rx="5" fill="#fff" stroke="rgba(29,78,216,0.3)" stroke-width="1"/>
+          <text x="560" y="378" text-anchor="middle" fill="#1D4ED8" font-family="JetBrains Mono,monospace" font-size="9">tpm-handoff</text>
+          <text x="560" y="394" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Writes delivery update</text>
+          <!-- arrow LEFT to bridge -->
+          <line x1="480" y1="382" x2="414" y2="382" stroke="#1A7A40" stroke-width="1.5"/>
+          <polygon points="418,377 408,382 418,387" fill="#1A7A40"/>
+
+          <!-- Bridge: DELIVERY -->
+          <rect x="256" y="360" width="148" height="44" rx="5" fill="#EBF7EF" stroke="rgba(26,122,64,0.3)" stroke-width="1"/>
+          <text x="330" y="378" text-anchor="middle" fill="#1A7A40" font-family="JetBrains Mono,monospace" font-size="9">DELIVERY-UPDATE-NNN.md</text>
+          <text x="330" y="394" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">What shipped + summary</text>
+          <!-- arrow LEFT to PM -->
+          <line x1="256" y1="382" x2="190" y2="382" stroke="#C9620A" stroke-width="1.5"/>
+          <polygon points="194,377 184,382 194,387" fill="#C9620A"/>
+
+          <!-- Step 8: draft-client-reply -->
+          <rect x="20" y="360" width="160" height="44" rx="5" fill="#fff" stroke="rgba(201,98,10,0.35)" stroke-width="1"/>
+          <text x="100" y="378" text-anchor="middle" fill="#C9620A" font-family="JetBrains Mono,monospace" font-size="9">draft-client-reply</text>
+          <text x="100" y="394" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Email drafted for PM</text>
+          <!-- arrow down -->
+          <line x1="100" y1="404" x2="100" y2="420" stroke="#E0DCD4" stroke-width="1.5"/>
+          <polygon points="95,416 105,416 100,422" fill="#E0DCD4"/>
+
+          <!-- Step 9: sends -->
+          <rect x="20" y="422" width="160" height="44" rx="5" fill="#fff" stroke="rgba(109,40,217,0.3)" stroke-width="1"/>
+          <text x="100" y="440" text-anchor="middle" fill="#6D28D9" font-family="JetBrains Mono,monospace" font-size="9">PM sends ✋ · Loop closes</text>
+          <text x="100" y="456" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Client receives delivery</text>
+
+          <!-- Loop return dashed line -->
+          <path d="M 100 466 L 100 494 L 330 494" stroke="#E0DCD4" stroke-width="1" fill="none" stroke-dasharray="4,3"/>
+          <text x="215" y="508" text-anchor="middle" fill="#9A9A9A" font-family="Bricolage Grotesque,sans-serif" font-size="9">next requirement → loop restarts</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p class="callout-label">The key insight</p>
+      <p>One person can run the entire loop. PM never sees code. Dev never sees client emails. The bridge is the only shared surface. When the team scales, the same protocol works with dedicated people on each side.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 07 OUTCOMES -->
+  <section id="outcomes">
+    <p class="section-num">07 / Outcomes</p>
+    <h2>Running in production.</h2>
+
+    <div class="outcome-list">
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>3+ live client engagements on the system</h4>
+          <p>Sapey, Brieflex, WePop, and Link Broadband all run through the same PM layer — no client-specific manual processes.</p>
+        </div>
+      </div>
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>PM admin overhead cut significantly</h4>
+          <p>Email triage, MoM production, status reports, and SOW generation are now skills — they run in seconds, not hours.</p>
+        </div>
+      </div>
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>Every decision formally logged</h4>
+          <p>The DEC-NNN gate means no requirement moves to engineering without a logged, dated, accountable decision. Scope disputes get resolved by the log, not by memory.</p>
+        </div>
+      </div>
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>Quality gates structural — not person-dependent</h4>
+          <p>vibe-review runs on every phase. P0 issues block progression regardless of who's on the team that sprint.</p>
+        </div>
+      </div>
+      <div class="outcome-row">
+        <div class="outcome-check">✓</div>
+        <div class="outcome-text">
+          <h4>System is self-improving</h4>
+          <p>A skill-evolution layer lets patterns observed in delivery feed back into skill refinements. The loop improves with every project it runs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 08 REFLECTION -->
+  <section id="reflection">
+    <p class="section-num">08 / Reflection</p>
+    <h2>What I learned building this.</h2>
+    <p>The core insight was that <strong>AI agents fail at boundaries, not at tasks</strong>. A well-prompted agent can write a feature spec, draft a client email, or produce a delivery summary. What it can't do reliably is decide which of those things to do next, or how information from one domain should translate into the language of another.</p>
+    <p>The bridge solves that by making the boundary explicit and structured. BAM doesn't need to think like a developer. TPM doesn't need to think like a PM. The bridge document is the translation — it exists precisely so neither agent has to reach across a domain it wasn't built for.</p>
+    <p>The human judgment layer matters too. I didn't automate decisions — I automated the <strong>preparation and execution around decisions</strong>. propose-decision and vibe-review are checkpoints where a human reads what the system produced and says yes or no. The system doesn't replace judgment; it makes judgment cheaper to apply more consistently.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="cs-footer">
+    <div class="footer-brand"><strong>~/</strong>aakash · Aakash Dhar · Technical Project Manager</div>
+    <div class="footer-links">
+      <a href="mailto:hello@aakashdhar.me">hello@aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://aakashdhar.me">aakashdhar.me</a> &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/aakashdhar">LinkedIn</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

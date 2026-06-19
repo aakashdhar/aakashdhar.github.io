@@ -11,14 +11,14 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream:       #F5F2EC;
-    --cream-dark:  #EDE9E0;
-    --amber:       #C9620A;
-    --amber-light: #FDF0E6;
-    --amber-mid:   rgba(201,98,10,0.18);
-    --ink:         #1A1A1A;
+    --cream:       #F6F3EB;
+    --cream-dark:  #EFEAE0;
+    --amber:       #C97F06;
+    --amber-light: #FEF3E2;
+    --amber-mid:   rgba(201,127,6,0.15);
+    --ink:         #181510;
     --ink-mid:     #3D3D3D;
-    --ink-light:   #6B6B6B;
+    --ink-light:   #6B6557;
     --ink-faint:   #9A9A9A;
     --border:      rgba(26,26,26,0.10);
     --border-mid:  rgba(26,26,26,0.16);
@@ -57,8 +57,8 @@
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
   }
-  .topbar-brand { font-family: var(--mono); font-size: 14px; color: var(--ink); text-decoration: none; font-weight: 400; }
-  .topbar-brand strong { color: var(--amber); font-weight: 700; }
+  .topbar-brand { font-family: var(--mono); font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .14em; }
+  .topbar-brand b { color: var(--amber); }
   .topbar-nav { display: flex; gap: 24px; align-items: center; }
   .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
   .topbar-nav a:hover { color: var(--amber); }
@@ -186,7 +186,7 @@
   /* ── FOOTER ── */
   .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .fb { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
-  .fb strong { color: var(--amber); font-weight: 700; }
+  .fb b { color: var(--amber); }
   .fl { font-size: 12px; color: var(--ink-faint); }
   .fl a { color: var(--amber); text-decoration: none; }
 
@@ -204,7 +204,7 @@
 <body>
 
 <nav class="topbar">
-  <a class="topbar-brand" href="https://aakashdhar.me"><strong>~/</strong>aakash</a>
+  <a class="topbar-brand" href="https://aakashdhar.me"><b>~/</b>aakash</a>
   <div class="topbar-nav">
     <a href="https://aakashdhar.me/#pm-work">PM Work</a>
     <a href="https://aakashdhar.me" class="back">← Portfolio</a>
@@ -649,7 +649,7 @@
 
   <!-- FOOTER -->
   <div class="cs-footer">
-    <div class="fb"><strong>~/</strong>aakash · Aakash Dhar · Technical Project Manager</div>
+    <div class="fb"><b>~/</b>aakash · Aakash Dhar · Technical Project Manager</div>
     <div class="fl">
       <a href="mailto:hello@aakashdhar.me">hello@aakashdhar.me</a> &nbsp;·&nbsp;
       <a href="https://aakashdhar.me">aakashdhar.me</a> &nbsp;·&nbsp;

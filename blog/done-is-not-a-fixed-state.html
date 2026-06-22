@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Done Is Not a Fixed State | Aakash Dhar</title>
+<meta name="title" content="Done Is Not a Fixed State | Aakash Dhar">
+
+<meta name="description" content="Our consent step worked. Two weeks before launch, the bar moved to informed consent. The dangerous delivery gaps aren't what you missed, they're what you did right.">
+
+<meta name="keywords" content="project management, compliance, informed consent, scope, AI delivery, technical PM, requirements, product delivery">
+
+<meta name="author" content="Aakash Dhar">
+
+<link rel="canonical" href="https://aakashdhar.me/blog/done-is-not-a-fixed-state.html">
+
+<!-- OpenGraph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aakashdhar.me/blog/done-is-not-a-fixed-state.html">
+<meta property="og:title" content="Done Is Not a Fixed State">
+<meta property="og:description" content="Our consent step worked. Two weeks before launch, it still wasn't enough. The dangerous gaps are the reasonable things that don't clear a bar you didn't know applied.">
+<meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+<!-- Twitter Card -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://aakashdhar.me/blog/done-is-not-a-fixed-state.html">
+<meta property="twitter:title" content="Done Is Not a Fixed State">
+<meta property="twitter:description" content="Our consent step worked. Two weeks before launch, it still wasn't enough. The dangerous gaps are the reasonable things that don't clear a bar you didn't know applied.">
+<meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Done Is Not a Fixed State",
+  "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Aakash Dhar",
+    "url": "https://www.linkedin.com/in/aakashdhar"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Aakash Dhar",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://aakashdhar.me/logo.png"
+    }
+  },
+  "datePublished": "2026-06-22",
+  "description": "Our consent step worked. Two weeks before launch, the bar moved to informed consent. The dangerous delivery gaps aren't what you missed, they're what you did right.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aakashdhar.me/blog/done-is-not-a-fixed-state.html"
+  }
+}
+</script>
+
+<script>/* restore saved theme before first paint (no flash) — do not edit */
+try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23C97F06%22 rx=%2216%22/><text x=%2250%22 y=%2268%22 font-family=%22serif%22 font-size=%2250%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+<style>
+/* ════════ DESIGN SYSTEM — DO NOT EDIT ════════
+   Theme tokens mirror aakashdhar.me/index.html  */
+:root{
+  --bg:#F6F3EB;
+  --bg-2:#FFFDF7;
+  --bg-3:#EFEAE0;
+  --ink:#181510;
+  --muted:#6B6557;
+  --muted-2:#A39C8A;
+  --amber:#C97F06;
+  --amber-bright:#E89B0F;
+  --amber-dim:rgba(201,127,6,.10);
+  --mint:#0E8C7A;
+  --hairline:rgba(24,21,16,.12);
+  --hairline-2:rgba(24,21,16,.22);
+  --ghost:rgba(24,21,16,.07);
+  --glow:rgba(232,155,15,.10);
+  --shadow:0 18px 50px -24px rgba(24,21,16,.18);
+  --card-shadow:0 -28px 70px -24px rgba(24,21,16,.35);
+}
+[data-theme="dark"]{
+  --bg:#0B0A08;
+  --bg-2:#14120E;
+  --bg-3:#1A1814;
+  --ink:#EFEAE0;
+  --muted:#8C877C;
+  --muted-2:#55514A;
+  --amber:#FFB224;
+  --amber-bright:#FFCB66;
+  --amber-dim:rgba(255,178,36,.13);
+  --mint:#7BE8D8;
+  --hairline:rgba(239,234,224,.1);
+  --hairline-2:rgba(239,234,224,.2);
+  --ghost:rgba(239,234,224,.08);
+  --glow:rgba(255,178,36,.12);
+  --shadow:0 18px 50px -24px rgba(0,0,0,.6);
+  --card-shadow:0 -28px 70px -20px rgba(0,0,0,.7);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"Bricolage Grotesque",system-ui,sans-serif;
+  font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  transition:background .45s ease,color .45s ease;
+}
+::selection{background:var(--amber-bright);color:#181510}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* read progress */
+.readbar{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:600}
+.readbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--amber-bright))}
+
+/* topbar */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,3.5vw,44px);pointer-events:none;
+}
+.topbar>*{pointer-events:auto}
+.brand{font-family:"JetBrains Mono",monospace;font-size:13.5px;letter-spacing:.14em;font-weight:600;text-decoration:none}
+.brand b{color:var(--amber)}
+.top-r{display:flex;align-items:center;gap:14px}
+.back-link{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;
+  padding:10px 20px;background:var(--bg-2);transition:color .25s,border-color .25s,transform .2s;
+}
+.back-link:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-2px)}
+.theme-btn{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--hairline-2);
+  background:var(--bg-2);color:var(--ink);font-size:16px;line-height:1;
+  display:grid;place-items:center;cursor:pointer;transition:border-color .25s,transform .25s,background .45s;
+}
+.theme-btn:hover{border-color:var(--amber);transform:rotate(15deg)}
+.theme-btn .sun{display:block}
+.theme-btn .moon{display:none}
+[data-theme="dark"] .theme-btn .sun{display:none}
+[data-theme="dark"] .theme-btn .moon{display:block}
+@media(max-width:640px){.back-link{display:none}}
+
+/* reveals */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+
+/* cover */
+.cover{
+  position:relative;min-height:100svh;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:110px clamp(22px,6vw,90px) 0;
+}
+.cover-glow{position:absolute;inset:0;pointer-events:none}
+.cover-glow::before{
+  content:"";position:absolute;width:120vmax;height:120vmax;left:50%;top:-30%;transform:translateX(-50%);
+  background:radial-gradient(closest-side,var(--glow),transparent 68%);
+}
+.cover-meta{position:relative;z-index:1;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.pill{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hairline-2);border-radius:999px;padding:7px 15px;color:var(--muted)}
+.pill.hot{border-color:var(--amber);color:var(--amber);background:var(--amber-dim)}
+.cover-date{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
+.ghost-word-cover{
+  position:absolute;top:14vh;left:clamp(14px,4vw,70px);z-index:0;font-weight:800;line-height:1;
+  font-size:clamp(110px,17vw,230px);letter-spacing:-.04em;color:transparent;
+  -webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;white-space:nowrap;
+}
+.cover h1{
+  position:relative;z-index:1;font-weight:800;
+  font-size:clamp(40px,7.6vw,108px);line-height:.96;letter-spacing:-.034em;
+  font-variation-settings:"opsz" 96;max-width:1180px;text-wrap:balance;
+}
+.cover h1 em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;color:var(--amber);letter-spacing:-.01em}
+.cover-foot{
+  position:relative;z-index:1;margin-top:clamp(30px,5vh,54px);
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;
+  padding-bottom:30px;
+}
+.cover-sub{max-width:520px;color:var(--muted);font-weight:300;font-size:clamp(16px,1.8vw,19px)}
+.cover-byline{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);text-align:right}
+.cover-byline b{color:var(--ink);font-weight:600;display:block;margin-bottom:4px}
+@media(max-width:760px){.cover-foot{grid-template-columns:1fr}.cover-byline{text-align:left}}
+
+/* contents strip on the cover's bottom edge */
+.toc-strip{
+  position:relative;z-index:1;
+  margin:0 calc(-1 * clamp(22px,6vw,90px));
+  border-top:1px solid var(--hairline);
+  display:flex;overflow-x:auto;scrollbar-width:none;
+}
+.toc-strip::-webkit-scrollbar{display:none}
+.toc-strip a{
+  flex:1 0 auto;min-width:170px;
+  padding:16px clamp(18px,2.4vw,30px) 22px;
+  border-right:1px solid var(--hairline);
+  text-decoration:none;transition:background .3s;
+}
+.toc-strip a:hover{background:var(--amber-dim)}
+.toc-strip .n{display:block;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.26em;color:var(--amber);margin-bottom:5px}
+.toc-strip .t{display:block;font-weight:600;font-size:13.5px;letter-spacing:-.01em;line-height:1.3;color:var(--muted)}
+.toc-strip a:hover .t{color:var(--ink)}
+
+/* spread */
+.spread{
+  position:relative;
+  background:var(--bg-2);transition:background .45s;
+  border-radius:26px 26px 0 0;
+  box-shadow:var(--card-shadow);
+  border-top:1px solid var(--hairline);
+  padding:clamp(56px,9vh,96px) clamp(22px,6vw,90px) clamp(70px,10vh,120px);
+}
+.spread-grid{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:220px minmax(0,1fr);
+  gap:clamp(36px,5vw,90px);align-items:start;
+}
+@media(max-width:920px){.spread-grid{grid-template-columns:1fr}}
+
+/* rail — sticky section index */
+.rail{position:sticky;top:110px}
+.rail-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:18px}
+.rail a{
+  display:flex;align-items:baseline;gap:12px;
+  padding:9px 0;text-decoration:none;color:var(--muted-2);
+  border-bottom:1px solid var(--hairline);
+  transition:color .25s;
+}
+.rail a:last-of-type{border-bottom:none}
+.rail .n{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;flex:0 0 auto;transition:color .25s}
+.rail .t{font-size:13px;font-weight:600;letter-spacing:-.005em;line-height:1.35}
+.rail a:hover{color:var(--muted)}
+.rail a.on{color:var(--ink)}
+.rail a.on .n{color:var(--amber)}
+.rail-rule{height:2px;background:var(--hairline);margin-top:20px;position:relative}
+.rail-rule i{position:absolute;left:0;top:-1px;height:4px;width:0;background:var(--amber);transition:width .3s}
+@media(max-width:920px){.rail{display:none}}
+
+/* prose — column spans the grid track; reading text capped at 680px */
+.prose{min-width:0}
+.prose>p,.prose ul,.prose h3,.prose .sec,.prose pre,.prose .table-wrap{max-width:680px}
+.prose>p{font-size:17px;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:24px}
+.prose strong{color:var(--ink);font-weight:650}
+.prose>p em,.prose li em{font-family:"Instrument Serif",serif;font-style:italic;font-size:1.06em;color:var(--ink)}
+
+/* in-prose links — amber underline */
+.prose p a,.prose li a{
+  color:var(--amber);text-decoration:underline;
+  text-decoration-thickness:1px;text-underline-offset:3px;
+  transition:color .2s;
+}
+.prose p a:hover,.prose li a:hover{color:var(--amber-bright)}
+
+/* drop cap on the opening paragraph (class="lead") */
+.prose p.lead::first-letter{
+  font-family:"Instrument Serif",serif;font-style:italic;
+  font-size:4.3em;line-height:.78;color:var(--amber);
+  float:left;padding:.08em .12em 0 0;
+}
+
+/* section heads */
+.sec{
+  display:flex;align-items:baseline;gap:18px;
+  margin:clamp(54px,8vh,76px) 0 24px;
+  padding-top:26px;border-top:1px solid var(--hairline-2);
+  scroll-margin-top:100px;
+}
+.prose .sec:first-child{margin-top:0;padding-top:0;border-top:none}
+.sec .n{
+  font-family:"JetBrains Mono",monospace;font-weight:600;
+  font-size:13px;letter-spacing:.14em;color:var(--amber);flex:0 0 auto;
+}
+.prose h2{
+  font-weight:800;font-size:clamp(25px,3.2vw,35px);
+  line-height:1.1;letter-spacing:-.02em;font-variation-settings:"opsz" 96;
+}
+.prose h3{
+  font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--amber);font-weight:600;margin:38px 0 6px;
+}
+
+/* lists — ruled ledger rows */
+.prose ul{list-style:none;margin:6px 0 30px}
+.prose ul li{
+  position:relative;padding:14px 0 14px 26px;
+  font-size:16px;line-height:1.75;color:var(--muted);font-weight:300;
+  border-bottom:1px solid var(--hairline);
+}
+.prose ul li:last-child{border-bottom:none}
+.prose ul li::before{content:"—";position:absolute;left:0;top:14px;color:var(--amber);font-weight:700}
+
+/* inline code */
+.prose code{
+  font-family:"JetBrains Mono",monospace;font-size:.82em;
+  color:var(--amber);background:var(--amber-dim);
+  padding:.14em .45em;border-radius:6px;border:1px solid var(--hairline);
+}
+
+/* code blocks */
+.prose pre{
+  background:var(--bg-3);border:1px solid var(--hairline);
+  border-radius:14px;padding:22px 24px;overflow-x:auto;
+  margin:6px 0 30px;transition:background .45s;
+}
+.prose pre code{
+  background:none;border:none;padding:0;
+  color:var(--ink);font-size:13.5px;line-height:1.75;
+}
+
+/* comparison tables — mono headers, hairline rules */
+.prose .table-wrap{
+  overflow-x:auto;margin:6px 0 30px;
+  border:1px solid var(--hairline);border-radius:14px;
+}
+.prose table{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--bg-2)}
+.prose thead th{
+  text-align:left;padding:14px 18px;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);
+  border-bottom:1px solid var(--hairline-2);white-space:nowrap;
+}
+.prose thead th:first-child{color:var(--amber)}
+.prose tbody tr{border-bottom:1px solid var(--hairline)}
+.prose tbody tr:last-child{border-bottom:none}
+.prose tbody tr:hover{background:var(--amber-dim)}
+.prose td{padding:14px 18px;vertical-align:top;color:var(--muted);font-weight:300;line-height:1.7}
+.prose td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+
+/* breakout pull-quotes — span the full prose column (right of the rail) */
+.pull{margin:clamp(48px,7vh,70px) 0;width:100%}
+.pull blockquote{
+  border-top:2px solid var(--amber);border-bottom:1px solid var(--hairline);
+  padding:clamp(26px,4vh,40px) 0 clamp(24px,3.6vh,36px);
+}
+.pull blockquote p{
+  font-family:"Instrument Serif",serif;font-style:italic;
+  font-size:clamp(24px,3.6vw,42px);line-height:1.3;color:var(--ink);
+  max-width:980px;text-wrap:balance;margin-bottom:14px;
+}
+.pull blockquote p:last-child{margin-bottom:0}
+.pull blockquote p strong{
+  font-family:"JetBrains Mono",monospace;font-style:normal;font-weight:600;
+  font-size:clamp(11px,1.1vw,13px);letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
+  display:inline-block;margin-right:6px;
+}
+.pull blockquote p.note{font-size:clamp(15px,1.7vw,18px);font-family:"Bricolage Grotesque",sans-serif;font-style:normal;font-weight:300;color:var(--muted)}
+.pull .mark{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);margin-bottom:14px;display:block}
+
+/* outro */
+.outro{
+  position:relative;overflow:hidden;
+  background:var(--bg);transition:background .45s;
+  border-radius:26px 26px 0 0;box-shadow:var(--card-shadow);border-top:1px solid var(--hairline);
+  padding:clamp(64px,11vh,110px) clamp(22px,6vw,90px) 46px;
+}
+.outro-in{max-width:1180px;margin:0 auto;position:relative}
+.ghost-word{
+  position:absolute;top:-.62em;left:-.04em;z-index:0;font-weight:800;line-height:1;
+  font-size:clamp(100px,15vw,200px);letter-spacing:-.04em;color:transparent;
+  -webkit-text-stroke:1px var(--ghost);user-select:none;pointer-events:none;text-transform:uppercase;
+}
+.outro h3{
+  position:relative;z-index:1;font-weight:800;
+  font-size:clamp(36px,5.8vw,72px);letter-spacing:-.027em;line-height:1;
+  font-variation-settings:"opsz" 96;
+}
+.outro h3 .serif{color:var(--amber);font-weight:400}
+.outro-sub{position:relative;z-index:1;margin-top:16px;color:var(--muted);font-weight:300;max-width:480px}
+.socials{position:relative;z-index:1;display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.socials a{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:var(--muted);border:1px solid var(--hairline-2);border-radius:999px;
+  padding:11px 22px;transition:color .25s,border-color .25s,transform .2s;background:var(--bg-2);
+}
+.socials a:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-3px)}
+.footer-bar{
+  position:relative;z-index:1;
+  margin-top:clamp(40px,7vh,70px);padding-top:22px;border-top:1px solid var(--hairline);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--muted-2);
+}
+</style>
+</head>
+<body>
+
+<!-- READ PROGRESS — do not edit -->
+<div class="readbar" aria-hidden="true"><i id="rb"></i></div>
+
+<!-- TOPBAR — do not edit -->
+<div class="topbar">
+  <a class="brand" href="../index.html"><b>~/</b>aakash</a>
+  <div class="top-r">
+    <a class="back-link" href="../index.html#insights">Writing</a>
+    <a class="back-link" href="../index.html">← Portfolio</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+      <span class="sun">☀</span><span class="moon">☾</span>
+    </button>
+  </div>
+</div>
+
+<!-- COVER -->
+<header class="cover">
+  <div class="cover-glow" aria-hidden="true"></div>
+  <div class="ghost-word-cover" aria-hidden="true">Done</div>
+  <div class="cover-meta rv">
+    <span class="pill hot">Project Mgmt</span>
+    <span class="cover-date">June 22, 2026</span>
+  </div>
+  <h1 class="rv rv-d1">Done Is Not a <em>Fixed</em> State</h1>
+  <div class="cover-foot rv rv-d2">
+    <p class="cover-sub">Our consent step worked. Two weeks before launch, it still wasn't enough. The dangerous gaps in delivery aren't the things you missed, they're the reasonable things that don't clear a bar you didn't know applied.</p>
+    <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
+  </div>
+  <nav class="toc-strip rv rv-d3" aria-label="Contents">
+    <a href="#s1"><span class="n">01</span><span class="t">The Checkbox That Worked</span></a>
+    <a href="#s2"><span class="n">02</span><span class="t">When the Bar Moved</span></a>
+    <a href="#s3"><span class="n">03</span><span class="t">The Gap That Passes Every Check</span></a>
+    <a href="#s4"><span class="n">04</span><span class="t">When You Catch It</span></a>
+    <a href="#s5"><span class="n">05</span><span class="t">What a Late Rule Breaks</span></a>
+  </nav>
+</header>
+
+<!-- ARTICLE SPREAD -->
+<main class="spread">
+  <div class="spread-grid">
+
+    <!-- RAIL — in sync with toc-strip -->
+    <aside class="rail" aria-label="Sections">
+      <div class="rail-label">In this article</div>
+      <a href="#s1" data-s="s1"><span class="n">01</span><span class="t">The Checkbox That Worked</span></a>
+      <a href="#s2" data-s="s2"><span class="n">02</span><span class="t">When the Bar Moved</span></a>
+      <a href="#s3" data-s="s3"><span class="n">03</span><span class="t">The Gap That Passes Every Check</span></a>
+      <a href="#s4" data-s="s4"><span class="n">04</span><span class="t">When You Catch It</span></a>
+      <a href="#s5" data-s="s5"><span class="n">05</span><span class="t">What a Late Rule Breaks</span></a>
+      <div class="rail-rule"><i id="railFill"></i></div>
+    </aside>
+
+    <!-- ARTICLE -->
+    <article class="prose">
+
+      <!-- ─── SECTION 01 ─────────────────────────────────────── -->
+      <div class="sec rv" id="s1">
+        <span class="n">01</span>
+        <h2>The Checkbox That Worked</h2>
+      </div>
+      <p class="lead rv">We had a consent checkbox from the start. During registration, the participant ticked a box that said they accepted the terms and conditions and the data collection policy, and then they moved on. By the standard of almost every app I have ever built, that is consent. It is what you do. Nobody on the team looked at it twice, because there was nothing to look at. It was there, it worked, it was done.</p>
+
+      <!-- ─── SECTION 02 ─────────────────────────────────────── -->
+      <div class="sec rv" id="s2">
+        <span class="n">02</span>
+        <h2>When the Bar Moved</h2>
+      </div>
+      <p class="rv">Then, about two weeks before launch, the bar moved.</p>
+      <p class="rv">It came out of a compliance conversation on the World Bank Group side. This was a research app, with real enrolled participants and Ipsos running the field work in Indonesia, and for a research program of that kind, a tick-to-accept checkbox is not enough. What they needed was <strong>informed consent</strong>: not just that the participant agreed, but that you can demonstrate they were actually shown what they were agreeing to. Presented the full text. Given the chance to read it. And only then allowed to agree.</p>
+      <p class="rv">So the fix, in the end, was small. The single accept checkbox became a flow where the participant has to scroll through the entire consent and data-collection text before the Agree button becomes available. A couple of days of work. Not hard.</p>
+      <p class="rv">What stays with me is not the fix. It is how close that gap came to sailing straight through.</p>
+
+      <!-- ─── SECTION 03 ─────────────────────────────────────── -->
+      <div class="sec rv" id="s3">
+        <span class="n">03</span>
+        <h2>The Gap That Passes Every Check</h2>
+      </div>
+      <p class="rv">Because here is the thing: we had not forgotten consent. We had built consent. A reasonable, ordinary, perfectly functional consent step that would have been completely fine on most products. The gap was not a blank where something should have been. The gap was the distance between <em>good enough for a normal app</em> and <em>good enough for an institutional research program</em>, and that distance is invisible until someone who knows the higher bar points at it.</p>
+      <p class="rv">That is the kind of gap that is genuinely dangerous, and it is not the kind people warn you about. Everyone watches for the things you missed, the blank fields, the unhandled cases, the features that break. Those get caught, because they look wrong. The thing that does not get caught is the thing you did reasonably, that works exactly as intended, that passes every check you know to run, and that simply does not clear a standard you did not yet know applied. By every measure your team is using, it is done correctly. It has the checkmark. The attention has moved on.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Pull Quote · 01</span>
+          <p>A bug announces itself by breaking. A compliance gap announces nothing, because nothing is broken.</p>
+        </blockquote>
+      </div>
+
+      <p class="rv">The checkbox worked. The registration worked. The only thing wrong with it was a definition of consent that had not been written down when we built it, and that arrived, fully specified, two weeks before we were due to go live with real people's data.</p>
+
+      <!-- ─── SECTION 04 ─────────────────────────────────────── -->
+      <div class="sec rv" id="s4">
+        <span class="n">04</span>
+        <h2>When You Catch It</h2>
+      </div>
+      <p class="rv">Caught there, it was two days of work and a better flow. Caught after launch, with participants already enrolled under a consent process that did not meet the standard, it would not have been a code fix at all. It would have been a question about whether the data collected so far had been collected properly, on a World Bank research program. The same small gap, found two weeks apart, is the difference between an afternoon of work and a conversation nobody wants to have.</p>
+      <p class="rv">I do not think the lesson is that we should have built informed consent from day one. The requirement genuinely was not specified yet when the checkbox went in, and on institutional and regulated work, the compliance picture often sharpens as you go rather than arriving complete on day one. You cannot always build to a standard that does not exist yet.</p>
+
+      <!-- ─── SECTION 05 ─────────────────────────────────────── -->
+      <div class="sec rv" id="s5">
+        <span class="n">05</span>
+        <h2>What a Late Rule Breaks</h2>
+      </div>
+      <p class="rv">The lesson is about what to do when the standard does arrive. The instinct, when a requirement lands late, is to ask what it means for the work ahead. The more useful question is what it just quietly changed about the work behind you, the parts marked done, the parts nobody is looking at anymore precisely because they were finished. A reasonable thing you already built can stop being good enough without anyone touching it, simply because the bar it is measured against moved up. And it will keep looking finished the whole time, because by the standard you had when you built it, it was.</p>
+
+      <div class="pull rv">
+        <blockquote>
+          <span class="mark">Takeaway</span>
+          <p>Done is not a fixed state. It is done against a particular bar.</p>
+          <p class="note"><strong>THE LINE</strong> When the bar moves, some of what you finished quietly comes undone, while still wearing the checkmark that says it is fine.</p>
+        </blockquote>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- OUTRO — do not edit -->
+<footer class="outro">
+  <div class="outro-in">
+    <div class="ghost-word" aria-hidden="true">Fin</div>
+    <h3 class="rv">Enjoyed this <span class="serif">read?</span></h3>
+    <p class="outro-sub rv rv-d1">Connect on LinkedIn or head back to the portfolio for more.</p>
+    <div class="socials rv rv-d2">
+      <a href="https://www.linkedin.com/in/aakashdhar" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a href="../index.html#insights">More Writing</a>
+      <a href="../index.html">← Back to Portfolio</a>
+    </div>
+    <div class="footer-bar">
+      <span>© 2026 Aakash Dhar. Built with Code &amp; Coffee.</span>
+      <span>aakashdhar.me</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPTS — do not edit -->
+<script>
+/* theme toggle — same localStorage key as index.html */
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const r = document.documentElement;
+  r.dataset.theme = r.dataset.theme === 'dark' ? '' : 'dark';
+  try { localStorage.setItem('theme', r.dataset.theme || 'light'); } catch(e) {}
+});
+
+/* gentle reveals */
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* rail tracking */
+const railLinks = [...document.querySelectorAll('.rail a')];
+const secs = [...document.querySelectorAll('.sec')];
+const secIO = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      railLinks.forEach(a => a.classList.toggle('on', a.dataset.s === e.target.id));
+    }
+  });
+}, { rootMargin: '-20% 0px -65% 0px' });
+secs.forEach(s => secIO.observe(s));
+
+/* read progress: top bar + rail rule */
+const rb = document.getElementById('rb');
+const railFill = document.getElementById('railFill');
+const onScroll = () => {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+  rb.style.width = p + '%';
+  if (railFill) railFill.style.width = p + '%';
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+
+</body>
+</html>

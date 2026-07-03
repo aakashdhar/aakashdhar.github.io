@@ -144,7 +144,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
   </div>
   <h1 class="rv rv-d1">When Everyone Has a <em>Different Version</em> of the Truth</h1>
   <div class="cover-foot rv rv-d2">
-    <p class="cover-sub">Three organisations. Three conflicting accounts of what had been built. No neutral ground, no shared truth, and a client call on Thursday. The only move that works is going to the primary source - not the meeting notes, not the other team's account, but the production system itself.</p>
+    <p class="cover-sub">Three organisations had three conflicting accounts of what had been built, with no neutral ground, no shared truth, and a client call on Thursday. The only move that works is going to the primary source - not the meeting notes, not the other team's account, but the production system itself.</p>
     <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
   </div>
   <nav class="toc-strip rv rv-d3" aria-label="Contents">
@@ -174,14 +174,14 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <div class="sec rv" id="s1">
         <span class="n">01</span>
-        <h2>The Multi-Party Project Problem Nobody Talks About</h2>
+        <h2>The Multi-Party Project Problem</h2>
       </div>
 
-      <p class="lead rv">Most PM writing assumes a clean stakeholder model: one client, one team, one shared understanding of what has been agreed. The reality of multi-party projects - two or more technical organisations working toward the same deliverable for a shared client - is messier. Not because anyone is dishonest, but because each organisation has incomplete information about the other, different incentives about what to emphasise, and genuine differences in what they believe the agreement said.</p>
+      <p class="lead rv">Most PM writing assumes a clean stakeholder model: one client, one team, one shared understanding of what has been agreed. The reality of multi-party projects - two or more technical organisations working toward the same deliverable for a shared client - is messier. That is not because anyone is dishonest, but because each organisation has incomplete information about the other, different incentives about what to emphasise, and genuine differences in what they believe the agreement said.</p>
 
       <p class="rv">When those differences surface - and they always surface, usually at the worst moment - the PM's job is not to pick a side, not to mediate between competing narratives, and certainly not to let the client hear two contradictory accounts and draw their own conclusion. The job is to find out what is actually true and establish it as the shared record before anyone communicates anything.</p>
 
-      <p class="rv">That sounds obvious. In practice, it requires a specific discipline: the willingness to bypass everyone's account of events and go directly to the primary source. Not the meeting notes. Not the other team's status update. Not your own team's version of what was delivered. The production system. The transcript. The SOW against the actual work log. The code against the spec. Primary sources do not have a perspective. They just are what they are.</p>
+      <p class="rv">That sounds obvious. In practice, it requires a specific discipline: the willingness to bypass everyone's account of events and go directly to the primary source. The primary source is not the meeting notes, the other team's status update, or your own team's version of what was delivered. It is the production system, the transcript, the SOW against the actual work log, the code against the spec. Primary sources do not have a perspective. They just are what they are.</p>
 
       <div class="pull rv">
         <blockquote>
@@ -212,14 +212,14 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <p class="rv">The instinct was to ask my own team for their account, compare it to the other team's account, and synthesise a position. I did not do that. Instead I went directly into the production API and tested every claim that was in dispute. The system under dispute was a regulatory compliance engine that was supposed to return one of three outcome states - Allow, Deny, or Defer - when processing a clinical event. The claim from one team was that the other had not delivered on these outcomes. I ran all three fixtures against the live production endpoint myself.</p>
 
-      <p class="rv">All three returned verified decisions with production timestamps and decision IDs. The claim of non-delivery was factually incorrect, and now there was evidence - produced by me, from the production system, with specific identifiers - that nobody could dispute. Not because I said so, but because the system said so.</p>
+      <p class="rv">All three returned verified decisions with production timestamps and decision IDs. The claim of non-delivery was factually incorrect, and now there was evidence - produced by me, from the production system, with specific identifiers - that nobody could dispute, not because I said so, but because the system said so.</p>
 
-      <p class="rv">I also found two genuine discrepancies in my own team's documentation during the same testing session - evidence fields missing from the fixture document, a count that did not match the live API response. I flagged those too, immediately and proactively, in the same communication. Not to undermine my own team. To demonstrate that the goal was accuracy, not advocacy. That distinction matters enormously in a dispute.</p>
+      <p class="rv">I also found two genuine discrepancies in my own team's documentation during the same testing session - evidence fields missing from the fixture document, a count that did not match the live API response. I flagged those too, immediately and proactively, in the same communication - not to undermine my own team, but to demonstrate that the goal was accuracy, not advocacy. That distinction matters in a dispute.</p>
 
       <h3 class="rv">What primary sources look like in practice</h3>
       <ul class="rv">
-        <li><strong>For delivery disputes:</strong> The production system. Test it yourself. Production timestamps, response payloads, and decision IDs are unimpeachable in a way that meeting notes and status updates are not.</li>
-        <li><strong>For scope disputes:</strong> The original SOW against the actual work log, not either party's summary of what the SOW said. Line by line. Every discrepancy documented with the specific clause and the specific deviation.</li>
+        <li><strong>For delivery disputes:</strong> The production system. Test it yourself. Production timestamps, response payloads, and decision IDs are hard to argue with in a way that meeting notes and status updates are not.</li>
+        <li><strong>For scope disputes:</strong> The original SOW against the actual work log, not either party's summary of what the SOW said. Go line by line, and document every discrepancy with the specific clause and the specific deviation.</li>
         <li><strong>For timeline disputes:</strong> Meeting transcripts, not meeting summaries. A summary is someone's interpretation. A transcript is what was actually said, with timestamps and speakers attributed.</li>
         <li><strong>For commitment disputes:</strong> The original written communications - emails, Slack messages, the decision log if one exists. The phrase "I think we agreed on the call" should never close a multi-party dispute. The call recording or the follow-up email should.</li>
       </ul>
@@ -238,11 +238,11 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <p class="rv">Evidence alone is not enough. The second move in a multi-party truth problem is to establish a shared record going forward - a single authoritative source that all parties reference so that the next dispute has a paper trail to resolve against.</p>
 
-      <p class="rv">On the project described above, that meant producing formal Minutes of Meeting documents from every call - grounded strictly in the transcript, with no inference, no embellishment, and every unresolved item explicitly flagged. The format was specific: a header block, Key Decisions, Action Items with owner/due/details fields, an Ownership Summary, and Unresolved items. Every action item named, owned, and dated. The discipline was absolute: if it was not in the transcript, it was not in the minutes.</p>
+      <p class="rv">On the project described above, that meant producing formal Minutes of Meeting documents from every call - grounded strictly in the transcript, with no inference, no embellishment, and every unresolved item explicitly flagged. The format was specific: a header block, Key Decisions, Action Items with owner/due/details fields, an Ownership Summary, and Unresolved items. Every action item was named, owned, and dated. The rule was strict: if it was not in the transcript, it was not in the minutes.</p>
 
       <p class="rv">The MoM documents served two functions. Immediately, they gave all three parties a single written record of what had been said, decided, and committed to - replacing three different memories of the same call with one shared document. Over time, they created a paper trail that made subsequent disputes faster to resolve because the answer to "what did we agree?" was a link to a document, not a conversation.</p>
 
-      <p class="rv">The SOW discrepancy analysis followed the same principle. Six discrepancies between the proposed Phase 2.2 SOW and the meeting record, documented with specific clause references and severity ratings. The goal was not to torpedo the SOW. It was to surface the gaps before anyone signed something that contained commitments that were already contradicted by the meeting record. A signed SOW with internal contradictions is not a contract - it is a future dispute waiting to happen.</p>
+      <p class="rv">The SOW discrepancy analysis followed the same principle. It documented six discrepancies between the proposed Phase 2.2 SOW and the meeting record, with specific clause references and severity ratings. The goal was not to torpedo the SOW. It was to surface the gaps before anyone signed something that contained commitments that were already contradicted by the meeting record. A signed SOW with internal contradictions is not a contract - it is a future dispute waiting to happen.</p>
 
       <div class="sec rv" id="s5">
         <span class="n">05</span>
@@ -255,7 +255,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <p class="rv">In practice this means: share the production test results with the decision IDs. Share the fixture documentation gaps you found in your own team's work. Note the transcript reference where the disputed demo occurred. Propose the Thursday call agenda as a shared working session to establish ground truth, not as a verdict delivery. The client - and the other technical party - can then draw their own conclusions from evidence that nobody produced and nobody curated.</p>
 
-      <p class="rv">The tone that works in multi-party disputes is not warm and not cold. It is precise. Precise about what was tested, what was found, what is still unresolved, and what needs a decision before the project can move forward. Precision is the signal that the goal is resolution, not victory.</p>
+      <p class="rv">The tone that works in multi-party disputes is not warm and not cold. It is precise about what was tested, what was found, what is still unresolved, and what needs a decision before the project can move forward. Precision is the signal that the goal is resolution, not victory.</p>
 
       <div class="sec rv" id="s6">
         <span class="n">06</span>
@@ -270,8 +270,8 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <ul class="rv">
         <li><strong>Test before you communicate:</strong> If the dispute is about whether something works, test it yourself before speaking to either party. Your test result is evidence. Their claim is testimony. Evidence closes disputes faster.</li>
-        <li><strong>Surface your own gaps in the same breath:</strong> If you find problems with the other party's account, find problems with your own too. Proactively. In the same communication. This signals that you are pursuing accuracy, not defending a position, which changes how the other party receives everything else you say.</li>
-        <li><strong>Build the record going forward, not retroactively:</strong> Formal minutes, decision logs, and written commitments are not bureaucracy. They are the infrastructure that makes the next dispute shorter. Every project that produces a shared written record from the start has fewer disputes and faster resolutions than the ones that document after the fact.</li>
+        <li><strong>Surface your own gaps in the same breath:</strong> If you find problems with the other party's account, find problems with your own too, proactively and in the same communication. This signals that you are pursuing accuracy, not defending a position, which changes how the other party receives everything else you say.</li>
+        <li><strong>Build the record going forward, not retroactively:</strong> Formal minutes, decision logs, and written commitments are not bureaucracy. They are the infrastructure that makes the next dispute shorter. In my experience, projects that produce a shared written record from the start have fewer disputes and faster resolutions than the ones that document after the fact.</li>
       </ul>
 
       <p class="rv">The multi-party truth problem is one of the situations where the PM's role is most clearly defined and most clearly valuable. When two technical teams are presenting competing accounts of reality to a shared client, someone has to find the truth. In the absence of a PM doing that job deliberately, the client will find the truth eventually - but later, more expensively, and with more damage to the working relationships on both sides.</p>

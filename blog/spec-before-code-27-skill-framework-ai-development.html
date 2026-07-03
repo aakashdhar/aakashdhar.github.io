@@ -6,7 +6,7 @@
 
 <title>Spec Before Code: How I Built a 9-Skill Framework for AI-Driven Development | Aakash Dhar</title>
 <meta name="title" content="Spec Before Code: How I Built a 9-Skill Framework for AI-Driven Development | Aakash Dhar">
-<meta name="description" content="How the vibe-* framework turns Claude Code into a disciplined engineering partner — nine structured skills covering brainstorm to review, with persistent specs so the AI never loses context.">
+<meta name="description" content="How the vibe-* framework turns Claude Code into a disciplined engineering partner: nine structured skills covering brainstorm to review, with persistent specs so the AI never loses context.">
 <meta name="keywords" content="vibe skills, Claude Code, spec-driven development, AI coding workflow, agentic development, AI pair programming, context engineering, developer productivity">
 <meta name="author" content="Aakash Dhar">
 
@@ -44,7 +44,7 @@
     }
   },
   "datePublished": "2026-03-29",
-  "description": "How the vibe-* framework turns Claude Code into a disciplined engineering partner — nine structured skills covering brainstorm to review, with persistent specs so the AI never loses context.",
+  "description": "How the vibe-* framework turns Claude Code into a disciplined engineering partner: nine structured skills covering brainstorm to review, with persistent specs so the AI never loses context.",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://aakashdhar.me/blog/spec-before-code-9-skill-framework-ai-development.html"
@@ -416,7 +416,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
   </div>
   <h1 class="rv rv-d1"><em>Spec Before Code</em>: How I Built a 9-Skill Framework for AI-Driven Development</h1>
   <div class="cover-foot rv rv-d2">
-    <p class="cover-sub">How I stopped re-explaining my project every session — nine structured workflows that give Claude full context from day one, and a review gate that keeps it honest.</p>
+    <p class="cover-sub">How I stopped re-explaining my project every session: nine structured workflows that give Claude full context from day one, and a review gate that keeps it honest.</p>
     <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
   </div>
   <nav class="toc-strip rv rv-d3" aria-label="Contents">
@@ -454,18 +454,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         Every developer who works seriously with an AI coding agent knows the ritual. You open a fresh session,
         and before any real work happens, you perform the recap: here's the stack, here's the architecture, here's
         what we decided last week, please don't use that library again. Ten minutes of re-explaining, every single
-        session — and the agent still occasionally "improves" something you explicitly told it to leave alone.
+        session, and the agent still occasionally "improves" something you explicitly told it to leave alone.
       </p>
       <p class="rv">
-        The model wasn't the problem. Claude is an exceptional engineer when it has context. The problem was that
+        The model wasn't the problem. Claude is a capable engineer when it has context. The problem was that
         <strong>the context lived in my head and in scrollback</strong>, and both of those evaporate. A chat
-        transcript is not a project memory. The context window is a desk, not a filing cabinet — whatever isn't
+        transcript is not a project memory. The context window is a desk, not a filing cabinet: whatever isn't
         written down somewhere durable gets re-litigated tomorrow.
       </p>
       <p class="rv">
         So I stopped trying to prompt better and started building a system. The result is the
         <strong>vibe-* framework</strong>: nine purpose-built skills for Claude Code that cover the full
-        development lifecycle, all anchored to one rule — <em>nothing gets built before it gets written down</em>.
+        development lifecycle, all anchored to one rule: <em>nothing gets built before it gets written down</em>.
         It now runs on live client projects at BetaCraft, and it's the closest thing I've found to giving an AI
         agent an actual long-term memory and a work ethic.
       </p>
@@ -475,22 +475,22 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>The Principle: Spec Before Code</h2>
       </div>
       <p class="rv">
-        The core insight is almost embarrassingly simple. Human teams solved the amnesia problem decades ago — not
-        with bigger brains, but with <strong>documents</strong>. Specs, architecture decision records, task boards.
+        The core insight is almost embarrassingly simple. Human teams solved the amnesia problem decades ago, not
+        with bigger brains, but with <strong>documents</strong>: specs, architecture decision records, task boards.
         The vibe-* framework just applies that discipline to the AI: every project gets a <code>vibe/</code> folder,
         and every skill reads from and writes to it.
       </p>
       <ul class="rv">
-        <li><strong>BRIEF.md:</strong> What we're building and why — produced by the brainstorm skill, validated before anything else happens. Scope lives here, so scope arguments end here.</li>
+        <li><strong>BRIEF.md:</strong> What we're building and why, produced by the brainstorm skill, validated before anything else happens. Scope lives here, so scope arguments end here.</li>
         <li><strong>ARCHITECTURE.md:</strong> The patterns, the stack, the principles. Read at the start of <em>every</em> agent session; every code decision is measured against it.</li>
-        <li><strong>SPEC.md &amp; PLAN.md:</strong> Acceptance criteria and the phased build plan. The agent doesn't decide what "done" means — the spec does.</li>
+        <li><strong>SPEC.md &amp; PLAN.md:</strong> Acceptance criteria and the phased build plan. The agent doesn't decide what "done" means: the spec does.</li>
         <li><strong>TASKS.md:</strong> The single human-facing progress file. One glance tells you what's shipped, what's active, and what's blocked.</li>
         <li><strong>DECISIONS.md:</strong> An append-only log of every scope change and trade-off. The agent consults history instead of re-arguing it.</li>
       </ul>
       <div class="pull rv">
         <blockquote>
           <span class="mark">Pull Quote · 02</span>
-          <p>The context window is a desk, not a filing cabinet. Files are the memory — the agent just needs to be taught to use them.</p>
+          <p>The context window is a desk, not a filing cabinet. Files are the memory: the agent just needs to be taught to use them.</p>
         </blockquote>
       </div>
 
@@ -499,7 +499,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>The Nine Skills</h2>
       </div>
       <p class="rv">
-        Each skill is a structured workflow with a natural-language trigger. You don't configure anything — you
+        Each skill is a structured workflow with a natural-language trigger. You don't configure anything. You
         just talk, and the right process kicks in. Together they cover the lifecycle from "I have an idea" to
         "this is reviewed and shipped."
       </p>
@@ -517,7 +517,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
             <tr>
               <td>vibe-brainstorm</td>
               <td><code>brainstorm:</code></td>
-              <td>Turns a raw idea into a validated, buildable BRIEF.md — separate paths for personal and client projects.</td>
+              <td>Turns a raw idea into a validated, buildable BRIEF.md, with separate paths for personal and client projects.</td>
             </tr>
             <tr>
               <td>vibe-architect</td>
@@ -527,12 +527,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
             <tr>
               <td>vibe-new-app</td>
               <td><code>new:</code></td>
-              <td>Full greenfield setup — generates CLAUDE.md and the complete vibe/ folder, reusing the brief and architecture so nothing is asked twice.</td>
+              <td>Full greenfield setup: generates CLAUDE.md and the complete vibe/ folder, reusing the brief and architecture so nothing is asked twice.</td>
             </tr>
             <tr>
               <td>vibe-add-feature</td>
               <td><code>feature:</code></td>
-              <td>Spec-driven feature work: FEATURE_SPEC, FEATURE_PLAN, FEATURE_TASKS — cross-checked against the existing SPEC.md before drafting.</td>
+              <td>Spec-driven feature work: FEATURE_SPEC, FEATURE_PLAN, FEATURE_TASKS, cross-checked against the existing SPEC.md before drafting.</td>
             </tr>
             <tr>
               <td>vibe-fix-bug</td>
@@ -542,22 +542,22 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
             <tr>
               <td>vibe-change-spec</td>
               <td><code>change:</code></td>
-              <td>Scope changes with an impact assessment before any file is touched — additions, removals, and reverts all leave a paper trail.</td>
+              <td>Scope changes with an impact assessment before any file is touched: additions, removals, and reverts all leave a paper trail.</td>
             </tr>
             <tr>
               <td>vibe-design</td>
               <td><code>design:</code></td>
-              <td>Visual work only — styling passes governed by DESIGN_SYSTEM.md, kept strictly separate from logic changes.</td>
+              <td>Visual work only: styling passes governed by DESIGN_SYSTEM.md, kept strictly separate from logic changes.</td>
             </tr>
             <tr>
               <td>vibe-review</td>
               <td><code>review:</code></td>
-              <td>The mandatory gate. Evidence-based code review — every finding backed by a file path and line number. No P0s, no progress.</td>
+              <td>The mandatory gate. Evidence-based code review: every finding backed by a file path and line number. No P0s, no progress.</td>
             </tr>
             <tr>
               <td>vibe-progress</td>
               <td><code>progress:</code></td>
-              <td>A read-only ASCII dashboard from TASKS.md and git log — phases, blockers, and last activity at a glance.</td>
+              <td>A read-only ASCII dashboard from TASKS.md and git log: phases, blockers, and last activity at a glance.</td>
             </tr>
           </tbody>
         </table>
@@ -567,7 +567,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
       <p class="rv">
         The skills compose into a pipeline: <code>brainstorm:</code> → <code>architect:</code> → <code>new:</code>,
         then loops of <code>feature:</code> / <code>bug:</code> / <code>change:</code>, each one closed by
-        <code>review:</code>. Order matters — every downstream skill reads the documents its predecessors wrote,
+        <code>review:</code>. Order matters: every downstream skill reads the documents its predecessors wrote,
         which is exactly why no step ever starts from zero context.
       </p>
 
@@ -577,7 +577,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
       </div>
       <p class="rv">
         Here's what a real project looks like under the framework. After <code>brainstorm:</code> and
-        <code>architect:</code> have run, <code>new:</code> scaffolds the workspace — and from that point on, every
+        <code>architect:</code> have run, <code>new:</code> scaffolds the workspace, and from that point on, every
         Claude session begins by reading this folder instead of asking me to repeat myself:
       </p>
       <pre class="rv"><code>my-project/
@@ -597,7 +597,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
       <p class="rv">
         The discipline shows up at the boundaries. A phase cannot proceed while the review gate reports a P0 issue.
         A bug fix cannot be written before its regression test exists. A scope change cannot touch code before its
-        impact assessment is logged. None of this slows the agent down — it slows down the <em>mistakes</em>. The
+        impact assessment is logged. None of this slows the agent down. It slows down the <em>mistakes</em>. The
         agent works at full speed inside the rails; the rails just make sure full speed points in the right
         direction.
       </p>
@@ -621,7 +621,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
       <ul class="rv">
         <li><strong>Session startup went from minutes to seconds:</strong> No recap ritual. The agent reads CLAUDE.md and the vibe/ folder and already knows the project better than a new hire would after a week.</li>
         <li><strong>Drift died:</strong> When every decision is written down and re-read each session, the agent stops "creatively" replacing libraries or reinventing patterns. The spec is law because the spec is <em>present</em>.</li>
-        <li><strong>Review caught what eyeballs miss:</strong> Forcing evidence-based review between phases — file paths and line numbers, not vibes — surfaced the class of bugs that compiles fine and fails in week three.</li>
+        <li><strong>Review caught what eyeballs miss:</strong> Forcing evidence-based review between phases (file paths and line numbers, not vibes) surfaced the class of bugs that compiles fine and fails in week three.</li>
         <li><strong>Handoffs became trivial:</strong> Any developer (or any fresh agent instance) can pick up a project cold, because the project's entire memory is in the repo, not in someone's chat history.</li>
       </ul>
       <p class="rv">
@@ -635,14 +635,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>Steal This</h2>
       </div>
       <p class="rv">
-        You don't need my exact nine skills — you need the principle they encode. Give your agent durable,
+        You don't need my exact nine skills. You need the principle they encode. Give your agent durable,
         versioned documents instead of ephemeral prompts. Make it read them at the start of every session. Put a
         review gate between phases. Log decisions where they can't be lost. Whether you build that as Claude Code
         skills, as a folder convention, or as team habit, the payoff is the same: an AI partner that remembers,
         and a codebase that can prove it.
       </p>
       <p class="rv">
-        The full framework — all skills, docs, and an interactive walkthrough — is published at
+        The full framework (all skills, docs, and an interactive walkthrough) is published at
         <a href="https://aakashdhar.me/vibe-skill/">aakashdhar.me/vibe-skill</a>, free to clone and adapt.
       </p>
       <div class="pull rv">

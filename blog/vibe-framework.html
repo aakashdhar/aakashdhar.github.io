@@ -159,7 +159,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
   </div>
   <h1 class="rv rv-d1">Why I Built a <em>26-Skill Framework</em> Instead of Writing Better Prompts</h1>
   <div class="cover-foot rv rv-d2">
-    <p class="cover-sub">vibe-* is a Claude Code framework covering the complete software development lifecycle — from first idea to client sign-off. This is the story of why it exists, how it works, and the design principle that makes it different from a collection of well-written prompts.</p>
+    <p class="cover-sub">vibe-* is a Claude Code framework covering the complete software development lifecycle, from first idea to client sign-off. This is the story of why it exists, how it works, and the design principle that makes it different from a collection of well-written prompts.</p>
     <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager · BetaCraft</div>
   </div>
   <nav class="toc-strip rv rv-d3" aria-label="Contents">
@@ -194,92 +194,92 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <p class="lead rv">Every developer using Claude Code starts the same way. They write a prompt, get something back, write a better prompt, get something better back, and gradually accumulate a personal library of phrases that work. "Act as a senior engineer." "Read the codebase before suggesting anything." "Don't change files I didn't ask you to change." The prompts get more sophisticated. The outputs get more reliable. And then you hit the ceiling.</p>
 
-      <p class="rv">The ceiling is not a model problem. The model keeps getting better. The ceiling is a <em>session problem</em>. Every time you open a new Claude Code session, you start from zero. The model does not know what project you are working on, what phase you are in, what decisions have been made, what the client signed off on last week, or what the naming conventions are. You spend the first 10 minutes of every session re-establishing context that you already established in the last session. And the session after that. And the one after that.</p>
+      <p class="rv">The ceiling is not a model problem. The model keeps getting better. The ceiling is a <em>session problem</em>. Every time you open a new Claude Code session, you start from zero. The model does not know what project you are working on, what phase you are in, what decisions have been made, what the client signed off on last week, or what the naming conventions are. You spend the first 10 minutes of every session re-establishing context that you already established in the last session, and in the session before that, and in the one before that.</p>
 
-      <p class="rv">Better prompts do not solve this. A prompt is instructions for one session. A skill is a system that works across all sessions — because it reads your actual project files before doing anything, grounds every output in what already exists, and writes structured artefacts that the next session can pick up without you having to explain anything.</p>
+      <p class="rv">Better prompts do not solve this. A prompt is instructions for one session. A skill is a system that works across all sessions, because it reads your actual project files before doing anything, grounds every output in what already exists, and writes structured artefacts that the next session can pick up without you having to explain anything.</p>
 
-      <p class="rv">That distinction — session instructions versus a session-persistent system — is the reason vibe-* exists.</p>
+      <p class="rv">That distinction, session instructions versus a session-persistent system, is the reason vibe-* exists.</p>
 
       <div class="pull rv">
         <blockquote>
           <span class="mark">Pull Quote · 01</span>
-          <p>A prompt is instructions for one session. A skill is a system that works across all sessions — because it reads your actual project files before doing anything.</p>
+          <p>A prompt is instructions for one session. A skill is a system that works across all sessions, because it reads your actual project files before doing anything.</p>
         </blockquote>
       </div>
 
       <div class="sec rv" id="s2">
         <span class="n">02</span>
-        <h2>What a Skill Actually Is</h2>
+        <h2>What a Skill Is</h2>
       </div>
 
       <p class="rv">A vibe-* skill is a markdown instruction set that lives in <code>~/.claude/skills/</code> and is loaded automatically by Claude Code when the matching trigger fires. Skills are not scripts. They do not run external processes. They do not require servers or npm packages. They run entirely inside Claude Code's context window, which means they work on any project in any language on any machine where Claude Code is installed.</p>
 
       <p class="rv">Every skill in the framework does four things before it does anything else: it reads your actual project files (SPEC.md, TASKS.md, DECISIONS.md, ARCHITECTURE.md, git history), it establishes what already exists before proposing what should change, it defines what a complete output looks like rather than stopping at a partial answer, and it writes structured artefacts that the next skill in the sequence can consume without re-establishing context.</p>
 
-      <p class="rv">The trigger model is natural language. You type <code>feature: add CSV export for invoices</code> and Claude Code fires the <code>vibe-add-feature</code> skill. It reads your codebase, produces a FEATURE_SPEC.md with acceptance criteria and out-of-scope items, a FEATURE_PLAN.md with the implementation approach, and a FEATURE_TASKS.md with a sized task breakdown. You say go and it builds. No re-explaining what the project is. No re-establishing naming conventions. No context overhead.</p>
+      <p class="rv">The trigger model is natural language. You type <code>feature: add CSV export for invoices</code> and Claude Code fires the <code>vibe-add-feature</code> skill. It reads your codebase, produces a FEATURE_SPEC.md with acceptance criteria and out-of-scope items, a FEATURE_PLAN.md with the implementation approach, and a FEATURE_TASKS.md with a sized task breakdown. You say go and it builds. There is no re-explaining what the project is, no re-establishing naming conventions, and no context overhead.</p>
 
       <h3 class="rv">What makes a skill different from a prompt</h3>
       <ul class="rv">
         <li><strong>Grounded in real files:</strong> Every skill reads your actual TASKS.md, SPEC.md, DECISIONS.md, git history before doing anything. Nothing is invented. If a section has no data source, the skill says so rather than fabricating content.</li>
-        <li><strong>Complete output, not partial:</strong> A skill produces everything needed for its phase — spec, plan, task list — in one trigger. You do not need to ask follow-up questions to get the full picture.</li>
+        <li><strong>Complete output, not partial:</strong> A skill produces everything needed for its phase (spec, plan, task list) in one trigger. You do not need to ask follow-up questions to get the full picture.</li>
         <li><strong>Phase-gated by design:</strong> Skills enforce quality gates. Phase N cannot proceed to Phase N+1 until <code>review:</code> passes with zero P0 issues. The gate is structural, not advisory.</li>
         <li><strong>Two audiences, always:</strong> Client documents (DELIVERY.md, CHANGELOG_CLIENT.md) are plain English with no task IDs, no framework names, no file paths. Developer documents are precise and technical. The skill knows which is which.</li>
       </ul>
 
       <div class="sec rv" id="s3">
         <span class="n">03</span>
-        <h2>The 26 Skills — What Each One Does</h2>
+        <h2>The 26 Skills: What Each One Does</h2>
       </div>
 
       <p class="rv">The framework covers the complete software development lifecycle in six phases. Each skill has one job and does it completely.</p>
 
-      <span class="phase-label rv">Plan — think before you build</span>
+      <span class="phase-label rv">Plan · think before you build</span>
       <div class="skill-grid rv">
         <div class="skill-cell"><span class="skill-name">vibe-brainstorm</span><span class="skill-desc">Turn any idea into a validated, buildable brief. 13 structured questions across product, users, revenue, and tech. Produces BRIEF.md.</span></div>
-        <div class="skill-cell"><span class="skill-name">vibe-architect</span><span class="skill-desc">Plan code structure, tech stack, data model, and API patterns before writing a line. Produces ARCHITECTURE.md — read at the start of every future session.</span></div>
-        <div class="skill-cell"><span class="skill-name">vibe-agent</span><span class="skill-desc">Design multi-agent AI systems — orchestrators, subagents, boundaries, and tool assignments — before any code.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-architect</span><span class="skill-desc">Plan code structure, tech stack, data model, and API patterns before writing a line. Produces ARCHITECTURE.md, read at the start of every future session.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-agent</span><span class="skill-desc">Design multi-agent AI systems (orchestrators, subagents, boundaries, and tool assignments) before any code.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-spec-review</span><span class="skill-desc">Audit specs for ambiguity, missing edge cases, and unstated assumptions before coding starts. The gate between planning and building.</span></div>
       </div>
 
-      <span class="phase-label rv">Build — structured development at every stage</span>
+      <span class="phase-label rv">Build · structured development at every stage</span>
       <div class="skill-grid rv">
-        <div class="skill-cell"><span class="skill-name">vibe-new-app</span><span class="skill-desc">Scaffold a complete project — CLAUDE.md, the full vibe/ folder, and Phase 1 build — from BRIEF.md and ARCHITECTURE.md in one trigger.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-new-app</span><span class="skill-desc">Scaffold a complete project (CLAUDE.md, the full vibe/ folder, and Phase 1 build) from BRIEF.md and ARCHITECTURE.md in one trigger.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-add-feature</span><span class="skill-desc">Add a feature to an existing codebase. Produces FEATURE_SPEC.md, FEATURE_PLAN.md, FEATURE_TASKS.md before touching code.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-change-spec</span><span class="skill-desc">Modify requirements mid-build. Assesses blast radius, updates all affected docs in the right order, never silently breaks prior commitments.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-fix-bug</span><span class="skill-desc">Diagnose and fix bugs. Severity triage first. Writes regression test that fails, fixes the bug, regression test passes. Always in that order.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-review</span><span class="skill-desc">Evidence-based code review. Acts as Senior Engineer, Architect, and Code Quality Auditor simultaneously. Every finding backed by file path and line number. P0 issues block the next phase.</span></div>
-        <div class="skill-cell"><span class="skill-name">vibe-test</span><span class="skill-desc">Generate tests across the blast radius of any change — component, integration, and E2E. Maps the full dependency graph before writing a single test.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-test</span><span class="skill-desc">Generate tests across the blast radius of any change: component, integration, and E2E. Maps the full dependency graph before writing a single test.</span></div>
       </div>
 
-      <span class="phase-label rv">Design — frontend quality at editorial standards</span>
+      <span class="phase-label rv">Design · frontend quality at editorial standards</span>
       <div class="skill-grid rv">
         <div class="skill-cell"><span class="skill-name">vibe-design</span><span class="skill-desc">Design or redesign components and pages. Reads DESIGN_SYSTEM.md first, applies tokens consistently, handles dark mode strategy.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-design-md</span><span class="skill-desc">Capture a design system from any URL or generate one from scratch. Produces DESIGN_SYSTEM.md with tokens, components, and patterns.</span></div>
       </div>
 
-      <span class="phase-label rv">Visibility — know where you are and what it costs</span>
+      <span class="phase-label rv">Visibility · know where you are and what it costs</span>
       <div class="skill-grid rv">
-        <div class="skill-cell"><span class="skill-name">vibe-progress</span><span class="skill-desc">ASCII progress dashboard — phase gates, active work, completed features, open bugs, scope decisions, last git activity. Read-only.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-progress</span><span class="skill-desc">ASCII progress dashboard: phase gates, active work, completed features, open bugs, scope decisions, last git activity. Read-only.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-cost</span><span class="skill-desc">Track token usage and estimated dollar cost per session. Tags every task S/M/L. Detects 8 waste patterns including cache misses and context bloat.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-ledger</span><span class="skill-desc">Generate a full HTML cost report from cost history. Session burn chart, average cost per task, peak session identification, cache savings analysis.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-graph</span><span class="skill-desc">Generate a dependency graph of the codebase. Useful when architecture questions arise or before large refactors.</span></div>
-        <div class="skill-cell"><span class="skill-name">vibe-doctor</span><span class="skill-desc">Environment health check — Node, Python, database connections, env vars, dependencies. Run before deploy to catch problems that would surface in production.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-doctor</span><span class="skill-desc">Environment health check: Node, Python, database connections, env vars, dependencies. Run before deploy to catch problems that would surface in production.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-mode</span><span class="skill-desc">Toggle between supervised (approval between tasks) and autonomous (run until done) execution. Switches the agent's operating mode without changing prompts.</span></div>
       </div>
 
-      <span class="phase-label rv">Ship — deploy and verify</span>
+      <span class="phase-label rv">Ship · deploy and verify</span>
       <div class="skill-grid rv">
         <div class="skill-cell"><span class="skill-name">vibe-deploy</span><span class="skill-desc">Prepare for deployment to 7 platforms: Railway, Render, Fly.io, Heroku, Vercel, Netlify, GitHub Pages. Generates platform config, ENV_SETUP.md, and a human checklist.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-e2e</span><span class="skill-desc">Generate and run Playwright E2E tests against a live URL. Reads SPEC.md, identifies critical user flows, installs Playwright in isolation, cleans up test data after.</span></div>
-        <div class="skill-cell"><span class="skill-name">vibe-perf</span><span class="skill-desc">Performance audit — Core Web Vitals, bundle analysis, database query patterns, cache strategy. Produces a prioritised fix list.</span></div>
-        <div class="skill-cell"><span class="skill-name">vibe-parallel</span><span class="skill-desc">Run independent tasks simultaneously via subagents. The multiplier that makes the framework fast — parallel build sessions instead of sequential ones.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-perf</span><span class="skill-desc">Performance audit: Core Web Vitals, bundle analysis, database query patterns, cache strategy. Produces a prioritised fix list.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-parallel</span><span class="skill-desc">Run independent tasks simultaneously via subagents. The multiplier that makes the framework fast: parallel build sessions instead of sequential ones.</span></div>
       </div>
 
-      <span class="phase-label rv">Close — document, communicate, hand off</span>
+      <span class="phase-label rv">Close · document, communicate, hand off</span>
       <div class="skill-grid rv">
-        <div class="skill-cell"><span class="skill-name">vibe-document</span><span class="skill-desc">Generate all project documentation — inline code docs, README, ONBOARDING, API reference. Two audiences: developers and clients.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-document</span><span class="skill-desc">Generate all project documentation: inline code docs, README, ONBOARDING, API reference. Two audiences: developers and clients.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-changelog</span><span class="skill-desc">Generate CHANGELOG.md (developer-facing, Keep a Changelog format) and CHANGELOG_CLIENT.md (plain English, product update style) simultaneously from git history.</span></div>
-        <div class="skill-cell"><span class="skill-name">vibe-handoff</span><span class="skill-desc">Generate a complete delivery package — DELIVERY.md, FEATURES.md, KNOWN_ISSUES.md, CREDENTIALS.md, SIGN_OFF_CHECKLIST.md, and a self-contained index.html portal.</span></div>
+        <div class="skill-cell"><span class="skill-name">vibe-handoff</span><span class="skill-desc">Generate a complete delivery package: DELIVERY.md, FEATURES.md, KNOWN_ISSUES.md, CREDENTIALS.md, SIGN_OFF_CHECKLIST.md, and a self-contained index.html portal.</span></div>
         <div class="skill-cell"><span class="skill-name">vibe-init</span><span class="skill-desc">Onboard an existing codebase into the vibe-* framework. Reads actual source files, infers architecture, generates the full vibe/ folder. Start using all 26 skills on any existing project immediately.</span></div>
       </div>
 
@@ -288,7 +288,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
         <h2>The Full Development Lifecycle in One View</h2>
       </div>
 
-      <p class="rv">The framework is designed so that the output of each skill feeds naturally into the next. BRIEF.md from brainstorm feeds architect. ARCHITECTURE.md from architect feeds new-app. FEATURE_SPEC.md from add-feature feeds review. CHANGELOG from changelog feeds handoff. The sequence is not rigid — you can enter at any point using vibe-init — but the lifecycle is complete.</p>
+      <p class="rv">The framework is designed so that the output of each skill feeds naturally into the next. BRIEF.md from brainstorm feeds architect. ARCHITECTURE.md from architect feeds new-app. FEATURE_SPEC.md from add-feature feeds review. CHANGELOG from changelog feeds handoff. The sequence is not rigid (you can enter at any point using vibe-init), but the lifecycle is complete.</p>
 
       <div class="pipeline rv">
 <span class="phase">PLAN</span>
@@ -329,10 +329,10 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
       <ul class="rv">
         <li><strong>Skills are instruction sets, not scripts:</strong> They run inside Claude Code's context window. No external processes, no servers, no npm packages required for the framework itself. Install once, work everywhere.</li>
         <li><strong>Everything is grounded:</strong> Every skill reads actual project files before doing anything. SPEC.md, TASKS.md, DECISIONS.md, git history. Nothing is invented. If a section has no data source, the skill says so.</li>
-        <li><strong>Docs are first-class:</strong> The framework produces documents that serve real audiences — developers, clients, PMs. CHANGELOG_CLIENT.md is readable by a business owner. DELIVERY.md can be sent directly to a client. ONBOARDING.md gets a new developer running in 30 minutes.</li>
+        <li><strong>Docs are first-class:</strong> The framework produces documents that serve real audiences: developers, clients, PMs. CHANGELOG_CLIENT.md is readable by a business owner. DELIVERY.md can be sent directly to a client. ONBOARDING.md gets a new developer running in 30 minutes.</li>
         <li><strong>Cost is visible:</strong> Every session is tracked. Every task has a cost. The ledger shows where money went. Waste patterns are flagged before they compound. The summary.json bridges raw cost data and human-readable reports.</li>
         <li><strong>The gate is real:</strong> vibe-review is not optional. Phase gates are enforced. P0 issues block progress. This is what makes the output shippable rather than just generated.</li>
-        <li><strong>Two audiences, always:</strong> Client documents are plain English — no task IDs, no framework names, no file paths. Developer documents are precise and technical. The framework never conflates the two.</li>
+        <li><strong>Two audiences, always:</strong> Client documents are plain English: no task IDs, no framework names, no file paths. Developer documents are precise and technical. The framework never conflates the two.</li>
       </ul>
 
       <div class="pull rv">
@@ -347,22 +347,22 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
         <h2>Install in One Line. All 26 Skills Active Immediately.</h2>
       </div>
 
-      <p class="rv">vibe-* is open source and free to use. Install via git clone — no npm, no pip, no package manager required.</p>
+      <p class="rv">vibe-* is open source and free to use. Install it via git clone; no npm, no pip, and no package manager are required.</p>
 
       <pre class="rv"><code>git clone https://github.com/aakashdhar/vibe-skill.git /tmp/vibe-skill && mv /tmp/vibe-skill/vibe-* ~/.claude/skills/ && rm -rf /tmp/vibe-skill</code></pre>
 
-      <p class="rv">Restart Claude Code. All 26 skills are active immediately. Skills trigger from natural language — no slash commands, no configuration required. Type <code>brainstorm: I want to build a SaaS tool for freelancers</code> and you are in the framework.</p>
+      <p class="rv">Restart Claude Code. All 26 skills are active immediately. Skills trigger from natural language, with no slash commands and no configuration required. Type <code>brainstorm: I want to build a SaaS tool for freelancers</code> and you are in the framework.</p>
 
       <p class="rv">For existing projects, <code>vibe-init</code> reads your actual source files, infers the architecture, and generates the full <code>vibe/</code> folder. You do not need to start a new project to get value from the framework. You can onboard any codebase you are already working on.</p>
 
-      <p class="rv">The full README — with examples for every skill, the complete cheat sheet, the file structure reference, and the deploy platform guide — is at <a href="https://github.com/aakashdhar/vibe-skill" target="_blank" rel="noopener">github.com/aakashdhar/vibe-skill</a>.</p>
+      <p class="rv">The full README, with examples for every skill, the complete cheat sheet, the file structure reference, and the deploy platform guide, is at <a href="https://github.com/aakashdhar/vibe-skill" target="_blank" rel="noopener">github.com/aakashdhar/vibe-skill</a>.</p>
 
-      <p class="rv">Built and maintained by me at BetaCraft, where it runs on every live client project. Issues, suggestions, and skill contributions are welcome — skills are just markdown files with a consistent structure. Open a PR with your skill in its own folder following the existing naming convention.</p>
+      <p class="rv">Built and maintained by me at BetaCraft, where it runs on every live client project. Issues, suggestions, and skill contributions are welcome. Skills are just markdown files with a consistent structure. Open a PR with your skill in its own folder following the existing naming convention.</p>
 
       <div class="pull rv">
         <blockquote>
           <span class="mark">Takeaway</span>
-          <p>26 skills. One trigger each. The complete software development lifecycle — from first idea to client sign-off — without re-explaining your project every session.</p>
+          <p>26 skills. One trigger each. The complete software development lifecycle, from first idea to client sign-off, without re-explaining your project every session.</p>
           <p class="note"><strong>Install</strong> <code style="font-family:JetBrains Mono,monospace;font-size:.85em;font-style:normal">git clone https://github.com/aakashdhar/vibe-skill.git</code></p>
         </blockquote>
       </div>
@@ -377,7 +377,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
     <h3 class="rv">Enjoyed this <span class="serif">read?</span></h3>
     <p class="outro-sub rv rv-d1">Connect on LinkedIn or explore the framework on GitHub.</p>
     <div class="socials rv rv-d2">
-      <a href="https://github.com/aakashdhar/vibe-skill" target="_blank" rel="noopener">GitHub — vibe-skill ↗</a>
+      <a href="https://github.com/aakashdhar/vibe-skill" target="_blank" rel="noopener">GitHub · vibe-skill ↗</a>
       <a href="https://www.linkedin.com/in/aakashdhar" target="_blank" rel="noopener">Connect on LinkedIn</a>
       <a href="../index.html#insights">More Writing</a>
       <a href="../index.html">← Back to Portfolio</a>

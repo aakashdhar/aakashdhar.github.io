@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PM–Dev Closed Loop — Case Study · Aakash Dhar</title>
+<title>PM–Dev Closed Loop · Case Study · Aakash Dhar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -223,8 +223,8 @@
       <span class="eyebrow-tag">Case Study</span>
       BetaCraft Internal · 2025–2026
     </p>
-    <h1 class="hero-title">The PM–Dev<br><em>Closed Loop</em> —<br>one pipeline,<br>zero translation loss.</h1>
-    <p class="hero-sub">I designed and built BetaCraft's end-to-end AI-native delivery system: a 28-skill pipeline where a client email enters one end and a tested, reviewed, client-ready delivery exits the other — without the PM ever seeing code, or the developer ever seeing a client message.</p>
+    <h1 class="hero-title">The PM–Dev<br><em>Closed Loop</em>:<br>one pipeline,<br>no manual translation step.</h1>
+    <p class="hero-sub">I designed and built BetaCraft's end-to-end AI-native delivery system: a 28-skill pipeline where a client email enters one end and a tested, reviewed, client-ready delivery exits the other, without the PM ever seeing code, or the developer ever seeing a client message.</p>
 
     <div class="hero-meta">
       <div class="meta-item">
@@ -266,7 +266,7 @@
     </div>
     <div class="stat-cell">
       <div class="stat-num">2</div>
-      <div class="stat-desc">Orchestrator agents — BAM (PM) and TPM (dev)</div>
+      <div class="stat-desc">Orchestrator agents: BAM (PM) and TPM (dev)</div>
     </div>
     <div class="stat-cell">
       <div class="stat-num">0</div>
@@ -278,8 +278,8 @@
   <section id="problem">
     <p class="section-num">01 / The problem</p>
     <h2>Why this needed to exist.</h2>
-    <p>Most software agencies run two communication layers that don't talk to each other well: the <strong>client layer</strong> — requirements, emails, calls, approvals — and the <strong>engineering layer</strong> — specs, tickets, code, reviews. The gap between them is where projects go wrong. Scope gets lost in translation. Decisions don't get logged. Estimates don't match client expectations. PM overhead compounds with every new engagement.</p>
-    <p>At BetaCraft, running 3–5 concurrent client engagements, I was that translation layer. Manual, expensive, and a single point of failure. I built a system to replace the manual parts without losing the judgment.</p>
+    <p>Most software agencies run two communication layers that don't talk to each other well: the <strong>client layer</strong> (requirements, emails, calls, approvals) and the <strong>engineering layer</strong> (specs, tickets, code, reviews). The gap between them is where projects go wrong. Scope gets lost in translation. Decisions don't get logged. Estimates don't match client expectations. PM overhead compounds with every new engagement.</p>
+    <p>At BetaCraft, running 3–5 concurrent client engagements, I was that translation layer, and it was manual, expensive, and a single point of failure. I built a system to replace the manual parts without losing the judgment.</p>
 
     <div class="two-col">
       <div class="grid-card">
@@ -290,17 +290,17 @@
       <div class="grid-card">
         <p class="gc-label">Pain point</p>
         <h4>PM overhead scaling with project count</h4>
-        <p>Every new engagement added email triage, call digestion, SOW drafting, sprint planning — all done manually, in parallel.</p>
+        <p>Every new engagement added email triage, call digestion, SOW drafting, sprint planning. All done manually, in parallel.</p>
       </div>
       <div class="grid-card">
         <p class="gc-label">Pain point</p>
         <h4>Engineers pulled into client comms</h4>
-        <p>Developers occasionally dragged into client conversations that should have stayed in the PM layer — losing build focus and creating communication risk.</p>
+        <p>Developers occasionally dragged into client conversations that should have stayed in the PM layer, losing build focus and creating communication risk.</p>
       </div>
       <div class="grid-card">
         <p class="gc-label">Pain point</p>
         <h4>No consistent delivery gate</h4>
-        <p>Features shipping without a structured review and sign-off process. Quality was person-dependent, not system-dependent.</p>
+        <p>Features shipping without a structured review and sign-off process. Quality depended on whoever happened to be running the project that week.</p>
       </div>
     </div>
   </section>
@@ -311,21 +311,21 @@
   <section id="architecture">
     <p class="section-num">02 / Architecture</p>
     <h2>Three layers, one loop.</h2>
-    <p>The system separates concerns into three layers that communicate through a single defined interface — the bridge. No layer reaches past the bridge into the other's domain.</p>
+    <p>The system separates concerns into three layers that communicate through a single defined interface: the bridge. No layer reaches past the bridge into the other's domain.</p>
 
     <div class="layer-grid">
       <div class="layer-card lc-pm">
-        <p class="lc-label">Layer 1 — PM</p>
+        <p class="lc-label">Layer 1 · PM</p>
         <h4>BAM Orchestrator</h4>
         <p>Business Administrative Manager. Ingests client comms, logs decisions, generates requirements, drafts client-facing updates. Never sees code.</p>
       </div>
       <div class="layer-card lc-bridge">
-        <p class="lc-label">Layer 2 — Bridge</p>
+        <p class="lc-label">Layer 2 · Bridge</p>
         <h4>Neutral exchange</h4>
         <p>A versioned shared folder. BAM writes REQUIREMENT-NNN.md. TPM reads it, builds, writes DELIVERY-UPDATE-NNN.md. BAM reads that back. No direct coupling.</p>
       </div>
       <div class="layer-card lc-dev">
-        <p class="lc-label">Layer 3 — Dev</p>
+        <p class="lc-label">Layer 3 · Dev</p>
         <h4>TPM + vibe-* Agent</h4>
         <p>Technical PM agent translates requirements into specs the vibe-* dev skill system can execute. Dev never reads client emails.</p>
       </div>
@@ -333,7 +333,7 @@
 
     <div class="callout callout-purple">
       <p class="callout-label">Design principle</p>
-      <p>The bridge folder is the contract between two teams — or two agents. Today one person runs both layers. When BetaCraft grows, a dedicated PM runs BAM and a TPM runs vibe-*. The bridge protocol doesn't change.</p>
+      <p>The bridge folder is the contract between two teams, or two agents. Today one person runs both layers. When BetaCraft grows, a dedicated PM runs BAM and a TPM runs vibe-*. The bridge protocol doesn't change.</p>
     </div>
   </section>
 
@@ -341,9 +341,9 @@
 
   <!-- 03 PM LAYER -->
   <section id="pm-layer">
-    <p class="section-num">03 / PM layer — 21 skills</p>
+    <p class="section-num">03 / PM layer · 21 skills</p>
     <h2>What the BAM agent does.</h2>
-    <p>The PM layer is the <strong>betacraft-pm-standard</strong> — a client-agnostic operating system for the full client relationship. It runs on Claude Code with Gmail and Fathom MCP integrations for live email and call transcript ingestion.</p>
+    <p>The PM layer is the <strong>betacraft-pm-standard</strong>, a client-agnostic operating system for the full client relationship. It runs on Claude Code with Gmail and Fathom MCP integrations for live email and call transcript ingestion.</p>
 
     <div class="skill-list">
       <div class="skill-row">
@@ -363,7 +363,7 @@
       <div class="skill-row">
         <span class="skill-badge sb-pm">propose-decision</span>
         <div class="skill-info">
-          <h4>Governance gate — DEC-NNN logging</h4>
+          <h4>Governance gate: DEC-NNN logging</h4>
           <p>Every requirement entering the bridge must have a logged decision behind it. This gate blocks generate-brief until DEC-NNN is locked and dated.</p>
         </div>
       </div>
@@ -371,21 +371,21 @@
         <span class="skill-badge sb-pm">generate-brief</span>
         <div class="skill-info">
           <h4>Client requirement → REQUIREMENT-NNN.md</h4>
-          <p>Translates a locked decision into a structured requirement document written for the TPM agent — the handoff point into the bridge.</p>
+          <p>Translates a locked decision into a structured requirement document written for the TPM agent, the handoff point into the bridge.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-pm">draft-client-reply</span>
         <div class="skill-info">
           <h4>Delivery update → client email</h4>
-          <p>Reads DELIVERY-UPDATE-NNN.md from the bridge and produces a client-facing email in the right house style, grounded in what actually shipped.</p>
+          <p>Reads DELIVERY-UPDATE-NNN.md from the bridge and produces a client-facing email in the right house style, grounded in what shipped.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-pm">status-report</span>
         <div class="skill-info">
           <h4>RAG status for management and clients</h4>
-          <p>Generates a RAG-coded status report: overall health, decisions since last report, open risks, next milestones. Read-only — no files modified.</p>
+          <p>Generates a RAG-coded status report: overall health, decisions since last report, open risks, next milestones. Read-only: no files modified.</p>
         </div>
       </div>
     </div>
@@ -397,7 +397,7 @@
   <section id="bridge">
     <p class="section-num">04 / The bridge</p>
     <h2>How information moves between layers.</h2>
-    <p>The bridge is a versioned folder — <code>[client]-bridge/</code> — sitting between the PM and dev repositories. Two file types. One rule.</p>
+    <p>The bridge is a versioned folder, <code>[client]-bridge/</code>, sitting between the PM and dev repositories. It uses two file types and enforces one rule.</p>
 
     <div class="code-block">
 <span class="c-dim"># Bridge structure</span>
@@ -414,7 +414,7 @@
 <span class="c-green">The bridge is the only shared surface.</span>
     </div>
 
-    <p>A REQUIREMENT-NNN.md contains: the decision number it implements, the feature or change in plain language, acceptance criteria the vibe-* system can consume directly, compliance or dependency constraints, and a priority call. The TPM agent picks it up and never needs to ask what the client actually wants — it's already been translated.</p>
+    <p>A REQUIREMENT-NNN.md contains: the decision number it implements, the feature or change in plain language, acceptance criteria the vibe-* system can consume directly, compliance or dependency constraints, and a priority call. The TPM agent picks it up and never needs to ask what the client wants: it's already been translated.</p>
     <p>A DELIVERY-UPDATE-NNN.md contains: what shipped, explicit out-of-scope items, known issues, and a one-paragraph client-facing summary the BAM agent can paste directly into an email. No re-interpretation in either direction.</p>
   </section>
 
@@ -422,16 +422,16 @@
 
   <!-- 05 DEV LAYER -->
   <section id="dev-layer">
-    <p class="section-num">05 / Dev layer — vibe-* system</p>
+    <p class="section-num">05 / Dev layer · vibe-* system</p>
     <h2>What the TPM + vibe-* agent does.</h2>
-    <p>The development layer is the <strong>vibe-* framework</strong> — structured AI development skills covering the complete build lifecycle. The TPM agent translates bridge documents into vibe-* inputs so developers skip brainstorming and go straight to building.</p>
+    <p>The development layer is the <strong>vibe-* framework</strong>, structured AI development skills covering the complete build lifecycle. The TPM agent translates bridge documents into vibe-* inputs so developers skip brainstorming and go straight to building.</p>
 
     <div class="skill-list">
       <div class="skill-row">
         <span class="skill-badge sb-tpm">tpm-translate</span>
         <div class="skill-info">
           <h4>REQUIREMENT-NNN → FEATURE_SPEC.md</h4>
-          <p>TPM agent reads the bridge requirement and produces the exact spec format vibe-add-feature expects — pre-filled with context, criteria, and constraints.</p>
+          <p>TPM agent reads the bridge requirement and produces the exact spec format vibe-add-feature expects, pre-filled with context, criteria, and constraints.</p>
         </div>
       </div>
       <div class="skill-row">
@@ -478,11 +478,11 @@
   <section id="loop">
     <p class="section-num">06 / The full loop</p>
     <h2>End to end.</h2>
-    <p>From the moment a client sends an email to the moment they receive a delivery confirmation, every step is handled by the system — with human judgment applied at the right checkpoints.</p>
+    <p>From the moment a client sends an email to the moment they receive a delivery confirmation, every step is handled by the system, with human judgment applied at the right checkpoints.</p>
 
     <div class="loop-wrap">
       <div class="loop-header">
-        <span>Full delivery loop — PM ↔ Bridge ↔ Dev</span>
+        <span>Full delivery loop · PM ↔ Bridge ↔ Dev</span>
         <div class="loop-legend">
           <div class="leg"><div class="leg-dot" style="background:#C9620A"></div>PM layer</div>
           <div class="leg"><div class="leg-dot" style="background:#1A7A40"></div>Bridge</div>
@@ -518,7 +518,7 @@
           <!-- Step 2: propose-decision -->
           <rect x="20" y="112" width="160" height="44" rx="5" fill="#fff" stroke="rgba(109,40,217,0.3)" stroke-width="1"/>
           <text x="100" y="130" text-anchor="middle" fill="#6D28D9" font-family="JetBrains Mono,monospace" font-size="9">propose-decision ✋</text>
-          <text x="100" y="146" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">DEC-NNN locked — human gate</text>
+          <text x="100" y="146" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">DEC-NNN locked · human gate</text>
           <!-- arrow down -->
           <line x1="100" y1="156" x2="100" y2="172" stroke="#E0DCD4" stroke-width="1.5"/>
           <polygon points="95,168 105,168 100,174" fill="#E0DCD4"/>
@@ -558,7 +558,7 @@
           <!-- Step 6: vibe-review -->
           <rect x="480" y="298" width="160" height="44" rx="5" fill="#fff" stroke="rgba(109,40,217,0.3)" stroke-width="1"/>
           <text x="560" y="316" text-anchor="middle" fill="#6D28D9" font-family="JetBrains Mono,monospace" font-size="9">vibe-review ✋</text>
-          <text x="560" y="332" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">P0 blocks — human gate</text>
+          <text x="560" y="332" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">P0 blocks · human gate</text>
           <!-- arrow down -->
           <line x1="560" y1="342" x2="560" y2="358" stroke="#E0DCD4" stroke-width="1.5"/>
           <polygon points="555,354 565,354 560,360" fill="#E0DCD4"/>
@@ -617,35 +617,35 @@
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
           <h4>3+ live client engagements on the system</h4>
-          <p>Sapey, Brieflex, WePop, and Link Broadband all run through the same PM layer — no client-specific manual processes.</p>
+          <p>Sapey, Brieflex, WePop, and Link Broadband all run through the same PM layer, with no client-specific manual processes.</p>
         </div>
       </div>
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
           <h4>PM admin overhead cut significantly</h4>
-          <p>Email triage, MoM production, status reports, and SOW generation are now skills — they run in seconds, not hours.</p>
+          <p>Email triage, MoM production, status reports, and SOW generation are now skills: they run in seconds, not hours.</p>
         </div>
       </div>
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
           <h4>Every decision formally logged</h4>
-          <p>The DEC-NNN gate means no requirement moves to engineering without a logged, dated, accountable decision. Scope disputes get resolved by the log, not by memory.</p>
+          <p>The DEC-NNN gate means no requirement moves to engineering without a logged, dated, accountable decision. Scope disputes get resolved by the log.</p>
         </div>
       </div>
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
-          <h4>Quality gates structural — not person-dependent</h4>
+          <h4>Quality gates are structural</h4>
           <p>vibe-review runs on every phase. P0 issues block progression regardless of who's on the team that sprint.</p>
         </div>
       </div>
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
-          <h4>System is self-improving</h4>
-          <p>A skill-evolution layer lets patterns observed in delivery feed back into skill refinements. The loop improves with every project it runs.</p>
+          <h4>The system feeds back into itself</h4>
+          <p>A skill-evolution layer lets patterns observed in delivery feed back into skill refinements. Each project run informs the next.</p>
         </div>
       </div>
     </div>
@@ -658,8 +658,8 @@
     <p class="section-num">08 / Reflection</p>
     <h2>What I learned building this.</h2>
     <p>The core insight was that <strong>AI agents fail at boundaries, not at tasks</strong>. A well-prompted agent can write a feature spec, draft a client email, or produce a delivery summary. What it can't do reliably is decide which of those things to do next, or how information from one domain should translate into the language of another.</p>
-    <p>The bridge solves that by making the boundary explicit and structured. BAM doesn't need to think like a developer. TPM doesn't need to think like a PM. The bridge document is the translation — it exists precisely so neither agent has to reach across a domain it wasn't built for.</p>
-    <p>The human judgment layer matters too. I didn't automate decisions — I automated the <strong>preparation and execution around decisions</strong>. propose-decision and vibe-review are checkpoints where a human reads what the system produced and says yes or no. The system doesn't replace judgment; it makes judgment cheaper to apply more consistently.</p>
+    <p>The bridge solves that by making the boundary explicit and structured. BAM doesn't need to think like a developer. TPM doesn't need to think like a PM. The bridge document is the translation. It exists precisely so neither agent has to reach across a domain it wasn't built for.</p>
+    <p>The human judgment layer matters too. I automated the <strong>preparation and execution around decisions</strong>, and kept the decisions themselves human. propose-decision and vibe-review are checkpoints where a human reads what the system produced and says yes or no. The system doesn't replace judgment; it makes judgment cheaper to apply more consistently.</p>
   </section>
 
   <!-- FOOTER -->

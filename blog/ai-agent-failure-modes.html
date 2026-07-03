@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How AI Agents Actually Fail in Production | Aakash Dhar</title>
 <meta name="title" content="How AI Agents Actually Fail in Production | Aakash Dhar">
-<meta name="description" content="Everyone writes about what makes AI agents work. Nobody writes about what makes them fail. After building agentic delivery systems in production, here are the real failure modes - and what I actually did about them.">
+<meta name="description" content="Most writing about AI agents covers what makes them work, less about what makes them fail. After building agentic delivery systems in production, here are the failure modes I hit - and what I did about them.">
 <meta name="keywords" content="AI agents failure modes, agentic AI production, LLM agent failures, AI agent debugging, context window degradation, agent boundary failure, Claude Code agentic workflow, AI delivery systems">
 <meta name="author" content="Aakash Dhar">
 <link rel="canonical" href="https://aakashdhar.me/blog/ai-agent-failure-modes.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://aakashdhar.me/blog/ai-agent-failure-modes.html">
 <meta property="og:title" content="How AI Agents Actually Fail in Production">
-<meta property="og:description" content="Everyone writes about what makes AI agents work. Nobody writes about what makes them fail. Real failure modes from building agentic delivery systems in production.">
+<meta property="og:description" content="Most writing about AI agents covers what makes them work, less about what makes them fail. Failure modes from building agentic delivery systems in production.">
 <meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://aakashdhar.me/blog/ai-agent-failure-modes.html">
 <meta property="twitter:title" content="How AI Agents Actually Fail in Production">
-<meta property="twitter:description" content="Everyone writes about what makes AI agents work. Nobody writes about what makes them fail. Real failure modes from building agentic delivery systems in production.">
+<meta property="twitter:description" content="Most writing about AI agents covers what makes them work, less about what makes them fail. Failure modes from building agentic delivery systems in production.">
 <meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
 <script type="application/ld+json">
 {
@@ -28,7 +28,7 @@
   "author": {"@type": "Person", "name": "Aakash Dhar", "url": "https://www.linkedin.com/in/aakashdhar"},
   "publisher": {"@type": "Person", "name": "Aakash Dhar"},
   "datePublished": "2026-06-19",
-  "description": "Everyone writes about what makes AI agents work. Nobody writes about what makes them fail. Real failure modes from building agentic delivery systems in production.",
+  "description": "Most writing about AI agents covers what makes them work, less about what makes them fail. Failure modes from building agentic delivery systems in production.",
   "mainEntityOfPage": {"@type": "WebPage", "@id": "https://aakashdhar.me/blog/ai-agent-failure-modes.html"}
 }
 </script>
@@ -146,7 +146,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
   </div>
   <h1 class="rv rv-d1">How AI Agents <em>Actually Fail</em> in Production</h1>
   <div class="cover-foot rv rv-d2">
-    <p class="cover-sub">Everyone writes about what makes agents work. Nobody writes about what makes them fail. After building agentic delivery systems that run live client projects, here are the real failure modes - not the theoretical ones - and what I did about each one.</p>
+    <p class="cover-sub">Most writing about agents covers what makes them work, and much less covers what makes them fail. After building agentic delivery systems that run live client projects, here are the failure modes I hit in production, and what I did about each one.</p>
     <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
   </div>
   <nav class="toc-strip rv rv-d3" aria-label="Contents">
@@ -155,7 +155,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
     <a href="#s3"><span class="n">03</span><span class="t">Context Degradation</span></a>
     <a href="#s4"><span class="n">04</span><span class="t">The Proposal Trap</span></a>
     <a href="#s5"><span class="n">05</span><span class="t">Missing Human Gates</span></a>
-    <a href="#s6"><span class="n">06</span><span class="t">What Actually Works</span></a>
+    <a href="#s6"><span class="n">06</span><span class="t">What Works</span></a>
   </nav>
 </header>
 
@@ -168,7 +168,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
       <a href="#s3" data-s="s3"><span class="n">03</span><span class="t">Context Degradation</span></a>
       <a href="#s4" data-s="s4"><span class="n">04</span><span class="t">The Proposal Trap</span></a>
       <a href="#s5" data-s="s5"><span class="n">05</span><span class="t">Missing Human Gates</span></a>
-      <a href="#s6" data-s="s6"><span class="n">06</span><span class="t">What Actually Works</span></a>
+      <a href="#s6" data-s="s6"><span class="n">06</span><span class="t">What Works</span></a>
       <div class="rail-rule"><i id="railFill"></i></div>
     </aside>
 
@@ -181,9 +181,9 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <p class="lead rv">Almost everything written about AI agents is written before they hit production. The demos work. The benchmarks are impressive. The architecture diagrams are clean. Then someone actually runs the thing across a live client project, and the gap between what the agent was supposed to do and what it actually does starts to become visible in specific, repeatable, sometimes expensive ways.</p>
 
-      <p class="rv">I have been building agentic systems in production for the past year - a 28-skill AI-native delivery pipeline that runs across multiple live client engagements, a 13-skill dev workflow system used on every BetaCraft project, a macOS voice-to-prompt app that processes input through eight specialist modes. None of these failed in the ways the theoretical risk lists predicted. They failed in different ways. More interesting ways. The kind of ways you only see when something is actually running.</p>
+      <p class="rv">I have been building agentic systems in production for the past year - a 28-skill AI-native delivery pipeline that runs across multiple live client engagements, a 13-skill dev workflow system used on every BetaCraft project, a macOS voice-to-prompt app that processes input through eight specialist modes. None of these failed in the ways the theoretical risk lists predicted. They failed in different, more specific ways - the kind you only see when something has been running for a while.</p>
 
-      <p class="rv">This is the sequel to my earlier piece on the agentic harness - the scaffolding that makes agents useful. If the harness is what makes agents work, this is the catalogue of what breaks them when the harness is wrong, incomplete, or absent. Written from production, not from a demo.</p>
+      <p class="rv">This is the sequel to my earlier piece on the agentic harness - the scaffolding that makes agents useful. If the harness is what makes agents work, this is the catalogue of what breaks them when the harness is wrong, incomplete, or absent. All of it was observed on live projects.</p>
 
       <div class="pull rv">
         <blockquote>
@@ -199,7 +199,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <p class="rv">The most reliable observation I have from running agents in production: <strong>a well-configured agent almost never fails at its core task. It fails at the edges of its domain.</strong> Give a code agent a clear spec and it will write the code. Give it a spec that requires it to make a product decision and it will make a product decision - confidently, often wrongly, and without flagging that it has left its lane.</p>
 
-      <p class="rv">On early versions of the PM-Dev Closed Loop system, I had a single agent trying to handle both PM-layer and dev-layer work. The failure was not that it could not write code or could not draft a client email. It was that when a task landed in the grey zone between the two domains - "translate this client requirement into a technical spec" - the agent would make assumptions about what the client wanted without the context to validate them, or make assumptions about what was technically feasible without the codebase context to support them. Confident, plausible, wrong.</p>
+      <p class="rv">On early versions of the PM-Dev Closed Loop system, I had a single agent trying to handle both PM-layer and dev-layer work. The failure was not that it could not write code or could not draft a client email. It was that when a task landed in the grey zone between the two domains - "translate this client requirement into a technical spec" - the agent would make assumptions about what the client wanted without the context to validate them, or make assumptions about what was technically feasible without the codebase context to support them. The output was confident, plausible, and wrong.</p>
 
       <p class="rv">The solution was the bridge pattern: a hard boundary between the PM agent (BAM) and the dev agent (TPM), with a shared folder as the only interface. BAM writes <code>REQUIREMENT-NNN.md</code>. TPM reads it and builds. Neither agent can reach into the other's domain. The boundary is structural, not instructional - it is not "please stay in your lane," it is "this is the only lane that exists."</p>
 
@@ -217,7 +217,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
         <h2>Failure Mode Two: Context Degradation Across Long Sessions</h2>
       </div>
 
-      <p class="rv">Context windows are large now. Larger than anyone expected three years ago. But large is not infinite, and the way context degrades as a session extends is not gradual and even - it is sudden and uneven. The agent stops referencing earlier decisions. It starts repeating work it has already done. It loses track of constraints that were established at the start of the session but are now buried under thousands of tokens of subsequent output.</p>
+      <p class="rv">Context windows are large now, larger than anyone expected three years ago. But large is not infinite, and the way context degrades as a session extends is not gradual and even - it is sudden and uneven. The agent stops referencing earlier decisions. It starts repeating work it has already done. It loses track of constraints that were established at the start of the session but are now buried under thousands of tokens of subsequent output.</p>
 
       <p class="rv">On the vibe-* framework, this was the failure that drove the decision to produce structured document files at the end of every phase rather than relying on conversational context. <code>FEATURE_SPEC.md</code>, <code>FEATURE_PLAN.md</code>, <code>FEATURE_TASKS.md</code> - these are not just organisational artefacts. They are context anchors. When a new session starts, the agent reads these files before doing anything else. It is not resuming a conversation. It is resuming a state.</p>
 
@@ -254,11 +254,11 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <p class="rv">The principle that helped me calibrate this: <strong>human gates should sit at decision points, not at execution points.</strong> A decision point is a moment where the output of the next step depends on a value judgement that the agent cannot make reliably from context alone - whether a feature is in or out of scope, whether a client communication should be firm or accommodating, whether a bug fix should address the symptom or the root cause. An execution point is where the agent is doing something it is good at - writing code to a spec, producing a document from a template, generating test cases from a feature description.</p>
 
-      <p class="rv">In the PM-Dev Closed Loop, the human gates are at <code>propose-decision</code> (before a requirement enters the bridge) and <code>vibe-review</code> (before code merges). Both are decision points - "is this what we want to build?" and "does this meet the bar?" Everything between them is execution, and the agents run without interruption. The sessions are faster, the agents are more effective, and the gates that matter actually get attention because there are only two of them.</p>
+      <p class="rv">In the PM-Dev Closed Loop, the human gates are at <code>propose-decision</code> (before a requirement enters the bridge) and <code>vibe-review</code> (before code merges). Both are decision points - "is this what we want to build?" and "does this meet the bar?" Everything between them is execution, and the agents run without interruption. The sessions are faster, the agents are more effective, and the gates that matter get proper attention because there are only two of them.</p>
 
       <div class="sec rv" id="s6">
         <span class="n">06</span>
-        <h2>What Actually Works: The Four Principles</h2>
+        <h2>What Works: The Four Principles</h2>
       </div>
 
       <p class="rv">After a year of running agentic systems in production, the design principles that have held up are simpler than I expected when I started.</p>
@@ -272,7 +272,7 @@ body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",sys
 
       <p class="rv">None of these are obvious before you hit the failure that teaches them. The boundary failure is invisible until the agent makes a confident product decision it had no business making. The context degradation is invisible until an agent contradicts a decision from two hours earlier. The proposal trap is invisible until you realise you have been approving every proposal without reading them carefully.</p>
 
-      <p class="rv">The optimism problem in AI agent discourse is not that people are wrong about what agents can do. It is that the failure modes are underrepresented because you only learn them by building something that actually runs. The demos never show the third hour of a long session when context has degraded and the agent is working from a corrupted understanding of the task. The architecture diagrams never show the boundary failure that happens when a task lands in the grey zone between two domains. Those are the moments that shape the design of systems that actually work.</p>
+      <p class="rv">The optimism problem in AI agent discourse is not that people are wrong about what agents can do. It is that the failure modes are underrepresented because you only learn them by building something that runs in production. The demos never show the third hour of a long session when context has degraded and the agent is working from a corrupted understanding of the task. The architecture diagrams never show the boundary failure that happens when a task lands in the grey zone between two domains. Those are the moments that shape the design of systems that hold up.</p>
 
       <div class="pull rv">
         <blockquote>

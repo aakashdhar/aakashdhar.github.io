@@ -6,7 +6,7 @@
 
 <title>The EU AI Act Is Not a Legal Problem. It Is a PM Problem. | Aakash Dhar</title>
 <meta name="title" content="The EU AI Act Is Not a Legal Problem. It Is a PM Problem. | Aakash Dhar">
-<meta name="description" content="Every legal explainer of the EU AI Act is written for lawyers. Nobody is writing it for the Technical PM who has to make compliance actually happen inside a software project. This is that article  -  with real questions to ask at kickoff, real risks to track, and lessons from a live project where I caught a data residency gap mid-sprint.">
+<meta name="description" content="Most legal explainers of the EU AI Act are written for lawyers. This one is for the Technical PM who has to make compliance happen inside a software project  -  with questions to ask at kickoff, risks to track, and lessons from a live project where I caught a data residency gap mid-sprint.">
 <meta name="keywords" content="EU AI Act, Technical Project Manager, AI compliance, AI governance, AI Act TPM, high risk AI, data residency, ISO 42001, AI project management, GDPR AI, Netherlands AI governance">
 <meta name="author" content="Aakash Dhar">
 <link rel="canonical" href="https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html">
@@ -14,13 +14,13 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html">
 <meta property="og:title" content="The EU AI Act Is Not a Legal Problem. It Is a PM Problem.">
-<meta property="og:description" content="There are hundreds of legal explainers of the EU AI Act. There are almost none written for the Technical PM who has to make compliance actually happen inside a sprint.">
+<meta property="og:description" content="There are hundreds of legal explainers of the EU AI Act. Very few are written for the Technical PM who has to make compliance happen inside a sprint.">
 <meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
 
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html">
 <meta property="twitter:title" content="The EU AI Act Is Not a Legal Problem. It Is a PM Problem.">
-<meta property="twitter:description" content="There are hundreds of legal explainers of the EU AI Act. There are almost none written for the Technical PM who has to make compliance actually happen inside a sprint.">
+<meta property="twitter:description" content="There are hundreds of legal explainers of the EU AI Act. Very few are written for the Technical PM who has to make compliance happen inside a sprint.">
 <meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
 
 <script type="application/ld+json">
@@ -43,7 +43,7 @@
     }
   },
   "datePublished": "2026-06-19",
-  "description": "Every legal explainer of the EU AI Act is written for lawyers. Nobody is writing it for the Technical PM who has to make compliance actually happen inside a software project.",
+  "description": "Most legal explainers of the EU AI Act are written for lawyers. This one is for the Technical PM who has to make compliance happen inside a software project.",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html"
@@ -205,7 +205,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
   </div>
   <h1 class="rv rv-d1">The EU AI Act Is Not a <em>Legal Problem.</em> It Is a PM Problem.</h1>
   <div class="cover-foot rv rv-d2">
-    <p class="cover-sub">There are hundreds of legal explainers of the EU AI Act. Almost none are written for the Technical PM who has to make compliance actually happen inside a sprint. This is that article  -  with real questions, real risks, and a lesson from a live project where compliance caught me mid-build.</p>
+    <p class="cover-sub">There are hundreds of legal explainers of the EU AI Act. Almost none are written for the Technical PM who has to make compliance happen inside a sprint. This is that article  -  with real questions, real risks, and a lesson from a live project where compliance caught me mid-build.</p>
     <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
   </div>
   <nav class="toc-strip rv rv-d3" aria-label="Contents">
@@ -239,11 +239,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>Every Explainer Is Written for the Wrong Person</h2>
       </div>
 
-      <p class="lead rv">Search for "EU AI Act explained" and you will find hundreds of articles. Risk tiers, Annex III, Article 17, conformity assessments, the provider versus deployer distinction. All of it accurate. Almost none of it useful to the person who actually has to make compliance happen  -  the Technical Project Manager sitting between the client brief and the engineering team, with a sprint starting Monday.</p>
+      <p class="lead rv">Search for "EU AI Act explained" and you will find hundreds of articles. They cover risk tiers, Annex III, Article 17, conformity assessments, and the provider versus deployer distinction. All of it is accurate. Almost none of it is useful to the person who has to make compliance happen  -  the Technical Project Manager sitting between the client brief and the engineering team, with a sprint starting Monday.</p>
 
       <p class="rv">The legal team sets the framework. The compliance officer tracks the register. The engineers build to spec. But the PM is the one who has to translate "this system uses AI to make decisions about people" into a kickoff checklist, a sprint task, a dependency on a third-party vendor, and an honest conversation with a client about what that means for the timeline.</p>
 
-      <p class="rv">That translation gap is where compliance breaks down in practice. Not because anyone was negligent  -  but because nobody built the PM layer into the governance framework. This article is an attempt to build it. It is written from the point of view of someone who has shipped AI systems in production, caught a compliance gap mid-sprint on a live project, and is now learning the regulatory landscape seriously. Not a lawyer. A TPM.</p>
+      <p class="rv">That translation gap is where compliance breaks down in practice. It is not because anyone was negligent, but because nobody built the PM layer into the governance framework. This article is an attempt to build it. It is written from the point of view of someone who has shipped AI systems in production, caught a compliance gap mid-sprint on a live project, and is now learning the regulatory landscape seriously - as a TPM, not a lawyer.</p>
 
       <div class="pull rv">
         <blockquote>
@@ -254,7 +254,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
 
       <div class="sec rv" id="s2">
         <span class="n">02</span>
-        <h2>What the EU AI Act Actually Says  -  Without the Legalese</h2>
+        <h2>What the EU AI Act Says  -  Without the Legalese</h2>
       </div>
 
       <p class="rv">The EU AI Act is a regulation that came into force in August 2024. It follows a phased timeline  -  some provisions already apply, with the most significant obligations for <strong>high-risk AI systems</strong> coming into full effect on 2 August 2026. A further extension under the Digital Omnibus proposal may shift some deadlines, but treating any extension as certain is a planning mistake. The deadline is now. Prepare for it accordingly.</p>
@@ -269,7 +269,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <li><strong>Minimal risk  -  no specific obligations:</strong> Spam filters, AI in video games, content recommendation systems. Build and ship as normal.</li>
       </ul>
 
-      <p class="rv">The extraterritorial reach matters: the Act applies to any organisation placing an AI system on the EU market or deploying it to EU users, regardless of where the organisation is based. Building a hiring tool in India for a Dutch client? You are in scope.</p>
+      <p class="rv">The extraterritorial reach matters: the Act applies to any organisation placing an AI system on the EU market or deploying it to EU users, regardless of where the organisation is based. If you are building a hiring tool in India for a Dutch client, you are in scope.</p>
 
       <div class="sec rv" id="s3">
         <span class="n">03</span>
@@ -311,17 +311,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
 
       <p class="rv">Theory is one thing. Here is what it looked like in practice. While working on TokoSmart  -  an Android research application commissioned by the World Bank Group to study digital financial literacy among small shop operators in Indonesia  -  I was reviewing the architecture during Week 2 of a fixed four-week build. I was reading a one-pager on the infrastructure setup when I noticed the Azure deployment region: <strong>West Europe (Amsterdam).</strong></p>
 
-      <p class="rv">The World Bank Group Data Protection Annex that governed the project required data to reside in the US, Canada, or the UK. Not the EU. We were mid-sprint, 14 days from a non-negotiable institutional deadline, and the infrastructure was running in the wrong region.</p>
+      <p class="rv">The World Bank Group Data Protection Annex that governed the project required data to reside in the US, Canada, or the UK, not the EU. We were mid-sprint, 14 days from a non-negotiable institutional deadline, and the infrastructure was running in the wrong region.</p>
 
       <p class="rv">This was not a data residency gap I had been briefed on. It was one I found because I read the architecture document and knew what the governance framework required. A PM without the technical background would have relied on the team to surface it  -  and the team was heads-down in build mode, not scanning for contractual compliance.</p>
 
       <p class="rv">The decision that followed was a governance decision, not a technical one: do not surface this in the next client call without a remediation plan in place. Raising an unresolved compliance gap in a live institutional stakeholder session with no solution creates panic with no upside. I logged it as a formal risk, scoped the migration to Azure UK South, confirmed the path was viable, and communicated it through the right channel with a resolution attached. We fixed it without losing a day on the project.</p>
 
-      <p class="rv">That is what EU AI Act compliance looks like from the PM seat. Not legal review after launch. Not a checkbox at the end of the sprint. <em>Reading the architecture document in Week 2 and knowing what to look for.</em></p>
+      <p class="rv">That is what EU AI Act compliance looks like from the PM seat - not a legal review after launch or a checkbox at the end of the sprint, but <em>reading the architecture document in Week 2 and knowing what to look for.</em></p>
 
       <div class="sec rv" id="s5">
         <span class="n">05</span>
-        <h2>What a TPM Should Actually Do About This Now</h2>
+        <h2>What a TPM Should Do About This Now</h2>
       </div>
 
       <p class="rv">You do not need to become a compliance lawyer. You need to become someone who cannot be surprised by compliance questions  -  which is a different thing. Here is a practical starting point.</p>
@@ -385,11 +385,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>The Shift That Is Already Happening</h2>
       </div>
 
-      <p class="rv">The EU AI Act is, as one Coursera enterprise report put it, a potential <em>GDPR moment</em> for artificial intelligence. That is not hyperbole. GDPR took a domain that lived entirely in legal and compliance and made it a product concern, an engineering concern, a PM concern. It created new roles, new checklists, new lines in SOWs, and new conversations at kickoff. The AI Act will do the same  -  faster, because companies are not starting from zero this time.</p>
+      <p class="rv">The EU AI Act is, as one Coursera enterprise report put it, a potential <em>GDPR moment</em> for artificial intelligence. The comparison holds. GDPR took a domain that lived entirely in legal and compliance and made it a product concern, an engineering concern, a PM concern. It created new roles, new checklists, new lines in SOWs, and new conversations at kickoff. The AI Act will do the same  -  faster, because companies are not starting from zero this time.</p>
 
-      <p class="rv">The TPMs who understand this early have an advantage that compounds. Not because they can replace the legal team  -  they cannot  -  but because they can stop legal problems from becoming sprint problems. They ask the right questions at kickoff. They read the architecture document. They put data residency in the SOW and human oversight in the spec. They know what "high-risk" means before the client does.</p>
+      <p class="rv">The TPMs who understand this early have an advantage that compounds. It is not because they can replace the legal team  -  they cannot  -  but because they can stop legal problems from becoming sprint problems. They ask the right questions at kickoff. They read the architecture document. They put data residency in the SOW and human oversight in the spec. They know what "high-risk" means before the client does.</p>
 
-      <p class="rv">That is the job. Not compliance officer. Not legal counsel. Technical Project Manager  -  sitting in the gap between what the regulation requires and what the team is building, making sure those two things stay aligned from Week 1 onwards.</p>
+      <p class="rv">That is the job of the Technical Project Manager  -  sitting in the gap between what the regulation requires and what the team is building, making sure those two things stay aligned from Week 1 onwards.</p>
 
       <div class="pull rv">
         <blockquote>

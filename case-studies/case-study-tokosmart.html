@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TokoSmart — Case Study · Aakash Dhar</title>
+<title>TokoSmart · Case Study · Aakash Dhar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -349,8 +349,8 @@
       <span class="eyebrow-tag">Case Study</span>
       World Bank Group · 2025
     </p>
-    <h1 class="hero-title">TokoSmart —<br>delivered in <em>4 weeks.</em><br>No exceptions.</h1>
-    <p class="hero-sub">A World Bank-commissioned research app for Indonesian warung owners. Fixed institutional deadline. A compliance gap discovered mid-sprint. A distribution channel blocked with 400 participants waiting. Shipped on time anyway.</p>
+    <h1 class="hero-title">TokoSmart:<br>delivered in <em>4 weeks,</em><br>on a fixed deadline.</h1>
+    <p class="hero-sub">TokoSmart was a World Bank-commissioned research app for Indonesian warung owners, built on a fixed institutional deadline. A compliance gap surfaced mid-sprint and the distribution channel got blocked with 400 participants waiting. It still shipped on time.</p>
 
     <div class="hero-meta">
       <div class="meta-item">
@@ -363,7 +363,7 @@
       </div>
       <div class="meta-item">
         <span class="meta-label">Delivery window</span>
-        <span class="meta-val">4 weeks — fixed</span>
+        <span class="meta-val">4 weeks · fixed</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">Team</span>
@@ -384,7 +384,7 @@
   <div class="stat-strip">
     <div class="stat-cell">
       <div class="stat-num">4<span class="unit">wk</span></div>
-      <div class="stat-desc">Fixed institutional deadline — no extension possible</div>
+      <div class="stat-desc">Fixed institutional deadline, no extension possible</div>
     </div>
     <div class="stat-cell">
       <div class="stat-num">~400</div>
@@ -404,9 +404,9 @@
   <section id="context">
     <p class="section-num">01 / Context</p>
     <h2>What TokoSmart was.</h2>
-    <p>TokoSmart is a <strong>research-grade Android application</strong> commissioned by the World Bank Group to study digital financial literacy among <em>warung</em> operators — Indonesia's informal small-shop economy. The app gave participants tools to manage inventory, run sales, and interact with an AI assistant, while the backend captured behavioural data for the WBG research team.</p>
-    <p>It was not a typical product build. Three organisations were involved — Xopolis as operator, Ipsos Indonesia as the in-country field and participant management partner, and the World Bank Group as data owner and research sponsor. Three compliance frameworks applied simultaneously: the WBG Data Protection Annex, Indonesian Personal Data Protection Law (UU PDP), and an IRB-approved participant consent protocol.</p>
-    <p>I was the sole Technical Project Manager — responsible for the full delivery cycle from sprint planning through to the Ipsos handover session.</p>
+    <p>TokoSmart is a <strong>research-grade Android application</strong> commissioned by the World Bank Group to study digital financial literacy among <em>warung</em> operators, Indonesia's informal small-shop economy. The app gave participants tools to manage inventory, run sales, and interact with an AI assistant, while the backend captured behavioural data for the WBG research team.</p>
+    <p>The governance was as demanding as the build. Three organisations were involved: Xopolis as operator, Ipsos Indonesia as the in-country field and participant management partner, and the World Bank Group as data owner and research sponsor. Three compliance frameworks applied simultaneously: the WBG Data Protection Annex, Indonesian Personal Data Protection Law (UU PDP), and an IRB-approved participant consent protocol.</p>
+    <p>I was the sole Technical Project Manager, responsible for the full delivery cycle from sprint planning through to the Ipsos handover session.</p>
 
     <div class="tag-row">
       <span class="tag">React Native (Android)</span>
@@ -430,7 +430,7 @@
 
     <div class="role-row">
       <span class="role-pill hl">Sprint planning &amp; ceremonies</span>
-      <span class="role-pill hl">Stakeholder comms — Xopolis, Ipsos, WBG</span>
+      <span class="role-pill hl">Stakeholder comms: Xopolis, Ipsos, WBG</span>
       <span class="role-pill hl">Compliance risk identification</span>
       <span class="role-pill hl">Distribution strategy pivot</span>
       <span class="role-pill">Architecture review</span>
@@ -440,7 +440,7 @@
       <span class="role-pill">Ipsos onboarding coordination</span>
     </div>
 
-    <p>The team ran across time zones with the Indonesia-based Ipsos partner. I ran all Agile ceremonies — planning, standups, reviews, retros — and maintained the client relationship throughout the sprint sequence.</p>
+    <p>The team ran across time zones with the Indonesia-based Ipsos partner. I ran all Agile ceremonies (planning, standups, reviews, retros) and maintained the client relationship throughout the sprint sequence.</p>
   </section>
 
   <div class="rule"></div>
@@ -449,7 +449,7 @@
   <section id="constraints">
     <p class="section-num">03 / Constraints</p>
     <h2>What made this hard.</h2>
-    <p>The deadline was set by an institutional research protocol, not a commercial contract. It could not move. Everything else — scope, distribution method, compliance posture — had to flex around it.</p>
+    <p>The deadline was set by an institutional research protocol, not a commercial contract. It could not move. Everything else (scope, distribution method, compliance posture) had to flex around it.</p>
 
     <div class="two-col">
       <div class="grid-card">
@@ -460,12 +460,12 @@
       <div class="grid-card">
         <p class="gc-label">Constraint</p>
         <h4>Multi-party compliance</h4>
-        <p>WBG Data Protection Annex, Indonesian UU PDP, and IRB-approved participant consent protocol — all active simultaneously.</p>
+        <p>WBG Data Protection Annex, Indonesian UU PDP, and IRB-approved participant consent protocol, all active simultaneously.</p>
       </div>
       <div class="grid-card">
         <p class="gc-label">Constraint</p>
         <h4>Pseudonymised participant model</h4>
-        <p>Participants were managed by Ipsos via SHELL_CHAINID keys. Zero PII could enter the Xopolis system — consent flow had to enforce this at the app level.</p>
+        <p>Participants were managed by Ipsos via pseudonymous ID keys. No PII could enter the Xopolis system. The consent flow had to enforce this at the app level.</p>
       </div>
       <div class="grid-card">
         <p class="gc-label">Constraint</p>
@@ -481,14 +481,14 @@
   <section id="timeline">
     <p class="section-num">04 / Timeline</p>
     <h2>How we ran the 4 weeks.</h2>
-    <p>I structured delivery as four 1-week sprints with hard scope gates between them. No sprint could overrun without stealing from the next. Two critical events hit mid-sequence — both resolved inside the sprint they appeared in.</p>
+    <p>I structured delivery as four 1-week sprints with hard scope gates between them. No sprint could overrun without stealing from the next. Two critical events hit mid-sequence, both resolved inside the sprint they appeared in.</p>
 
     <div class="tl-wrap">
       <div class="tl-header">
         <span class="tl-dot" style="background:#C9620A"></span>
         <span class="tl-dot" style="background:#1D4ED8"></span>
         <span class="tl-dot" style="background:#1A7A40"></span>
-        Sprint timeline — 4 weeks
+        Sprint timeline · 4 weeks
       </div>
       <div class="tl-body">
         <svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" width="100%" style="min-width:480px;display:block">
@@ -503,7 +503,7 @@
           <text x="60" y="141" text-anchor="middle" fill="#C9620A" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">FOUNDATION</text>
           <text x="60" y="156" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Architecture</text>
           <text x="60" y="169" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Auth + onboarding</text>
-          <text x="60" y="182" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">SHELL_CHAINID flow</text>
+          <text x="60" y="182" text-anchor="middle" fill="#6B6B6B" font-family="Bricolage Grotesque,sans-serif" font-size="9">Participant ID flow</text>
           <!-- top note W1 -->
           <line x1="60" y1="97" x2="60" y2="62" stroke="#E0DCD4" stroke-width="1" stroke-dasharray="3,2"/>
           <rect x="10" y="36" width="100" height="26" rx="4" fill="#FDF0E6" stroke="#C9620A" stroke-width="1"/>
@@ -572,18 +572,18 @@
     <h2>The two decisions that mattered.</h2>
 
     <div class="callout callout-red">
-      <p class="callout-label">Challenge 01 — Compliance gap</p>
-      <p>During architecture review in Week 2, I identified that the Azure deployment was running on <strong>West Europe (Amsterdam)</strong> infrastructure. The WBG Data Protection Annex mandated US, Canada, or UK data residency — a direct contractual violation, discovered mid-sprint with 14 days left.</p>
+      <p class="callout-label">Challenge 01 · Compliance gap</p>
+      <p>During architecture review in Week 2, I identified that the Azure deployment was running on <strong>West Europe (Amsterdam)</strong> infrastructure. The WBG Data Protection Annex mandated US, Canada, or UK data residency: a direct contractual violation, discovered mid-sprint with 14 days left.</p>
     </div>
 
-    <p>This wasn't a technical decision — it was a governance call. I logged it as a formal risk, scoped the remediation path (Azure UK South migration), and made a deliberate choice: <strong>don't surface this to Ipsos on the next call without a remediation plan in place.</strong> Raising an unresolved compliance gap in a live institutional stakeholder session would create panic with no upside. The fix was identified and tracked before the next client touchpoint.</p>
+    <p>This wasn't a technical decision. It was a governance call. I logged it as a formal risk, scoped the remediation path (Azure UK South migration), and made a deliberate choice: <strong>don't surface this to Ipsos on the next call without a remediation plan in place.</strong> Raising an unresolved compliance gap in a live institutional stakeholder session would create panic with no upside. The fix was identified and tracked before the next client touchpoint.</p>
 
     <div class="callout callout-red" style="margin-top: 20px">
-      <p class="callout-label">Challenge 02 — Distribution blocker</p>
+      <p class="callout-label">Challenge 02 · Distribution blocker</p>
       <p>Google Play Console closed testing hit a review wall for the research APK. With ~400 Ipsos-enrolled participants waiting for access, the Play Console path was going to break the launch window.</p>
     </div>
 
-    <p>I pivoted to <strong>Firebase App Distribution</strong> — direct APK delivery to the Ipsos-managed tester list. This required coordinating the invite flow against the SHELL_CHAINID participant IDs held by Ipsos and aligning on a revised onboarding sequence in under 48 hours. All ~400 participants onboarded within the Stage 1 window.</p>
+    <p>I pivoted to <strong>Firebase App Distribution</strong>: direct APK delivery to the Ipsos-managed tester list. This required coordinating the invite flow against the pseudonymous participant IDs held by Ipsos and aligning on a revised onboarding sequence in under 48 hours. All ~400 participants onboarded within the Stage 1 window.</p>
 
     <div class="callout callout-green">
       <p class="callout-label">Both resolved without a slip</p>
@@ -602,7 +602,7 @@
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
-          <h4>4-week WBG deadline met — zero slips</h4>
+          <h4>4-week WBG deadline met, zero slips</h4>
           <p>Every sprint gate hit on time. The institutional research window opened as planned.</p>
         </div>
       </div>
@@ -617,7 +617,7 @@
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
           <h4>Full IRB-compliant consent flow delivered</h4>
-          <p>SHELL_CHAINID entry, scroll-lock consent, agree/decline paths, 10-second countdown on decline — all built and tested to specification.</p>
+          <p>Pseudonymous ID entry, scroll-lock consent, agree/decline paths, 10-second countdown on decline, all built and tested to specification.</p>
         </div>
       </div>
       <div class="outcome-row">
@@ -642,10 +642,10 @@
   <!-- 07 REFLECTION -->
   <section id="reflection">
     <p class="section-num">07 / Reflection</p>
-    <h2>What this actually required.</h2>
-    <p>What made this engagement different was that there was <strong>no slack in the system</strong>. In most projects, a 4-week deadline means 5 weeks with pressure. Here it meant 4 weeks — because a World Bank institutional partner was on the other end of the research protocol.</p>
-    <p>The compliance and distribution challenges weren't escalated upward. They were owned, evaluated, and resolved — because on this project, there was no upward to escalate to. That's the actual job of a Technical Project Manager: not managing a process, but <strong>making the calls the process can't make for itself.</strong></p>
-    <p>The engineering background mattered here. Identifying the Azure data residency gap required reading an architecture one-pager and knowing what a WBG Data Protection Annex requires in practice. The Firebase pivot worked because I understood what moving 400 SHELL_CHAINID-keyed participant invites through a new distribution channel actually involved — and could spec it in under a day.</p>
+    <h2>What this required.</h2>
+    <p>What made this engagement different was that there was <strong>no slack in the system</strong>. In most projects, a 4-week deadline means 5 weeks with pressure. Here it meant 4 weeks, because a World Bank institutional partner was on the other end of the research protocol.</p>
+    <p>The compliance and distribution challenges weren't escalated upward. They were owned, evaluated, and resolved, because on this project there was no upward to escalate to. That is the job of a Technical Project Manager: <strong>the PM makes the calls the process cannot make for itself.</strong></p>
+    <p>The engineering background mattered here. Identifying the Azure data residency gap required reading an architecture one-pager and knowing what a WBG Data Protection Annex requires in practice. The Firebase pivot worked because I understood what moving 400 pseudonymously keyed participant invites through a new distribution channel involved, and could spec it in under a day.</p>
   </section>
 
   <!-- FOOTER -->

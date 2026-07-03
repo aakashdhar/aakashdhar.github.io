@@ -6,7 +6,7 @@
 
 <title>The Agentic Harness: Why the Scaffolding Matters More Than the Model | Aakash Dhar</title>
 <meta name="title" content="The Agentic Harness: Why the Scaffolding Matters More Than the Model | Aakash Dhar">
-<meta name="description" content="Why two teams using the same LLM get wildly different results. A breakdown of the agentic harness — context, tools, loops, and guardrails — and lessons from building one in production.">
+<meta name="description" content="Why two teams using the same LLM get wildly different results. A breakdown of the agentic harness (context, tools, loops, and guardrails) and lessons from building one in production.">
 <meta name="keywords" content="Agentic Harness, AI Agents, Agent Scaffolding, Claude Code, Context Engineering, Agentic Workflows, AI Project Management, LLM Tooling">
 <meta name="author" content="Aakash Dhar">
 
@@ -15,13 +15,13 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://aakashdhar.me/blog/the-agentic-harness.html">
 <meta property="og:title" content="The Agentic Harness: Why the Scaffolding Matters More Than the Model">
-<meta property="og:description" content="Same model, wildly different results. The difference is the harness — and most teams aren't building one.">
+<meta property="og:description" content="Same model, wildly different results. The difference is the harness, and most teams aren't building one.">
 <meta property="og:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
 
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://aakashdhar.me/blog/the-agentic-harness.html">
 <meta property="twitter:title" content="The Agentic Harness: Why the Scaffolding Matters More Than the Model">
-<meta property="twitter:description" content="Same model, wildly different results. The difference is the harness — and most teams aren't building one.">
+<meta property="twitter:description" content="Same model, wildly different results. The difference is the harness, and most teams aren't building one.">
 <meta property="twitter:image" content="https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg">
 
 <script type="application/ld+json">
@@ -44,7 +44,7 @@
     }
   },
   "datePublished": "2026-06-11",
-  "description": "Why two teams using the same LLM get wildly different results. A breakdown of the agentic harness — context, tools, loops, and guardrails — and lessons from building one in production.",
+  "description": "Why two teams using the same LLM get wildly different results. A breakdown of the agentic harness (context, tools, loops, and guardrails) and lessons from building one in production.",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://aakashdhar.me/blog/the-agentic-harness.html"
@@ -416,7 +416,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
   </div>
   <h1 class="rv rv-d1">The Agentic Harness: Why the <em>Scaffolding</em> Matters More Than the Model</h1>
   <div class="cover-foot rv rv-d2">
-    <p class="cover-sub">Two teams, the same LLM, wildly different results. The difference isn't prompting talent — it's the harness. Here's what that actually means, and how to build one.</p>
+    <p class="cover-sub">Two teams can use the same LLM and get wildly different results. The difference isn't prompting talent. It's the harness. Here's what that means, and how to build one.</p>
     <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
   </div>
   <nav class="toc-strip rv rv-d3" aria-label="Contents">
@@ -449,10 +449,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>The Model Isn't the Product</h2>
       </div>
       <p class="lead rv">
-        Here is a pattern I keep seeing: two teams adopt the same frontier model on the same day. Six weeks later, one has an agent reliably shipping production work, and the other has an expensive chatbot that needs babysitting. Same model, same pricing, same context window. The instinct is to blame prompting skill — but prompts are maybe ten percent of the gap. The other ninety percent is the <strong>agentic harness</strong>: everything wrapped <em>around</em> the model that turns raw intelligence into dependable work.
+        Here is a pattern I keep seeing: two teams adopt the same frontier model on the same day. Six weeks later, one has an agent reliably shipping production work, and the other has an expensive chatbot that needs babysitting. Same model, same pricing, same context window. The instinct is to blame prompting skill, but prompts are maybe ten percent of the gap. The other ninety percent is the <strong>agentic harness</strong>: everything wrapped <em>around</em> the model that turns raw intelligence into dependable work.
       </p>
       <p class="rv">
-        A harness is exactly what the word suggests. A horse without one is impressive but useless for pulling anything. The harness is what converts power into directed force — and the same is true for an LLM. The model provides reasoning; the harness provides <strong>context, tools, structure, and brakes</strong>. When people say "Claude Code is good at coding," a large part of what they're describing is its harness: the file access, the shell, the diff loop, the permission gates. The weights matter, but the weights alone never shipped anything.
+        A harness is exactly what the word suggests. A horse without one is impressive but useless for pulling anything. The harness is what converts power into directed force, and the same is true for an LLM. The model provides reasoning; the harness provides <strong>context, tools, structure, and brakes</strong>. When people say "Claude Code is good at coding," a large part of what they're describing is its harness: the file access, the shell, the diff loop, the permission gates. The weights matter, but the weights alone never shipped anything.
       </p>
 
       <div class="sec rv" id="s2">
@@ -460,13 +460,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>Anatomy of a Harness</h2>
       </div>
       <p class="rv">
-        Strip away vendor branding and every serious harness has the same four organs. If your agent setup is missing one, you don't have an agent — you have a demo.
+        Strip away vendor branding and every serious harness has the same four organs. If your agent setup is missing one, you don't have an agent; you have a demo.
       </p>
       <ul class="rv">
-        <li><strong>Context plumbing:</strong> How the agent learns what's true <em>right now</em> — project files, specs, past decisions, conventions. Not a giant prompt, but a system that loads the right slice at the right time. This is the part most teams skip, and it's why their agent re-asks the same questions every session.</li>
-        <li><strong>Tool surface:</strong> The verbs the agent can actually execute — read a file, run tests, query Jira, send nothing without asking. A small, well-described tool set beats a sprawling one; every tool is both a capability and a new way to fail.</li>
+        <li><strong>Context plumbing:</strong> How the agent learns what's true <em>right now</em>: project files, specs, past decisions, conventions. Not a giant prompt, but a system that loads the right slice at the right time. This is the part most teams skip, and it's why their agent re-asks the same questions every session.</li>
+        <li><strong>Tool surface:</strong> The verbs the agent can execute: read a file, run tests, query Jira, send nothing without asking. A small, well-described tool set beats a sprawling one; every tool is both a capability and a new way to fail.</li>
         <li><strong>The loop:</strong> Plan → act → observe → correct. The harness decides when the agent checks its own work, when it retries, and when it stops. An agent without a verification step isn't autonomous, it's just confident.</li>
-        <li><strong>Guardrails:</strong> Permission gates, scoped credentials, review checkpoints, and a human sign-off wherever an action is irreversible. Guardrails aren't a tax on speed — they're what makes it safe to grant speed in the first place.</li>
+        <li><strong>Guardrails:</strong> Permission gates, scoped credentials, review checkpoints, and a human sign-off wherever an action is irreversible. Guardrails aren't a tax on speed. They're what makes it safe to grant speed in the first place.</li>
       </ul>
 
       <div class="sec rv" id="s3">
@@ -474,17 +474,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>Why the Harness Beats the Model</h2>
       </div>
       <p class="rv">
-        I learned this the slow way, building the <strong>vibe-*</strong> framework at BetaCraft — a set of structured skills that govern how our developers work with Claude across the full lifecycle. The model never changed mid-experiment. The results changed every time the harness did. Three observations that held up across real client projects:
+        I learned this the slow way, building the <strong>vibe-*</strong> framework at BetaCraft, a set of structured skills that govern how our developers work with Claude across the full lifecycle. The model never changed mid-experiment. The results changed every time the harness did. Three observations that held up across real client projects:
       </p>
       <ul class="rv">
         <li><strong>Specs outperform prompts:</strong> A persistent, versioned spec the agent reads every session beat any clever one-off prompt we wrote. The agent stopped drifting because the source of truth stopped moving.</li>
-        <li><strong>Review gates compound quality:</strong> Forcing a structured review between phases — with the agent auditing its own output against the architecture doc — caught the class of bugs that "looks right" code slips through.</li>
+        <li><strong>Review gates compound quality:</strong> Forcing a structured review between phases, with the agent auditing its own output against the architecture doc, caught the class of bugs that "looks right" code slips through.</li>
         <li><strong>Smaller autonomy, bigger throughput:</strong> Counterintuitively, narrowing what the agent could do without sign-off <em>increased</em> total output, because we stopped paying the rework tax on bad unsupervised decisions.</li>
       </ul>
       <div class="pull rv">
         <blockquote>
           <span class="mark">Pull Quote · 03</span>
-          <p>Model upgrades arrive twice a year. Harness upgrades ship every sprint — and they compound.</p>
+          <p>Model upgrades arrive twice a year. Harness upgrades ship every sprint, and they compound.</p>
           <p class="note"><strong>The Corollary</strong> If your agent disappoints, your first suspect should be the harness, not the weights.</p>
         </blockquote>
       </div>
@@ -498,12 +498,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
       </p>
       <ul class="rv">
         <li><strong>Write the spec before the agent does:</strong> A <code>SPEC.md</code> with acceptance criteria, and an <code>ARCHITECTURE.md</code> with the patterns the code must follow. Every agent session starts by reading them. Ambiguity in, ambiguity out.</li>
-        <li><strong>Encode workflows as skills, not folklore:</strong> If a process lives in someone's head, the agent can't follow it. Turning "how we add a feature" into a triggerable, documented workflow is the single highest-leverage move we made.</li>
+        <li><strong>Encode workflows as skills, not folklore:</strong> If a process lives in someone's head, the agent can't follow it. Turning "how we add a feature" into a triggerable, documented workflow is the move that paid off most.</li>
         <li><strong>Give the agent a memory it can't corrupt:</strong> Decisions go in a <code>DECISIONS.md</code> log, append-only. The agent consults history instead of re-litigating it.</li>
-        <li><strong>Keep a human at every irreversible edge:</strong> Deploys, client emails, deletions. The agent drafts; a person fires. This rule has never cost us a deadline and has saved several.</li>
+        <li><strong>Keep a human at every irreversible edge:</strong> Deploys, client emails, deletions. The agent drafts; a person fires. So far this rule has not cost us a deadline, and it has saved several.</li>
       </ul>
       <p class="rv">
-        Notice what's absent from that list: model selection. By the time the harness is solid, swapping models becomes a configuration change — which is exactly the position you want to negotiate from as the model market keeps moving.
+        Notice what's absent from that list: model selection. By the time the harness is solid, swapping models becomes a configuration change, which is exactly the position you want to negotiate from as the model market keeps moving.
       </p>
 
       <div class="sec rv" id="s5">
@@ -511,7 +511,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>Conclusion</h2>
       </div>
       <p class="rv">
-        The industry talks about models the way car enthusiasts talk about engines. But nobody commutes in an engine. The vehicle around it — steering, brakes, seatbelts, fuel lines — is what makes the power usable, and in agentic systems that vehicle is the harness. Teams that internalise this stop chasing every benchmark release and start investing where the returns actually live: context plumbing, tool design, verification loops, and guardrails their clients can trust.
+        The industry talks about models the way car enthusiasts talk about engines. But nobody commutes in an engine. The vehicle around it (steering, brakes, seatbelts, fuel lines) is what makes the power usable, and in agentic systems that vehicle is the harness. Teams that internalise this stop chasing every benchmark release and start investing where the returns live: context plumbing, tool design, verification loops, and guardrails their clients can trust.
       </p>
       <div class="pull rv">
         <blockquote>

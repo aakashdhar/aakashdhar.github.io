@@ -26,8 +26,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --cream: #F6F3EB; --cream-dark: #EFEAE0;
-    --amber: #C97F06; --amber-light: #FEF3E2; --amber-mid: rgba(201,127,6,0.15);
-    --ink: #181510; --ink-mid: #3D3D3D; --ink-light: #6B6557; --ink-faint: #9A9A9A;
+    --amber: #C97F06;--amber-text: #9A5B02; --amber-light: #FEF3E2; --amber-mid: rgba(201,127,6,0.15);
+    --ink: #181510; --ink-mid: #3D3D3D; --ink-light: #6B6557; --ink-faint: #6E6A5E;
     --border: rgba(24,21,16,0.10); --border-mid: rgba(24,21,16,0.16);
     --green: #1A7A40; --green-light: #EBF7EF; --green-mid: rgba(26,122,64,0.18);
     --blue: #1D4ED8; --blue-light: #EFF6FF; --blue-mid: rgba(29,78,216,0.15);
@@ -42,20 +42,20 @@
 
   .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 52px; background: rgba(246,243,235,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
   .topbar-brand { font-family: var(--mono); font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .14em; }
-  .topbar-brand b { color: var(--amber); }
+  .topbar-brand b { color: var(--amber-text); }
   .topbar-nav { display: flex; gap: 24px; align-items: center; }
   .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
-  .topbar-nav a:hover { color: var(--amber); }
-  .topbar-nav .back { color: var(--amber); font-weight: 500; }
+  .topbar-nav a:hover { color: var(--amber-text); }
+  .topbar-nav .back { color: var(--amber-text); font-weight: 500; }
 
   .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
 
-  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-text); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
   .etag { background: var(--amber-light); border: 1px solid var(--amber-mid); border-radius: 3px; padding: 2px 7px; font-size: 10px; }
 
   .hero { padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
   .hero-title { font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600; line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px; }
-  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber-text); }
   .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
   .hero-meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 16px 24px; padding-top: 28px; border-top: 1px solid var(--border); }
   .mi { display: flex; flex-direction: column; gap: 3px; }
@@ -66,7 +66,7 @@
   .sc { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
   .sc:last-child { border-right: none; }
   .sn { font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
-  .sn .u { font-size: 14px; color: var(--amber); font-weight: 400; }
+  .sn .u { font-size: 14px; color: var(--amber-text); font-weight: 400; }
   .sd { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
 
   section { margin-bottom: 52px; scroll-margin-top: 72px; }
@@ -75,13 +75,13 @@
   p { color: var(--ink-light); margin-bottom: 14px; line-height: 1.75; }
   p:last-child { margin-bottom: 0; }
   p strong { color: var(--ink); font-weight: 500; }
-  code { font-family: var(--mono); font-size: 12px; background: var(--cream-dark); padding: 2px 6px; border-radius: 3px; color: var(--amber); border: 1px solid var(--border-mid); }
+  code { font-family: var(--mono); font-size: 12px; background: var(--cream-dark); padding: 2px 6px; border-radius: 3px; color: var(--amber-text); border: 1px solid var(--border-mid); }
 
   .rule { height: 1px; background: var(--border); margin: 44px 0; }
 
   .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 20px 0; }
   .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
-  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-text); margin-bottom: 6px; }
   .callout-red { border-left-color: var(--red); background: var(--red-light); }
   .callout-red .cl { color: var(--red); }
   .callout-green { border-left-color: var(--green); background: var(--green-light); }
@@ -96,10 +96,10 @@
   .pc-frs { background: var(--blue-light); border-color: var(--blue-mid); }
   .pc-nolte { background: var(--purple-light); border-color: var(--purple-mid); }
   .pc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 8px; }
-  .pc-client .pc-label { color: var(--amber); }
+  .pc-client .pc-label { color: var(--amber-text); }
   .pc-frs .pc-label { color: var(--blue); }
   .pc-nolte .pc-label { color: var(--purple); }
-  .party-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .party-card h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
   .party-card p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
 
   /* DISCREPANCY TABLE */
@@ -110,33 +110,33 @@
   .disc-table tr td:first-child { font-family: var(--mono); font-size: 11px; white-space: nowrap; color: var(--ink-faint); }
   .sev { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 3px; }
   .sev-critical { color: var(--red); background: var(--red-light); border: 1px solid rgba(185,28,28,0.2); }
-  .sev-high { color: var(--amber); background: var(--amber-light); border: 1px solid var(--amber-mid); }
+  .sev-high { color: var(--amber-text); background: var(--amber-light); border: 1px solid var(--amber-mid); }
   .sev-medium { color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
   .sev-low { color: var(--ink-faint); background: var(--cream-dark); border: 1px solid var(--border-mid); }
 
   /* API RESULT */
   .api-block { background: var(--cream-dark); border: 1px solid var(--border-mid); border-radius: 8px; overflow: hidden; margin: 20px 0; }
   .api-header { padding: 10px 16px; background: var(--ink); display: flex; align-items: center; gap: 10px; }
-  .api-method { font-family: var(--mono); font-size: 10px; color: var(--amber); background: rgba(201,127,6,0.2); border: 1px solid rgba(201,127,6,0.3); border-radius: 3px; padding: 2px 7px; }
+  .api-method { font-family: var(--mono); font-size: 10px; color: var(--amber-text); background: rgba(201,127,6,0.2); border: 1px solid rgba(201,127,6,0.3); border-radius: 3px; padding: 2px 7px; }
   .api-url { font-family: var(--mono); font-size: 11px; color: #8892A4; }
   .api-body { padding: 16px; font-family: var(--mono); font-size: 11px; line-height: 1.9; color: var(--ink-light); overflow-x: auto; }
   .api-body .k { color: var(--blue); }
   .api-body .v { color: var(--green); }
   .api-body .c { color: var(--ink-faint); }
-  .api-body .a { color: var(--amber); }
+  .api-body .a { color: var(--amber-text); }
 
   /* OUTCOME LIST */
   .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
   .outcome-row:last-child { border-bottom: none; }
   .oc { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
-  .ot h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .ot h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
   .ot p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
 
   /* TWO COL */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
   .gc { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
   .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
-  .gc h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .gc h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
   .gc p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
 
   /* TAG ROW */
@@ -145,9 +145,9 @@
 
   .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .fb { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
-  .fb b { color: var(--amber); font-weight: 500; }
+  .fb b { color: var(--amber-text); font-weight: 500; }
   .fl { font-size: 12px; color: var(--ink-faint); }
-  .fl a { color: var(--amber); text-decoration: none; }
+  .fl a { color: var(--amber-text); text-decoration: none; }
 
   @media (max-width: 640px) {
     .page-wrap { padding: 80px 20px 80px; }
@@ -219,17 +219,17 @@
     <div class="party-grid">
       <div class="party-card pc-client">
         <p class="pc-label">Client</p>
-        <h4>Product Owner</h4>
+        <h3>Product Owner</h3>
         <p>Holding both technical parties accountable. Deadline: end-of-May demo with all three Title 22 outcomes verified.</p>
       </div>
       <div class="party-card pc-frs">
         <p class="pc-label">Backend team (my org)</p>
-        <h4>Backend / Policy Engine</h4>
+        <h3>Backend / Policy Engine</h3>
         <p>Account lead (travelling), one backend engineer, and me as PM, stepping in. Built the production API processing Title 22 events.</p>
       </div>
       <div class="party-card pc-nolte">
         <p class="pc-label">Integration partner (third party)</p>
-        <h4>UI + Integration Layer</h4>
+        <h3>UI + Integration Layer</h3>
         <p>Two-person team. Built the verification console and the integration layer connecting frontend to the backend API.</p>
       </div>
     </div>
@@ -374,12 +374,12 @@
     <div class="two-col">
       <div class="gc">
         <p class="gc-label">What the email did not do</p>
-        <h4>Did not throw the partner under the bus</h4>
+        <h3>Did not throw the partner under the bus</h3>
         <p>The claim of non-delivery was incorrect. The email corrected the record without characterising the partner's position as bad faith.</p>
       </div>
       <div class="gc">
         <p class="gc-label">What the email did do</p>
-        <h4>Presented verifiable evidence</h4>
+        <h3>Presented verifiable evidence</h3>
         <p>Production decision IDs, the April demo recording, the documentation gaps found during testing - all cited specifically, all verifiable independently by anyone on the thread.</p>
       </div>
     </div>
@@ -397,35 +397,35 @@
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>All three Title 22 outcome states verified in production</h4>
+        <h3>All three Title 22 outcome states verified in production</h3>
         <p>Allow, Deny, Defer - all confirmed with production decision IDs. The claim of non-delivery was corrected with direct evidence rather than counter-claims.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Six SOW discrepancies documented before Thursday call</h4>
+        <h3>Six SOW discrepancies documented before Thursday call</h3>
         <p>All six surfaced, severity-rated, and communicated before anyone signed anything. The critical timeline conflict was the most important - it prevented a contractually impossible commitment from being made.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Shared factual record established across all three parties</h4>
+        <h3>Shared factual record established across all three parties</h3>
         <p>Minutes grounded strictly in transcript content gave all three parties a single authoritative record of what had been said, decided, and committed to - replacing the competing versions of history.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Two real documentation gaps caught and flagged</h4>
+        <h3>Two real documentation gaps caught and flagged</h3>
         <p>The five missing evidence fields and the task-count discrepancy were genuine issues in our own documentation. Flagging them proactively, in the same email that corrected the record, built credibility rather than undermining it.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Project continued - independent audit added to Phase 2.2</h4>
+        <h3>Project continued - independent audit added to Phase 2.2</h3>
         <p>With the delivery dispute resolved and the SOW issues surfaced, the project moved forward. An independent third-party audit was included in the Phase 2.2 scope as a trust-building measure between all parties.</p>
       </div>
     </div>

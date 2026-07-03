@@ -28,13 +28,13 @@
   :root {
     --cream:        #F6F3EB;
     --cream-dark:   #EFEAE0;
-    --amber:        #C97F06;
+    --amber:        #C97F06;--amber-text:        #9A5B02;
     --amber-light:  #FEF3E2;
     --amber-mid:    rgba(201,127,6,0.15);
     --ink:          #181510;
     --ink-mid:      #3D3D3D;
     --ink-light:    #6B6557;
-    --ink-faint:    #9A9A9A;
+    --ink-faint:    #6E6A5E;
     --border:       rgba(26,26,26,0.10);
     --border-mid:   rgba(26,26,26,0.16);
     --green:        #1A7A40;
@@ -71,11 +71,11 @@
     border-bottom: 1px solid var(--border);
   }
   .topbar-brand { font-family: var(--mono); font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .14em; }
-  .topbar-brand b { color: var(--amber); }
+  .topbar-brand b { color: var(--amber-text); }
   .topbar-nav { display: flex; gap: 24px; align-items: center; }
   .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
-  .topbar-nav a:hover { color: var(--amber); }
-  .topbar-nav .back { color: var(--amber); font-weight: 500; }
+  .topbar-nav a:hover { color: var(--amber-text); }
+  .topbar-nav .back { color: var(--amber-text); font-weight: 500; }
 
   /* ─── PAGE ─── */
   .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
@@ -83,7 +83,7 @@
   /* ─── EYEBROW ─── */
   .eyebrow {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--amber); margin-bottom: 18px;
+    text-transform: uppercase; color: var(--amber-text); margin-bottom: 18px;
     display: flex; align-items: center; gap: 10px;
   }
   .etag {
@@ -97,7 +97,7 @@
     font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600;
     line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px;
   }
-  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber-text); }
   .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
   .hero-meta {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
@@ -115,7 +115,7 @@
   .sc { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
   .sc:last-child { border-right: none; }
   .sn { font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
-  .sn .u { font-size: 14px; color: var(--amber); font-weight: 400; }
+  .sn .u { font-size: 14px; color: var(--amber-text); font-weight: 400; }
   .sd { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
 
   /* ─── SECTIONS ─── */
@@ -132,7 +132,7 @@
   /* ─── CALLOUT ─── */
   .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 20px 0; }
   .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
-  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-text); margin-bottom: 6px; }
   .callout-red { border-left-color: var(--red); background: var(--red-light); }
   .callout-red .cl { color: var(--red); }
   .callout-green { border-left-color: var(--green); background: var(--green-light); }
@@ -157,7 +157,7 @@
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
   .gc { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
   .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
-  .gc h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .gc h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
   .gc p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
 
   /* ─── SPRINT TABLE ─── */
@@ -170,7 +170,7 @@
   .sprint-head span { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
   .sprint-row { display: grid; grid-template-columns: 90px 120px 1fr 100px; padding: 14px 16px; border-bottom: 1px solid var(--border); background: #fff; align-items: center; }
   .sprint-row:last-child { border-bottom: none; }
-  .sr-num { font-family: var(--mono); font-size: 11px; color: var(--amber); font-weight: 500; }
+  .sr-num { font-family: var(--mono); font-size: 11px; color: var(--amber-text); font-weight: 500; }
   .sr-dates { font-size: 12px; color: var(--ink-faint); font-family: var(--mono); }
   .sr-scope { font-size: 12px; color: var(--ink-mid); }
   .sr-scope span { display: inline-block; background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-mid); border-radius: 3px; font-family: var(--mono); font-size: 10px; padding: 1px 6px; margin: 1px 3px 1px 0; }
@@ -186,17 +186,17 @@
     flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
     background: var(--amber-light); border: 1px solid var(--amber-mid);
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--mono); font-size: 10px; color: var(--amber); font-weight: 500;
+    font-family: var(--mono); font-size: 10px; color: var(--amber-text); font-weight: 500;
     margin-top: 2px;
   }
-  .step-body h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .step-body h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
   .step-body p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
 
   /* ─── OUTCOME LIST ─── */
   .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
   .outcome-row:last-child { border-bottom: none; }
   .oc { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
-  .ot h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .ot h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
   .ot p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
 
   /* ─── TAG ROW ─── */
@@ -206,9 +206,9 @@
   /* ─── FOOTER ─── */
   .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .fb { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
-  .fb b { color: var(--amber); }
+  .fb b { color: var(--amber-text); }
   .fl { font-size: 12px; color: var(--ink-faint); }
-  .fl a { color: var(--amber); text-decoration: none; }
+  .fl a { color: var(--amber-text); text-decoration: none; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 640px) {
@@ -251,7 +251,7 @@
       <div class="mi"><span class="ml">Team</span><span class="mv">2 devs · 1 QA · 1 designer</span></div>
       <div class="mi"><span class="ml">Platform</span><span class="mv">Web · Mobile · AI (Gemini + GPT)</span></div>
       <div class="mi"><span class="ml">Product</span><span class="mv">CA Bar Exam AI prep platform</span></div>
-      <div class="mi"><span class="ml">Status</span><span class="mv" style="color:var(--amber)">→ Driving to launch</span></div>
+      <div class="mi"><span class="ml">Status</span><span class="mv" style="color:var(--amber-text)">→ Driving to launch</span></div>
     </div>
   </div>
 
@@ -343,35 +343,35 @@
       <div class="step">
         <div class="step-num">01</div>
         <div class="step-body">
-          <h4>Full project audit: scope, hours, and state</h4>
+          <h3>Full project audit: scope, hours, and state</h3>
           <p>Read the existing SOWs, mapped what was built vs what was claimed, identified what was complete (Gemini integration, AI response reporting, drill room animations, UI fixes), what was in progress, and what was unstarted. Flash Cards were confirmed complete and removed from active scope. Admin Portal reduced to a one-day QA task only.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">02</div>
         <div class="step-body">
-          <h4>Scope reprioritisation with the client</h4>
+          <h3>Scope reprioritisation with the client</h3>
           <p>Ran a priority alignment session with Elvis. Confirmed new order: Custom Tutor Room first (highest client urgency), then Stripe pricing integration, then sign-up flow, with Mailchimp and analytics deferred to a second SOW. Mailchimp specifically held, as it required Dan's written buy-in before committing hours. This gave the team a clear, conflict-free delivery queue for the first time.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">03</div>
         <div class="step-body">
-          <h4>Sprint plan produced and committed</h4>
+          <h3>Sprint plan produced and committed</h3>
           <p>Built a four-sprint plan anchored to 29 April start, using AI-adjusted estimates at 45–50% compression for two developers running 40 hours per week in parallel. Signup scope was flagged as unscoped with a hard deadline of 2 May to size it before Sprint 2 started. Sign-up could not be estimated until Elvis clarified requirements. I made that dependency explicit rather than carrying it as ambiguity.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">04</div>
         <div class="step-body">
-          <h4>Two SOWs produced to cover remaining and new scope</h4>
+          <h3>Two SOWs produced to cover remaining and new scope</h3>
           <p>SOW 1 covered Custom Tutor Room, Pricing (Stripe), and Sign-up Flow: 75–86 hours with a 50/25/25 payment split. SOW 2 covered Mailchimp, Analytics, and a 16-hour UI polish buffer: 99 hours. Both produced in a single session using the existing SOW format as the base, modified line by line to match the new scope.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">05</div>
         <div class="step-body">
-          <h4>Meeting structure formalised and accepted by Elvis</h4>
+          <h3>Meeting structure formalised and accepted by Elvis</h3>
           <p>Elvis had explicitly asked on a prior call for structured agendas: completed tickets, in-progress, to-do, reviewed together. I committed to this format from the next meeting and delivered it. The shift from ad hoc check-ins to structured sprint reviews gave the client visibility and gave the team a clear rhythm to work toward.</p>
         </div>
       </div>
@@ -436,22 +436,22 @@
     <div class="two-col">
       <div class="gc">
         <p class="gc-label">Logged decision</p>
-        <h4>Flashcard mode selection is pre-session</h4>
+        <h3>Flashcard mode selection is pre-session</h3>
         <p>Switching modes mid-drill conflicts with the question pre-loading architecture. Elvis confirmed: mode is selected on the setup screen, not once inside a session. Saved a potential backend retrofit.</p>
       </div>
       <div class="gc">
         <p class="gc-label">Logged decision</p>
-        <h4>Voice mode (ElevenLabs) is V2, deferred</h4>
+        <h3>Voice mode (ElevenLabs) is V2, deferred</h3>
         <p>Full voice-to-voice requires ElevenLabs integration. Mac users use system dictation as a stopgap. Logged to prevent it being raised again as in-scope mid-sprint.</p>
       </div>
       <div class="gc">
         <p class="gc-label">Logged decision</p>
-        <h4>Mailchimp requires Dan's written approval</h4>
+        <h3>Mailchimp requires Dan's written approval</h3>
         <p>Dan (investor stakeholder) needed to be convinced via written rationale before Mailchimp hours were committed. Elvis confirmed. This blocked the team from starting work that could have been reversed.</p>
       </div>
       <div class="gc">
         <p class="gc-label">Logged decision</p>
-        <h4>Bulk upload: prototype first, guardrails second</h4>
+        <h3>Bulk upload: prototype first, guardrails second</h3>
         <p>Elvis wanted PDF/docx upload for custom rules. Team proposed CSV. Decision: build a prototype with a file size limit and AI pre-check filter, measure token usage, then decide on format guardrails. Prevented a premature architecture lock.</p>
       </div>
     </div>
@@ -486,42 +486,42 @@
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Sprint cadence established from zero, and the team has run structured sprints since</h4>
+        <h3>Sprint cadence established from zero, and the team has run structured sprints since</h3>
         <p>No sprint existed before. Within the first week, four sprints were planned, scoped, and committed with dates and owners.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Hours now fully tracked and defensible</h4>
+        <h3>Hours now fully tracked and defensible</h3>
         <p>Hubstaff activated immediately. Every hour since pickup is logged. BetaCraft can produce a time report on demand, something that wasn't possible before I joined.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Two SOWs produced covering all remaining and new scope</h4>
+        <h3>Two SOWs produced covering all remaining and new scope</h3>
         <p>SOW 1 (75–86 hrs) and SOW 2 (99 hrs) signed. No more uncovered work in flight.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Client relationship reset on structured terms</h4>
+        <h3>Client relationship reset on structured terms</h3>
         <p>Elvis had asked for structure: structured agendas, sprint schedules, written post-call summaries. That is now the default working mode.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Scope disputes now get resolved from the decision log</h4>
+        <h3>Scope disputes now get resolved from the decision log</h3>
         <p>Four key product decisions formally logged with Elvis's written confirmation. When Dan or Elvis revisit these, the answer is already there.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Platform driving toward May launch, on track for bar exam season</h4>
+        <h3>Platform driving toward May launch, on track for bar exam season</h3>
         <p>Flashcards complete and shipped. Custom Tutor Room, Stripe, Analytics in flight. UAT and buffer sprint planned. The July exam date is reachable.</p>
       </div>
     </div>

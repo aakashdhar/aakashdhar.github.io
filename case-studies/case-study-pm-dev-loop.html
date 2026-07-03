@@ -28,13 +28,13 @@
   :root {
     --cream:       #F6F3EB;
     --cream-dark:  #EFEAE0;
-    --amber:       #C97F06;
+    --amber:       #C97F06;--amber-text:       #9A5B02;
     --amber-light: #FEF3E2;
     --amber-mid:   rgba(201,127,6,0.15);
     --ink:         #181510;
     --ink-mid:     #3D3D3D;
     --ink-light:   #6B6557;
-    --ink-faint:   #9A9A9A;
+    --ink-faint:   #6E6A5E;
     --border:      rgba(26,26,26,0.10);
     --border-mid:  rgba(26,26,26,0.16);
     --green:       #1A7A40;
@@ -72,11 +72,11 @@
     border-bottom: 1px solid var(--border);
   }
   .topbar-brand { font-family: var(--mono); font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .14em; }
-  .topbar-brand b { color: var(--amber); }
+  .topbar-brand b { color: var(--amber-text); }
   .topbar-nav { display: flex; gap: 24px; align-items: center; }
   .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
-  .topbar-nav a:hover { color: var(--amber); }
-  .topbar-nav .back-link { color: var(--amber); font-weight: 500; }
+  .topbar-nav a:hover { color: var(--amber-text); }
+  .topbar-nav .back-link { color: var(--amber-text); font-weight: 500; }
 
   /* ─── LAYOUT ─── */
   .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
@@ -84,7 +84,7 @@
   /* ─── EYEBROW ─── */
   .eyebrow {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--amber); margin-bottom: 18px;
+    text-transform: uppercase; color: var(--amber-text); margin-bottom: 18px;
     display: flex; align-items: center; gap: 10px;
   }
   .eyebrow-tag {
@@ -98,7 +98,7 @@
     font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600;
     line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px;
   }
-  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber-text); }
   .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
   .hero-meta {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -116,7 +116,7 @@
   .stat-cell { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
   .stat-cell:last-child { border-right: none; }
   .stat-num { font-family: var(--display); font-size: 30px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
-  .stat-num .unit { font-size: 15px; color: var(--amber); font-weight: 400; }
+  .stat-num .unit { font-size: 15px; color: var(--amber-text); font-weight: 400; }
   .stat-desc { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
 
   /* ─── SECTION ─── */
@@ -126,7 +126,7 @@
   p { color: var(--ink-light); margin-bottom: 14px; line-height: 1.75; }
   p:last-child { margin-bottom: 0; }
   p strong { color: var(--ink); font-weight: 500; }
-  code { font-family: var(--mono); font-size: 12px; background: var(--cream-dark); padding: 1px 5px; border-radius: 3px; color: var(--amber); }
+  code { font-family: var(--mono); font-size: 12px; background: var(--cream-dark); padding: 1px 5px; border-radius: 3px; color: var(--amber-text); }
 
   /* ─── RULE ─── */
   .rule { height: 1px; background: var(--border); margin: 44px 0; }
@@ -134,7 +134,7 @@
   /* ─── CALLOUT ─── */
   .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 22px 0; }
   .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
-  .callout-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .callout-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-text); margin-bottom: 6px; }
   .callout-purple { border-left-color: var(--purple); background: var(--purple-light); }
   .callout-purple .callout-label { color: var(--purple); }
 
@@ -145,17 +145,17 @@
   .lc-bridge { background: var(--green-light); border-color: var(--green-mid); }
   .lc-dev { background: var(--blue-light); border-color: var(--blue-mid); }
   .lc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 8px; }
-  .lc-pm .lc-label { color: var(--amber); }
+  .lc-pm .lc-label { color: var(--amber-text); }
   .lc-bridge .lc-label { color: var(--green); }
   .lc-dev .lc-label { color: var(--blue); }
-  .layer-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .layer-card h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
   .layer-card p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
 
   /* ─── TWO-COL PROBLEM GRID ─── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 22px 0; }
   .grid-card { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
   .grid-card .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
-  .grid-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .grid-card h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
   .grid-card p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
 
   /* ─── SKILL ROWS ─── */
@@ -163,10 +163,10 @@
   .skill-row { display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border); }
   .skill-row:last-child { border-bottom: none; }
   .skill-badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
-  .sb-pm { color: var(--amber); background: var(--amber-light); border: 1px solid var(--amber-mid); }
+  .sb-pm { color: var(--amber-text); background: var(--amber-light); border: 1px solid var(--amber-mid); }
   .sb-dev { color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
   .sb-tpm { color: var(--purple); background: var(--purple-light); border: 1px solid var(--purple-mid); }
-  .skill-info h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .skill-info h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
   .skill-info p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
 
   /* ─── LOOP DIAGRAM WRAP ─── */
@@ -188,7 +188,7 @@
     padding: 16px 18px; margin: 18px 0; font-family: var(--mono); font-size: 12px;
     color: var(--ink-light); overflow-x: auto; line-height: 1.9;
   }
-  .code-block .c-amber { color: var(--amber); }
+  .code-block .c-amber { color: var(--amber-text); }
   .code-block .c-blue { color: var(--blue); }
   .code-block .c-green { color: var(--green); }
   .code-block .c-dim { color: var(--ink-faint); }
@@ -198,15 +198,15 @@
   .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
   .outcome-row:last-child { border-bottom: none; }
   .outcome-check { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid rgba(26,122,64,0.25); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
-  .outcome-text h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .outcome-text h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
   .outcome-text p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
 
   /* ─── FOOTER ─── */
   .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .footer-brand { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
-  .footer-brand b { color: var(--amber); }
+  .footer-brand b { color: var(--amber-text); }
   .footer-links { font-size: 12px; color: var(--ink-faint); }
-  .footer-links a { color: var(--amber); text-decoration: none; }
+  .footer-links a { color: var(--amber-text); text-decoration: none; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 640px) {
@@ -299,22 +299,22 @@
     <div class="two-col">
       <div class="grid-card">
         <p class="gc-label">Pain point</p>
-        <h4>Scope drift between calls and code</h4>
+        <h3>Scope drift between calls and code</h3>
         <p>Client decisions made on a Monday call wouldn't reliably reach the engineer writing code on Wednesday. No formal decision log. No structured handoff.</p>
       </div>
       <div class="grid-card">
         <p class="gc-label">Pain point</p>
-        <h4>PM overhead scaling with project count</h4>
+        <h3>PM overhead scaling with project count</h3>
         <p>Every new engagement added email triage, call digestion, SOW drafting, sprint planning. All done manually, in parallel.</p>
       </div>
       <div class="grid-card">
         <p class="gc-label">Pain point</p>
-        <h4>Engineers pulled into client comms</h4>
+        <h3>Engineers pulled into client comms</h3>
         <p>Developers occasionally dragged into client conversations that should have stayed in the PM layer, losing build focus and creating communication risk.</p>
       </div>
       <div class="grid-card">
         <p class="gc-label">Pain point</p>
-        <h4>No consistent delivery gate</h4>
+        <h3>No consistent delivery gate</h3>
         <p>Features shipping without a structured review and sign-off process. Quality depended on whoever happened to be running the project that week.</p>
       </div>
     </div>
@@ -331,17 +331,17 @@
     <div class="layer-grid">
       <div class="layer-card lc-pm">
         <p class="lc-label">Layer 1 · PM</p>
-        <h4>BAM Orchestrator</h4>
+        <h3>BAM Orchestrator</h3>
         <p>Business Administrative Manager. Ingests client comms, logs decisions, generates requirements, drafts client-facing updates. Never sees code.</p>
       </div>
       <div class="layer-card lc-bridge">
         <p class="lc-label">Layer 2 · Bridge</p>
-        <h4>Neutral exchange</h4>
+        <h3>Neutral exchange</h3>
         <p>A versioned shared folder. BAM writes REQUIREMENT-NNN.md. TPM reads it, builds, writes DELIVERY-UPDATE-NNN.md. BAM reads that back. No direct coupling.</p>
       </div>
       <div class="layer-card lc-dev">
         <p class="lc-label">Layer 3 · Dev</p>
-        <h4>TPM + vibe-* Agent</h4>
+        <h3>TPM + vibe-* Agent</h3>
         <p>Technical PM agent translates requirements into specs the vibe-* dev skill system can execute. Dev never reads client emails.</p>
       </div>
     </div>
@@ -364,42 +364,42 @@
       <div class="skill-row">
         <span class="skill-badge sb-pm">ingest-email</span>
         <div class="skill-info">
-          <h4>Email ingestion and decision extraction</h4>
+          <h3>Email ingestion and decision extraction</h3>
           <p>Reads a raw client email, archives it with a numbered convention, extracts decisions as proposals, flags status discrepancies against current project state.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-pm">process-transcript</span>
         <div class="skill-info">
-          <h4>Call transcript → meeting notes + action items</h4>
+          <h3>Call transcript → meeting notes + action items</h3>
           <p>Takes a Fathom transcript, produces verbatim record and synthesised summary, extracts decisions and action items, routes conflicts to review log.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-pm">propose-decision</span>
         <div class="skill-info">
-          <h4>Governance gate: DEC-NNN logging</h4>
+          <h3>Governance gate: DEC-NNN logging</h3>
           <p>Every requirement entering the bridge must have a logged decision behind it. This gate blocks generate-brief until DEC-NNN is locked and dated.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-pm">generate-brief</span>
         <div class="skill-info">
-          <h4>Client requirement → REQUIREMENT-NNN.md</h4>
+          <h3>Client requirement → REQUIREMENT-NNN.md</h3>
           <p>Translates a locked decision into a structured requirement document written for the TPM agent, the handoff point into the bridge.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-pm">draft-client-reply</span>
         <div class="skill-info">
-          <h4>Delivery update → client email</h4>
+          <h3>Delivery update → client email</h3>
           <p>Reads DELIVERY-UPDATE-NNN.md from the bridge and produces a client-facing email in the right house style, grounded in what shipped.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-pm">status-report</span>
         <div class="skill-info">
-          <h4>RAG status for management and clients</h4>
+          <h3>RAG status for management and clients</h3>
           <p>Generates a RAG-coded status report: overall health, decisions since last report, open risks, next milestones. Read-only: no files modified.</p>
         </div>
       </div>
@@ -445,42 +445,42 @@
       <div class="skill-row">
         <span class="skill-badge sb-tpm">tpm-translate</span>
         <div class="skill-info">
-          <h4>REQUIREMENT-NNN → FEATURE_SPEC.md</h4>
+          <h3>REQUIREMENT-NNN → FEATURE_SPEC.md</h3>
           <p>TPM agent reads the bridge requirement and produces the exact spec format vibe-add-feature expects, pre-filled with context, criteria, and constraints.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-dev">vibe-add-feature</span>
         <div class="skill-info">
-          <h4>Spec-driven feature build</h4>
+          <h3>Spec-driven feature build</h3>
           <p>Full workflow: spec → tasks → build → gate. Creates FEATURE_SPEC.md, FEATURE_PLAN.md, and FEATURE_TASKS.md before any code runs. Every feature has a defined blast radius.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-dev">vibe-review</span>
         <div class="skill-info">
-          <h4>Mandatory quality gate</h4>
+          <h3>Mandatory quality gate</h3>
           <p>Runs after every phase. Acts as senior engineer + architect + code quality auditor. P0 issues block the next phase. No feature ships without a passing review.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-dev">vibe-test</span>
         <div class="skill-info">
-          <h4>Blast-radius-aware test coverage</h4>
+          <h3>Blast-radius-aware test coverage</h3>
           <p>Traces every file a change touches, maps the full dependency graph, writes component + integration + E2E tests. Runs automatically after every feature.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-dev">vibe-fix-bug</span>
         <div class="skill-info">
-          <h4>Structured bug resolution</h4>
+          <h3>Structured bug resolution</h3>
           <p>Severity triage first. Significant bugs get BUG_SPEC.md, BUG_PLAN.md, regression test before fix code. Trivial bugs get a 3-task fast path.</p>
         </div>
       </div>
       <div class="skill-row">
         <span class="skill-badge sb-tpm">tpm-handoff</span>
         <div class="skill-info">
-          <h4>Delivery → DELIVERY-UPDATE-NNN.md</h4>
+          <h3>Delivery → DELIVERY-UPDATE-NNN.md</h3>
           <p>After vibe-review passes, TPM agent writes the bridge delivery update. BAM picks it up and generates the client email. Loop closes.</p>
         </div>
       </div>
@@ -609,7 +609,7 @@
 
           <!-- Loop return dashed line -->
           <path d="M 100 466 L 100 494 L 330 494" stroke="#E0DCD4" stroke-width="1" fill="none" stroke-dasharray="4,3"/>
-          <text x="215" y="508" text-anchor="middle" fill="#9A9A9A" font-family="Bricolage Grotesque,sans-serif" font-size="9">next requirement → loop restarts</text>
+          <text x="215" y="508" text-anchor="middle" fill="#6E6A5E" font-family="Bricolage Grotesque,sans-serif" font-size="9">next requirement → loop restarts</text>
         </svg>
       </div>
     </div>
@@ -631,35 +631,35 @@
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
-          <h4>3+ live client engagements on the system</h4>
+          <h3>3+ live client engagements on the system</h3>
           <p>Sapey, Brieflex, WePop, and Link Broadband all run through the same PM layer, with no client-specific manual processes.</p>
         </div>
       </div>
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
-          <h4>PM admin overhead cut significantly</h4>
+          <h3>PM admin overhead cut significantly</h3>
           <p>Email triage, MoM production, status reports, and SOW generation are now skills: they run in seconds, not hours.</p>
         </div>
       </div>
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
-          <h4>Every decision formally logged</h4>
+          <h3>Every decision formally logged</h3>
           <p>The DEC-NNN gate means no requirement moves to engineering without a logged, dated, accountable decision. Scope disputes get resolved by the log.</p>
         </div>
       </div>
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
-          <h4>Quality gates are structural</h4>
+          <h3>Quality gates are structural</h3>
           <p>vibe-review runs on every phase. P0 issues block progression regardless of who's on the team that sprint.</p>
         </div>
       </div>
       <div class="outcome-row">
         <div class="outcome-check">✓</div>
         <div class="outcome-text">
-          <h4>The system feeds back into itself</h4>
+          <h3>The system feeds back into itself</h3>
           <p>A skill-evolution layer lets patterns observed in delivery feed back into skill refinements. Each project run informs the next.</p>
         </div>
       </div>

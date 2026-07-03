@@ -26,8 +26,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --cream: #F6F3EB; --cream-dark: #EFEAE0;
-    --amber: #C97F06; --amber-light: #FEF3E2; --amber-mid: rgba(201,127,6,0.15);
-    --ink: #181510; --ink-mid: #3D3D3D; --ink-light: #6B6557; --ink-faint: #9A9A9A;
+    --amber: #C97F06;--amber-text: #9A5B02; --amber-light: #FEF3E2; --amber-mid: rgba(201,127,6,0.15);
+    --ink: #181510; --ink-mid: #3D3D3D; --ink-light: #6B6557; --ink-faint: #6E6A5E;
     --border: rgba(24,21,16,0.10); --border-mid: rgba(24,21,16,0.16);
     --green: #1A7A40; --green-light: #EBF7EF; --green-mid: rgba(26,122,64,0.18);
     --blue: #1D4ED8; --blue-light: #EFF6FF; --blue-mid: rgba(29,78,216,0.15);
@@ -42,23 +42,23 @@
   /* TOPBAR */
   .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 52px; background: rgba(246,243,235,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
   .topbar-brand { font-family: var(--mono); font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .14em; }
-  .topbar-brand b { color: var(--amber); }
+  .topbar-brand b { color: var(--amber-text); }
   .topbar-nav { display: flex; gap: 24px; align-items: center; }
   .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
-  .topbar-nav a:hover { color: var(--amber); }
-  .topbar-nav .back { color: var(--amber); font-weight: 500; }
+  .topbar-nav a:hover { color: var(--amber-text); }
+  .topbar-nav .back { color: var(--amber-text); font-weight: 500; }
 
   /* PAGE */
   .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
 
   /* EYEBROW */
-  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-text); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
   .etag { background: var(--amber-light); border: 1px solid var(--amber-mid); border-radius: 3px; padding: 2px 7px; font-size: 10px; }
 
   /* HERO */
   .hero { padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
   .hero-title { font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600; line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px; }
-  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber-text); }
   .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
   .hero-meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 16px 24px; padding-top: 28px; border-top: 1px solid var(--border); }
   .mi { display: flex; flex-direction: column; gap: 3px; }
@@ -70,7 +70,7 @@
   .sc { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
   .sc:last-child { border-right: none; }
   .sn { font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
-  .sn .u { font-size: 14px; color: var(--amber); font-weight: 400; }
+  .sn .u { font-size: 14px; color: var(--amber-text); font-weight: 400; }
   .sd { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
 
   /* SECTIONS */
@@ -86,7 +86,7 @@
   /* CALLOUTS */
   .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 20px 0; }
   .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
-  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-text); margin-bottom: 6px; }
   .callout-purple { border-left-color: var(--purple); background: var(--purple-light); }
   .callout-purple .cl { color: var(--purple); }
   .callout-green { border-left-color: var(--green); background: var(--green-light); }
@@ -96,7 +96,7 @@
   .mode-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
   .mode-card { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 14px 12px; text-align: center; }
   .mode-icon { font-size: 18px; margin-bottom: 6px; display: block; }
-  .mode-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: 3px; }
+  .mode-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber-text); display: block; margin-bottom: 3px; }
   .mode-desc { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
 
   /* VERSION TABLE */
@@ -104,7 +104,7 @@
   .version-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 10px 14px; background: var(--cream-dark); border-bottom: 1px solid var(--border-mid); }
   .version-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--ink-mid); vertical-align: top; }
   .version-table tr:last-child td { border-bottom: none; }
-  .version-table tr td:first-child { font-family: var(--mono); color: var(--amber); font-size: 11px; white-space: nowrap; }
+  .version-table tr td:first-child { font-family: var(--mono); color: var(--amber-text); font-size: 11px; white-space: nowrap; }
   .tag-badge { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-left: 6px; }
   .tag-feature { color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
   .tag-fix { color: var(--green); background: var(--green-light); border: 1px solid var(--green-mid); }
@@ -114,7 +114,7 @@
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
   .gc { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
   .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
-  .gc h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .gc h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
   .gc p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
 
   /* POSITIONING MAP */
@@ -126,7 +126,7 @@
   .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
   .outcome-row:last-child { border-bottom: none; }
   .oc { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
-  .ot h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .ot h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
   .ot p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
 
   /* TAG ROW */
@@ -136,9 +136,9 @@
   /* FOOTER */
   .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .fb { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
-  .fb b { color: var(--amber); font-weight: 500; }
+  .fb b { color: var(--amber-text); font-weight: 500; }
   .fl { font-size: 12px; color: var(--ink-faint); }
-  .fl a { color: var(--amber); text-decoration: none; }
+  .fl a { color: var(--amber-text); text-decoration: none; }
 
   @media (max-width: 640px) {
     .page-wrap { padding: 80px 20px 80px; }
@@ -211,12 +211,12 @@
     <div class="two-col">
       <div class="gc">
         <p class="gc-label">The existing options</p>
-        <h4>Pure dictation tools</h4>
+        <h3>Pure dictation tools</h3>
         <p>Willow, Wispr Flow, Voicy - type with your voice, anywhere. No prompt engineering, no structure. Fast transcription but no AI layer.</p>
       </div>
       <div class="gc">
         <p class="gc-label">The existing options</p>
-        <h4>Context-aware assistants</h4>
+        <h3>Context-aware assistants</h3>
         <p>Superwhisper, Aqua Voice - understand your active app and context. Powerful but solve a different problem: output goes directly into the app, not into a reusable prompt.</p>
       </div>
     </div>
@@ -360,12 +360,12 @@
     <div class="two-col">
       <div class="gc">
         <p class="gc-label">Lesson from client work</p>
-        <h4>Scope is negotiable</h4>
+        <h3>Scope is negotiable</h3>
         <p>In client delivery, scope can always be revisited, deferred, or reframed. The SOW is a contract, but it is also a living document.</p>
       </div>
       <div class="gc">
         <p class="gc-label">Lesson from Promptly</p>
-        <h4>Scope is a daily experience</h4>
+        <h3>Scope is a daily experience</h3>
         <p>When you use the product every day, a deferred feature is a daily friction point. There is no reframing - it either works or it does not, every time you open the app.</p>
       </div>
     </div>
@@ -373,12 +373,12 @@
     <div class="two-col">
       <div class="gc">
         <p class="gc-label">Lesson from client work</p>
-        <h4>Validation comes from the client</h4>
+        <h3>Validation comes from the client</h3>
         <p>Feature decisions are validated through stakeholder sign-off, user testing, or sprint review feedback.</p>
       </div>
       <div class="gc">
         <p class="gc-label">Lesson from Promptly</p>
-        <h4>Validation is immediate</h4>
+        <h3>Validation is immediate</h3>
         <p>You know within 48 hours whether a feature reduced friction or added it. The feedback loop is honest in a way that client feedback rarely is.</p>
       </div>
     </div>
@@ -401,35 +401,35 @@
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>v2.4.1 shipping as unsigned DMG</h4>
+        <h3>v2.4.1 shipping as unsigned DMG</h3>
         <p>Full feature set live: 8 modes, image-builder-v2, video-builder-v2, eval scorecard, multi-language transcription. Signed builds blocked by a codesign issue on the uninstall script - in progress.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Landing page live at aakashdhar.me/promptly</h4>
+        <h3>Landing page live at aakashdhar.me/promptly</h3>
         <p>50/50 split hero with live mode carousel, bento grid specialist modes section, animated waveforms per mode. Self-hosted on GitHub Pages.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>vibe-* framework validated on personal product</h4>
+        <h3>vibe-* framework validated on personal product</h3>
         <p>The same skill chain used on client projects - brainstorm, architect, spec, review gate before merge - caught three regressions during the v2 cycle. The process is system-dependent rather than person-dependent. It works on Promptly exactly as it works on Brieflex.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">→</div>
       <div class="ot">
-        <h4>Active app detection - next major feature</h4>
+        <h3>Active app detection - next major feature</h3>
         <p>Detect the frontmost macOS app on trigger and auto-switch mode: VS Code to Code, Mail to Email, Figma to Design. Zero manual mode switching. Uses NSWorkspace.shared.frontmostApplication via Electron shell.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">→</div>
       <div class="ot">
-        <h4>Signed DMG distribution</h4>
+        <h3>Signed DMG distribution</h3>
         <p>Apple notarisation pending resolution of the codesign issue on uninstall.sh. Required before any wider distribution.</p>
       </div>
     </div>

@@ -28,13 +28,13 @@
   :root {
     --cream:       #F6F3EB;
     --cream-dark:  #EFEAE0;
-    --amber:       #C97F06;
+    --amber:       #C97F06;--amber-text:       #9A5B02;
     --amber-light: #FEF3E2;
     --amber-mid:   rgba(201,127,6,0.15);
     --ink:         #181510;
     --ink-mid:     #3D3D3D;
     --ink-light:   #6B6557;
-    --ink-faint:   #9A9A9A;
+    --ink-faint:   #6E6A5E;
     --border:      rgba(26,26,26,0.10);
     --border-mid:  rgba(26,26,26,0.16);
     --green:       #1A7A40;
@@ -73,11 +73,11 @@
     border-bottom: 1px solid var(--border);
   }
   .topbar-brand { font-family: var(--mono); font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .14em; }
-  .topbar-brand b { color: var(--amber); }
+  .topbar-brand b { color: var(--amber-text); }
   .topbar-nav { display: flex; gap: 24px; align-items: center; }
   .topbar-nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
-  .topbar-nav a:hover { color: var(--amber); }
-  .topbar-nav .back { color: var(--amber); font-weight: 500; }
+  .topbar-nav a:hover { color: var(--amber-text); }
+  .topbar-nav .back { color: var(--amber-text); font-weight: 500; }
 
   /* ── PAGE ── */
   .page-wrap { max-width: 780px; margin: 0 auto; padding: 96px 32px 100px; }
@@ -85,7 +85,7 @@
   /* ── EYEBROW ── */
   .eyebrow {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--amber); margin-bottom: 18px;
+    text-transform: uppercase; color: var(--amber-text); margin-bottom: 18px;
     display: flex; align-items: center; gap: 10px;
   }
   .etag { background: var(--amber-light); border: 1px solid var(--amber-mid); border-radius: 3px; padding: 2px 7px; font-size: 10px; }
@@ -96,7 +96,7 @@
     font-family: var(--display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 600;
     line-height: 1.06; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px;
   }
-  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber); }
+  .hero-title em { font-style: italic; font-family: var(--serif); color: var(--amber-text); }
   .hero-sub { font-size: 16px; color: var(--ink-light); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
   .hero-meta {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
@@ -111,7 +111,7 @@
   .sc { padding: 22px 18px; border-right: 1px solid var(--border); background: #fff; }
   .sc:last-child { border-right: none; }
   .sn { font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 5px; }
-  .sn .u { font-size: 14px; color: var(--amber); font-weight: 400; }
+  .sn .u { font-size: 14px; color: var(--amber-text); font-weight: 400; }
   .sd { font-size: 11px; color: var(--ink-faint); line-height: 1.4; }
 
   /* ── SECTIONS ── */
@@ -121,14 +121,14 @@
   p { color: var(--ink-light); margin-bottom: 14px; line-height: 1.75; }
   p:last-child { margin-bottom: 0; }
   p strong { color: var(--ink); font-weight: 500; }
-  code { font-family: var(--mono); font-size: 12px; background: var(--cream-dark); padding: 2px 6px; border-radius: 3px; color: var(--amber); border: 1px solid var(--border-mid); }
+  code { font-family: var(--mono); font-size: 12px; background: var(--cream-dark); padding: 2px 6px; border-radius: 3px; color: var(--amber-text); border: 1px solid var(--border-mid); }
 
   .rule { height: 1px; background: var(--border); margin: 44px 0; }
 
   /* ── CALLOUTS ── */
   .callout { border-left: 3px solid var(--amber); background: var(--amber-light); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 20px 0; }
   .callout p { color: var(--ink-mid); font-size: 14px; margin: 0; }
-  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .cl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-text); margin-bottom: 6px; }
   .callout-red { border-left-color: var(--red); background: var(--red-light); }
   .callout-red .cl { color: var(--red); }
   .callout-green { border-left-color: var(--green); background: var(--green-light); }
@@ -151,7 +151,7 @@
   .own-table tr:last-child td { border-bottom: none; }
   .own-table tr td:first-child { color: var(--ink); font-weight: 500; }
   .badge { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 3px; }
-  .badge-betacraft { color: var(--amber); background: var(--amber-light); border: 1px solid var(--amber-mid); }
+  .badge-betacraft { color: var(--amber-text); background: var(--amber-light); border: 1px solid var(--amber-mid); }
   .badge-gaiia { color: var(--blue); background: var(--blue-light); border: 1px solid var(--blue-mid); }
   .badge-epc { color: var(--purple); background: var(--purple-light); border: 1px solid var(--purple-mid); }
 
@@ -160,18 +160,18 @@
   .wf-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 8px 10px; background: var(--cream-dark); border-bottom: 1px solid var(--border-mid); }
   .wf-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--ink-mid); vertical-align: top; }
   .wf-table tr:last-child td { border-bottom: none; }
-  .wf-id { font-family: var(--mono); color: var(--amber); font-size: 11px; }
+  .wf-id { font-family: var(--mono); color: var(--amber-text); font-size: 11px; }
 
   /* ── TWO-COL ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
   .gc { background: #fff; border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px; }
   .gc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px; }
-  .gc h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .gc h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
   .gc p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.55; }
 
   /* ── CODE BLOCK ── */
   .code-block { background: var(--cream-dark); border: 1px solid var(--border-mid); border-radius: 7px; padding: 16px 18px; margin: 18px 0; font-family: var(--mono); font-size: 12px; color: var(--ink-light); overflow-x: auto; line-height: 1.9; }
-  .code-block .c-a { color: var(--amber); }
+  .code-block .c-a { color: var(--amber-text); }
   .code-block .c-b { color: var(--blue); }
   .code-block .c-g { color: var(--green); }
   .code-block .c-d { color: var(--ink-faint); }
@@ -184,14 +184,14 @@
   .gate-badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
   .gb-hard { color: var(--red); background: var(--red-light); border: 1px solid rgba(185,28,28,0.2); }
   .gb-dep { color: var(--purple); background: var(--purple-light); border: 1px solid var(--purple-mid); }
-  .gate-text h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .gate-text h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
   .gate-text p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
 
   /* ── OUTCOME LIST ── */
   .outcome-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
   .outcome-row:last-child { border-bottom: none; }
   .oc { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--green); margin-top: 2px; }
-  .ot h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .ot h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
   .ot p { font-size: 12px; color: var(--ink-faint); margin: 0; line-height: 1.5; }
 
   /* ── TAGS ── */
@@ -201,9 +201,9 @@
   /* ── FOOTER ── */
   .cs-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .fb { font-family: var(--mono); font-size: 13px; color: var(--ink-light); }
-  .fb b { color: var(--amber); }
+  .fb b { color: var(--amber-text); }
   .fl { font-size: 12px; color: var(--ink-faint); }
-  .fl a { color: var(--amber); text-decoration: none; }
+  .fl a { color: var(--amber-text); text-decoration: none; }
 
   @media (max-width: 640px) {
     .page-wrap { padding: 80px 20px 80px; }
@@ -372,7 +372,7 @@
           <!-- Gaiia to Customer return -->
           <path d="M 620 168 L 620 284 L 452 284" stroke="#1D4ED8" stroke-width="1" fill="none" stroke-dasharray="4,3"/>
           <polygon points="456,279 446,284 456,289" fill="#1D4ED8"/>
-          <text x="580" y="298" text-anchor="middle" fill="#9A9A9A" font-family="Bricolage Grotesque,sans-serif" font-size="9">Order confirmation (Gaiia owns)</text>
+          <text x="580" y="298" text-anchor="middle" fill="#6E6A5E" font-family="Bricolage Grotesque,sans-serif" font-size="9">Order confirmation (Gaiia owns)</text>
 
           <!-- Scope boundary label -->
           <rect x="6" y="306" width="668" height="26" rx="4" fill="#EDE9E0"/>
@@ -565,35 +565,35 @@
       <div class="gate-row">
         <span class="gate-badge gb-hard">Hard gate</span>
         <div class="gate-text">
-          <h4>Design sign-off by April 14, or the April 30 launch moves</h4>
+          <h3>Design sign-off by April 14, or the April 30 launch moves</h3>
           <p>Week 2 started with design review. If Emily and Jeffrey didn't approve by April 14, the dev phase couldn't begin and the launch date would slip by exactly the number of days the review ran over. I made this a named gate in the kickoff document.</p>
         </div>
       </div>
       <div class="gate-row">
         <span class="gate-badge gb-dep">Dependency</span>
         <div class="gate-text">
-          <h4>Gaiia → HubSpot API connection is Gaiia's pipe, not BetaCraft's</h4>
+          <h3>Gaiia → HubSpot API connection is Gaiia's pipe, not BetaCraft's</h3>
           <p>BetaCraft configured HubSpot to receive events from Gaiia. But the connection itself (Gaiia firing events to HubSpot) was Gaiia's responsibility. I confirmed the point of contact at Gaiia (Tyler) early and made clear that full HubSpot workflow testing was blocked until that connection was live.</p>
         </div>
       </div>
       <div class="gate-row">
         <span class="gate-badge gb-dep">Dependency</span>
         <div class="gate-text">
-          <h4>EPC event names needed before WF-02 and WF-11 could be built</h4>
+          <h3>EPC event names needed before WF-02 and WF-11 could be built</h3>
           <p>HubSpot triggers match on exact string values. The construction-stage event names EPC would send through the chain had to be confirmed before those workflows could be configured. Otherwise we'd build against guessed property names and have to rework the triggers post-launch.</p>
         </div>
       </div>
       <div class="gate-row">
         <span class="gate-badge gb-dep">Dependency</span>
         <div class="gate-text">
-          <h4>Gaiia signup base URL and product slugs, needed before hero CTA could be built</h4>
+          <h3>Gaiia signup base URL and product slugs, needed before hero CTA could be built</h3>
           <p>Every "Check Availability" button on every page pointed to Gaiia's white-label checkout URL. That URL was specific to the Link Broadband Gaiia instance. Without it confirmed by Tyler, no CTA on the site could be tested end-to-end.</p>
         </div>
       </div>
       <div class="gate-row">
         <span class="gate-badge gb-hard">Hard gate</span>
         <div class="gate-text">
-          <h4>WF-10 ownership confirmed by Emily before build</h4>
+          <h3>WF-10 ownership confirmed by Emily before build</h3>
           <p>The Customer Welcome workflow could not be built by BetaCraft until it was confirmed Gaiia wouldn't also run one. Duplicate welcome sequences would have been the first thing a new customer experienced after signing up. I escalated this as a blocking decision with a named deadline: April 14.</p>
         </div>
       </div>
@@ -610,42 +610,42 @@
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Full marketing site launched in 4 weeks</h4>
+        <h3>Full marketing site launched in 4 weeks</h3>
         <p>Homepage, neighbourhood pages with status badges, pricing overview, support, admin panel, and legal shell, all live on schedule.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Gaiia address prefill integration live and working at launch</h4>
+        <h3>Gaiia address prefill integration live and working at launch</h3>
         <p>Mapbox autocomplete → structured JSON → Gaiia redirect verified end to end. The field-splitting requirement was handled in the spec, before the build.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>7 HubSpot workflows configured and ready for Gaiia connection</h4>
+        <h3>7 HubSpot workflows configured and ready for Gaiia connection</h3>
         <p>All BetaCraft-owned workflows built, tested against expected event structures, and documented. Blocked only on Gaiia's API connection, which was Gaiia's deliverable, not BetaCraft's.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Technical SEO built to a Lighthouse 90+ target</h4>
+        <h3>Technical SEO built to a Lighthouse 90+ target</h3>
         <p>Sitemap, robots.txt, schema markup, meta tags, and GA4 + HubSpot tracking all shipped to specification.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Scope boundary held: no Gaiia work absorbed into BetaCraft</h4>
+        <h3>Scope boundary held: no Gaiia work absorbed into BetaCraft</h3>
         <p>The explicit ownership table written at kickoff meant that when questions about the checkout or post-order experience came up mid-build, the answer was already documented. No scope creep in either direction.</p>
       </div>
     </div>
     <div class="outcome-row">
       <div class="oc">✓</div>
       <div class="ot">
-        <h4>Admin panel shipped: Link team can operate without a developer</h4>
+        <h3>Admin panel shipped: Link team can operate without a developer</h3>
         <p>Status banners, neighbourhood updates, and operational announcements are all self-serve. Link Broadband doesn't need to raise a ticket every time they need to update the site.</p>
       </div>
     </div>

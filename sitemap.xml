@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-   <url><loc>https://aakashdhar.me/</loc><priority>1.0</priority></url>
-      <url><loc>https://aakashdhar.me/now.html</loc><priority>0.8</priority></url>
+  <url><loc>https://aakashdhar.me/</loc><lastmod>2026-07-04</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://aakashdhar.me/now.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <url><loc>https://aakashdhar.me/case-studies/case-study-sapey.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aakashdhar.me/case-studies/case-study-brieflex.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aakashdhar.me/case-studies/case-study-link-broadband.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aakashdhar.me/case-studies/case-study-pm-dev-loop.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aakashdhar.me/case-studies/case-study-promptly.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aakashdhar.me/case-studies/case-study-tokosmart.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <url><loc>https://aakashdhar.me/blog/agent-teams-vs-sequential-skills.html</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/swagger-docs-cut-onboarding.html</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/agents-in-project-management.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/ai-agent-failure-modes.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/developer-to-pm.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/done-is-not-a-fixed-state.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/how-i-automated-pm-workflow-16-ai-skills.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/multi-party-truth.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/my-experience-with-gemini-3.1-for-coding.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/spec-before-code-27-skill-framework-ai-development.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/the-agentic-harness.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/the-mid-build-pickup.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/vibe-framework.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aakashdhar.me/blog/what-a-transcript-loses.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <url><loc>https://aakashdhar.me/ctx/2026-05-29-edition-22/</loc><lastmod>2026-05-29</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://aakashdhar.me/ctx/2026-05-25-edition-18/</loc><lastmod>2026-05-25</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://aakashdhar.me/ctx/2026-05-25-edition-12/</loc><lastmod>2026-05-25</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://aakashdhar.me/ctx/2026-05-25-edition-9/</loc><lastmod>2026-05-25</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://aakashdhar.me/ctx/2026-05-24-edition-6/</loc><lastmod>2026-05-25</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://aakashdhar.me/ctx/5/</loc><lastmod>2026-05-24</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://aakashdhar.me/ctx/2/</loc><lastmod>2026-05-23</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://aakashdhar.me/ctx/1/</loc><lastmod>2026-05-23</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
 </urlset>

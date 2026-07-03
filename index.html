@@ -874,7 +874,7 @@ h2 .serif{color:var(--amber-text);font-weight:400}
       <h2 class="rv rv-d1">Development <span class="serif">history.</span></h2>
       <p class="ch-sub rv rv-d2">Selected projects from 8.5 years as a hands-on developer.</p>
     </div>
-    <div class="carousel rv rv-d2" id="devCarousel" data-lenis-prevent>
+    <div class="carousel rv rv-d2" id="devCarousel">
       <article class="dcard">
         <div class="idx">01</div>
         <span class="client">Xyfon Managed IT</span>
@@ -1277,10 +1277,15 @@ h2 .serif{color:var(--amber-text);font-weight:400}
   /* ---- carousel ---- */
   const car = document.getElementById('devCarousel');
   car.addEventListener('wheel', e => {
+    // Only hijack the wheel for clearly horizontal gestures (trackpad swipe or
+    // shift+wheel). Vertical gestures fall through so the page scrolls normally.
+    const horizontalIntent = Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey;
+    if (!horizontalIntent) return;
+    const delta = e.shiftKey ? e.deltaY : e.deltaX;
     const canRight = car.scrollLeft + car.clientWidth < car.scrollWidth - 1;
     const canLeft = car.scrollLeft > 0;
-    if ((e.deltaY > 0 && canRight) || (e.deltaY < 0 && canLeft)) {
-      car.scrollLeft += e.deltaY;
+    if ((delta > 0 && canRight) || (delta < 0 && canLeft)) {
+      car.scrollLeft += delta;
       e.preventDefault();
     }
   }, {passive:false});

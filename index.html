@@ -136,7 +136,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
 .pager button:disabled{opacity:.3;pointer-events:none}
 @media(max-width:760px){.pager{display:none}}
 .hint{
-  position:fixed;left:50%;bottom:clamp(20px,3vw,34px);transform:translateX(-50%);z-index:500;
+  position:fixed;left:50%;bottom:clamp(62px,7vw,78px);transform:translateX(-50%);z-index:500;
   font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-2);
   display:flex;align-items:center;gap:12px;transition:opacity .5s;
 }
@@ -181,13 +181,13 @@ h2 .serif{color:var(--amber);font-weight:400}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
 
 /* ============ CH 1 · COVER ============ */
-.cover{justify-content:flex-end;padding-bottom:110px}
+.cover{justify-content:flex-end;padding-bottom:78px}
 .cover-glow{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .cover-glow::before{
   content:"";position:absolute;width:120vmax;height:120vmax;left:50%;top:-30%;transform:translateX(-50%);
   background:radial-gradient(closest-side,var(--glow),transparent 68%);
 }
-.cover-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:46px;position:relative;z-index:1}
+.cover-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px;position:relative;z-index:1}
 .pill{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--hairline-2);border-radius:999px;padding:7px 15px;color:var(--muted)}
 .pill.hot{border-color:var(--amber);color:var(--amber)}
 .pill.hot i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-right:8px;animation:blink 2.2s infinite;font-style:normal;vertical-align:1px}
@@ -200,7 +200,7 @@ h2 .serif{color:var(--amber);font-weight:400}
   font-size:clamp(24px,3vw,42px);color:var(--amber);transform:rotate(-3.5deg);
 }
 .cover-sub{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap}
-.cover-sub p{max-width:460px;color:var(--muted);font-weight:300;font-size:15.5px}
+.cover-sub p{max-width:640px;color:var(--muted);font-weight:300;font-size:15.5px}
 .cover-sub p strong{color:var(--ink);font-weight:600}
 .cover-roles{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2)}
 .cover-roles b{color:var(--amber);font-weight:500}
@@ -479,8 +479,8 @@ h2 .serif{color:var(--amber);font-weight:400}
   </div>
   <div class="cover-marquee" aria-hidden="true">
     <div class="track">
-      <span>10 YEARS ENGINEERING → DELIVERY</span><span class="a">✦</span><span>4 CONCURRENT CLIENT ENGAGEMENTS</span><span class="a">✦</span><span>AI DELIVERY TOOLING IN PRODUCTION</span><span class="a">✦</span><span>ENTERPRISE INTEGRATION · CRM · ERP · APIS</span><span class="a">✦</span><span>EU AI GOVERNANCE</span><span class="a">✦</span><span>AGENTIC AI DELIVERY</span><span class="a">✦</span><span>OPEN TO SENIOR DELIVERY ROLES</span><span class="a">✦</span>
-      <span>10 YEARS ENGINEERING → DELIVERY</span><span class="a">✦</span><span>4 CONCURRENT CLIENT ENGAGEMENTS</span><span class="a">✦</span><span>AI DELIVERY TOOLING IN PRODUCTION</span><span class="a">✦</span><span>ENTERPRISE INTEGRATION · CRM · ERP · APIS</span><span class="a">✦</span><span>EU AI GOVERNANCE</span><span class="a">✦</span><span>AGENTIC AI DELIVERY</span><span class="a">✦</span><span>OPEN TO SENIOR DELIVERY ROLES</span><span class="a">✦</span>
+      <span>10 YEARS ENGINEERING, NOW DELIVERY</span><span class="a">✦</span><span>4 LIVE CLIENT ENGAGEMENTS</span><span class="a">✦</span><span>CRM · ERP · API INTEGRATION</span><span class="a">✦</span><span>AI TOOLING IN PRODUCTION</span><span class="a">✦</span><span>EU AI ACT COMPLIANCE</span><span class="a">✦</span><span>OPEN TO SENIOR ROLES · EU</span><span class="a">✦</span>
+      <span>10 YEARS ENGINEERING, NOW DELIVERY</span><span class="a">✦</span><span>4 LIVE CLIENT ENGAGEMENTS</span><span class="a">✦</span><span>CRM · ERP · API INTEGRATION</span><span class="a">✦</span><span>AI TOOLING IN PRODUCTION</span><span class="a">✦</span><span>EU AI ACT COMPLIANCE</span><span class="a">✦</span><span>OPEN TO SENIOR ROLES · EU</span><span class="a">✦</span>
     </div>
   </div>
 </section>
@@ -595,7 +595,7 @@ h2 .serif{color:var(--amber);font-weight:400}
       </a>
       <a class="cs-card rv rv-d2" href="case-studies/case-study-sapey.html">
         <span class="cs-tag">Regulatory Compliance Platform · 2026</span>
-        <h3>Three-party dispute resolved: evidence-based PM, six SOW discrepancies surfaced.</h3>
+        <h3>Three-party dispute resolved: six SOW discrepancies surfaced from primary sources.</h3>
         <p>Two technical teams with conflicting accounts of what had been built, and no shared ground truth. I ran the production API tests myself, surfaced six SOW discrepancies, and documented what the evidence showed.</p>
         <div class="cs-meta">
           <span class="cs-chip">Stakeholder Dispute</span>
@@ -652,42 +652,43 @@ h2 .serif{color:var(--amber);font-weight:400}
     <div class="ch-head">
       <div class="ghost-num" aria-hidden="true">04</div>
       <span class="eyebrow rv">/ PM Work</span>
-      <h2 class="rv rv-d1">Currently <span class="serif">managing.</span></h2>
-      <p class="ch-sub rv rv-d2">Four concurrent client engagements at BetaCraft: LegalTech, a South Korean social platform, and World Bank research tech.</p>
+      <h2 class="rv rv-d1">Client <span class="serif">delivery.</span></h2>
+      <p class="ch-sub rv rv-d2">Six engagements at BetaCraft: four live now, two delivered. The live ones span an AI LegalTech platform, a South Korean social platform, a US healthcare compliance platform, and a three-system broadband integration.</p>
     </div>
 
     <div class="pm-row rv rv-d2">
       <div class="pm-num">01</div>
       <div class="pm-main">
-        <div class="pm-tags"><span class="pm-client">Protobots.ai</span><span class="badge done">Delivered</span></div>
-        <h3>Protobots: AI Chatbot Platform</h3>
-        <p class="pm-sum">GPT-4o migration on a live chatbot platform: three parties (engineering, QA, client), six weeks, no service interruption.</p>
-        <a class="pm-link" href="https://protobots.ai" target="_blank" rel="noopener">Visit site ↗</a>
+        <div class="pm-tags"><span class="pm-client">Regulatory Compliance · US Healthcare</span><span class="badge live">Active</span></div>
+        <h3>Regulatory Compliance Platform</h3>
+        <p class="pm-sum">US healthcare compliance platform. Three organisations could not agree on what had been built, with <strong>no shared record</strong> to settle it.</p>
+        <a class="pm-link" href="case-studies/case-study-sapey.html">Case study →</a>
       </div>
       <div class="pm-side">
         <ul>
-          <li>Led GPT-4 → GPT-4o upgrade, coordinating capability rollout, regression testing, and client alignment</li>
-          <li>Ran sprint planning and blocker calls; owned all client communication throughout</li>
-          <li>Shipped on time, with no rollback needed.</li>
+          <li>Stepped in as neutral PM and ran the production API tests myself to establish ground truth</li>
+          <li>Surfaced six SOW discrepancies and rebuilt the factual record so work could proceed on evidence</li>
+          <li>Coordinating across the three parties toward the agreed scope, currently in Phase 2.1</li>
         </ul>
-        <div class="chips"><span class="chip">Agentic AI</span><span class="chip">LLM Upgrade</span><span class="chip">Sprint Planning</span><span class="chip">Client Delivery</span></div>
+        <div class="chips"><span class="chip">US Healthcare</span><span class="chip">Compliance</span><span class="chip">Multi-party</span><span class="chip">API Testing</span></div>
       </div>
     </div>
 
     <div class="pm-row rv rv-d3">
       <div class="pm-num">02</div>
       <div class="pm-main">
-        <div class="pm-tags"><span class="pm-client">World Bank Group</span><span class="badge done">Delivered · 4 Weeks</span></div>
-        <h3>TokoSmart: Digital Financial Literacy</h3>
-        <p class="pm-sum">World Bank Group research platform: sole TPM, four-week fixed deadline, 400 enrolled research participants, and research-ethics compliance requirements with no flexibility on the date.</p>
+        <div class="pm-tags"><span class="pm-client">Link Broadband · Stefanov Capital</span><span class="badge live">Active</span></div>
+        <h3>Link Broadband: Three-System Integration</h3>
+        <p class="pm-sum">A marketing site, a HubSpot lifecycle automation layer, and a third-party checkout handoff, with the integration contracts between them defined and held.</p>
+        <a class="pm-link" href="case-studies/case-study-link-broadband.html">Case study →</a>
       </div>
       <div class="pm-side">
         <ul>
-          <li>Single point of accountability: no second PM, no escalation path, just the deadline</li>
-          <li>Team of 4–6: ran sprint planning, daily standups, reviews, and retros throughout</li>
-          <li>Drafted sprint plans from scratch, coordinated across four time zones, and hit every milestone.</li>
+          <li>Defined exactly what each system owned, what it didn't, and where they had to connect</li>
+          <li>PM on all client communication across dev, design, and QA, plus the external parties</li>
+          <li>Held the scope to a fixed four-week integration window</li>
         </ul>
-        <div class="chips"><span class="chip">Android</span><span class="chip">World Bank Group</span><span class="chip">Agile</span><span class="chip">Fixed Deadline</span><span class="chip">Research Tech</span></div>
+        <div class="chips"><span class="chip">HubSpot</span><span class="chip">Integration</span><span class="chip">Marketing Site</span><span class="chip">Multi-party</span></div>
       </div>
     </div>
 
@@ -723,6 +724,40 @@ h2 .serif{color:var(--amber);font-weight:400}
           <li>Currently live in free beta; working toward the full commercial launch</li>
         </ul>
         <div class="chips"><span class="chip">LegalTech</span><span class="chip">AI Platform</span><span class="chip">Mid-build Takeover</span></div>
+      </div>
+    </div>
+    <div class="pm-row rv rv-d4">
+      <div class="pm-num">05</div>
+      <div class="pm-main">
+        <div class="pm-tags"><span class="pm-client">Protobots.ai</span><span class="badge done">Delivered</span></div>
+        <h3>Protobots: AI Chatbot Platform</h3>
+        <p class="pm-sum">GPT-4o migration on a live chatbot platform: three parties (engineering, QA, client), six weeks, no service interruption.</p>
+        <a class="pm-link" href="https://protobots.ai" target="_blank" rel="noopener">Visit site ↗</a>
+      </div>
+      <div class="pm-side">
+        <ul>
+          <li>Led GPT-4 → GPT-4o upgrade, coordinating capability rollout, regression testing, and client alignment</li>
+          <li>Ran sprint planning and blocker calls; owned all client communication throughout</li>
+          <li>Shipped on time, with no rollback needed.</li>
+        </ul>
+        <div class="chips"><span class="chip">Agentic AI</span><span class="chip">LLM Upgrade</span><span class="chip">Sprint Planning</span><span class="chip">Client Delivery</span></div>
+      </div>
+    </div>
+
+    <div class="pm-row rv rv-d4">
+      <div class="pm-num">06</div>
+      <div class="pm-main">
+        <div class="pm-tags"><span class="pm-client">World Bank Group</span><span class="badge done">Delivered · 4 Weeks</span></div>
+        <h3>TokoSmart: Digital Financial Literacy</h3>
+        <p class="pm-sum">World Bank Group research platform: sole TPM, four-week fixed deadline, 400 enrolled research participants, and research-ethics compliance requirements with no flexibility on the date.</p>
+      </div>
+      <div class="pm-side">
+        <ul>
+          <li>Single point of accountability: no second PM, no escalation path, just the deadline</li>
+          <li>Team of 4–6: ran sprint planning, daily standups, reviews, and retros throughout</li>
+          <li>Drafted sprint plans from scratch, coordinated across four time zones, and hit every milestone.</li>
+        </ul>
+        <div class="chips"><span class="chip">Android</span><span class="chip">World Bank Group</span><span class="chip">Agile</span><span class="chip">Fixed Deadline</span><span class="chip">Research Tech</span></div>
       </div>
     </div>
     <p class="pm-foot">All projects managed at BetaCraft · 2024–Present</p>
@@ -877,12 +912,12 @@ h2 .serif{color:var(--amber);font-weight:400}
       <div class="kit">
         <h3>Project Leadership</h3>
         <p>I run projects Agile end-to-end: sprint planning, risk tracking, and stakeholder updates. The process serves the delivery, not the other way around.</p>
-        <div class="chips"><span class="chip">Agile &amp; Scrum</span><span class="chip">Risk Management</span><span class="chip">Stakeholder Mgmt</span><span class="chip">AI-Driven Tech Mgmt</span></div>
+        <div class="chips"><span class="chip">Agile &amp; Scrum</span><span class="chip">Risk Management</span><span class="chip">Client &amp; team comms</span><span class="chip">Jira / MCP tooling</span></div>
       </div>
       <div class="kit">
         <h3>Strategic Comms</h3>
         <p>I translate between engineering and business. Having worked both sides, I don't need a glossary; I need ten minutes with the ticket and the person who wrote it.</p>
-        <div class="chips"><span class="chip">Strategic Comm</span><span class="chip">Tech Translation</span><span class="chip">Negotiation</span><span class="chip">Empathy</span></div>
+        <div class="chips"><span class="chip">Scope &amp; budget calls</span><span class="chip">Cross-team alignment</span><span class="chip">Client updates</span></div>
       </div>
       <div class="kit">
         <h3>Engineering &amp; APIs</h3>

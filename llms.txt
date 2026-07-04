@@ -1,0 +1,42 @@
+# Aakash Dhar
+> Technical Project Manager. 8.5 years as a backend developer, now running client delivery at BetaCraft across enterprise integration (CRM, ERP, APIs) and AI systems in production. Open to senior technical delivery roles in Europe.
+
+Aakash Dhar is a Technical Project Manager and former backend developer who builds the AI tooling his delivery teams run on. This site is his portfolio: case studies of real client delivery, and essays on project management, agentic AI, and how the PM role is changing.
+
+## Key pages
+- [Aakash Dhar · Technical Project Manager · AI & Integration](https://aakashdhar.me/): Aakash Dhar — Technical Project Manager with 8.5 years as a backend developer. Enterprise integration (CRM, ERP, APIs) and AI systems in production at BetaCraft. Open to senior delivery roles in Europe.
+- [Now](https://aakashdhar.me/now.html): What Aakash Dhar is focused on right now: EU AI governance, planning a move to the Netherlands, and shipping AI systems at BetaCraft.
+
+## Case studies
+- [Brieflex · Case Study](https://aakashdhar.me/case-studies/case-study-brieflex.html): Brieflex was an AI-powered California Bar Exam training platform with a live client and no sprint structure. I audited the project, reset the delivery process, and drove it toward commercial launch.
+- [Link Broadband · Case Study](https://aakashdhar.me/case-studies/case-study-link-broadband.html): A marketing website, a HubSpot lifecycle automation layer, and a clean handoff into third-party checkout: built, integrated, and launched in four weeks. The real job was defining exactly what each system owned.
+- [PM–Dev Closed Loop · Case Study](https://aakashdhar.me/case-studies/case-study-pm-dev-loop.html): BetaCraft's end-to-end AI-native delivery system: a 28-skill pipeline where a client email enters one end and a tested, reviewed, client-ready delivery exits the other, without the PM seeing code or the developer seeing a client message.
+- [Promptly · Case Study](https://aakashdhar.me/case-studies/case-study-promptly.html): Promptly is a macOS app that converts voice into structured AI prompts. I built it for myself: a case study on building with no client brief, no scope negotiation, and every bad product decision shipping into your own workflow.
+- [Regulatory Compliance Platform · Case Study](https://aakashdhar.me/case-studies/case-study-sapey.html): How I stepped into a stalled US regulatory compliance platform where three organisations disagreed on what was built: ran the production API tests, surfaced six SOW discrepancies, and rebuilt the factual record so delivery could move on evidence.
+- [TokoSmart · Case Study](https://aakashdhar.me/case-studies/case-study-tokosmart.html): TokoSmart was a World Bank-commissioned research app for Indonesian warung owners on a fixed institutional deadline. A compliance gap and a blocked distribution channel surfaced mid-sprint with 400 participants waiting, both resolved inside the sprint.
+
+## Writing
+- [If AI Writes the Status Update, What's Left for the PM?](https://aakashdhar.me/blog/if-ai-writes-the-status-update.html): AI can generate the status update, the summary, the report. But a status update is a report of a judgment, and knowing whether 'on track' is actually true is
+- [Who's Accountable When the Agent Ships the Bug?](https://aakashdhar.me/blog/whos-accountable-when-the-agent-ships-the-bug.html): When an AI agent writes code that ships and breaks, 'the AI did it' feels like an answer. It isn't. A tool can't be accountable, and guarding where
+- [What Happens to the PM When the Team Ships Twice as Fast](https://aakashdhar.me/blog/pm-when-the-team-ships-faster.html): When AI doubles a team's output, the intuition is that the PM gets breathing room. Instead the bottleneck moves to the part of delivery that never speeds up:
+- [AI Didn't Remove the Project Manager. It Moved Where the Job Is Hard.](https://aakashdhar.me/blog/ai-didnt-remove-the-pm.html): AI automated the visible half of project management, reports, notes, tracking. The job didn't disappear. It concentrated onto the part that was always
+- [When Agent Teams Made My Own Framework Feel Obsolete](https://aakashdhar.me/blog/agent-teams-vs-sequential-skills.html): A new tool made months of my own work feel obsolete overnight. Here's what I did instead of tearing it all down, and how I decided what was worth keeping.
+- [The Swagger Docs That Cut Onboarding by a Quarter](https://aakashdhar.me/blog/swagger-docs-cut-onboarding.html): Writing OpenAPI docs for a Laravel CRM was the least glamorous thing I did that year. It also cut new-developer ramp-up by about 25 percent.
+- [What a Transcript Loses in a Contract](https://aakashdhar.me/blog/what-a-transcript-loses.html): My PM system turned a client's passing 'maybe' on a call into a committed SOW deliverable. What transcripts lose, and why the human in the loop isn't a
+- [Done Is Not a Fixed State](https://aakashdhar.me/blog/done-is-not-a-fixed-state.html): Our consent step worked. Two weeks before launch, the bar moved to informed consent. The dangerous delivery gaps aren't what you missed, they're what you did
+- [Why I Built a 26-Skill Framework Instead of Writing Better Prompts](https://aakashdhar.me/blog/vibe-framework.html): vibe-* is a 26-skill Claude Code framework that covers the complete software development lifecycle. This is the story of why it exists, how it works, and the
+- [The Mid-Build Pickup: What the First 48 Hours Actually Look Like](https://aakashdhar.me/blog/the-mid-build-pickup.html): Inheriting a live software project with no sprint plan, no time tracking, and a client waiting for an update. Here is what a Technical PM actually does in
+- [When Everyone Has a Different Version of the Truth](https://aakashdhar.me/blog/multi-party-truth.html): Three organisations. Three different accounts of what had been built. No neutral ground and no shared truth. How evidence-based project management resolves
+- [The EU AI Act Is Not a Legal Problem. It Is a PM Problem.](https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html): Most legal explainers of the EU AI Act are written for lawyers. This one is for the Technical PM who has to make compliance happen inside a software project
+- [What 8.5 Years of Code Actually Gives You as a PM](https://aakashdhar.me/blog/developer-to-pm.html): The specific moments where 8.5 years of writing code changed how I managed projects: catching compliance gaps, reading architecture under dispute, and
+- [How AI Agents Actually Fail in Production](https://aakashdhar.me/blog/ai-agent-failure-modes.html): Most writing about AI agents covers what makes them work, less about what makes them fail. After building agentic delivery systems in production, here are
+- [The Agentic Harness: Why the Scaffolding Matters More Than the Model](https://aakashdhar.me/blog/the-agentic-harness.html): Why two teams using the same LLM get wildly different results. A breakdown of the agentic harness (context, tools, loops, and guardrails) and lessons from
+- [You Oversee. Claude Operates: Inside pm-*, My 23-Skill AI Project Management System](https://aakashdhar.me/blog/how-i-automated-pm-workflow-16-ai-skills.html): How the pm-* framework turns Claude into a PM operations layer: 23 skills covering the full lifecycle from SOW to dashboard, transcript to decision log, with
+- [Spec Before Code: How I Built a 9-Skill Framework for AI-Driven Development](https://aakashdhar.me/blog/spec-before-code-27-skill-framework-ai-development.html): How the vibe-* framework turns Claude Code into a disciplined engineering partner: nine structured skills covering brainstorm to review, with persistent
+- [The Glass Ceiling of Gemini 3.1: A Developer's Post-Mortem](https://aakashdhar.me/blog/my-experience-with-gemini-3.1-for-coding.html): An in-depth post-mortem on Gemini 3.1's coding capabilities, exploring issues like context drift and hallucination vs Claude 4.6 Sonnet.
+- [The Future of Autonomous Agents in Project Management](https://aakashdhar.me/blog/agents-in-project-management.html): Explore the shift from static PM tools to autonomous AI agents. Learn how agentic workflows in scheduling, risk, and resource allocation are redefining the
+
+## Contact
+- LinkedIn: https://www.linkedin.com/in/aakashdhar
+- GitHub: https://github.com/aakashdhar
+- Email: hello@aakashdhar.me

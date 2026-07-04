@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="title" content="The Swagger Docs That Cut Onboarding by a Quarter | Aakash Dhar">
 
-<meta name="description" content="Writing OpenAPI docs for a Laravel CRM was the least glamorous thing I did that year. It also cut new-developer ramp-up by about 25 percent. Here is what actually ate the time, and why I still write docs now that agents write the code.">
+<meta name="description" content="Writing OpenAPI docs for a Laravel CRM was the least glamorous thing I did that year. It also cut new-developer ramp-up by about 25 percent.">
 
 <meta name="keywords" content="Swagger, OpenAPI, developer onboarding, API documentation, Laravel, engineering, technical debt">
 
@@ -24,6 +24,13 @@
 <meta property="og:title" content="The Swagger Docs That Cut Onboarding by a Quarter">
 <meta property="og:description" content="The least glamorous work I did that year cut new-dev ramp-up by about 25 percent. Here is what actually ate the time.">
 <meta property="og:image" content="https://aakashdhar.me/assets/images/blog/swagger-docs-cut-onboarding-og.png">
+<meta property="article:published_time" content="2026-06-30T08:00:00+00:00">
+<meta property="article:modified_time" content="2026-06-30T08:00:00+00:00">
+<meta property="article:author" content="https://www.linkedin.com/in/aakashdhar">
+<meta property="article:section" content="Engineering">
+<meta property="article:tag" content="Swagger">
+<meta property="article:tag" content="OpenAPI">
+<meta property="article:tag" content="developer onboarding">
 
 <!-- Twitter Card -->
 <meta property="twitter:card" content="summary_large_image">
@@ -42,26 +49,46 @@
   "author": {
     "@type": "Person",
     "name": "Aakash Dhar",
-    "url": "https://www.linkedin.com/in/aakashdhar"
+    "url": "https://www.linkedin.com/in/aakashdhar",
+    "jobTitle": "Technical Project Manager",
+    "sameAs": [
+      "https://www.linkedin.com/in/aakashdhar",
+      "https://github.com/aakashdhar"
+    ]
   },
   "publisher": {
     "@type": "Person",
     "name": "Aakash Dhar",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://aakashdhar.me/logo.png"
+      "url": "https://aakashdhar.me/favicon-512.png",
+      "width": 512,
+      "height": 512
     }
   },
   "datePublished": "2026-06-30",
-  "description": "Writing OpenAPI docs for a Laravel CRM was the least glamorous thing I did that year. It also cut new-developer ramp-up by about 25 percent. Here is what actually ate the time, and why I still write docs now that agents write the code.",
+  "description": "Writing OpenAPI docs for a Laravel CRM was the least glamorous thing I did that year. It also cut new-developer ramp-up by about 25 percent.",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://aakashdhar.me/blog/swagger-docs-cut-onboarding.html"
-  }
+  },
+  "dateModified": "2026-06-30",
+  "inLanguage": "en",
+  "articleSection": "Engineering",
+  "keywords": [
+    "Swagger",
+    "OpenAPI",
+    "developer onboarding",
+    "API documentation",
+    "Laravel",
+    "engineering",
+    "technical debt"
+  ],
+  "wordCount": 1312
 }
 </script>
 
-<script>/* restore saved theme before first paint (no flash) — do not edit */
+<script>/* restore saved theme before first paint (no flash), do not edit */
 try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -399,10 +426,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
 </head>
 <body>
 
-<!-- READ PROGRESS — do not edit -->
+<!-- READ PROGRESS, do not edit -->
 <div class="readbar" aria-hidden="true"><i id="rb"></i></div>
 
-<!-- TOPBAR — do not edit -->
+<!-- TOPBAR, do not edit -->
 <div class="topbar">
   <a class="brand" href="../index.html"><b>~/</b>aakash</a>
   <div class="top-r">
@@ -466,8 +493,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <span class="n">02</span>
         <h2>What was actually eating the time</h2>
       </div>
-      <p class="rv">I sat with it for a bit before doing anything, because the obvious fix — "write some docs" — is also the fix that produces a wiki nobody reads and everybody stops trusting by month two. I wanted to know which specific ignorance was costing us the days.</p>
-      <p class="rv">It wasn't the language. He knew PHP. It wasn't the business logic either, not really. It was the <strong>API surface</strong>. We had a CRM stitched into a pile of third-party services — content generation, the Google My Business API, a Zapier layer — and every one of those integrations had its own shape, its own auth, its own way of failing. To touch any of it safely you had to know things that lived nowhere except in the code and in the memory of whoever wrote it. Here's roughly where a new person's first two weeks actually went:</p>
+      <p class="rv">I sat with it for a bit before doing anything, because the obvious fix, "write some docs", is also the fix that produces a wiki nobody reads and everybody stops trusting by month two. I wanted to know which specific ignorance was costing us the days.</p>
+      <p class="rv">It wasn't the language. He knew PHP. It wasn't the business logic either, not really. It was the <strong>API surface</strong>. We had a CRM stitched into a pile of third-party services, content generation, the Google My Business API, a Zapier layer, and every one of those integrations had its own shape, its own auth, its own way of failing. To touch any of it safely you had to know things that lived nowhere except in the code and in the memory of whoever wrote it. Here's roughly where a new person's first two weeks actually went:</p>
       <ul class="rv">
         <li><strong>Finding the endpoint:</strong> not writing the call, just working out which of forty routes was the right one and whether it was the one still in use or the deprecated twin next to it.</li>
         <li><strong>Guessing the payload:</strong> reading the controller and the request validation line by line to reverse-engineer what fields it actually wanted, because nothing stated it plainly.</li>
@@ -492,7 +519,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
       <p class="rv">First, I didn't try to boil the ocean. I started with the endpoints new people actually touched in week one and ignored the long tail. A doc that covers the ten things you need on day one beats a doc that covers all forty and takes a month to write and is already stale when you finish.</p>
       <p class="rv">Second, and this is the part that made it stick, I kept the spec <em>next to the code</em>, not in a separate wiki that drifts. When the doc lives where the endpoint lives, updating it is part of changing the endpoint, not a separate chore you'll get to never. Documentation doesn't rot because people are lazy. It rots because it's stored somewhere that changing the code doesn't force you to visit.</p>
       <p class="rv">Third, I made the error cases first-class. Most API docs tell you what happens when everything goes right, which is the case you least need help with. What you actually need at 6pm is to know what a <code>422</code> from this endpoint means and whether it's your fault. So the failures got documented as carefully as the happy path.</p>
-      <p class="rv">The next hire got the same five boring questions answered before they could ask them. Ramp-up to a first real, merged change dropped by roughly a quarter. I want to be honest that this was a rough measure, not a controlled study — I was comparing how long people took before and after, on a small team, and there's noise in that. But the direction was not subtle, and it held across more than one new joiner. The senior people got interrupted less, which I never measured at all but absolutely felt.</p>
+      <p class="rv">The next hire got the same five boring questions answered before they could ask them. Ramp-up to a first real, merged change dropped by roughly a quarter. I want to be honest that this was a rough measure, not a controlled study, I was comparing how long people took before and after, on a small team, and there's noise in that. But the direction was not subtle, and it held across more than one new joiner. The senior people got interrupted less, which I never measured at all but absolutely felt.</p>
 
       <!-- SECTION 04 -->
       <div class="sec rv" id="s4">
@@ -500,8 +527,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         <h2>Why I still write the docs, now that the machine writes the code</h2>
       </div>
       <p class="rv">Here's where this stops being a nostalgia story. I don't write many endpoints by hand anymore. A lot of my day now is spent with agents that can generate a controller faster than I can describe one. And the instinct in that world is to think documentation is the thing you finally get to skip, because the code writes itself and the code is the truth.</p>
-      <p class="rv">I think that's exactly backwards. The onboarding problem I just described hasn't gone away. It moved. The confused new hire staring at an undocumented API is now, half the time, <em>the model</em> — reading a codebase with no map, guessing at intent, reconstructing what an endpoint expects from the validation rules because nobody wrote it down. Everything that made a good spec valuable to a junior developer makes it valuable to an agent. Clear contracts, stated error cases, one source of truth. An agent given a well-documented surface does the same thing a well-briefed junior does: it stops guessing and starts building on something solid.</p>
-      <p class="rv">This is the whole reason my current frameworks read project files before they write anything, and it's the through-line from that CRM to now. The Swagger docs and the spec-first way I build with AI today are the same move, ten years apart. Write down the thing that only lives in someone's head, put it where the work happens, and whoever picks it up next — a new hire, a teammate, a model — starts from knowledge instead of from archaeology.</p>
+      <p class="rv">I think that's exactly backwards. The onboarding problem I just described hasn't gone away. It moved. The confused new hire staring at an undocumented API is now, half the time, <em>the model</em>, reading a codebase with no map, guessing at intent, reconstructing what an endpoint expects from the validation rules because nobody wrote it down. Everything that made a good spec valuable to a junior developer makes it valuable to an agent. Clear contracts, stated error cases, one source of truth. An agent given a well-documented surface does the same thing a well-briefed junior does: it stops guessing and starts building on something solid.</p>
+      <p class="rv">This is the whole reason my current frameworks read project files before they write anything, and it's the through-line from that CRM to now. The Swagger docs and the spec-first way I build with AI today are the same move, ten years apart. Write down the thing that only lives in someone's head, put it where the work happens, and whoever picks it up next, a new hire, a teammate, a model, starts from knowledge instead of from archaeology.</p>
       <p class="rv">So no, I don't think docs are the boring chore you get to retire. As more of the actual typing gets handed to agents, the writing-down is turning into more of the job, not less. The unglamorous work aged well. It usually does.</p>
 
       <div class="pull rv">
@@ -512,11 +539,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
         </blockquote>
       </div>
 
+
+      <nav class="related rv" aria-label="Related posts" style="max-width:680px;margin-top:clamp(54px,8vh,76px);padding-top:26px;border-top:1px solid var(--hairline-2)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber-text,#9A5B02);margin-bottom:10px">Related reading</div>
+        <a href="my-experience-with-gemini-3.1-for-coding.html" style="display:block;padding:11px 0;border-bottom:1px solid var(--hairline);text-decoration:none;color:var(--ink);font-weight:600;font-size:15.5px;letter-spacing:-.01em">The Glass Ceiling of Gemini 3.1: A Developer's Post-Mortem</a>
+        <a href="if-ai-writes-the-status-update.html" style="display:block;padding:11px 0;border-bottom:1px solid var(--hairline);text-decoration:none;color:var(--ink);font-weight:600;font-size:15.5px;letter-spacing:-.01em">If AI Writes the Status Update, What's Left for the PM?</a>
+        <a href="whos-accountable-when-the-agent-ships-the-bug.html" style="display:block;padding:11px 0;border-bottom:1px solid var(--hairline);text-decoration:none;color:var(--ink);font-weight:600;font-size:15.5px;letter-spacing:-.01em">Who's Accountable When the Agent Ships the Bug?</a>
+      </nav>
     </article>
   </div>
 </main>
 
-<!-- OUTRO — do not edit -->
+<!-- OUTRO, do not edit -->
 <footer class="outro">
   <div class="outro-in">
     <div class="ghost-word" aria-hidden="true">Fin</div>
@@ -534,9 +568,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
   </div>
 </footer>
 
-<!-- SCRIPTS — do not edit -->
+<!-- SCRIPTS, do not edit -->
 <script>
-/* theme toggle — same localStorage key as index.html */
+/* theme toggle, same localStorage key as index.html */
 document.getElementById('themeBtn').addEventListener('click', () => {
   const r = document.documentElement;
   r.dataset.theme = r.dataset.theme === 'dark' ? '' : 'dark';
@@ -551,7 +585,7 @@ const io = new IntersectionObserver((es) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-/* rail tracking — highlights the section in view */
+/* rail tracking, highlights the section in view */
 const railLinks = [...document.querySelectorAll('.rail a')];
 const secs = [...document.querySelectorAll('.sec')];
 const secIO = new IntersectionObserver((es) => {

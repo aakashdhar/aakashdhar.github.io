@@ -95,7 +95,7 @@ Do you actually know what your fast weeks are leaving behind, or will you find o
 
 ---
 
-## 6 — Wed Sep 9 — When AI Does the Satisfying Part, What's Left to Enjoy?
+## 6 — Mon Jul 6 — When AI Does the Satisfying Part, What's Left to Enjoy?
 
 A developer who genuinely loves to build told me recently that the work had started to feel a little hollow. I understood before he finished the sentence.
 

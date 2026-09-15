@@ -6,22 +6,59 @@ Author: Aakash Dhar, Technical Project Manager (ex-backend developer, 8.5 years)
 
 ---
 
-## 1. Voice & tone
+## 1. Voice and tone
 
-The voice is the whole product. Get this right before anything else.
+The voice is the whole product. Get this right before anything else. This is the approved voice; every post is written against it.
 
-- **First person, honest, reflective, plain-spoken, warm.** Write like a thoughtful person talking, not a brand or a thought-leadership machine.
-- **Open on a feeling the reader recognises.** Start with a real human moment or worry ("you probably had a quiet version of this thought…"), not a product announcement or a definition. The first two lines must earn the click.
-- **Ground it with at least one concrete example.** A specific scene from real work (the "basically done" payments flow; the velocity chart that stayed green while two workstreams drifted). Show, do not just assert.
-- **End on a genuine question to the reader.** It invites people to share their own experience ("which half of your week did AI take?"). It must be a real question, never engagement bait.
-- **Relatable beats clever.** When in doubt, choose the line that makes someone feel seen.
+**Who is speaking.** One person, thinking out loud, honestly. Not a brand, not a thought-leader performing expertise. A working PM who used to write code, telling you something he actually noticed. The register is plain, warm, and a little unguarded. He is willing to be wrong out loud, and when he does not have an answer he says so ("I do not have a tidy fix, and I distrust anyone who claims one"). That admission of uncertainty is what makes the voice trustworthy, not a weakness in it.
+
+**Open on a real moment or a recognisable feeling, never a definition.** The first two lines earn the click with a specific scene, not a thesis. Published openers to match:
+- "A developer told me a piece of work was 'basically done.'"
+- "I watched a tool write, in about four seconds, the weekly status update I used to spend the better part of an hour on. It was good. That was the unsettling part."
+- "The first time something broke in production and someone said 'well, the agent wrote that part,' I felt the ground shift a little."
+
+No "In today's fast-moving AI landscape." A person, a moment, a small tension.
+
+**The signature move: one concrete scene in specific, observed detail.** Anchor every post in a real situation described with the small tells a person actually remembers. Not "communication issues arose" but "'basically done' had been said half a beat too quickly, and I had learned to hear that half-beat." Not "a team member seemed disengaged" but "a developer who had gone quiet in a way that usually means stuck." Those precise observations separate lived experience from a carousel.
+
+**End on a genuine question to the reader.** A real one that invites their experience ("which half of your week did AI take?"), never engagement bait.
+
+**Relatable beats clever.** When in doubt, choose the line that makes someone feel seen.
+
+### Anonymous, but more vivid, not less
+
+When a post draws on real work, keep every bit of the human, observed detail and strip only the identifying label. A reader should feel like they were in the room while having no idea which room it was.
+
+- **Keep** the sensory and emotional specifics: the pause on the call, the thing that looked finished, the half-day a one-hour change took, the exact phrase someone used.
+- **Replace** identifying nouns with equally concrete generic ones. Not "the [product] age-check flow" but "a sign-up flow that had to confirm how old someone was." Not "[client]'s Q3 launch" but "a launch with a date that could not move."
+- **Never** name a client, product, person, or city unless the city genuinely matters and identifies no one.
+
+Worked transformation:
+> Identifying: "On the call, [name] and I approved the onboarding flow I'd generated the night before."
+> Anonymous but vivid: "On a client call, I walked them through something I'd generated the evening before. It looked clean, so we both nodded it through. Neither of us had actually read it line by line, and I was the one who should have."
+
+Same moment, same sting, nobody named. That is the target for every post that draws on real work.
+
+### No exaggeration, ever
+
+The power is in the ordinary being true, not the stakes being high. Keep numbers small and real ("a payments flow, two days before a demo," not "a catastrophic outage that nearly sank the company"). Describe modest, recognisable situations. If a real detail is unremarkable, that is fine. When in doubt, undersell. The voice never reaches for "revolutionary," "game-changing," or a body count.
+
+### Sentence craft
+
+Rhythm swings on purpose: a long winding sentence that carries a full thought, then a short one that lands it ("The admin was never the job. It was the packaging around it."). If the pauses fall at even intervals, break it up: merge two, split one, cut one to a stub. Sentences may start with "And" or "But." Fragments are allowed. Repeat a word rather than reaching for a fancy synonym.
 
 ### Hard "do nots" (these get flagged)
-- **No pretentious or slogan-y one-liners.** Manufactured aphorisms that sound like LinkedIn-guru bait ("Parallel is the exception you reach for on purpose", "the sequence is the safety"). A resonant line is fine only if the argument earned it; a punchy line for its own sake is not.
-- **No overselling or humble-brag.** Do not repeat credentials or numbers as a flex. "43 skills", "27 dev + 16 PM", the employer name, etc. get **one quiet, factual mention** at most. Repetition reads as boasting.
-- **No corporate hype / buzzwords / "seamlessly".**
-- **No engagement bait** ("comment YES if you agree", reaction polls). Penalised by platforms and off-voice.
-- **No self-echo across posts.** Do not reuse the same sentence in two posts (e.g., the "framework I knew inside out get quietly deprecated" line). Vary it.
+- **No em dashes, ever.** Commas, colons, full stops; en dashes only in number ranges. Search the draft for the — character and remove every one before shipping.
+- **No pretentious or slogan-y one-liners.** Manufactured aphorisms that sound like guru bait ("the sequence is the safety"). A resonant line is fine only if the argument earned it.
+- **No overselling or humble-brag.** Credentials and numbers get one quiet, factual mention at most. Repetition reads as boasting.
+- **No buzzwords or corporate hype:** "seamless," "robust," "leverage," "landscape," "unlock," "showcase," "underscore," "delve."
+- **No "-ing" analysis tails** ("...highlighting the shift," "...reflecting its importance"). If the sentence works without the tail, cut it.
+- **No negative parallelism as a tic** ("it is not X, it is Y") and no rule-of-three padding ("faster, cleaner, and more efficient").
+- **No phantom authorities** ("experts argue," "studies show") unless a real, named source.
+- **No engagement bait**, no "In conclusion" wrap-up, no mechanically bolded phrases down a list.
+- **No self-echo across posts.** Do not reuse a sentence or signature phrase in two posts. Vary it.
+
+The test for any sentence: would a specific person, remembering a specific week, actually write this? If it could sit unchanged in anyone's post about anything, cut it.
 
 ---
 

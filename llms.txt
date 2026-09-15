@@ -16,6 +16,7 @@ Aakash Dhar is a Technical Project Manager and former backend developer who buil
 - [TokoSmart · Case Study](https://aakashdhar.me/case-studies/case-study-tokosmart.html): TokoSmart was a World Bank-commissioned research app for Indonesian warung owners on a fixed institutional deadline. A compliance gap and a blocked distribution channel surfaced mid-sprint with 400 participants waiting, both resolved inside the sprint.
 
 ## Writing
+- [Reeve: The Loop That Runs My Skills For Me](https://aakashdhar.me/blog/reeve-the-loop-that-runs-my-skills-for-me.html): An autonomous build loop on top of my vibe-* skills. It turns a one-line goal into reviewed, merged code by dispatching throwaway agents against a durable task queue.
 - [A Week in the Life of a PM in 2026](https://aakashdhar.me/blog/a-week-in-the-life-of-a-pm-in-2026.html): None of the days look dramatic. Together they show how much the shape of the job has quietly changed under the tools.
 - [Every Stalled Project I've Inherited Failed the Same Way](https://aakashdhar.me/blog/every-stalled-project-ive-inherited-failed-the-same-way.html): Different industries, different stacks, same failure underneath: nobody could say what had been decided, or why. The cheap fix nobody makes.
 - [The AI Delivery Promises That Didn't Survive a Real Client](https://aakashdhar.me/blog/the-ai-delivery-promises-that-didnt-survive-a-real-client.html): The confident claims about AI-accelerated delivery are half true, and the false half is the one that bites on a real project.

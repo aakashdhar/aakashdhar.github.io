@@ -443,20 +443,48 @@ h2 .serif{color:var(--amber-text);font-weight:400}
 .ai-foot{margin-top:24px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);text-align:center}
 
 /* ============ CH 10 · INSIGHTS ============ */
-.posts{border-top:1px solid var(--hairline)}
-.post{display:grid;grid-template-columns:135px 1fr 100px 34px;gap:clamp(16px,2.5vw,42px);align-items:center;padding:21px 0;border-bottom:1px solid var(--hairline);text-decoration:none;position:relative;transition:padding-left .3s}
+.post-tools{display:flex;justify-content:space-between;align-items:center;gap:14px 24px;flex-wrap:wrap;margin-bottom:20px}
+.post-tools[hidden]{display:none}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:var(--bg-2);border:1px solid var(--hairline-2);border-radius:999px;padding:0 15px;min-height:36px;cursor:pointer;transition:color .25s,border-color .25s,background .25s}
+.filters button .n{color:var(--muted-2);margin-left:7px;letter-spacing:.06em}
+.filters button:hover{color:var(--amber-text);border-color:var(--amber)}
+.filters button[aria-pressed="true"]{color:var(--amber-text);border-color:var(--amber);background:var(--amber-dim)}
+.filters button[aria-pressed="true"] .n{color:var(--amber-text)}
+@media(pointer:coarse){.filters button{min-height:44px}}
+@media(max-width:640px){
+  .post-tools{flex-direction:column;align-items:stretch}
+  .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{flex:0 0 auto}
+}
+.post-count{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+.posts{display:grid;grid-template-columns:1fr;column-gap:clamp(32px,4vw,64px);border-top:1px solid var(--hairline)}
+@media(min-width:1000px){.posts{grid-template-columns:1fr 1fr}}
+.post{display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:7px 16px;align-content:start;padding:20px 0;border-bottom:1px solid var(--hairline);text-decoration:none;position:relative;transition:padding-left .3s}
+.post.is-hidden{display:none}
 .post::before{content:"";position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--amber-dim),transparent);transition:width .35s;pointer-events:none}
 .post:hover{padding-left:14px}
 .post:hover::before{width:100%}
-@media(max-width:880px){.post{grid-template-columns:1fr;gap:6px;padding:18px 0}}
-.post .cat{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-text)}
+.post .cat{grid-column:1;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-text)}
 .post .cat .new{background:var(--amber-bright);color:#181510;border-radius:3px;padding:2px 6px;margin-left:7px;font-weight:700}
-.post h3{font-size:clamp(15.5px,1.7vw,19px);font-weight:700;letter-spacing:-.01em;line-height:1.25}
-.post small{display:block;color:var(--muted);font-weight:300;font-size:12.5px;margin-top:4px}
-.post .date{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted)}
-.post .arr{font-size:20px;color:var(--amber-text);transform:translateX(-6px);opacity:0;transition:transform .3s,opacity .3s}
+.post .cat .src{color:var(--muted-2);margin-left:8px}
+.post>div{grid-column:1}
+.post h3{font-size:clamp(15.5px,1.6vw,18px);font-weight:700;letter-spacing:-.01em;line-height:1.25}
+.post small{display:block;color:var(--muted);font-weight:300;font-size:12.5px;margin-top:5px}
+.post .arr{grid-column:2;grid-row:1/span 2;align-self:center;font-size:20px;color:var(--amber-text);transform:translateX(-6px);opacity:0;transition:transform .3s,opacity .3s}
 .post:hover .arr{transform:translateX(0);opacity:1}
-@media(max-width:880px){.post .arr{display:none}}
+/* the post carrying the Latest badge leads, full width */
+.post:has(.new){grid-column:1/-1;padding:26px 0 30px;border-bottom-color:var(--hairline-2)}
+.post:has(.new) h3{font-size:clamp(22px,2.7vw,34px);line-height:1.1;letter-spacing:-.02em;max-width:900px}
+.post:has(.new) small{font-size:clamp(14px,1.3vw,16px);max-width:640px;margin-top:10px}
+.post:has(.new) .arr{opacity:1;transform:none;font-size:26px}
+@media(max-width:880px){.post .arr{display:none}.post{padding:18px 0}}
+.posts-foot{display:flex;justify-content:space-between;align-items:center;gap:14px 28px;flex-wrap:wrap;margin-top:22px}
+.posts-foot .view-all{margin-top:0}
+.show-more{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:none;border:1px solid var(--hairline-2);border-radius:999px;padding:0 22px;min-height:44px;cursor:pointer;transition:color .25s,border-color .25s,transform .2s}
+.show-more:hover{color:var(--amber-text);border-color:var(--amber);transform:translateY(-2px)}
+.show-more[hidden]{display:none}
 .view-all{display:inline-block;margin-top:24px;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-text);text-decoration:none;border-bottom:1px solid var(--amber);padding-bottom:4px;transition:letter-spacing .25s}
 .view-all:hover{letter-spacing:.26em}
 
@@ -982,254 +1010,261 @@ h2 .serif{color:var(--amber-text);font-weight:400}
       <h2 class="rv rv-d1">What I <span class="serif">write about.</span></h2>
       <p class="ch-sub rv rv-d2">I write about agentic AI delivery, EU AI governance, and what a decade of writing code looks like when you're managing the team that writes it.</p>
     </div>
+    <div class="post-tools rv rv-d2" hidden>
+      <div class="filters" role="group" aria-label="Filter posts by topic"></div>
+      <span class="post-count" aria-live="polite"></span>
+    </div>
     <div class="posts rv rv-d2">
       <a class="post" href="https://aakashdhar.me/blog/rework-is-the-only-honest-metric-left.html">
         <span class="cat">Project Mgmt<span class="new">Latest</span></span>
         <div><h3>Rework Is the Only Honest Metric Left</h3><small>Throughput up, burn-down green, and then the rework arrived. Why the one number nobody puts on a wall is the only one I still trust.</small></div>
-        <span class="date">Oct 22, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/the-confidence-tax.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>The Confidence Tax</h3><small>Performing certainty feels like the job when everyone looks to you on delivery. What it quietly costs, and the cheaper sentence that works better.</small></div>
-        <span class="date">Oct 22, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/you-can-tell-who-is-actually-reading.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>You Can Tell Who Is Actually Reading</h3><small>Everyone can produce the polished document now. The tell is the one specific question that proves someone read past the summary.</small></div>
-        <span class="date">Oct 22, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/the-estimate-is-the-first-thing-ai-broke.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>The Estimate Is the First Thing AI Broke</h3><small>AI sped up the generating and left the understanding as slow as ever. Why one confident estimate now blends the two, and how I estimate instead.</small></div>
-        <span class="date">Oct 22, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/what-i-delegate-to-ai-and-what-i-refuse-to.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>What I Delegate to AI and What I Refuse To</h3><small>Same tool, same day, opposite instincts. The line I had been drawing without naming it: delegate what I can check, keep what I am accountable for.</small></div>
-        <span class="date">Oct 22, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/reeve-the-loop-that-runs-my-skills-for-me.html">
         <span class="cat">Agentic AI</span>
         <div><h3>Reeve: The Loop That Runs My Skills For Me</h3><small>An autonomous build loop on top of my vibe-* skills. It turns a one-line goal into reviewed, merged code by dispatching throwaway agents against a durable task queue.</small></div>
-        <span class="date">Sep 15, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/it-looked-right-so-i-didnt-read-it.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>It Looked Right, So I Didn't Read It</h3><small>I presented something an AI generated, it looked done, so nobody read it. That gap was mine, and it changed how I read everything the machine makes.</small></div>
-        <span class="date">Sep 23, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/most-ai-project-management-tools-automate-the-wrong-half.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>Most "AI Project Management" Tools Automate the Wrong Half</h3><small>The tools automate the status report, the summary, the tracking. That was never the hard part. The judgment underneath it is still yours.</small></div>
-        <span class="date">Sep 30, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/the-definition-of-done-i-use-for-ai-assisted-work.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>The Definition of Done I Use for AI-Assisted Work</h3><small>When an agent writes the code, passing the tests stops meaning the work is understood. The short, stealable bar I use for done now.</small></div>
-        <span class="date">Oct 7, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/does-anyone-else-feel-like-theyre-winging-it-now.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>Does Anyone Else Feel Like They're Winging It Now?</h3><small>A decade in, I regularly feel like I'm making it up as I go. A quiet, honest look at why the ground shifted, and why that might be fine.</small></div>
-        <span class="date">Oct 14, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/stop-measuring-velocity-measure-how-often-you-were-right.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>Stop Measuring Velocity. Start Measuring How Often You Were Right.</h3><small>A fast team pointed slightly wrong shows its best numbers right before the rework lands. Why velocity misleads now, and what I track instead.</small></div>
-        <span class="date">Oct 21, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/how-i-scope-a-project-now-that-a-prototype-takes-an-afternoon.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>How I Scope a Project Now That a Prototype Takes an Afternoon</h3><small>A client watched a prototype appear in an afternoon, then asked why the rest takes weeks. How I scope when the building is the cheap part.</small></div>
-        <span class="date">Oct 28, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/things-ai-still-wont-do-for-you.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>Things AI Still Won't Do For You, No Matter How Nicely You Ask</h3><small>A fond, honest list of what AI will not do no matter how well you prompt, and why each one turns out to be the part that was always the job.</small></div>
-        <span class="date">Nov 4, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/the-first-draft-problem-why-ais-answer-anchors-you.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>The First Draft Problem: Why AI's Answer Anchors You</h3><small>AI's first draft does not just save the blank page. It quietly becomes the frame you edit instead of the one you would have chosen.</small></div>
-        <span class="date">Nov 11, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/ai-didnt-make-juniors-redundant-it-made-seniors-non-negotiable.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>AI Didn't Make Juniors Redundant. It Made Seniors Non-Negotiable.</h3><small>The easy read is that AI thins out the junior end. It leads somewhere expensive, because it mistakes what juniors were actually for.</small></div>
-        <span class="date">Nov 18, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/how-much-should-you-trust-the-ai-a-field-guide.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>How Much Should You Trust the AI? A Field Guide</h3><small>Do you trust AI is the wrong question. Trust is per task. Where I let it run, where I verify everything, and where I do not use it at all.</small></div>
-        <span class="date">Nov 25, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/the-client-who-is-also-the-founder.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>The Client Who Is Also the Founder, the Approver, and the Only Stakeholder</h3><small>When the client is also the founder and the only stakeholder, every blind spot goes unchecked. Part of the job becomes being the counterweight.</small></div>
-        <span class="date">Dec 2, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/the-ai-delivery-promises-that-didnt-survive-a-real-client.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>The AI Delivery Promises That Didn't Survive a Real Client</h3><small>The confident claims about AI-accelerated delivery are half true, and the false half is the one that bites on a real project.</small></div>
-        <span class="date">Dec 9, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/every-stalled-project-ive-inherited-failed-the-same-way.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>Every Stalled Project I've Inherited Failed the Same Way</h3><small>Different industries, different stacks, same failure underneath: nobody could say what had been decided, or why. The cheap fix nobody makes.</small></div>
-        <span class="date">Dec 16, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/a-week-in-the-life-of-a-pm-in-2026.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>A Week in the Life of a PM in 2026</h3><small>None of the days look dramatic. Together they show how much the shape of the job has quietly changed under the tools.</small></div>
-        <span class="date">Dec 23, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/when-ai-does-the-satisfying-part-whats-left-to-enjoy.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>When AI Does the Satisfying Part, What's Left to Enjoy?</h3><small>AI can make a team faster and, in the same motion, remove the craft that made the work feel good. Satisfaction is load-bearing, and protecting it is quietly the job now.</small></div>
-        <span class="date">Jul 6, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/ai-didnt-remove-the-pm.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>AI Didn't Remove the Project Manager. It Moved Where the Job Is Hard.</h3><small>AI automated the visible half of the job: reports, notes, tracking. It didn't remove the PM. It concentrated the role onto the part that was always hardest, and easiest to hide.</small></div>
-        <span class="date">Jul 8, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/pm-when-the-team-ships-faster.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>What Happens to the PM When the Team Ships Twice as Fast</h3><small>AI roughly doubled what my team could ship, and the pressure didn't ease. It moved, onto the one part of delivery that never gets faster.</small></div>
-        <span class="date">Jul 15, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/whos-accountable-when-the-agent-ships-the-bug.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>Who's Accountable When the Agent Ships the Bug?</h3><small>The first time production broke and someone said "the agent wrote that part," the ground shifted. Why "the AI did it" is never an answer, and where responsibility has to land instead.</small></div>
-        <span class="date">Jul 22, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/if-ai-writes-the-status-update.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>If AI Writes the Status Update, What's Left for the PM?</h3><small>A tool wrote my weekly status update in four seconds. It did the easy part perfectly and left the whole job, knowing whether "on track" is actually true, untouched.</small></div>
-        <span class="date">Jul 29, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/who-trains-the-junior-when-the-agent-does-the-grunt-work.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>Who Trains the Junior When the Agent Does the Grunt Work?</h3><small>Juniors got good by doing the boring work. AI does that in seconds now, so the rung they used to climb is gone. Teaching judgment has to become deliberate.</small></div>
-        <span class="date">Aug 5, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/when-building-is-cheap-saying-not-yet-gets-expensive.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>When Building Is Cheap, Saying "Not Yet" Gets Expensive</h3><small>Building is nearly free now, so the cost that used to filter out bad ideas is gone. The PM's leverage moved to the front of the pipeline: guarding what gets started.</small></div>
-        <span class="date">Aug 12, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/what-are-clients-paying-for-when-they-can-watch-the-ai-work.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>What Are Clients Paying For When They Can Watch the AI Work?</h3><small>A client watched a demo built in an hour, then asked why the rest takes six weeks. When effort becomes visible and fast, you have to name what the money is really for.</small></div>
-        <span class="date">Aug 19, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/you-cant-plan-a-quarter-when-the-tools-change-every-month.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>You Can't Plan a Quarter When the Tools Change Every Month</h3><small>I planned a quarter in April; a model release made half of it obsolete by month's end. Why detailed plans became a liability, and what to commit to instead.</small></div>
-        <span class="date">Aug 26, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/the-technical-debt-you-cant-see-in-a-fast-team.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>The Technical Debt You Can't See in a Fast Team</h3><small>A fast team leaves a new kind of debt: not one big shortcut, but a thousand small defaults nobody remembers choosing. Someone has to look while the chart is still green.</small></div>
-        <span class="date">Sep 2, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/what-should-a-pm-learn-now-that-the-busywork-is-gone.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>What Should a PM Learn Now That the Busywork Is Gone?</h3><small>When the admin you got good at becomes free, everything left standing is a judgment skill. The bet worth making now is getting better at being right.</small></div>
-        <span class="date">Sep 16, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/agent-teams-vs-sequential-skills.html">
         <span class="cat">Agentic AI</span>
         <div><h3>When Agent Teams Made My Own Framework Feel Obsolete</h3><small>You spend months building something that works, then a new tool ships and makes the whole approach feel outdated. Here's what I did when that happened to me, and how I decided what was worth keeping.</small></div>
-        <span class="date">Jul 3, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/swagger-docs-cut-onboarding.html">
         <span class="cat">Engineering</span>
         <div><h3>The Swagger Docs That Cut Onboarding by a Quarter</h3><small>The least glamorous thing I did that year was write API docs nobody asked for. It also took about 25% off how long a new developer needed to ship their first real change, and it aged better than the code did.</small></div>
-        <span class="date">Jun 30, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/what-a-transcript-loses.html">
         <span class="cat">Agentic AI</span>
         <div><h3>What a Transcript Loses, and Why It Matters in a Contract</h3><small>My PM system wrote a perfect SOW from a call transcript and quietly turned a client's passing "maybe" into a committed deliverable. What transcripts lose, and why the human in the loop isn't a checkbox.</small></div>
-        <span class="date">Jun 22, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/done-is-not-a-fixed-state.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>Done Is Not a Fixed State</h3><small>Our consent step worked. Two weeks before launch, it still wasn't enough. The dangerous gaps in delivery aren't the things you missed, they're the reasonable things that don't clear a bar you didn't know applied.</small></div>
-        <span class="date">Jun 22, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/vibe-framework.html">
         <span class="cat">Agentic AI</span>
         <div><h3>Why I Built a 27-Skill Framework Instead of Writing Better Prompts</h3><small>vibe-* covers the complete software development lifecycle, from first idea to client sign-off. The story of why it exists, how it works, and what makes it different from a collection of prompts.</small></div>
-        <span class="date">Jun 19, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/developer-to-pm.html">
         <span class="cat">Career</span>
         <div><h3>What 8.5 Years of Code Actually Gives You as a PM</h3><small>The specific moments where a decade of writing code changed how I ran projects, and why the background matters more than most PM frameworks admit.</small></div>
-        <span class="date">Jun 17, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/ai-agent-failure-modes.html">
         <span class="cat">Agentic AI</span>
         <div><h3>How AI Agents Actually Fail in Production</h3><small>Real failure modes from running agentic delivery systems on live client projects, the ones that only show up after the demo works.</small></div>
-        <span class="date">Jun 15, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/multi-party-truth.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>When Everyone Has a Different Version of the Truth</h3><small>Three organisations, three conflicting accounts, no neutral ground. How evidence-based PM resolves multi-party disputes, and why going to primary sources is the only move that works.</small></div>
-        <span class="date">Jun 14, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/the-mid-build-pickup.html">
         <span class="cat">Project Mgmt</span>
         <div><h3>The Mid-Build Pickup: What the First 48 Hours Actually Look Like</h3><small>No sprint plan. No time tracking. A client waiting. Here is what a Technical PM does when they inherit a live project mid-build.</small></div>
-        <span class="date">Jun 10, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/eu-ai-act-tpm-guide.html">
         <span class="cat">AI Governance</span>
         <div><h3>The EU AI Act Is Not a Legal Problem. It Is a PM Problem.</h3><small>The questions a Technical PM has to ask at kickoff, the risks to track mid-sprint, and a live example of catching a compliance gap before it became a breach.</small></div>
-        <span class="date">Jun 6, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/the-agentic-harness.html">
           <span class="cat">Agentic AI</span>
           <div><h3>The Agentic Harness: Why the Scaffolding Matters More Than the Model</h3><small>Two teams, same LLM, wildly different results: why context, tools, loops, and guardrails beat model choice.</small></div>
-          <span class="date">Jun 1, 2026</span><span class="arr">→</span>
+          <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/spec-before-code-27-skill-framework-ai-development.html">
         <span class="cat">Agentic AI</span>
         <div><h3>Spec Before Code: How I Built a 27-Skill Framework for AI-Driven Development</h3><small>How I stopped re-explaining my project every session: 27 structured workflows that give Claude full context from day one.</small></div>
-        <span class="date">Mar 29, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/how-i-automated-pm-workflow-16-ai-skills.html">
         <span class="cat">Agentic AI</span>
         <div><h3>How I Automated My Entire PM Workflow With 16 AI Skills</h3><small>Transcripts, estimates, SOWs, and more: the full client-facing pipeline.</small></div>
-        <span class="date">Mar 29, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/my-experience-with-gemini-3.1-for-coding.html">
         <span class="cat">Engineering</span>
         <div><h3>The Glass Ceiling of Gemini 3.1</h3><small>Capabilities and limitations for complex coding tasks.</small></div>
-        <span class="date">Feb 24, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://aakashdhar.me/blog/agents-in-project-management.html">
         <span class="cat">Agentic AI</span>
         <div><h3>The Future of Autonomous Agents in PM</h3><small>What changes about the PM role when the tools start making decisions on their own.</small></div>
-        <span class="date">Jan 1, 2026</span><span class="arr">→</span>
+        <span class="arr">→</span>
       </a>
       <a class="post" href="https://betacraft.com/blog/unexpected-project-challenges/">
-        <span class="cat">Project Mgmt</span>
+        <span class="cat">Project Mgmt<span class="src">betacraft.com</span></span>
         <div><h3>Unexpected Challenges in Our Last Project</h3><small>What actually went wrong on a recent project, and what we did about it.</small></div>
-        <span class="date">betacraft.com</span><span class="arr">→</span>
+        <span class="arr">↗</span>
       </a>
       <a class="post" href="https://betacraft.com/blog/solid-principles-daily-programming/">
-        <span class="cat">Engineering</span>
+        <span class="cat">Engineering<span class="src">betacraft.com</span></span>
         <div><h3>How to Use SOLID Principles Daily</h3><small>Practical examples improving codebase maintainability.</small></div>
-        <span class="date">betacraft.com</span><span class="arr">→</span>
+        <span class="arr">↗</span>
       </a>
       <a class="post" href="https://betacraft.com/blog/agile-methodology-worked/">
-        <span class="cat">Methodology</span>
+        <span class="cat">Methodology<span class="src">betacraft.com</span></span>
         <div><h3>Why Agile Worked in My Last Project</h3><small>What made it work on that project specifically, not the usual reasons.</small></div>
-        <span class="date">betacraft.com</span><span class="arr">→</span>
+        <span class="arr">↗</span>
       </a>
     </div>
-    <a class="view-all" href="https://www.linkedin.com/in/aakashdhar" target="_blank" rel="noopener">View All on LinkedIn ↗</a>
+    <div class="posts-foot">
+      <button class="show-more" type="button" hidden></button>
+      <a class="view-all" href="https://www.linkedin.com/in/aakashdhar" target="_blank" rel="noopener">View All on LinkedIn ↗</a>
+    </div>
   </div>
 </section>
 
@@ -1455,6 +1490,73 @@ h2 .serif{color:var(--amber-text);font-weight:400}
 
   track();
   if (hasGSAP && !reduce) addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+<script>
+/* Writing list: topic filters + show-all. Without JS every post stays visible. */
+(function(){
+  const list = document.querySelector('.posts');
+  const tools = document.querySelector('.post-tools');
+  const more = document.querySelector('.show-more');
+  if (!list || !tools || !more) return;
+  const filt = tools.querySelector('.filters');
+  const count = tools.querySelector('.post-count');
+  const posts = [...list.querySelectorAll('.post')];
+  const LIMIT = 8; // regular posts shown before "Show all"; the featured post is extra
+  const catOf = p => p.querySelector('.cat').firstChild.textContent.trim();
+  const counts = {};
+  posts.forEach(p => { const c = catOf(p); counts[c] = (counts[c] || 0) + 1; });
+  const cats = ['All', ...Object.keys(counts).sort((a, b) => counts[b] - counts[a])];
+  let current = 'All', expanded = false;
+
+  cats.forEach(c => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.cat = c;
+    b.innerHTML = c + '<span class="n">' + (c === 'All' ? posts.length : counts[c]) + '</span>';
+    b.addEventListener('click', () => { keepToolsInView(); current = c; expanded = false; render(); });
+    filt.appendChild(b);
+  });
+
+  function render(){
+    const match = posts.filter(p => current === 'All' || catOf(p) === current);
+    let regular = 0;
+    posts.forEach(p => p.classList.add('is-hidden'));
+    match.forEach(p => {
+      const featured = !!p.querySelector('.new');
+      const show = expanded || featured || regular < LIMIT;
+      if (!featured) regular++;
+      p.classList.toggle('is-hidden', !show);
+    });
+    filt.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cat === current)));
+    const shown = match.filter(p => !p.classList.contains('is-hidden')).length;
+    count.textContent = shown === match.length ? match.length + ' posts' : 'Showing ' + shown + ' of ' + match.length;
+    const hiddenCount = match.length - shown;
+    more.hidden = !expanded && hiddenCount === 0;
+    more.textContent = expanded ? 'Show fewer ↑' : 'Show all ' + match.length + ' ↓';
+    more.setAttribute('aria-expanded', String(expanded));
+    if (window.ScrollTrigger) requestAnimationFrame(() => ScrollTrigger.refresh());
+  }
+
+  /* Before the list shrinks, bring the filter bar back into view so the
+     collapse happens below the reader. Measured from the chapter's
+     unpinned position, because GSAP pins (fixes) chapters while scrolling. */
+  function keepToolsInView(){
+    const ch = tools.closest('.chapter');
+    const anchor = ch.parentElement.classList.contains('pin-spacer') ? ch.parentElement : ch;
+    const y = anchor.getBoundingClientRect().top + scrollY
+            + (tools.getBoundingClientRect().top - ch.getBoundingClientRect().top) - 100;
+    if (scrollY > y) window.scrollTo(0, y);
+  }
+
+  more.addEventListener('click', () => {
+    if (expanded) keepToolsInView();
+    expanded = !expanded;
+    render();
+  });
+
+  tools.hidden = false;
+  render();
 })();
 </script>
 </body>

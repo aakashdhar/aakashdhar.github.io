@@ -114,7 +114,7 @@ Do **not** point the publisher logo at `logo.png` (it does not exist). Use `favi
 
 **Wire the new post into all four indexes:**
 1. `sitemap.xml` (add `<url>` with `<lastmod>` = publish date).
-2. `index.html` insights list (add a `.post` entry at the top).
+2. `index.html` insights list: add a `.post` entry at the top (category, title, one-line summary; no date) and move the `<span class="new">Latest</span>` badge onto it. The entry with that badge is shown as the full-width featured post, and the topic filters build themselves from each entry's category.
 3. `llms.txt` (add under Writing).
 4. The related-reading blocks of 1–2 sibling posts, if relevant.
 

@@ -115,15 +115,25 @@
   "image": "https://aakashdhar.me/assets/images/blog/agentic-ai-cover.jpg",
   "author": {
     "@type": "Person",
+    "@id": "https://aakashdhar.me/#person",
     "name": "Aakash Dhar",
-    "url": "https://www.linkedin.com/in/aakashdhar"
+    "url": "https://aakashdhar.me/",
+    "jobTitle": "Technical Project Manager",
+    "sameAs": [
+      "https://www.linkedin.com/in/aakashdhar",
+      "https://github.com/aakashdhar"
+    ]
   },
   "publisher": {
     "@type": "Person",
+    "@id": "https://aakashdhar.me/#person",
     "name": "Aakash Dhar",
+    "url": "https://aakashdhar.me/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://aakashdhar.me/logo.png"
+      "url": "https://aakashdhar.me/favicon-512.png",
+      "width": 512,
+      "height": 512
     }
   },
   "datePublished": "YYYY-MM-DD",
@@ -499,7 +509,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
        2. .pill.hot  → category, e.g. "Agentic AI" | "Engineering" | "Project Mgmt"
        3. .cover-date → human date, e.g. "March 29, 2026"
        4. h1 → title; wrap the 1–3 word key phrase in <em>...</em>
-       5. .cover-sub → 1–2 sentence subtitle / hook
+       5. .cover-sub → 1–2 sentences that answer the title (the conclusion, not a scene)
        6. .toc-strip → one <a> per article section, href="#s1"... with
           short titles (2–4 words). Must match the rail and .sec ids.
      ══════════════════════════════════════════════════════════════ -->
@@ -512,7 +522,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offs
   </div>
   <h1 class="rv rv-d1">Article Title With a <em>Key Phrase</em> in Serif Amber</h1><!-- FILL: real title; keep one 1–3 word phrase inside <em> -->
   <div class="cover-foot rv rv-d2">
-    <p class="cover-sub">One or two sentence subtitle that hooks the reader and frames what the article argues.</p><!-- FILL: subtitle -->
+    <p class="cover-sub">One or two sentences that directly answer the title: the post's conclusion, stated plainly. Keep the scene for the opening paragraph.</p><!-- FILL: answer-first dek, max ~40 words -->
     <div class="cover-byline"><b>Aakash Dhar</b>Technical Project Manager</div>
   </div>
   <nav class="toc-strip rv rv-d3" aria-label="Contents">

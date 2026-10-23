@@ -1,0 +1,18 @@
+# GitHub Pages (Jekyll) build settings.
+# Files listed here stay in the repo but are not published to aakashdhar.me.
+
+exclude:
+  # internal working files
+  - blog/template.html
+  - blog/BLOG_GUIDE.md
+  - copy-review-eu-recruiters.md
+  - copy-review-eu-recruiters-2026-07-04.md
+  - scripts/
+  # legacy assets no page uses
+  - styles.css
+  - styles.min.css
+  - script.js
+  - script.min.js
+  - animations.css
+  - animations.js
+  - now.css

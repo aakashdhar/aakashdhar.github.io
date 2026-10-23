@@ -69,6 +69,7 @@ The test for any sentence: would a specific person, remembering a specific week,
 - **The last section is the conclusion.** It lands the point and poses the closing question as the final line.
 - **One pull quote per post**, placed after roughly the second section. It should be the post's key reframe, stated plainly.
   - **The `<blockquote>` contains only the quote.** No label line of any kind: no "Pull Quote · 01", no "Takeaway", no "THE RULE I LANDED ON". Those all get removed.
+- **The dek (`.cover-sub`) answers the title.** One or two sentences, max ~40 words, stating the post's conclusion plainly. The scene belongs in the opening paragraph, not the dek: answer engines lift the visible text near the top, and the dek is the first thing under the h1.
 - **First paragraph gets `class="lead"`** (amber serif drop cap). It must start with a plain letter, not a quote mark or `<strong>`.
 - Use `<em>` for quoted phrases/concepts (renders in Instrument Serif), `<strong>` for key terms, `<code>` for identifiers.
 
@@ -102,10 +103,13 @@ The test for any sentence: would a specific person, remembering a specific week,
 headline, image, description, datePublished, dateModified, inLanguage ("en"),
 articleSection (= category), keywords (array), wordCount,
 mainEntityOfPage,
-author  = Person { name, url(LinkedIn), jobTitle: "Technical Project Manager",
+author  = Person { "@id": "https://aakashdhar.me/#person", name,
+                   url: "https://aakashdhar.me/", jobTitle: "Technical Project Manager",
                    sameAs: [LinkedIn, GitHub] },
-publisher = Person { name, logo: ImageObject(url: /favicon-512.png, 512x512) }
+publisher = Person { "@id": "https://aakashdhar.me/#person", name, url: "https://aakashdhar.me/",
+                     logo: ImageObject(url: /favicon-512.png, 512x512) }
 ```
+The `@id` ties every post to the single Person entity defined on the homepage (`index.html`), which holds the full profile (sameAs, worksFor, location). Keep the two in sync.
 Do **not** point the publisher logo at `logo.png` (it does not exist). Use `favicon-512.png`.
 
 **OG image** — a 1200×630 branded card at `/assets/images/blog/<slug>-og.png`. Generate with the OG script (reads each post's `og:title`). Never leave the template's placeholder `agentic-ai-cover.jpg`.
@@ -124,7 +128,8 @@ Do **not** point the publisher logo at `logo.png` (it does not exist). Use `favi
 
 AI answer engines (ChatGPT, Perplexity, Google AI Overviews) cite content that is authoritative, fresh, and cleanly structured.
 
-- **Question-style titles and headings** — already the house style; keep it.
+- **Question-style titles and headings** — encouraged where they fit naturally (they match how people query AI engines). As of Oct 2026 only a minority of posts use them, so lean that way on new posts.
+- **Answer-first dek** — the `.cover-sub` states the conclusion (see §2), so an engine can quote it.
 - **E-E-A-T author signals** — the `jobTitle` + `sameAs` (LinkedIn, GitHub) in JSON-LD are mandatory; they tell engines who is answering.
 - **Freshness** — keep `dateModified` current when a post is edited.
 - **The description should answer the question**, so an engine can lift it as a citation.
@@ -167,7 +172,9 @@ The validator agent should read each post's prose (inside `<article class="prose
 **SEO / structured data**
 - [ ] `<title>` front-loaded, title portion ≤60 chars; meta description 150–160 and answer-shaped.
 - [ ] canonical, full OG set, Twitter card, article OG tags, keywords present.
-- [ ] JSON-LD valid and complete (all fields in §4), author E-E-A-T present, publisher logo = favicon-512.png (not logo.png).
+- [ ] JSON-LD valid and complete (all fields in §4), author and publisher carry `"@id": "https://aakashdhar.me/#person"`, publisher logo = favicon-512.png (not logo.png).
+- [ ] Dek (`.cover-sub`) answers the title in ≤ ~40 words; meta description is a complete sentence (not cut off mid-phrase).
+- [ ] `datePublished` is not in the future (live pages must never carry a future date).
 - [ ] OG image exists at `/assets/images/blog/<slug>-og.png` (not the placeholder).
 - [ ] "Related reading" block present (3 links, all resolve).
 - [ ] Post is in sitemap.xml, index.html list, and llms.txt.

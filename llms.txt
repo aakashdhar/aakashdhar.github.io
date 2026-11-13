@@ -16,6 +16,7 @@ Aakash Dhar is a Technical Project Manager and former backend developer who buil
 - [TokoSmart · Case Study](https://aakashdhar.me/case-studies/case-study-tokosmart.html): TokoSmart was a World Bank-commissioned research app for Indonesian warung owners on a fixed institutional deadline. A compliance gap and a blocked distribution channel surfaced mid-sprint with 400 participants waiting, both resolved inside the sprint.
 
 ## Writing
+- [I Build the Skill the Second Time, Not the First](https://aakashdhar.me/blog/i-build-the-skill-the-second-time-not-the-first.html): Every skill I have built started the second time I caught myself re-deciding the same thing. Why a skill is a decision written down, and which ones earn it.
 - [Every Sign of AI Writing Is the Same Sign](https://aakashdhar.me/blog/every-sign-of-ai-writing-is-the-same-sign.html): A status email with every fact right that nobody would finish. Why every sign of AI writing is the same move, and why the fix is putting the specifics back.
 - [I Don't Trust One Chat to Hold a Project](https://aakashdhar.me/blog/i-dont-trust-one-chat-to-hold-a-project.html): An AI chat reopened a decision we had settled months earlier. Why I keep a project's memory in plain files and an append-only decision log, not in the chat.
 - [Rework Is the Only Honest Metric Left](https://aakashdhar.me/blog/rework-is-the-only-honest-metric-left.html): Throughput up, burn-down green, and then the rework arrived. Why the one number nobody puts on a wall is the only one I still trust.
